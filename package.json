@@ -1,0 +1,7 @@
+{
+  "name": "professional-razor",
+  "version": "1.0.0-beta.100",
+  "private": true,
+  "description": "Use front-end tech (Vue/Css/Ts) to build multi-platform from one codebase, suitable for small team and app to write logic once, run anywhere.",
+  "workspaces": ["packages/*"]
+}

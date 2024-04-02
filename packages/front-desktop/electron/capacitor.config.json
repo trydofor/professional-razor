@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "front-desktop",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

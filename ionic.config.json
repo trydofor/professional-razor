@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "front-desktop": {
+      "name": "front-desktop",
+      "integrations": {
+        "capacitor": {}
+      },
+      "type": "vue",
+      "root": "packages/front-desktop"
+    },
+    "front-mobile": {
+      "name": "front-mobile",
+      "integrations": {
+        "capacitor": {}
+      },
+      "type": "vue",
+      "root": "packages/front-mobile"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-# Razor - CrossPlatform Hybrid Starter
+﻿# Razor - CrossPlatform Hybrid Starter
 
 > English 🇺🇸 | [中文 🇨🇳](readme-zh.md)
 >

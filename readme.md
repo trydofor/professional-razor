@@ -8,8 +8,8 @@
 
 Use front-end tech (Vue/Css/Ts) to build multi-platform from one codebase,
 
-* Mobile - Web H5, Android, iOS
-* Desktop - Web PC, Linux, Window, MacOS
+* Mobile (H5/App) - Web, Android, iOS
+* Desktop (PC/Exe) - Web, MacOS, Linux, Window
 
 Suitable for teams and app scenarios such as,
 

@@ -1,9 +1,9 @@
 {
-  "name": "@razor/front-shared",
+  "name": "@local/front-shared",
   "private": true,
   "version": "1.0.0-beta.100",
   "description": "front-user shared (lib/ui)",
   "dependencies": {
-    "@razor/shared": "file:../shared"
+    "@local/shared": "workspace:*"
   }
 }

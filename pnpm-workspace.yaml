@@ -1,0 +1,37 @@
+packages:
+  - 'packages/*'
+
+catalog:
+## dependencies ##
+  "@capacitor/android": "6.1.2"
+  "@capacitor/ios": "6.1.2"
+  "@capacitor/core": "6.1.2"
+  ###
+  "@capacitor/app": "6.0.1"
+  "@capacitor/haptics": "6.0.1"
+  "@capacitor/keyboard": "6.0.2"
+  "@capacitor/status-bar": "6.0.1"
+  "@capacitor-community/electron": "5.0.1"
+  ### @ionic
+  "@ionic/vue": "8.2.6"
+  "@ionic/vue-router": "8.2.6"
+  "ionicons": "7.4.0"
+  ### vue
+  "vue": "3.4.37"
+  "vue-router": "4.4.3"
+## devDependencies ##
+  "@capacitor/cli": "6.1.2"
+  "@vitejs/plugin-legacy": "5.4.1"
+  "@vitejs/plugin-vue": "5.1.2"
+  "@vue/eslint-config-typescript": "13.0.0"
+  "@vue/test-utils": "2.4.6"
+  "cypress": "13.13.2"
+  "eslint": "^8.56.0" ## peer-dep
+  "eslint-plugin-vue": "^9.27.0"
+  "jsdom": "24.1.1"
+  "terser": "5.31.6"
+  "typescript": "5.5.4"
+  "vite": "5.4.0"
+  "vite-multiple-assets": "1.2.10"
+  "vitest": "2.0.5"
+  "vue-tsc": "2.0.29"

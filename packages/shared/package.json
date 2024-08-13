@@ -1,5 +1,5 @@
 {
-  "name": "@razor/shared",
+  "name": "@local/shared",
   "private": true,
   "version": "1.0.0-beta.100",
   "description": "common shared (lib/ui)"

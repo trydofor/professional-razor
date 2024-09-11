@@ -1,51 +1,50 @@
-﻿# 剃刀 - 跨平台的套壳的电棍
+﻿# 剃刀 - Nuxt的跨平台的混合层
 
-> 中文 🇨🇳 | [English 🇺🇸](readme.md)
->
 > 掌控着致命的闪电风暴，雷泽在战场上横冲直撞。
+>
+> 中文 🇨🇳 | [English 🇺🇸](readme.md)
 
 ![razor](./razor.png)
 
-使用前端技术（Vue/Css/Ts）实现一套代码的多端构建，
+使用前端技术（Nuxt/Ts）实现一套代码的多端构建，
 
 * 移动端 (H5/App) - Web, Android, iOS
 * 桌面端 (PC/Exe) - Web, MacOS, Linux, Window
 
 适合以下特征的技术团队和应用场景，
 
-* 小团队，有Web能力，但少移动端经验
+* 小团队，有些Web能力，但缺少移动端经验
 * 小应用，交互简单，但多平台都有且相似
 * `MC`层可能复用，但`V`层`UX`不同
 
-目标是 `write logic once, run anywhere`
-
-* 不是 `learn once`
-* 不是 `write once`
+目标是 `Write App once, Apply almost anywhere`
 
 ## 1.技术架构
 
 * 💎 [TypeScript](https://www.typescriptlang.org) 主语言 [Apache]
-* 🚀 [Inoic](https://ionicframework.com) - 移动端 UI 和 `cli` [MIT]
-* 🚀 [Vue](https://vuejs.org) SPA 框架 [MIT]
-* 🧩 [Capacitor](https://capacitorjs.com) - 原生化移动端 [MIT]
-* 🧩 [Electron](https://capacitor-community.github.io/electron) - 原生化桌面端 [MIT]
-* 💄 [PrimeVue](https://primevue.org) 桌面端 UI [MIT]
+* 🚀 [Nuxt](https://nuxt.com) WebApp 框架 [MIT]
+* 🧩 [Vue](https://vuejs.org) Js 框架 [MIT]
+* 💄 [UnoCss](https://unocss.dev) - 原子化 CSS [MIT]
+* 📱 [Ionic](https://ionicframework.com) - 移动端组件库 [MIT]
+* 📱 [Capacitor](https://capacitorjs.com) - 移动端原生库 [MIT]
+* 🖥️ [PrimeVue](https://primevue.org) 桌面端组件库 [MIT]
+* 🖥️ [Electron](https://capacitor-community.github.io/electron) - 桌面端原生库 [MIT]
 
 [MIT]: https://opensource.org/licenses/MIT
 [Apache]: https://www.apache.org/licenses/LICENSE-2.0.html
 
 ## 2.编码规范
 
-在 [Vue风格指导](https://vuejs.org/style-guide/)的基础上，
+在 [Vue风格](https://vuejs.org/style-guide/)[和[Nuxt 规范](https://nuxt.com/docs/guide/concepts/code-style)的基础上，
 根据强类型，可读性，一致性的原则，增加以下约定，
 
 ### Rule1 - js中驼峰，html中烤串
 
 首先，`html`和`http`不区分大小写，`mac`和`win`系统默认不区分大小写。
 
-* 驼峰 - `camelCase`（小驼峰）和 `PascalCase`（大驼峰）
+* 驼峰 - `smallCamel`/小驼峰 和 `PascalCase`/大驼峰
 * 烤串 - `kebab-case`，全小写
-* `*.vue`文件 - 必须大驼峰，与Vue官方一致
+* `*.vue`及相关 - 必须大驼峰，与Vue一致
 * 目录及非vue文件 - 必须烤串，与`index.js`一致
 * 代码中 - js必须驼峰，html属性和css必须烤串
 * 组件标签 - 应该大驼峰，以区别于原生html标签
@@ -83,12 +82,13 @@
 根据vue官方模板中命名规则，大部分会是复数，
 
 * 使用时视为单一的完整的，使用单数，如 store, route
-* 使用时仍是多个的碎片的，使用复数，如 views, compents
+* 使用时仍是多个的碎片的，使用复数，如 views, components
 
 ### Rule6 - ts编码约定
 
 * 定义函数时，`function`优先于箭头函数
 * 尽量注明类型，以`unknown`代替`any`
+* 定义时用`undefined`，使用时用`null`
 * 实体代码在`*.ts`，仅类型的在`*.d.ts`
 * 在无类型推导时，以`TypeX[]`代替`Array<TypeX>`
 * 流程控制用`if`，表达式用`||`或`??`

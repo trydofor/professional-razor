@@ -1,12 +1,12 @@
-﻿# Razor - CrossPlatform Hybrid Starter
+﻿# Razor - Nuxt CrossPlatform Hybrid Layers
 
-> English 🇺🇸 | [中文 🇨🇳](readme-zh.md)
->
 > With a deadly lightning storm at his command, Razor charges into battle.
+>
+> English 🇺🇸 | [中文 🇨🇳](readme-zh.md)
 
 ![razor](./razor.png)
 
-Use front-end tech (Vue/Css/Ts) to build multi-platform from one codebase,
+Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase,
 
 * Mobile (H5/App) - Web, Android, iOS
 * Desktop (PC/Exe) - Web, MacOS, Linux, Window
@@ -17,39 +17,38 @@ Suitable for teams and app scenarios such as,
 * small app with simple interactions, but multi-platform and similar
 * The `MC` layer can be reused, but the `V` layer `UX` is different
 
-The goal is `write logic once, run anywhere`
+The goal is `Write App once, Apply almost anywhere`
 
-* not `learn once`
-* not `write once`
-
-## 1.Tech Archi
+## 1.Tech Arch
 
 * 💎 [TypeScript](https://www.typescriptlang.org) Main Language [Apache]
-* 🚀 [Inoic](https://ionicframework.com) - Mobile UI and `cli` [MIT]
-* 🚀 [Vue](https://vuejs.org) SPA Framework [MIT]
-* 🧩 [Capacitor](https://capacitorjs.com) - Mobile native [MIT]
-* 🧩 [Electron](https://capacitor-community.github.io/electron) - Desktop native [MIT]
-* 💄 [PrimeVue](https://primevue.org) Desktop UI [MIT]
+* 🚀 [Nuxt](https://nuxt.com) WebApp Framework [MIT]
+* 🧩 [Vue](https://vuejs.org) Js Framework [MIT]
+* 💄 [UnoCss](https://unocss.dev) - Atomic CSS [MIT]
+* 📱 [Ionic](https://ionicframework.com) - Mobile UI [MIT]
+* 📱 [Capacitor](https://capacitorjs.com) - Mobile native [MIT]
+* 🖥️ [PrimeVue](https://primevue.org) Desktop UI [MIT]
+* 🖥️ [Electron](https://capacitor-community.github.io/electron) - Desktop native [MIT]
 
 [MIT]: https://opensource.org/licenses/MIT
 [Apache]: https://www.apache.org/licenses/LICENSE-2.0.html
 
 ## 2.Code Style
 
-Based on the [Vue Style Guide](https://vuejs.org/style-guide/), with the principles of
+Based on the [Vue Style](https://vuejs.org/style-guide/) and [Nuxt Eslint](https://nuxt.com/docs/guide/concepts/code-style), with the principles of
 type safety, readability, and consistency, add the following conventions,
 
 ### Rule1 - camel in js, kebab in html
 
 First, `html` and `http` are case-insensitive, and `mac` and `win` OS are case-insensitive by default.
 
-* `camel` - `camelCase`(small) and `PascalCase` (big)
+* `camel` - `smallCamel` and `BigCamel`/`PascalCase`
 * `kebab` - `kebab-case` all lowercase
-* `*.vue` file - MUST be `big-camel`, consistent with Vue official
+* `*.vue` and its file - MUST be `BigCamel`, consistent with Vue
 * dir and non-vue file - MUST be `kebab` consistent with `index.js`
 * source code - js MUST be `camel`, html attr and css MUST be `kebab`
-* component tag - SHOULD be `big-camel`, to distinguish from original html
-* component prop - in js MUST be `small-camel`, in html MUST be `kebab`
+* component tag - SHOULD be `BigCamel`, to distinguish from original html
+* component prop - in js MUST be `smallCamel`, in html MUST be `kebab`
 * emit event - MUST be `kebab`, treated as string, no auto-conversion
 * i18n - SHOULD use js instead of json, key SHOULD be `camel`
 
@@ -83,16 +82,17 @@ Components named Index are hard to read, debug and develop.
 According to the official Vue naming rules, most things are plural,
 
 * for a single entity, use singular, e.g. store, route
-* for multiple fragments, use plural, e.g. views, compents
+* for multiple fragments, use plural, e.g. views, components
 
 ### Rule6 - ts coding convention
 
 * to define function, `function` is better than `arrow` lambda
 * try to specify type, `unknown` instead of `any`
+* `undefined` in definition, `null` in usage
 * entity code is in `*.ts`, type-only is in `*.d.ts`
 * `TypeX[]` instead of `Array<TypeX>` when no type inference
 * Use `if` for flow control, `||` or `??` for expression
-* Use absolute path (`@/`), relative path is only `. /` and `../`
+* Use absolute path (`@/`), relative path is only `./` and `../`
 
 ### Rule7 - vue coding convention
 

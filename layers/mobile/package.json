@@ -1,0 +1,27 @@
+{
+  "name": "@fessional/razor-mobile",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "mobile layer with ionic and capacitor",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare",
+    "type-check": "nuxi typecheck",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@nuxtjs/ionic": "^0.15.1",
+    "@fessional/razor-common": "workspace:*"
+  },
+  "dependencies": {
+    "@ionic/vue": "^8.2.7",
+    "@ionic/vue-router": "^8.2.7",
+    "ionicons": "^7.4.0"
+  }
+}

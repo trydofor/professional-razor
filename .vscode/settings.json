@@ -1,4 +1,34 @@
 {
-    "files.encoding": "utf8bom",
-    "files.autoGuessEncoding": true
+  "eslint.format.enable": true,
+  "eslint.useFlatConfig": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "Codegeex.Comment.LanguagePreference": "English",
+  "files.encoding": "utf8bom",
+  "files.autoGuessEncoding": true,
+  "cSpell.words": [
+    "dropoff",
+    "fessional",
+    "iconify",
+    "imagetools",
+    "ionicons",
+    "jsdom",
+    "movingkite",
+    "nuxi",
+    "Nuxt",
+    "nuxtjs",
+    "serv",
+    "servs",
+    "typecheck",
+    "unocss",
+    "vite",
+    "vitejs",
+    "vitest"
+  ]
 }

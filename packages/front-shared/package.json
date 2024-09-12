@@ -1,9 +1,0 @@
-{
-  "name": "@local/front-shared",
-  "private": true,
-  "version": "1.0.0-beta.100",
-  "description": "front-user shared (lib/ui)",
-  "dependencies": {
-    "@local/shared": "workspace:*"
-  }
-}

@@ -1,6 +1,12 @@
 {
-    "recommendations": [
-        "ionic.ionic",
-        "bradlc.vscode-tailwindcss"
-    ]
+  "recommendations": [
+    "ionic.ionic",
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "lokalise.i18n-ally",
+    "antfu.iconify",
+    "antfu.pnpm-catalog-lens",
+    "antfu.unocss",
+    "Nuxtr.nuxt-vscode-extentions",
+  ]
 }

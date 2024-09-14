@@ -16,12 +16,31 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@nuxtjs/ionic": "^0.15.1",
-    "@fessional/razor-common": "workspace:*"
+    "@nuxtjs/ionic": "catalog:mobile",
+    "@fessional/razor-common": "workspace:*",
+    "nuxt": "catalog:common",
+    "@nuxt/eslint": "catalog:common",
+    "eslint": "catalog:common",
+    "vite-plugin-eslint2": "catalog:common",
+    "typescript": "catalog:common",
+    "vue-tsc": "catalog:common",
+    "@nuxt/test-utils": "catalog:common",
+    "@vue/test-utils": "catalog:common",
+    "happy-dom": "catalog:common",
+    "vitest": "catalog:common",
+    "@iconify-json/mdi": "catalog:common",
+    "@unocss/core": "catalog:common",
+    "@unocss/nuxt": "catalog:common",
+    "@unocss/preset-icons": "catalog:common",
+    "@unocss/preset-wind": "catalog:common",
+    "unocss": "catalog:common"
   },
   "dependencies": {
-    "@ionic/vue": "^8.2.7",
-    "@ionic/vue-router": "^8.2.7",
-    "ionicons": "^7.4.0"
+    "@vueuse/core": "catalog:common",
+    "@vueuse/nuxt": "catalog:common",
+    "vue": "catalog:common",
+    "@ionic/vue": "catalog:mobile",
+    "@ionic/vue-router": "catalog:mobile",
+    "ionicons": "catalog:mobile"
   }
 }

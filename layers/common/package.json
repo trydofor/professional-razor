@@ -16,16 +16,26 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.2.0",
-    "@unocss/core": "^0.62.3",
-    "@unocss/nuxt": "^0.62.3",
-    "@unocss/preset-icons": "^0.62.3",
-    "@unocss/preset-wind": "^0.62.3",
-    "unocss": "^0.62.3"
+    "nuxt": "catalog:common",
+    "@nuxt/eslint": "catalog:common",
+    "eslint": "catalog:common",
+    "vite-plugin-eslint2": "catalog:common",
+    "typescript": "catalog:common",
+    "vue-tsc": "catalog:common",
+    "@nuxt/test-utils": "catalog:common",
+    "@vue/test-utils": "catalog:common",
+    "happy-dom": "catalog:common",
+    "vitest": "catalog:common",
+    "@iconify-json/mdi": "catalog:common",
+    "@unocss/core": "catalog:common",
+    "@unocss/nuxt": "catalog:common",
+    "@unocss/preset-icons": "catalog:common",
+    "@unocss/preset-wind": "catalog:common",
+    "unocss": "catalog:common"
   },
   "dependencies": {
-    "@vueuse/core": "^11.0.3",
-    "@vueuse/nuxt": "^11.0.3",
-    "vue": "^3.4.38"
+    "@vueuse/core": "catalog:common",
+    "@vueuse/nuxt": "catalog:common",
+    "vue": "catalog:common"
   }
 }

@@ -9,20 +9,10 @@
     "pnpm": "9"
   },
   "scripts": {
-    "changeset": "changeset",
-    "dev": "changeset"
+    "feat": "changeset",
+    "bump": "changeset version"
   },
   "devDependencies": {
-    "@changesets/cli": "catalog:common",
-    "@nuxt/eslint": "catalog:common",
-    "@nuxt/test-utils": "catalog:common",
-    "@vue/test-utils": "catalog:common",
-    "eslint": "catalog:common",
-    "happy-dom": "catalog:common",
-    "nuxt": "catalog:common",
-    "typescript": "catalog:common",
-    "vite-plugin-eslint2": "catalog:common",
-    "vitest": "catalog:common",
-    "vue-tsc": "catalog:common"
+    "@changesets/cli": "catalog:common"
   }
 }

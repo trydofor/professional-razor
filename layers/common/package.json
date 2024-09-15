@@ -10,9 +10,6 @@
     "generate": "nuxi generate",
     "preview": "nuxi preview",
     "postinstall": "nuxi prepare",
-    "type-check": "nuxi typecheck",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
     "test": "vitest"
   },
   "devDependencies": {

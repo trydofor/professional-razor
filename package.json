@@ -9,10 +9,12 @@
     "pnpm": "9"
   },
   "scripts": {
+    "deps": "taze -r",
     "feat": "changeset",
     "bump": "changeset version"
   },
   "devDependencies": {
+    "taze": "catalog:common",
     "@changesets/cli": "catalog:common"
   }
 }

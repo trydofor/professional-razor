@@ -18,7 +18,6 @@ npm-debug.log*
 logs/
 
 ## project
-.nuxt/
 .ionic/
 .sass-cache/
 .sourcemaps/
@@ -28,3 +27,17 @@ node_modules/
 dist/
 platforms/
 plugins/
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+.eslintcache
+
+# Local env files
+.env
+.env.*
+!.env.example

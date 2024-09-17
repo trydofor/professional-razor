@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.3
+
+### Patch Changes
+
+- 0df030f: fix version, add taze to check revi
+
 ## 0.1.2
 
 ### Patch Changes

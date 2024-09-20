@@ -5,37 +5,17 @@
   "description": "mobile layer with ionic and capacitor",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "build": "nuxi build",
+    "build": "nuxi generate",
     "dev": "nuxi dev",
-    "generate": "nuxi generate",
     "preview": "nuxi preview",
     "postinstall": "nuxi prepare",
     "test": "vitest"
   },
   "devDependencies": {
-    "@nuxtjs/ionic": "catalog:mobile",
     "@fessional/razor-common": "workspace:*",
-    "nuxt": "catalog:common",
-    "@nuxt/eslint": "catalog:common",
-    "eslint": "catalog:common",
-    "vite-plugin-eslint2": "catalog:common",
-    "typescript": "catalog:common",
-    "vue-tsc": "catalog:common",
-    "@nuxt/test-utils": "catalog:common",
-    "@vue/test-utils": "catalog:common",
-    "happy-dom": "catalog:common",
-    "vitest": "catalog:common",
-    "@iconify-json/mdi": "catalog:common",
-    "@unocss/core": "catalog:common",
-    "@unocss/nuxt": "catalog:common",
-    "@unocss/preset-icons": "catalog:common",
-    "@unocss/preset-wind": "catalog:common",
-    "unocss": "catalog:common"
+    "@nuxtjs/ionic": "catalog:mobile"
   },
   "dependencies": {
-    "@vueuse/core": "catalog:common",
-    "@vueuse/nuxt": "catalog:common",
-    "vue": "catalog:common",
     "@ionic/vue": "catalog:mobile",
     "@ionic/vue-router": "catalog:mobile",
     "ionicons": "catalog:mobile"

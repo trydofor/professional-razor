@@ -1,11 +1,5 @@
 # @fessional/razor-common
 
-## 0.1.4
-
-### Patch Changes
-
-- 2b6d87f: hoist layer hook to reduce copy deps
-
 ## 0.1.3
 
 ### Patch Changes

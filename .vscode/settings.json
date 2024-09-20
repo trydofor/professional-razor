@@ -24,6 +24,7 @@
     "Nuxt",
     "nuxtjs",
     "revi",
+    "rimraf",
     "serv",
     "servs",
     "typecheck",

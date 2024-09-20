@@ -11,10 +11,16 @@
   "scripts": {
     "deps": "taze -r",
     "feat": "changeset",
-    "bump": "changeset version"
+    "bump": "changeset version",
+    "pure": "rimraf --glob '**/node_modules/'"
   },
   "devDependencies": {
-    "taze": "catalog:common",
-    "@changesets/cli": "catalog:common"
-  }
+    "taze": "catalog:devops",
+    "rimraf": "catalog:devops",
+    "@changesets/cli": "catalog:devops"
+  },
+  "hoistLayer": [
+    "@fessional/razor-common",
+    "@fessional/razor-mobile"
+  ]
 }

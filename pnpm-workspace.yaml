@@ -6,6 +6,10 @@ packages:
 ## https://pnpm.io/catalogs
 ## https://github.com/nuxt/nuxt/blob/v3.13.2/package.json
 catalogs:
+  devops:
+    "@changesets/cli": "2.27.8"
+    "taze": "0.16.9"
+    "rimraf": "6.0.1"
   common:
     ## prd
     "@vueuse/core": "11.1.0"
@@ -26,9 +30,6 @@ catalogs:
     "@vue/test-utils": "2.4.6"
     "happy-dom": "15.7.4"
     "vitest": "2.1.1"
-    ### deploy
-    "@changesets/cli": "2.27.8"
-    "taze": "0.16.9"
     ### unocss icon/css
     "@iconify-json/mdi": "1.2.0"
     "@unocss/core": "0.62.4"

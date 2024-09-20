@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.4
+
+### Patch Changes
+
+- d30a95d: hoist layer hook to reduce copy deps
+
 ## 0.1.3
 
 ### Patch Changes

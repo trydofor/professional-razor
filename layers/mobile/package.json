@@ -12,12 +12,15 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@fessional/razor-common": "workspace:*",
-    "@nuxtjs/ionic": "catalog:mobile"
+    "@fessional/razor-common": "file:../common",
+    "@nuxtjs/ionic": "0.15.1"
   },
   "dependencies": {
-    "@ionic/vue": "catalog:mobile",
-    "@ionic/vue-router": "catalog:mobile",
-    "ionicons": "catalog:mobile"
-  }
+    "@ionic/vue": "8.3.0",
+    "@ionic/vue-router": "8.3.0",
+    "ionicons": "7.4.0"
+  },
+  "hoistLayer": [
+    "@fessional/razor-common"
+  ]
 }

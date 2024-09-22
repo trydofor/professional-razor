@@ -12,15 +12,15 @@
     "deps": "taze -r",
     "feat": "changeset",
     "bump": "changeset version",
+    "publ": "changeset publish",
     "pure": "rimraf --glob '**/node_modules/'"
   },
+  "workspaces": [
+    "layers/*"
+  ],
   "devDependencies": {
-    "taze": "catalog:devops",
-    "rimraf": "catalog:devops",
-    "@changesets/cli": "catalog:devops"
-  },
-  "hoistLayer": [
-    "@fessional/razor-common",
-    "@fessional/razor-mobile"
-  ]
+    "taze": "0.16.9",
+    "rimraf": "6.0.1",
+    "@changesets/cli": "2.27.8"
+  }
 }

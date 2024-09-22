@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-      - name: Use Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
@@ -32,13 +32,40 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Update or Release
         id: changesets
         uses: changesets/action@v1
         with:
-          commit: "chore: update versions"
-          title: "chore: update versions"
-          publish: pnpm publish -r --access public
+          commit: ":bookmark: update versions"
+          title: ":rocket: release versions"
+          publish: pnpm publ
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Release Report
+        id: report
+        run: |
+          # Get outputs from previous step
+          published="${{ steps.changesets.outputs.published }}"
+          publishedPackages="${{ steps.changesets.outputs.publishedPackages }}"
+          hasChangesets="${{ steps.changesets.outputs.hasChangesets }}"
+          pullRequestNumber="${{ steps.changesets.outputs.pullRequestNumber }}"
+
+          # Write to GitHub Summary
+          echo "Publishing Result:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "- Published: $published" >> $GITHUB_STEP_SUMMARY
+          echo "- Has Changesets: $hasChangesets" >> $GITHUB_STEP_SUMMARY
+          echo "- Pull Request Number: $pullRequestNumber" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "Published Packages:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Format published packages
+          echo "$publishedPackages" | jq -c '.[]' | while read pkg; do
+            name=$(echo $pkg | jq -r '.name')
+            version=$(echo $pkg | jq -r '.version')
+            echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
+          done

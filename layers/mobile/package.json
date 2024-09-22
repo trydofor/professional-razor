@@ -12,13 +12,16 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@fessional/razor-common": "file:../common",
+    "@fessional/razor-common": "0.1.5",
     "@nuxtjs/ionic": "0.15.1"
   },
   "dependencies": {
     "@ionic/vue": "8.3.0",
     "@ionic/vue-router": "8.3.0",
     "ionicons": "7.4.0"
+  },
+  "resolutions": {
+    "@fessional/razor-common": "file:../common"
   },
   "hoistLayer": [
     "@fessional/razor-common"

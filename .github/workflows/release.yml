@@ -46,10 +46,10 @@ jobs:
         id: report
         run: |
           # Get outputs from previous step
-          published="${{ steps.changesets.outputs.published }}"
-          publishedPackages="${{ steps.changesets.outputs.publishedPackages }}"
-          hasChangesets="${{ steps.changesets.outputs.hasChangesets }}"
-          pullRequestNumber="${{ steps.changesets.outputs.pullRequestNumber }}"
+          published='${{ steps.changesets.outputs.published }}'
+          publishedPackages='${{ steps.changesets.outputs.publishedPackages }}'
+          hasChangesets='${{ steps.changesets.outputs.hasChangesets }}'
+          pullRequestNumber='${{ steps.changesets.outputs.pullRequestNumber }}'
 
           # Write to GitHub Summary
           echo "Publishing Result:" >> $GITHUB_STEP_SUMMARY

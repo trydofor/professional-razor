@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@fessional/razor-common': file:../common
+
 pnpmfileChecksum: fdn55z2vozx6pi2maaie5cqa7i
 
 importers:

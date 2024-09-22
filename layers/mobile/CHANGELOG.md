@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.6
+
+### Patch Changes
+
+- 2138748: replace file: to resolution
+
 ## 0.1.5
 
 ### Patch Changes

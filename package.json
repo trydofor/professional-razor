@@ -13,14 +13,16 @@
     "feat": "changeset",
     "bump": "changeset version",
     "publ": "changeset publish",
-    "pure": "rimraf --glob '**/node_modules/'"
+    "pure": "rimraf -g '**/node_modules/'",
+    "fori": "each-package-run layers pnpm i"
   },
   "workspaces": [
     "layers/*"
   ],
   "devDependencies": {
-    "taze": "0.16.9",
+    "@changesets/cli": "2.27.8",
     "rimraf": "6.0.1",
-    "@changesets/cli": "2.27.8"
+    "each-package-run": "1.0.2",
+    "taze": "0.16.9"
   }
 }

@@ -11,6 +11,9 @@ importers:
       '@changesets/cli':
         specifier: 2.27.8
         version: 2.27.8
+      each-package-run:
+        specifier: 1.0.2
+        version: 1.0.2
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -359,6 +362,10 @@ packages:
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
+
+  each-package-run@1.0.2:
+    resolution: {integrity: sha512-oN8Hzs7Phzqk8ZNdR9uhqzXgZlSFKfL9TiAfTe6JoDEiPDmWdMYS8HpMXyu0H35/VNyF4aIDf6TEO2tQ2ZtO2A==}
+    hasBin: true
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -1141,6 +1148,8 @@ snapshots:
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
+
+  each-package-run@1.0.2: {}
 
   eastasianwidth@0.2.0: {}
 

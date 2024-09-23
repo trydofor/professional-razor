@@ -1,27 +1,28 @@
 ﻿const packageKey = 'hoistLayer';
 const cachedFile = 'node_modules/.hoist-layer.json';
+const targetFile = '.pnpmfile.cjs';
+const debug = false;
 
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const debug = false;
 
-// find the monorepo root by searching for .pnpmfile.cjs
-function findMonorepoRoot(pwd) {
-  if (fs.existsSync(path.join(pwd, '.pnpmfile.cjs'))) {
+// find the repo root by searching for .pnpmfile.cjs
+function findRepoRoot(pwd) {
+  if (fs.existsSync(path.join(pwd, targetFile))) {
     return pwd;
   }
   const dir = path.dirname(pwd);
   if (dir === pwd) {
-    throw new Error('Monorepo root not found, should have .pnpmfile.cjs');
+    throw new Error(`Monorepo root not found, should have ${targetFile}`);
   }
-  return findMonorepoRoot(dir);
+  return findRepoRoot(dir);
 }
 
-const monorepoRoot = findMonorepoRoot(process.cwd());
-const packageJson = path.resolve(monorepoRoot, 'package.json');
+const repoRoot = findRepoRoot(process.cwd());
+const packageJson = path.resolve(repoRoot, 'package.json');
 if (packageJson == null) {
-  throw new Error('package.json is not found in ' + monorepoRoot);
+  throw new Error(`package.json is not found in ${repoRoot}`);
 }
 
 const flatLayerMap = new Map();
@@ -31,24 +32,24 @@ if (hoistLayer == null) {
 }
 
 if (debug) {
-  console.log('DEBUG: hoistLayer \n' + JSON.stringify(hoistLayer, null, 2));
+  console.log('🪝 hoistLayer:\n' + JSON.stringify(hoistLayer, null, 2));
 }
 
-const cachedPath = path.resolve(monorepoRoot, cachedFile);
+const cachedPath = path.resolve(repoRoot, cachedFile);
 const cacheExist = fs.existsSync(cachedPath);
 const resolutionOnly = process.argv.includes('--resolution-only');
 if (resolutionOnly && cacheExist) {
   fs.rmSync(cachedPath);
 }
 if (debug) {
-  console.log(`DEBUG: cachedPath=${cachedPath}`);
-  console.log(`DEBUG: cacheExist=${cacheExist}`);
-  console.log(`DEBUG: resolutionOnly=${resolutionOnly}`);
+  console.log(`🪝 cachedPath=${cachedPath}`);
+  console.log(`🪝 cacheExist=${cacheExist}`);
+  console.log(`🪝 resolutionOnly=${resolutionOnly}`);
 }
 if (!resolutionOnly && cacheExist) {
   loadFlatLayer();
   if (debug) {
-    console.log('DEBUG: loadFlatLayer \n' + JSON.stringify(Array.from(flatLayerMap.values()), null, 2));
+    console.log('🪝 loadFlatLayer:\n' + JSON.stringify(Array.from(flatLayerMap.values()), null, 2));
   }
 }
 
@@ -82,20 +83,18 @@ function loadFlatLayer() {
 }
 
 function readPackage(pkg, context) {
+  const pn = pkg.name;
   if (resolutionOnly) {
-    if (pkg.name.startsWith('@fessional')) {
-      context.log('find the hoist layers ' + pkg.name);
-    }
-    if (hoistLayer.includes(pkg.name)) {
-      context.log('find the hoist layers ' + pkg.name);
-      flatLayerMap.set(pkg.name, {
-        name: pkg.name,
+    if (hoistLayer.includes(pn)) {
+      context.log(`🪝 find the hoist layers ${pn}`);
+      flatLayerMap.set(pn, {
+        name: pn,
         dependencies: pkg.dependencies,
         devDependencies: pkg.devDependencies,
       });
     }
     if (flatLayerMap.size === hoistLayer.length) {
-      context.log('write cached hoist-layer to ' + cachedPath);
+      context.log(`🪝 write cached hoist-layer to ${cachedPath}`);
       fs.mkdirSync(path.dirname(cachedPath), { recursive: true });
       fs.writeFileSync(cachedPath, JSON.stringify(Array.from(flatLayerMap.values()), null, 2), 'utf-8');
       process.exit(0);
@@ -104,7 +103,7 @@ function readPackage(pkg, context) {
   }
 
   if (flatLayerMap.size === 0) {
-    context.log('resolution the hoist layers');
+    context.log('🪝 resolution the hoist layers');
     execSync('pnpm i --resolution-only', { stdio: debug ? 'inherit' : 'ignore' });
     loadFlatLayer();
     if (flatLayerMap.size === 0) {
@@ -115,7 +114,7 @@ function readPackage(pkg, context) {
   // layer dependency
   for (const pk of hoistLayer) {
     if (pkg.dependencies[pk] != null || pkg.devDependencies[pk] != null) {
-      context.log('hoist layer' + pk + ' to ' + pkg.name);
+      context.log(`🪝 hoist layer ${pk}  to  ${pn}`);
       const it = flatLayerMap.get(pk);
       pkg.dependencies = {
         ...pkg.dependencies,

@@ -21,7 +21,7 @@
     "ionicons": "7.4.0"
   },
   "resolutions": {
-    "@fessional/razor-common": "file:../common"
+    "@fessional/razor-common": "link:../common"
   },
   "hoistLayer": [
     "@fessional/razor-common"

@@ -14,7 +14,8 @@
     "bump": "changeset version",
     "publ": "changeset publish",
     "pure": "rimraf -g '**/node_modules/'",
-    "fori": "each-package-run layers pnpm i"
+    "fori": "each-package-run layers pnpm i",
+    "fort": "each-package-run layers pnpm exec vitest --no-watch"
   },
   "workspaces": [
     "layers/*"

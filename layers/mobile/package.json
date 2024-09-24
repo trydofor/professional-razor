@@ -16,6 +16,7 @@
     "@nuxtjs/ionic": "0.15.1"
   },
   "dependencies": {
+    "@capacitor/preferences": "6.0.2",
     "@ionic/vue": "8.3.0",
     "@ionic/vue-router": "8.3.0",
     "ionicons": "7.4.0"

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.7
+
+### Patch Changes
+
+- b3e8b2a: pnpm 9.9 workspace with catalog and no shared lock
+
 ## 0.1.6
 
 ### Patch Changes

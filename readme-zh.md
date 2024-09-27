@@ -99,3 +99,25 @@
 * emits，采用ts规范，事件名不必使用`on`前缀
 * props，传递Function时，使用`do`前缀，表示`handle`
 * SFC中的interface或type，可放到同名`.d.ts`，enum放在`.ts`
+
+## 3.自己动手
+
+```bash
+###### 有 CI
+## 安装 pnpm-hoist-layer 到 devDeps
+pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
+## 重置 ci 锁文件
+git restore .
+## 根据锁文件，安装依赖
+pnpm -r i --frozen-lockfile
+##### 无 CI
+pnpm -w i --ignore-pnpmfile
+pnpm -r i
+#####
+## 测试
+pnpm tests
+## 删除 node_modules
+pnpm rmdep
+## 删除 node_modules and pnpm-lock.yaml
+pnpm rmall
+```

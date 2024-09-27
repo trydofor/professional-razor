@@ -99,3 +99,25 @@ According to the official Vue naming rules, most things are plural,
 * emits, using the ts specification, event name without `on` prefix
 * props, use `do` prefix for `handle` when passthrough Function
 * interface/type in SFC, can be in same-name `.d.ts`, but enum in `.ts`
+
+## 3.DoIt Yourself
+
+```bash
+###### for CI
+## install pnpm-hoist-layer to devDep
+pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
+## reset the ci lockfile
+git restore .
+## install all deps by lockfile
+pnpm -r i --frozen-lockfile
+##### non CI
+pnpm -w i --ignore-pnpmfile
+pnpm -r i
+#####
+## testing
+pnpm tests
+## rm node_modules
+pnpm rmdep
+## rm node_modules and pnpm-lock.yaml
+pnpm rmall
+```

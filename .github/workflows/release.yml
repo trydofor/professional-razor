@@ -13,24 +13,45 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write
       pull-requests: write
       checks: write
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Checkout ${{ github.ref_name }}
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+
+      - uses: actions/cache@v4
+        name: Cache pnpm store
+        id: cache-sdk-repo
         with:
-          node-version-file: package.json
-          cache: 'pnpm'
+          path: |
+            ~/.asdf/
+            ~/.local/share/pnpm/store/
+          key: asdf-store-${{ runner.os }}
+
+      - name: Install asdf & tools
+        uses: asdf-vm/actions/install@v3
+        with:
+          skip_install: ${{ steps.cache-sdk-repo.outputs.cache-hit == 'true' }}
+
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          echo "install pnpm-hoist-layer to devDep"
+          pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
+          echo "reset the ci lockfile"
+          git restore .
+          echo "install all deps by lockfile"
+          pnpm -r i --frozen-lockfile
+
+          echo "Packaging Envs:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- node: $(node -v)" >> $GITHUB_STEP_SUMMARY
+          echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
       - name: Update or Release
         id: changesets
@@ -38,10 +59,10 @@ jobs:
         with:
           commit: ":bookmark: update versions"
           title: ":rocket: release versions"
-          publish: pnpm publ
+          publish: pnpm pubs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Release Report
         id: report
         run: |
@@ -51,7 +72,6 @@ jobs:
           hasChangesets='${{ steps.changesets.outputs.hasChangesets }}'
           pullRequestNumber='${{ steps.changesets.outputs.pullRequestNumber }}'
 
-          # Write to GitHub Summary
           echo "Publishing Result:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 

@@ -12,17 +12,14 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@fessional/razor-common": "0.1.6",
-    "@nuxtjs/ionic": "0.15.1"
+    "@fessional/razor-common": "workspace:*",
+    "@nuxtjs/ionic": "catalog:mobile"
   },
   "dependencies": {
-    "@capacitor/preferences": "6.0.2",
-    "@ionic/vue": "8.3.0",
-    "@ionic/vue-router": "8.3.0",
-    "ionicons": "7.4.0"
-  },
-  "resolutions": {
-    "@fessional/razor-common": "link:../common"
+    "@capacitor/preferences": "catalog:mobile",
+    "@ionic/vue": "catalog:mobile",
+    "@ionic/vue-router": "catalog:mobile",
+    "ionicons": "catalog:mobile"
   },
   "hoistLayer": [
     "@fessional/razor-common"

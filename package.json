@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "description": "Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase, suitable for small team and app to write app once, apply almost anywhere.",
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.9.0",
   "engines": {
     "node": "20",
     "pnpm": "9"
@@ -12,18 +12,15 @@
     "deps": "taze -r",
     "feat": "changeset",
     "bump": "changeset version",
-    "publ": "changeset publish",
-    "pure": "rimraf -g '**/node_modules/'",
-    "fori": "each-package-run layers pnpm i",
-    "fort": "each-package-run layers pnpm exec vitest --no-watch"
+    "pubs": "changeset publish",
+    "rmall": "rimraf -g '**/pnpm-lock.yaml' '**/node_modules/'",
+    "rmdep": "rimraf -g '**/node_modules/'",
+    "tests": "pnpm -r exec vitest --no-watch"
   },
-  "workspaces": [
-    "layers/*"
-  ],
   "devDependencies": {
-    "@changesets/cli": "2.27.8",
-    "rimraf": "6.0.1",
-    "each-package-run": "1.0.2",
-    "taze": "0.16.9"
+    "pnpm-hoist-layer": "catalog:devops",
+    "@changesets/cli": "catalog:devops",
+    "rimraf": "catalog:devops",
+    "taze": "catalog:devops"
   }
 }

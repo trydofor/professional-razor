@@ -51,6 +51,13 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- node: $(node -v)" >> $GITHUB_STEP_SUMMARY
           echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Bump top-project version
+        run: |
+          pnpm exec changeset status --output version-status.tmp
+          newv=$(jq -r '.releases[1].newVersion' version-status.tmp)
+          sed -i "s/\"version\": \".*\"/\"version\": \"$new_version\"/" package.json
+          echo "- revi: $newv" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
       - name: Update or Release

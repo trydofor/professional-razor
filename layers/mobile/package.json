@@ -1,7 +1,7 @@
 {
   "name": "@fessional/razor-mobile",
   "type": "module",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "mobile layer with ionic and capacitor",
   "main": "./nuxt.config.ts",
   "scripts": {

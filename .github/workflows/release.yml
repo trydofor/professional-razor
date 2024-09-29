@@ -40,6 +40,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          chmod a+x .changeset/bump-top.sh
           echo "install pnpm-hoist-layer to devDep"
           pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
           echo "reset the ci lockfile"
@@ -52,20 +53,13 @@ jobs:
           echo "- node: $(node -v)" >> $GITHUB_STEP_SUMMARY
           echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
 
-      - name: Bump top-project version
-        run: |
-          pnpm exec changeset status --output version-status.tmp
-          newv=$(jq -r '.releases[1].newVersion' version-status.tmp)
-          sed -i "s/\"version\": \".*\"/\"version\": \"$new_version\"/" package.json
-          echo "- revi: $newv" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
       - name: Update or Release
         id: changesets
         uses: changesets/action@v1
         with:
           commit: ":bookmark: update versions"
           title: ":rocket: release versions"
+          version: .changeset/bump-top.sh
           publish: pnpm pubs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

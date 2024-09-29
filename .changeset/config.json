@@ -4,8 +4,7 @@
   "commit": false,
   "fixed": [
     [
-      "@fessional/razor-common",
-      "@fessional/razor-mobile"
+      "@fessional/*"
     ]
   ],
   "linked": [],

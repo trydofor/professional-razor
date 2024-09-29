@@ -10,8 +10,8 @@ catalogs:
       specifier: 2.27.8
       version: 2.27.8
     pnpm-hoist-layer:
-      specifier: 1.1.3
-      version: 1.1.3
+      specifier: 1.1.5
+      version: 1.1.5
     rimraf:
       specifier: 6.0.1
       version: 6.0.1
@@ -30,7 +30,7 @@ importers:
         version: 2.27.8
       pnpm-hoist-layer:
         specifier: catalog:devops
-        version: 1.1.3
+        version: 1.1.5
       rimraf:
         specifier: catalog:devops
         version: 6.0.1
@@ -639,8 +639,8 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
-  pnpm-hoist-layer@1.1.3:
-    resolution: {integrity: sha512-LpEA7xU5VelRYuwr3q/+LTc7DnVlHIJk73nuB68kbjsnkMAI7oaundJFjo1d3ZzkIfK030klRwWX1nkvMQ/Mfw==}
+  pnpm-hoist-layer@1.1.5:
+    resolution: {integrity: sha512-Ug1csoZhHrZloRRdgmk84OMTP2faEBPVmHEvM4oh51xIfk+ZqtT25JzjiEtw5oHZTJNBchBfPuEthsZcR/sP5g==}
 
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
@@ -1421,7 +1421,7 @@ snapshots:
 
   pify@4.0.1: {}
 
-  pnpm-hoist-layer@1.1.3: {}
+  pnpm-hoist-layer@1.1.5: {}
 
   prettier@2.8.8: {}
 

@@ -1,0 +1,7 @@
+﻿## https://docs.npmjs.com/cli/v9/using-npm/developers#keeping-files-out-of-your-package
+.nuxt/
+.output/
+dist/
+test/
+node_modules/
+.eslintcache

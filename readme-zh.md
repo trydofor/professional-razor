@@ -103,21 +103,24 @@
 ## 3.自己动手
 
 ```bash
-###### 有 CI
+## ✅ for CI
 ## 安装 pnpm-hoist-layer 到 devDeps
 pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
 ## 重置 ci 锁文件
-git restore .
+git restore pnpm-lock.yaml
 ## 根据锁文件，安装依赖
 pnpm -r i --frozen-lockfile
-##### 无 CI
+
+## 💚 for Dev
 pnpm -w i --ignore-pnpmfile
 pnpm -r i
-#####
-## 测试
+
+## 🧪 测试
 pnpm tests
+## 删除 .nuxt, .output, dist
+pnpm rmgen
 ## 删除 node_modules
 pnpm rmdep
-## 删除 node_modules and pnpm-lock.yaml
+## 删除 node_modules, pnpm-lock.yaml
 pnpm rmall
 ```

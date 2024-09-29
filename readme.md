@@ -103,21 +103,24 @@ According to the official Vue naming rules, most things are plural,
 ## 3.DoIt Yourself
 
 ```bash
-###### for CI
+## ✅ for CI
 ## install pnpm-hoist-layer to devDep
 pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
 ## reset the ci lockfile
-git restore .
+git restore pnpm-lock.yaml
 ## install all deps by lockfile
 pnpm -r i --frozen-lockfile
-##### non CI
+
+## 💚 for Dev
 pnpm -w i --ignore-pnpmfile
 pnpm -r i
-#####
-## testing
+
+## 🧪 testing
 pnpm tests
+## rm .nuxt, .output, dist
+pnpm rmgen
 ## rm node_modules
 pnpm rmdep
-## rm node_modules and pnpm-lock.yaml
+## rm node_modules, pnpm-lock.yaml
 pnpm rmall
 ```

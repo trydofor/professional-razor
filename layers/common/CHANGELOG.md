@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.8
+
+### Patch Changes
+
+- a0a47db: npmigonre and hoist-layer
+
 ## 0.1.7
 
 ### Patch Changes

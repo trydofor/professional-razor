@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.10
+
+### Patch Changes
+
+- 797007b: ⬆️ check deps to latest via taze #38
+
 ## 0.1.9
 
 ### Patch Changes

@@ -113,6 +113,7 @@ pnpm -r i --frozen-lockfile
 
 ## 💚 for Dev
 pnpm -w i --ignore-pnpmfile
+pnpm -r i --ignore-scripts
 pnpm -r i
 
 ## 🧪 testing

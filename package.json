@@ -19,7 +19,7 @@
     "readme.md"
   ],
   "scripts": {
-    "deps": "taze -r",
+    "deps": "taze -r -l latest",
     "revi": "changeset",
     "bump": "changeset version",
     "pubs": "changeset publish",
@@ -30,9 +30,9 @@
     "tests": "pnpm -r exec vitest --no-watch"
   },
   "devDependencies": {
-    "pnpm-hoist-layer": "catalog:devops",
-    "@changesets/cli": "catalog:devops",
-    "rimraf": "catalog:devops",
-    "taze": "catalog:devops"
+    "pnpm-hoist-layer": "catalog:manage",
+    "@changesets/cli": "catalog:manage",
+    "rimraf": "catalog:manage",
+    "taze": "catalog:manage"
   }
 }

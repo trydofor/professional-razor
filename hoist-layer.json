@@ -7,22 +7,22 @@
       "vue": "catalog:common"
     },
     "devDependencies": {
-      "nuxt": "catalog:common",
-      "@nuxt/eslint": "catalog:common",
-      "eslint": "catalog:common",
-      "vite-plugin-eslint2": "catalog:common",
-      "typescript": "catalog:common",
-      "vue-tsc": "catalog:common",
-      "@nuxt/test-utils": "catalog:common",
-      "@vue/test-utils": "catalog:common",
-      "happy-dom": "catalog:common",
-      "vitest": "catalog:common",
-      "@iconify-json/mdi": "catalog:common",
-      "@unocss/core": "catalog:common",
-      "@unocss/nuxt": "catalog:common",
-      "@unocss/preset-icons": "catalog:common",
-      "@unocss/preset-wind": "catalog:common",
-      "unocss": "catalog:common"
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev"
     }
   }
 ]

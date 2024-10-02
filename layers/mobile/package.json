@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@fessional/razor-common": "workspace:*",
-    "@nuxtjs/ionic": "catalog:mobile"
+    "@nuxtjs/ionic": "catalog:mobileDev"
   },
   "dependencies": {
     "@capacitor/preferences": "catalog:mobile",

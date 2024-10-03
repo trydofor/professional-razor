@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.11
+
+### Patch Changes
+
+- 865e751: ✨ auto import types/\*.d.ts
+
 ## 0.1.10
 
 ### Patch Changes

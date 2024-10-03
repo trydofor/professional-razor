@@ -38,13 +38,13 @@ jobs:
         with:
           skip_install: ${{ steps.cache-sdk-repo.outputs.cache-hit == 'true' }}
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           chmod a+x .changeset/bump-top.sh
           echo "install pnpm-hoist-layer to devDep"
           pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
           echo "reset the ci lockfile"
-          git restore .
+          git restore pnpm-lock.yaml
           echo "install all deps by lockfile"
           pnpm -r i --frozen-lockfile
 
@@ -52,15 +52,16 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- node: $(node -v)" >> $GITHUB_STEP_SUMMARY
           echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
+          echo "- revi: $(jq -r '.version' package.json)" >> $GITHUB_STEP_SUMMARY
 
-      - name: Update or Release
+      - name: Bumping or Release
         id: changesets
         uses: changesets/action@v1
         with:
-          commit: ":bookmark: update versions"
+          commit: ":bookmark: bumping versions"
           title: ":rocket: release versions"
           version: .changeset/bump-top.sh
-          publish: pnpm pubs
+          publish: pnpm ver:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -86,7 +87,15 @@ jobs:
 
           # Format published packages
           echo "$publishedPackages" | jq -c '.[]' | while read pkg; do
-            name=$(echo $pkg | jq -r '.name')
-            version=$(echo $pkg | jq -r '.version')
+          name=$(echo $pkg | jq -r '.name')
+          version=$(echo $pkg | jq -r '.version')
             echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
           done
+
+      - name: Release Root Package
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          pnpm publish --access public
+          name=$(jq -r '.name' package.json)
+          version=$(jq -r '.version' package.json)
+          echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY

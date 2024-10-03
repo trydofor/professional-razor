@@ -117,11 +117,11 @@ pnpm -r i --ignore-scripts
 pnpm -r i
 
 ## 🧪 测试
-pnpm tests
+pnpm dev:test
 ## 删除 .nuxt, .output, dist
-pnpm rmgen
+pnpm del:gen
 ## 删除 node_modules
-pnpm rmdep
+pnpm del:dep
 ## 删除 node_modules, pnpm-lock.yaml
-pnpm rmall
+pnpm del:all
 ```

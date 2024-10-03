@@ -19,15 +19,15 @@
     "readme.md"
   ],
   "scripts": {
-    "deps": "taze -r -l latest",
-    "revi": "changeset",
-    "bump": "changeset version",
-    "pubs": "changeset publish",
-    "vers": "changeset status --verbose",
-    "rmall": "rimraf -g '**/node_modules/' '**/pnpm-lock.yaml'",
-    "rmdep": "rimraf -g '**/node_modules/'",
-    "rmgen": "rimraf -g '**/.nuxt/' '**/.output/' '**/dist/'",
-    "tests": "pnpm -r exec vitest --no-watch"
+    "dep:latest": "taze -r -l latest",
+    "ver:add": "changeset",
+    "ver:bump": "changeset version",
+    "ver:publish": "changeset publish",
+    "ver:status": "changeset status --verbose",
+    "del:all": "rimraf -g '**/node_modules/' '**/pnpm-lock.yaml'",
+    "del:dep": "rimraf -g '**/node_modules/'",
+    "del:gen": "rimraf -g '**/.nuxt/' '**/.output/' '**/dist/'",
+    "dev:test": "pnpm -r exec vitest --no-watch"
   },
   "devDependencies": {
     "pnpm-hoist-layer": "catalog:manage",

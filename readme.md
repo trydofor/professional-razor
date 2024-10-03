@@ -117,11 +117,11 @@ pnpm -r i --ignore-scripts
 pnpm -r i
 
 ## 🧪 testing
-pnpm tests
+pnpm dev:test
 ## rm .nuxt, .output, dist
-pnpm rmgen
+pnpm del:gen
 ## rm node_modules
-pnpm rmdep
+pnpm del:dep
 ## rm node_modules, pnpm-lock.yaml
-pnpm rmall
+pnpm del:all
 ```

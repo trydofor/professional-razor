@@ -54,6 +54,23 @@ jobs:
           echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
           echo "- revi: $(jq -r '.version' package.json)" >> $GITHUB_STEP_SUMMARY
 
+      - name: Testing
+        run: |
+          pnpm dev:test
+
+      - name: 'Common Coverage'
+        if: always()
+        uses:  davelosert/vitest-coverage-report-action@v2
+        with:
+          name: 'Common'
+          working-directory: './layers/common'
+      - name: 'Mobile Coverage'
+        if: always()
+        uses:  davelosert/vitest-coverage-report-action@v2
+        with:
+          name: 'Mobile'
+          working-directory: './layers/mobile'
+
       - name: Bumping or Release
         id: changesets
         uses: changesets/action@v1
@@ -65,37 +82,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release Report
-        id: report
+      - name: Publishing Report
         run: |
-          # Get outputs from previous step
-          published='${{ steps.changesets.outputs.published }}'
-          publishedPackages='${{ steps.changesets.outputs.publishedPackages }}'
-          hasChangesets='${{ steps.changesets.outputs.hasChangesets }}'
-          pullRequestNumber='${{ steps.changesets.outputs.pullRequestNumber }}'
-
-          echo "Publishing Result:" >> $GITHUB_STEP_SUMMARY
+          echo "Publish Result:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Published: ${{ steps.changesets.outputs.published }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Has Changesets: ${{ steps.changesets.outputs.hasChangesets }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Pull Request Number: ${{ steps.changesets.outputs.pullRequestNumber }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          echo "- Published: $published" >> $GITHUB_STEP_SUMMARY
-          echo "- Has Changesets: $hasChangesets" >> $GITHUB_STEP_SUMMARY
-          echo "- Pull Request Number: $pullRequestNumber" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          echo "Published Packages:" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          # Format published packages
-          echo "$publishedPackages" | jq -c '.[]' | while read pkg; do
-          name=$(echo $pkg | jq -r '.name')
-          version=$(echo $pkg | jq -r '.version')
-            echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
-          done
-
-      - name: Release Root Package
+      - name: Published Package
         if: steps.changesets.outputs.published == 'true'
         run: |
           pnpm publish --access public
+
+          echo "Published Packages:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          publishedPackages='${{ steps.changesets.outputs.publishedPackages }}'
           name=$(jq -r '.name' package.json)
           version=$(jq -r '.version' package.json)
           echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
+
+          # Format published packages
+          echo "$publishedPackages" | jq -c '.[]' | while read pkg; do
+            name=$(echo $pkg | jq -r '.name')
+            version=$(echo $pkg | jq -r '.version')
+            echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
+          done

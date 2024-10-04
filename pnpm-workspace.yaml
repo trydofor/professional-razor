@@ -23,6 +23,7 @@ catalogs:
     "@unocss/nuxt": "0.63.2"
     "@unocss/preset-icons": "0.63.2"
     "@unocss/preset-wind": "0.63.2"
+    "@vitest/coverage-v8": "2.1.2"
     "@vue/test-utils": "2.4.6"
     "eslint": "9.11.1"
     "happy-dom": "15.7.4"

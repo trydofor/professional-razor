@@ -9,8 +9,8 @@
     "pnpm": "9"
   },
   "files": [
-    "LICENSE",
     "hoist-layer.json",
+    "LICENSE",
     "package.json",
     "pnpm-lock.yaml",
     "pnpm-workspace.yaml",
@@ -19,19 +19,20 @@
     "readme.md"
   ],
   "scripts": {
-    "dep:latest": "taze -r -l latest",
-    "ver:add": "changeset",
-    "ver:bump": "changeset version",
-    "ver:publish": "changeset publish",
-    "ver:status": "changeset status --verbose",
     "del:all": "rimraf -g '**/node_modules/' '**/pnpm-lock.yaml'",
     "del:dep": "rimraf -g '**/node_modules/'",
     "del:gen": "rimraf -g '**/.nuxt/' '**/.output/' '**/dist/'",
-    "dev:test": "pnpm -r exec vitest --no-watch"
+    "dep:latest": "taze -r -l latest",
+    "dev:gen": "pnpm -r exec nuxi prepare",
+    "dev:test": "pnpm -r exec vitest --no-watch --coverage.enabled true",
+    "ver:add": "changeset",
+    "ver:bump": "changeset version",
+    "ver:publish": "changeset publish",
+    "ver:status": "changeset status --verbose"
   },
   "devDependencies": {
-    "pnpm-hoist-layer": "catalog:manage",
     "@changesets/cli": "catalog:manage",
+    "pnpm-hoist-layer": "catalog:manage",
     "rimraf": "catalog:manage",
     "taze": "catalog:manage"
   }

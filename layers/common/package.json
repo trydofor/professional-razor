@@ -20,6 +20,7 @@
     "@unocss/nuxt": "catalog:commonDev",
     "@unocss/preset-icons": "catalog:commonDev",
     "@unocss/preset-wind": "catalog:commonDev",
+    "@vitest/coverage-v8": "catalog:commonDev",
     "@vue/test-utils": "catalog:commonDev",
     "eslint": "catalog:commonDev",
     "happy-dom": "catalog:commonDev",

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.12
+
+### Patch Changes
+
+- e305772: eslint of ionic; vitest, scripts
+
 ## 0.1.11
 
 ### Patch Changes

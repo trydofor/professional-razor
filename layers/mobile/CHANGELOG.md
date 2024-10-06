@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.13
+
+### Patch Changes
+
+- b56afec: 🏷️ mjs+jsdoc instead of ts #43
+
 ## 0.1.12
 
 ### Patch Changes

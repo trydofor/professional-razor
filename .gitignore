@@ -36,6 +36,7 @@ plugins/
 .cache
 dist
 .eslintcache
+fessional*.tgz
 
 # Local env files
 .env

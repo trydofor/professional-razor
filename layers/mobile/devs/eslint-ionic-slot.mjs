@@ -1,6 +1,7 @@
-﻿import type { Linter } from 'eslint';
-
-// https://github.com/nuxt-modules/ionic/blob/main/src/imports.ts
+﻿// https://github.com/nuxt-modules/ionic/blob/main/src/imports.ts
+/**
+ * @type {string[]}
+ */
 export const ignore = [
   'IonAccordion',
   'IonAccordionGroup',
@@ -92,11 +93,17 @@ export const ignore = [
   'IonToolbar',
 ];
 
-export const rules: Linter.RulesRecord = {
+/**
+ * @type {import('eslint').Linter.RulesRecord}
+ */
+export const rules = {
   'vue/no-deprecated-slot-attribute': ['error', { ignore }],
 };
 
-// https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
-const config: Linter.Config = { files: ['**/*.vue'], rules };
+/**
+ * @type {import('eslint').Linter.Config}
+ */
+const config = { files: ['**/*.vue'], rules };
 
+// https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
 export default config;

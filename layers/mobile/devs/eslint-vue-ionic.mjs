@@ -97,6 +97,7 @@ export const ignore = [
  * @type {import('eslint').Linter.RulesRecord}
  */
 export const rules = {
+  // https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
   'vue/no-deprecated-slot-attribute': ['error', { ignore }],
 };
 
@@ -105,5 +106,4 @@ export const rules = {
  */
 const config = { files: ['**/*.vue'], rules };
 
-// https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
 export default config;

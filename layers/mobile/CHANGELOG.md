@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.16
+
+### Patch Changes
+
+- b0395b0: max-attributes-per-line single 3
+
 ## 0.1.15
 
 ### Patch Changes

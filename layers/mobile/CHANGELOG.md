@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.15
+
+### Patch Changes
+
+- baa7f39: ✨ body and data types for fetch #48
+
 ## 0.1.14
 
 ### Patch Changes

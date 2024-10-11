@@ -7,6 +7,11 @@ export default defineVitestConfig({
     coverage: {
       reporter: ['text', 'json-summary', 'json'],
       reportOnFailure: true,
+      include: [
+        '**/components/**',
+        '**/composables/**',
+        '**/utils/**',
+      ],
     },
   },
 });

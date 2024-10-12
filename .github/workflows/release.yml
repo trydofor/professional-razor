@@ -15,8 +15,6 @@ jobs:
       contents: write
       pull-requests: write
       checks: write
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     steps:
       - name: Checkout ${{ github.ref_name }}
@@ -48,11 +46,18 @@ jobs:
           echo "install all deps by lockfile"
           pnpm -r i --frozen-lockfile
 
+          # https://github.com/changesets/action
+          cat > "$HOME/.npmrc" << EOF
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+
           echo "Packaging Envs:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- node: $(node -v)" >> $GITHUB_STEP_SUMMARY
           echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
           echo "- revi: $(jq -r '.version' package.json)" >> $GITHUB_STEP_SUMMARY
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Testing
         run: |

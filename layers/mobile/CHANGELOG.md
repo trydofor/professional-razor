@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.18
+
+### Patch Changes
+
+- 14ef35e: ✨ common request function #5
+
 ## 0.1.17
 
 ### Patch Changes

@@ -5,7 +5,7 @@
  * @returns the element
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function selectElement(element: Ref<any> | string): HTMLElement & { setFocus?(): void } {
+export function selectElement<T = HTMLElement>(element: Ref<any> | string): T {
   return typeof element === 'string'
     ? document.getElementById(element)
     : element.value.$el;
@@ -14,14 +14,16 @@ export function selectElement(element: Ref<any> | string): HTMLElement & { setFo
 /**
  * focus the element and scroll it to center, support setFocus() method
  * @param element the element Ref or id
+ * @param method the focus method name, if not found, use focus()
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function focusElement(element: Ref<any> | string) {
+export function focusElement(element: Ref<any> | string, method = 'setFocus') {
   nextTick(() => {
-    const ele = selectElement(element);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ele = selectElement(element) as any;
 
-    if (typeof ele.setFocus === 'function') {
-      ele.setFocus();
+    if (typeof ele[method] === 'function') {
+      ele[method]();
     }
     else {
       ele.focus();

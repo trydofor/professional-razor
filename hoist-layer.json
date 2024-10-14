@@ -25,5 +25,41 @@
       "vitest": "catalog:commonDev",
       "vue-tsc": "catalog:commonDev"
     }
+  },
+  {
+    "name": "@fessional/razor-mobile",
+    "dependencies": {
+      "@capacitor/preferences": "catalog:mobile",
+      "@ionic/vue": "catalog:mobile",
+      "@ionic/vue-router": "catalog:mobile",
+      "ionicons": "catalog:mobile",
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "vue": "catalog:common"
+    },
+    "devDependencies": {
+      "@fessional/razor-common": "workspace:*",
+      "@nuxtjs/ionic": "catalog:mobileDev",
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vitest/coverage-v8": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev"
+    },
+    "hoistLayer": [
+      "@fessional/razor-common"
+    ]
   }
 ]

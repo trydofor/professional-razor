@@ -113,8 +113,9 @@ pnpm -r i --frozen-lockfile
 
 ## 💚 for Dev
 pnpm -w i --ignore-pnpmfile
-pnpm -r i --ignore-scripts
 pnpm -r i
+# 如果 nuxi prepare时，出现 Cannot find package 'nuxi' 错误
+pnpm -r i -f
 
 ## 🧪 测试
 pnpm dev:test

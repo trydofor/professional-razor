@@ -19,9 +19,9 @@
     "readme.md"
   ],
   "scripts": {
-    "del:all": "rimraf -g '**/node_modules/' '**/pnpm-lock.yaml'",
-    "del:dep": "rimraf -g '**/node_modules/'",
-    "del:gen": "rimraf -g '**/.nuxt/' '**/.output/' '**/dist/'",
+    "del:all": "rimraf -g **/node_modules/ **/pnpm-lock.yaml",
+    "del:dep": "rimraf -g **/node_modules/",
+    "del:gen": "rimraf -g **/.nuxt/ **/.output/ **/dist/",
     "dep:latest": "taze -r -l latest",
     "dev:gen": "pnpm -r exec nuxi prepare",
     "dev:test": "pnpm -r exec vitest --no-watch --coverage.enabled true",

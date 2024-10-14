@@ -8,7 +8,7 @@ packages:
 catalogs:
   manage:
     "@changesets/cli": "2.27.8"
-    "pnpm-hoist-layer": "1.1.5"
+    "pnpm-hoist-layer": "1.1.6"
     "rimraf": "6.0.1"
     "taze": "0.17.2"
   common:

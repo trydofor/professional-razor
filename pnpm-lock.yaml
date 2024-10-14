@@ -10,8 +10,8 @@ catalogs:
       specifier: 2.27.8
       version: 2.27.8
     pnpm-hoist-layer:
-      specifier: 1.1.5
-      version: 1.1.5
+      specifier: 1.1.6
+      version: 1.1.6
     rimraf:
       specifier: 6.0.1
       version: 6.0.1
@@ -30,7 +30,7 @@ importers:
         version: 2.27.8
       pnpm-hoist-layer:
         specifier: catalog:manage
-        version: 1.1.5
+        version: 1.1.6
       rimraf:
         specifier: catalog:manage
         version: 6.0.1
@@ -602,8 +602,8 @@ packages:
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
-  package-manager-detector@0.2.1:
-    resolution: {integrity: sha512-/hVW2fZvAdEas+wyKh0SnlZ2mx0NIa1+j11YaQkogEJkcMErbwchHCuo8z7lEtajZJQZ6rgZNVTWMVVd71Bjng==}
+  package-manager-detector@0.2.2:
+    resolution: {integrity: sha512-VgXbyrSNsml4eHWIvxxG/nTL4wgybMTXCV2Un/+yEc3aDKKU6nQBZjbeP3Pl3qm9Qg92X/1ng4ffvCeD/zwHgg==}
 
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
@@ -635,8 +635,8 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
-  pnpm-hoist-layer@1.1.5:
-    resolution: {integrity: sha512-Ug1csoZhHrZloRRdgmk84OMTP2faEBPVmHEvM4oh51xIfk+ZqtT25JzjiEtw5oHZTJNBchBfPuEthsZcR/sP5g==}
+  pnpm-hoist-layer@1.1.6:
+    resolution: {integrity: sha512-qm9t4NVVp/MweCRGuX1D2BK7M6+8LqS2+QGbJcbuts2EVXbC0UtWhDNN0irhM454u0w+/lMN7mlY2EBqSumexA==}
 
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
@@ -871,7 +871,7 @@ snapshots:
       mri: 1.2.0
       outdent: 0.5.0
       p-limit: 2.3.0
-      package-manager-detector: 0.2.1
+      package-manager-detector: 0.2.2
       picocolors: 1.1.0
       resolve-from: 5.0.0
       semver: 7.6.3
@@ -1393,7 +1393,7 @@ snapshots:
 
   package-json-from-dist@1.0.1: {}
 
-  package-manager-detector@0.2.1: {}
+  package-manager-detector@0.2.2: {}
 
   path-exists@4.0.0: {}
 
@@ -1414,7 +1414,7 @@ snapshots:
 
   pify@4.0.1: {}
 
-  pnpm-hoist-layer@1.1.5: {}
+  pnpm-hoist-layer@1.1.6: {}
 
   prettier@2.8.8: {}
 
@@ -1504,7 +1504,7 @@ snapshots:
       '@antfu/ni': 0.23.0
       js-yaml: 4.1.0
       ofetch: 1.4.1
-      package-manager-detector: 0.2.1
+      package-manager-detector: 0.2.2
       tinyexec: 0.3.0
       unconfig: 0.6.0
       yargs: 17.7.2

@@ -1,4 +1,4 @@
-﻿name: Release
+﻿name: Auto Test/Bump/Release
 
 on:
   push:
@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    name: Release to Npmjs
+    name: Auto Test/Bump/Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,8 +22,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/cache@v4
-        name: Cache pnpm store
+      - name: Caching Toolchain
+        uses: actions/cache@v4
         id: cache-sdk-repo
         with:
           path: |
@@ -31,12 +31,12 @@ jobs:
             ~/.local/share/pnpm/store/
           key: asdf-store-${{ runner.os }}
 
-      - name: Install asdf & tools
+      - name: Install Toolchain
         uses: asdf-vm/actions/install@v3
         with:
           skip_install: ${{ steps.cache-sdk-repo.outputs.cache-hit == 'true' }}
 
-      - name: Install Dependencies
+      - name: Prepare Project
         run: |
           chmod a+x .changeset/bump-top.sh
           echo "install pnpm-hoist-layer to devDep"
@@ -48,35 +48,34 @@ jobs:
 
           # https://github.com/changesets/action
           cat > "$HOME/.npmrc" << EOF
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          //registry.npmjs.org/:_authToken=$NPM_TOKEN
           EOF
 
-          echo "Packaging Envs:" >> $GITHUB_STEP_SUMMARY
+          echo "## Project Version" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- node: $(node -v)" >> $GITHUB_STEP_SUMMARY
-          echo "- pnpm: $(pnpm -v)" >> $GITHUB_STEP_SUMMARY
-          echo "- revi: $(jq -r '.version' package.json)" >> $GITHUB_STEP_SUMMARY
+          echo "| Name | Version |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| $(jq -r '.name' package.json) | $(jq -r '.version' package.json) |" >> $GITHUB_STEP_SUMMARY
+          echo "| node | $(node -v) |" >> $GITHUB_STEP_SUMMARY
+          echo "| pnpm | $(pnpm -v) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Testing
+      - name: Test and Coverage
         run: |
           pnpm dev:test
 
-      - name: 'Common Coverage'
-        if: always()
+      - name: Common Coverage
         uses:  davelosert/vitest-coverage-report-action@v2
         with:
-          name: 'Common'
           working-directory: './layers/common'
-      - name: 'Mobile Coverage'
-        if: always()
+      - name: Mobile Coverage
         uses:  davelosert/vitest-coverage-report-action@v2
         with:
-          name: 'Mobile'
           working-directory: './layers/mobile'
 
-      - name: Bumping or Release
+      - name: Changeset Auto
         id: changesets
         uses: changesets/action@v1
         with:
@@ -87,30 +86,32 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publishing Report
+      - name: Changeset Status
+        if: steps.changesets.outputs.published == 'true' || steps.changesets.outputs.hasChangesets == 'true'
         run: |
-          echo "Publish Result:" >> $GITHUB_STEP_SUMMARY
+          echo "## Changeset Status" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- Published: ${{ steps.changesets.outputs.published }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Has Changesets: ${{ steps.changesets.outputs.hasChangesets }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Pull Request Number: ${{ steps.changesets.outputs.pullRequestNumber }}" >> $GITHUB_STEP_SUMMARY
+          echo "| Status    | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Published | ${{ steps.changesets.outputs.published }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Changeset | ${{ steps.changesets.outputs.hasChangesets }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| PR Number | ${{ steps.changesets.outputs.pullRequestNumber }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-      - name: Published Package
+      - name: Publish to Npmjs
         if: steps.changesets.outputs.published == 'true'
         run: |
           pnpm publish --access public
 
-          echo "Published Packages:" >> $GITHUB_STEP_SUMMARY
+          echo "## Publishing Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          publishedPackages='${{ steps.changesets.outputs.publishedPackages }}'
-          name=$(jq -r '.name' package.json)
-          version=$(jq -r '.version' package.json)
-          echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
+          echo "| Package   | Version |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| $(jq -r '.name' package.json) | $(jq -r '.version' package.json) |" >> $GITHUB_STEP_SUMMARY
 
           # Format published packages
+          publishedPackages='${{ steps.changesets.outputs.publishedPackages }}'
           echo "$publishedPackages" | jq -c '.[]' | while read pkg; do
-            name=$(echo $pkg | jq -r '.name')
-            version=$(echo $pkg | jq -r '.version')
-            echo "- Package: $name, Version: $version" >> $GITHUB_STEP_SUMMARY
+            echo "| $(echo $pkg | jq -r '.name') | $(echo $pkg | jq -r '.version') |" >> $GITHUB_STEP_SUMMARY
           done
+          echo "" >> $GITHUB_STEP_SUMMARY

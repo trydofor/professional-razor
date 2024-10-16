@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.19
+
+### Patch Changes
+
+- c33cda2: ✨ fetch non-null result and nullable data #5
+
 ## 0.1.18
 
 ### Patch Changes

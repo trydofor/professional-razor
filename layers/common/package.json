@@ -1,7 +1,7 @@
 {
   "name": "@fessional/razor-common",
   "type": "module",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "common layer for mobile and desktop",
   "main": "./nuxt.config.ts",
   "scripts": {

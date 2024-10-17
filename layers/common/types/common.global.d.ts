@@ -1,4 +1,4 @@
-﻿export interface DataResult<T> {
+﻿interface DataResult<T> {
   success: boolean;
   data?: T;
   message?: string;

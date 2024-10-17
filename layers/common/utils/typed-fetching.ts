@@ -1,6 +1,4 @@
-﻿import type { DataResult } from '../types/common';
-
-export type TypedFetchingOptions = {
+﻿export type TypedFetchingOptions = {
   /**
    * @param status - true if loading, false if done
    */

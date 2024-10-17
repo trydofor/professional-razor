@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from 'url';
+import { ApiRoute } from './utils/const-common';
 
 export default defineNuxtConfig({
   alias: {
@@ -22,5 +23,8 @@ export default defineNuxtConfig({
   },
   typescript: {
     typeCheck: true,
+  },
+  routeRules: {
+    [`${ApiRoute}/**`]: process.env.API_PROXY ? { proxy: `${process.env.API_PROXY}` } : undefined,
   },
 });

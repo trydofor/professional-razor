@@ -1,9 +1,10 @@
 {
   "name": "@fessional/razor-common",
   "type": "module",
-  "version": "0.1.19",
+  "version": "0.1.22",
   "description": "common layer for mobile and desktop",
   "main": "./nuxt.config.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",

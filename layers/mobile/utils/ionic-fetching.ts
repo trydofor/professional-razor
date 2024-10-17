@@ -1,5 +1,4 @@
 ﻿import { loadingController, alertController } from '@ionic/vue';
-import type { DataResult } from '~razor-common/types/common';
 import { fetchingResultAsync } from '~razor-common/utils/typed-fetching';
 
 function _failure(message?: string, code?: string) {

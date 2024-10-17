@@ -1,6 +1,5 @@
 ﻿import { describe, it, expect, vi } from 'vitest';
 import { fetchingData, fetchingDataAsync } from '../utils/typed-fetching';
-import type { DataResult } from '../types/common';
 
 describe('fetchingData', () => {
   it('should call loading with true and false', () => {

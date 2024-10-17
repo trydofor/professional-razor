@@ -1,7 +1,6 @@
 ﻿import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { loadingController, alertController } from '@ionic/vue';
 import { ionicFetchingDataAsync } from '../utils/ionic-fetching';
-import type { DataResult } from '~razor-common/types/common';
 
 // Mocking Ionic controllers
 vi.mock('@ionic/vue', () => ({

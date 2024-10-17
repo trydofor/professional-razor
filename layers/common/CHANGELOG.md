@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.22
+
+### Patch Changes
+
+- f863d36: 🏷️ global index.d.ts types #56
+
 ## 0.1.19
 
 ### Patch Changes

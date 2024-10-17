@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.21
+
+### Patch Changes
+
+- bf84b72: 🏷️ global common types #56
+
 ## 0.1.20
 
 ### Patch Changes

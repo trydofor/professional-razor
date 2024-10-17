@@ -4,6 +4,7 @@
   "version": "0.1.21",
   "description": "common layer for mobile and desktop",
   "main": "./nuxt.config.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",

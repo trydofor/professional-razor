@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.27
+
+### Patch Changes
+
+- 4d7c750: 💚 dummy release to test workflows
+
 ## 0.1.24
 
 ### Patch Changes

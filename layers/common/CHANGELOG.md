@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.28
+
+### Patch Changes
+
+- 07c8ab9: 💚 dummy release to test workflows
+
 ## 0.1.24
 
 ### Patch Changes

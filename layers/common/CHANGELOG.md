@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.29
+
+### Patch Changes
+
+- eeb6368: ♻️ rename file and method
+
 ## 0.1.28
 
 ### Patch Changes

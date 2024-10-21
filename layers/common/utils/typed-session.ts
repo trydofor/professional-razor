@@ -6,7 +6,7 @@
  * @param value null to remove, otherwise to set
  * @returns current value or null
  */
-export function setSession<T>(key: TypedKey<T>, value: T | null) {
+export function setTypedSession<T>(key: TypedKey<T>, value: T | null) {
   if (value == null) {
     sessionStorage.removeItem(key.key);
   }
@@ -21,7 +21,7 @@ export function setSession<T>(key: TypedKey<T>, value: T | null) {
  * @param key typed key
  * @returns current value
  */
-export function getSession<T>(key: TypedKey<T>) {
+export function getTypedSession<T>(key: TypedKey<T>) {
   const value = sessionStorage.getItem(key.key);
   let v: T | null = null;
   if (value != null) {
@@ -34,7 +34,7 @@ export function getSession<T>(key: TypedKey<T>) {
  * ```ts
  * // cookiePrivacy example
  * const cookiePrivacy = ref(true);
- * const cookiePrivacySession = defSession<boolean>({
+ * const cookiePrivacySession = defTypedSession<boolean>({
  *   key: "cookiePrivacy",
  *   callback: it => cookiePrivacy.value = it ?? false,
  * });
@@ -46,18 +46,18 @@ export function getSession<T>(key: TypedKey<T>) {
  * @param key typed key, callback called when initial get and every set
  * @returns state operations
  */
-export function defSession<T>(key: TypedKey<T> & { callback?: (v: T | null) => void }) {
+export function defTypedSession<T>(key: TypedKey<T> & { callback?: (v: T | null) => void }) {
   if (key.callback) {
-    const it = getSession(key);
+    const it = getTypedSession(key);
     key.callback?.(it);
   }
 
   return {
     get value(): T | null {
-      return getSession(key);
+      return getTypedSession(key);
     },
     set value(value: T | null) {
-      setSession(key, value);
+      setTypedSession(key, value);
       key.callback?.(value);
     },
   };
@@ -66,7 +66,7 @@ export function defSession<T>(key: TypedKey<T> & { callback?: (v: T | null) => v
 /**
  * ```ts
  * // cookiePrivacy example
- * const cookiePrivacy = useSession({ key: "cookiePrivacy", init: false });
+ * const cookiePrivacy = useTypedSession({ key: "cookiePrivacy", init: false });
  * function agreeCookiePrivacy() {
  *   cookiePrivacy.value = true;
  * };
@@ -74,7 +74,7 @@ export function defSession<T>(key: TypedKey<T> & { callback?: (v: T | null) => v
  * @param key typed key
  * @returns reactive ref
  */
-export function useSession<T>(key: TypedKey<T> & { init?: T; mergeDefaults?: true }) {
+export function useTypedSession<T>(key: TypedKey<T> & { init?: T; mergeDefaults?: true }) {
   const opts = {
     mergeDefaults: key.mergeDefaults,
     serializer: {

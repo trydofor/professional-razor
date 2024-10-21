@@ -1,4 +1,4 @@
-﻿export type TypedFetchingOptions = {
+﻿export type TypedFetchOptions = {
   /**
    * @param status - true if loading, false if done
    */
@@ -50,11 +50,11 @@ function _doError(err: any, catches?: (err: any) => void): void {
  * @param fetching - function/data of DataResult
  * @param options - options to handle loading, failure, error
  */
-export function fetchingData<T>(
+export function fetchTypedData<T>(
   fetching: DataResult<T> | (() => DataResult<T>),
-  options: TypedFetchingOptions = {},
+  options: TypedFetchOptions = {},
 ): T | null {
-  const result = fetchingResult(fetching, options);
+  const result = fetchTypedResult(fetching, options);
   return result.data ?? null;
 }
 
@@ -63,11 +63,11 @@ export function fetchingData<T>(
  * @param fetching - function/Promise of DataResult
  * @param options - options to handle loading, failure, error
  */
-export async function fetchingDataAsync<T>(
+export async function fetchTypedDataAsync<T>(
   fetching: Promise<DataResult<T>> | (() => Promise<DataResult<T>>),
-  options: TypedFetchingOptions = {},
+  options: TypedFetchOptions = {},
 ): Promise<T | null> {
-  const result = await fetchingResultAsync(fetching, options);
+  const result = await fetchTypedResultAsync(fetching, options);
   return result.data ?? null;
 }
 
@@ -77,9 +77,9 @@ export async function fetchingDataAsync<T>(
  * @param fetching - function/data of DataResult
  * @param options - options to handle loading, failure, error
  */
-export function fetchingResult<T>(
+export function fetchTypedResult<T>(
   fetching: DataResult<T> | (() => DataResult<T>),
-  options: TypedFetchingOptions = {},
+  options: TypedFetchOptions = {},
 ): DataResult<T> {
   _doLoading(true, options.loading);
 
@@ -102,9 +102,9 @@ export function fetchingResult<T>(
  * @param fetching - function/Promise of DataResult
  * @param options - options to handle loading, failure, error
  */
-export async function fetchingResultAsync<T>(
+export async function fetchTypedResultAsync<T>(
   fetching: Promise<DataResult<T>> | (() => Promise<DataResult<T>>),
-  options: TypedFetchingOptions = {},
+  options: TypedFetchOptions = {},
 ): Promise<DataResult<T>> {
   _doLoading(true, options.loading);
 

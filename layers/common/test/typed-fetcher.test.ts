@@ -1,12 +1,12 @@
 ﻿import { describe, it, expect, vi } from 'vitest';
-import { fetchingData, fetchingDataAsync } from '../utils/typed-fetching';
+import { fetchTypedData, fetchTypedDataAsync } from '../utils/typed-fetcher';
 
-describe('fetchingData', () => {
+describe('fetchTypedData', () => {
   it('should call loading with true and false', () => {
     const loadingSpy = vi.fn();
     const fetching = { success: true, data: 'test-data' } as DataResult<string>;
 
-    fetchingData(fetching, { loading: loadingSpy });
+    fetchTypedData(fetching, { loading: loadingSpy });
 
     expect(loadingSpy).toHaveBeenNthCalledWith(1, true);
     expect(loadingSpy).toHaveBeenNthCalledWith(2, false);
@@ -15,7 +15,7 @@ describe('fetchingData', () => {
   it('should return data when fetching succeeds', () => {
     const fetching = { success: true, data: 'test-data' } as DataResult<string>;
 
-    const result = fetchingData(fetching);
+    const result = fetchTypedData(fetching);
 
     expect(result).toBe('test-data');
   });
@@ -24,7 +24,7 @@ describe('fetchingData', () => {
     const failureSpy = vi.fn();
     const fetching = { success: false, message: 'error-message', code: '404' } as DataResult<string>;
 
-    fetchingData(fetching, { failure: failureSpy });
+    fetchTypedData(fetching, { failure: failureSpy });
 
     expect(failureSpy).toHaveBeenCalledWith('error-message', '404');
   });
@@ -35,7 +35,7 @@ describe('fetchingData', () => {
       throw new Error('test error');
     };
 
-    fetchingData(throwingFetching, { catches: catchesSpy });
+    fetchTypedData(throwingFetching, { catches: catchesSpy });
 
     expect(catchesSpy).toHaveBeenCalledWith(new Error('test error'));
   });
@@ -44,18 +44,18 @@ describe('fetchingData', () => {
     const loading = ref(false);
     const fetching = { success: true, data: 'test-data' } as DataResult<string>;
 
-    fetchingData(fetching, { loading });
+    fetchTypedData(fetching, { loading });
 
     expect(loading.value).toBe(false); // loading should be set to false after execution
   });
 });
 
-describe('fetchingDataAsync', () => {
+describe('fetchTypedDataAsync', () => {
   it('should call loading with true and false asynchronously', async () => {
     const loadingSpy = vi.fn();
     const fetching = Promise.resolve({ success: true, data: 'async-data' } as DataResult<string>);
 
-    await fetchingDataAsync(fetching, { loading: loadingSpy });
+    await fetchTypedDataAsync(fetching, { loading: loadingSpy });
 
     expect(loadingSpy).toHaveBeenNthCalledWith(1, true);
     expect(loadingSpy).toHaveBeenNthCalledWith(2, false);
@@ -64,7 +64,7 @@ describe('fetchingDataAsync', () => {
   it('should return data when fetching succeeds asynchronously', async () => {
     const fetching = Promise.resolve({ success: true, data: 'async-data' } as DataResult<string>);
 
-    const result = await fetchingDataAsync(fetching);
+    const result = await fetchTypedDataAsync(fetching);
 
     expect(result).toBe('async-data');
   });
@@ -73,7 +73,7 @@ describe('fetchingDataAsync', () => {
     const failureSpy = vi.fn();
     const fetching = Promise.resolve({ success: false, message: 'async-error', code: '500' } as DataResult<string>);
 
-    await fetchingDataAsync(fetching, { failure: failureSpy });
+    await fetchTypedDataAsync(fetching, { failure: failureSpy });
 
     expect(failureSpy).toHaveBeenCalledWith('async-error', '500');
   });
@@ -84,7 +84,7 @@ describe('fetchingDataAsync', () => {
       return Promise.reject(new Error('async test error'));
     };
 
-    await fetchingDataAsync(throwingFetching, { catches: catchesSpy });
+    await fetchTypedDataAsync(throwingFetching, { catches: catchesSpy });
 
     expect(catchesSpy).toHaveBeenCalledWith(new Error('async test error'));
   });
@@ -93,7 +93,7 @@ describe('fetchingDataAsync', () => {
     const loading = ref(false);
     const fetching = Promise.resolve({ success: true, data: 'async-data' } as DataResult<string>);
 
-    await fetchingDataAsync(fetching, { loading });
+    await fetchTypedDataAsync(fetching, { loading });
 
     expect(loading.value).toBe(false); // loading should be set to false after execution
   });

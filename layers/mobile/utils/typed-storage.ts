@@ -7,7 +7,7 @@ import { type StorageLikeAsync, useStorageAsync } from '@vueuse/core';
  * @param value null to remove, otherwise to set
  * @returns current value or null
  */
-export async function setStorage<T>(key: TypedKey<T>, value: Promise<T | null> | T | null) {
+export async function setTypedStorage<T>(key: TypedKey<T>, value: Promise<T | null> | T | null) {
   const v = value instanceof Promise ? await value : value;
   if (v == null) {
     await Preferences.remove({ key: key.key });
@@ -26,7 +26,7 @@ export async function setStorage<T>(key: TypedKey<T>, value: Promise<T | null> |
  * @param key typed key
  * @returns current value
  */
-export async function getStorage<T>(key: TypedKey<T>) {
+export async function getTypedStorage<T>(key: TypedKey<T>) {
   const { value } = await Preferences.get({ key: key.key });
   let v: T | null = null;
   if (value != null) {
@@ -39,7 +39,7 @@ export async function getStorage<T>(key: TypedKey<T>) {
  * ```ts
  * // cookiePrivacy example
  * const cookiePrivacy = ref(true);
- * const cookiePrivacyStorage = defStorage<boolean>({
+ * const cookiePrivacyStorage = defTypedStorage<boolean>({
  *   key: "cookiePrivacy",
  *   callback: it => cookiePrivacy.value = it ?? false,
  * });
@@ -51,9 +51,9 @@ export async function getStorage<T>(key: TypedKey<T>) {
  * @param key typed key, callback called when initial get and every set
  * @returns state operations
  */
-export function defStorage<T>(key: TypedKey<T> & { callback?: (v: T | null) => void }) {
+export function defTypedStorage<T>(key: TypedKey<T> & { callback?: (v: T | null) => void }) {
   if (key.callback) {
-    getStorage(key).then((it) => {
+    getTypedStorage(key).then((it) => {
       key.callback?.(it);
       return it;
     });
@@ -61,10 +61,10 @@ export function defStorage<T>(key: TypedKey<T> & { callback?: (v: T | null) => v
 
   return {
     get value(): Promise<T | null> {
-      return getStorage(key);
+      return getTypedStorage(key);
     },
     set value(value: Promise<T | null> | T | null) {
-      setStorage(key, value).then((it) => {
+      setTypedStorage(key, value).then((it) => {
         key.callback?.(it);
         return it;
       });
@@ -89,7 +89,7 @@ export const storageLikeAsync: StorageLikeAsync = {
  * @param key typed key
  * @returns reactive ref
  */
-export function useStorage<T>(key: TypedKey<T> & { init?: T; mergeDefaults?: true }) {
+export function useTypedStorage<T>(key: TypedKey<T> & { init?: T; mergeDefaults?: true }) {
   const opts = {
     mergeDefaults: key.mergeDefaults,
     serializer: {

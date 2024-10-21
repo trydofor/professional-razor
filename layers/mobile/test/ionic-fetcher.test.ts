@@ -1,6 +1,6 @@
 ﻿import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { loadingController, alertController } from '@ionic/vue';
-import { ionicFetchingDataAsync } from '../utils/ionic-fetching';
+import { ionicFetchDataAsync } from '../utils/ionic-fetcher';
 
 // Mocking Ionic controllers
 vi.mock('@ionic/vue', () => ({
@@ -26,7 +26,7 @@ describe('ionicFetchingDataAsync', () => {
 
     const fetching = Promise.resolve({ success: true, data: 'test-data' } as DataResult<string>);
 
-    const result = await ionicFetchingDataAsync(fetching);
+    const result = await ionicFetchDataAsync(fetching);
 
     expect(loadingController.create).toHaveBeenCalledWith({
       spinner: 'bubbles',
@@ -46,7 +46,7 @@ describe('ionicFetchingDataAsync', () => {
 
     const fetching = Promise.resolve({ success: false, message: 'Fetch error', code: '404' } as DataResult<string>);
 
-    await ionicFetchingDataAsync(fetching);
+    await ionicFetchDataAsync(fetching);
 
     expect(alertController.create).toHaveBeenCalledWith({
       header: 'Failed to fetch data',
@@ -63,7 +63,7 @@ describe('ionicFetchingDataAsync', () => {
 
     const fetching = Promise.reject(new Error('Network error'));
 
-    await ionicFetchingDataAsync(fetching);
+    await ionicFetchDataAsync(fetching);
 
     expect(alertController.create).toHaveBeenCalledWith({
       header: 'Failed to fetch data',
@@ -77,7 +77,7 @@ describe('ionicFetchingDataAsync', () => {
     const loadingRef = ref(false);
     const fetching = Promise.resolve({ success: true, data: 'test-data' } as DataResult<string>);
 
-    const result = await ionicFetchingDataAsync(fetching, loadingRef);
+    const result = await ionicFetchDataAsync(fetching, loadingRef);
 
     expect(loadingRef.value).toBe(false); // loadingRef should be set to false after execution
     expect(result).toBe('test-data');
@@ -91,7 +91,7 @@ describe('ionicFetchingDataAsync', () => {
     const loadingRef = ref(true);
     const fetching = Promise.resolve({ success: false, message: 'Fetch error', code: '500' } as DataResult<string>);
 
-    await ionicFetchingDataAsync(fetching, loadingRef);
+    await ionicFetchDataAsync(fetching, loadingRef);
 
     expect(alertController.create).toHaveBeenCalledWith({
       header: 'Failed to fetch data',

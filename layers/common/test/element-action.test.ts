@@ -1,6 +1,6 @@
 ﻿import { describe, it, expect, vi } from 'vitest';
 import { ref, nextTick } from 'vue';
-import { selectElement, focusElement, scrollElement } from '../utils/vue-element';
+import { selectElement, focusElement, scrollElement } from '../utils/element-action';
 
 describe('selectElement', () => {
   it('should return the element by id', () => {

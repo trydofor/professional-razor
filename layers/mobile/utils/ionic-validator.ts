@@ -20,7 +20,7 @@
  * @param inputRef input ref
  * @param checkFun check function or regex
  */
-export function validateIonicInput(
+export function ionicValidateInput(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputRef: Ref<any>,
   checkFun: RegExp | ((value: string, event?: Event) => boolean),

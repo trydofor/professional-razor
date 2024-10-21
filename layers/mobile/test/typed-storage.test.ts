@@ -1,9 +1,9 @@
 ﻿import { flushPromises } from '@vue/test-utils';
 import { expect, test } from 'vitest';
-import { defStorage, useStorage } from '../utils/typed-storage';
+import { defTypedStorage, useTypedStorage } from '../utils/typed-storage';
 
 test('defineStorage setter', () => {
-  const storage = defStorage<string>({ key: 'test1' });
+  const storage = defTypedStorage<string>({ key: 'test1' });
   expect(storage.value).toEqual(Promise.resolve(null));
 
   storage.value = '1';
@@ -21,7 +21,7 @@ test('defineStorage setter', () => {
 
 test('defineStorage callback', async () => {
   const ref = { value: '0' };
-  const storage = defStorage<string>({ key: 'test1', callback: v => (ref.value = v ?? '') });
+  const storage = defTypedStorage<string>({ key: 'test1', callback: v => (ref.value = v ?? '') });
   expect(storage.value).toEqual(Promise.resolve(null));
 
   await flushPromises();
@@ -45,7 +45,7 @@ test('defineStorage callback', async () => {
 });
 
 test('useStorage', () => {
-  const storage = useStorage<string>({ key: 'test2', init: '0' });
+  const storage = useTypedStorage<string>({ key: 'test2', init: '0' });
   expect(storage.value).toEqual('0');
 
   storage.value = '1';

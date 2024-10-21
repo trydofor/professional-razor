@@ -1,7 +1,7 @@
 ﻿// Import testing utilities
 import { describe, it, expect, vi } from 'vitest';
 import { ref } from 'vue';
-import { validateIonicInput } from '../utils/ionic-validator';
+import { ionicValidateInput } from '../utils/ionic-validator';
 
 // Mock Ionic IonInput component
 const mockClassList = {
@@ -18,7 +18,7 @@ const mockInputRef = ref({
 describe('validateIonicInput', () => {
   // Test case: valid input using regex pattern
   it('should add ion-valid class for valid input', () => {
-    const validateFn = validateIonicInput(mockInputRef, /^[1-9][0-9]?$/);
+    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
 
     // Simulate valid input
     const inputEvent = { target: { value: '10' } } as unknown as Event;
@@ -31,7 +31,7 @@ describe('validateIonicInput', () => {
 
   // Test case: invalid input using regex pattern
   it('should add ion-invalid class for invalid input', () => {
-    const validateFn = validateIonicInput(mockInputRef, /^[1-9][0-9]?$/);
+    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
 
     // Simulate invalid input
     const inputEvent = { target: { value: '100' } } as unknown as Event;
@@ -44,7 +44,7 @@ describe('validateIonicInput', () => {
 
   // Test case: input blur event
   it('should add ion-touched class on blur', () => {
-    const validateFn = validateIonicInput(mockInputRef, /^[1-9][0-9]?$/);
+    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
 
     // Simulate blur event
     const blurEvent = new Event('blur');
@@ -56,7 +56,7 @@ describe('validateIonicInput', () => {
 
   // Test case: direct string input
   it('should add ion-valid class for valid string input', () => {
-    const validateFn = validateIonicInput(mockInputRef, /^[1-9][0-9]?$/);
+    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
 
     // Simulate valid string input
     const result = validateFn('5');
@@ -68,7 +68,7 @@ describe('validateIonicInput', () => {
 
   // Test case: invalid string input
   it('should add ion-invalid class for invalid string input', () => {
-    const validateFn = validateIonicInput(mockInputRef, /^[1-9][0-9]?$/);
+    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
 
     // Simulate invalid string input
     const result = validateFn('100');

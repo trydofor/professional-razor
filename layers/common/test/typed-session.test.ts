@@ -1,7 +1,7 @@
 ﻿import { expect, test } from 'vitest';
 
-test('defineSession setter', () => {
-  const storage = defSession<string>({ key: 'test1' });
+test('defTypedSession setter', () => {
+  const storage = defTypedSession<string>({ key: 'test1' });
   expect(storage.value).toEqual(null);
 
   storage.value = '1';
@@ -11,9 +11,9 @@ test('defineSession setter', () => {
   expect(storage.value).toEqual(null);
 });
 
-test('defineSession callback', async () => {
+test('defTypedSession callback', async () => {
   const ref = { value: '0' };
-  const storage = defSession<string>({ key: 'test1', callback: v => (ref.value = v ?? '') });
+  const storage = defTypedSession<string>({ key: 'test1', callback: v => (ref.value = v ?? '') });
   expect(storage.value).toEqual(null);
   expect(ref.value).toEqual('');
 
@@ -24,8 +24,8 @@ test('defineSession callback', async () => {
   expect(ref.value).toEqual('');
 });
 
-test('useSession', () => {
-  const storage = useSession<string>({ key: 'test2', init: '0' });
+test('useTypedSession', () => {
+  const storage = useTypedSession<string>({ key: 'test2', init: '0' });
   expect(storage.value).toEqual('0');
 
   storage.value = '1';

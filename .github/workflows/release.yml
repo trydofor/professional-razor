@@ -38,7 +38,7 @@ jobs:
 
       - name: Prepare Project
         run: |
-          chmod a+x .changeset/bump-top.sh
+          chmod a+x .changeset/*.sh
           echo "install pnpm-hoist-layer to devDep"
           pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
           echo "reset the ci lockfile"
@@ -81,8 +81,8 @@ jobs:
         with:
           commit: ":bookmark: bumping versions"
           title: ":rocket: release versions"
-          version: .changeset/bump-top.sh
-          publish: pnpm ver:publish
+          version: .changeset/version-top.sh
+          publish: .changeset/publish-all.sh
           createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -99,12 +99,18 @@ jobs:
           echo "| PR Number | ${{ steps.changesets.outputs.pullRequestNumber }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-      - name: Publish to Npmjs
+      - name: Github Release
+        id: release
+        if: steps.changesets.outputs.published == 'true'
+        uses: halvardssm/github-action-tag-release@1.0.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: "./package.json"
+
+      - name: Publish Status
         if: steps.changesets.outputs.published == 'true'
         run: |
-          pnpm publish --access public
-
-          echo "## Publishing Report" >> $GITHUB_STEP_SUMMARY
+          echo "## Publish Status" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Package   | Version |" >> $GITHUB_STEP_SUMMARY
           echo "|-----------|---------|" >> $GITHUB_STEP_SUMMARY
@@ -116,11 +122,3 @@ jobs:
             echo "| $(echo $pkg | jq -r '.name') | $(echo $pkg | jq -r '.version') |" >> $GITHUB_STEP_SUMMARY
           done
           echo "" >> $GITHUB_STEP_SUMMARY
-
-      - name: Github Release
-        id: release
-        if: steps.changesets.outputs.published == 'true'
-        uses: halvardssm/github-action-tag-release@1.0.4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: "./package.json"

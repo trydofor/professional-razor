@@ -14,11 +14,13 @@ catalogs:
   common:
     "@vueuse/core": "11.1.0"
     "@vueuse/nuxt": "11.1.0"
+    "pinia": "2.2.4"
     "vue": "3.5.10"
   commonDev:
     "@iconify-json/mdi": "1.2.0"
     "@nuxt/eslint": "0.5.7"
     "@nuxt/test-utils": "3.14.2"
+    "@pinia/nuxt": "0.5.5"
     "@unocss/core": "0.63.2"
     "@unocss/nuxt": "0.63.2"
     "@unocss/preset-icons": "0.63.2"

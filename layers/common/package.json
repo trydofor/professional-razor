@@ -17,6 +17,7 @@
     "@iconify-json/mdi": "catalog:commonDev",
     "@nuxt/eslint": "catalog:commonDev",
     "@nuxt/test-utils": "catalog:commonDev",
+    "@pinia/nuxt": "catalog:commonDev",
     "@unocss/core": "catalog:commonDev",
     "@unocss/nuxt": "catalog:commonDev",
     "@unocss/preset-icons": "catalog:commonDev",
@@ -35,6 +36,7 @@
   "dependencies": {
     "@vueuse/core": "catalog:common",
     "@vueuse/nuxt": "catalog:common",
+    "pinia": "catalog:common",
     "vue": "catalog:common"
   }
 }

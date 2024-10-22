@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-09-17',
   devtools: { enabled: true },
-  modules: ['@unocss/nuxt', '@nuxt/eslint', '@nuxt/test-utils/module'],
+  modules: ['@unocss/nuxt', '@nuxt/eslint', '@nuxt/test-utils/module', '@pinia/nuxt'],
   // https://unocss.dev/integrations/nuxt
   unocss: {
     nuxtLayers: true,

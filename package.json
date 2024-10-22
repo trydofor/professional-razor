@@ -22,6 +22,7 @@
     "del:all": "rimraf -g **/node_modules/ **/pnpm-lock.yaml",
     "del:dep": "rimraf -g **/node_modules/",
     "del:gen": "rimraf -g **/.nuxt/ **/.output/ **/dist/",
+    "del:pkg": "rimraf -g layers/**/node_modules/",
     "dep:latest": "taze -r -l latest",
     "dev:gen": "pnpm -r exec nuxi prepare",
     "dev:test": "pnpm -r exec vitest --no-watch --coverage.enabled true",

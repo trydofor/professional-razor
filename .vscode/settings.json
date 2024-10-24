@@ -1,17 +1,12 @@
 {
-  "eslint.format.enable": true,
   "eslint.useFlatConfig": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
   "Codegeex.Comment.LanguagePreference": "English",
   "files.encoding": "utf8bom",
   "files.autoGuessEncoding": true,
+  "files.insertFinalNewline": true,
+  "cSpell.allowCompoundWords": true,
   "cSpell.words": [
     "antfu",
     "composable",
@@ -42,5 +37,4 @@
     "vitest",
     "vueuse"
   ],
-  "cSpell.allowCompoundWords": true
 }

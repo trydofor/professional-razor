@@ -1,4 +1,21 @@
 ﻿/**
+ * stringify, bigint as string, Map as object, Set as array
+ */
+export function jsonReplacer(k: string, v: unknown) {
+  if (typeof v === 'bigint') return v.toString();
+  if (v instanceof Map) return Object.fromEntries(v);
+  if (v instanceof Set) return Array.from(v);
+  return v;
+}
+
+/**
+ * stringify, bigint as string, Map as object, Set as array
+ */
+export function safeJson(obj: unknown): string {
+  return JSON.stringify(obj, jsonReplacer);
+}
+
+/**
  * get non-null converted value
  *
  * @param valOrFun value or function
@@ -36,7 +53,7 @@ export function safeString(valOrFun: any, defaults: string = ''): string {
       case 'bigint':
         return String(value);
       default:
-        return JSON.stringify(value, (_, v) => typeof v === 'bigint' ? v.toString() : v);
+        return safeJson(value);
     }
   });
 }
@@ -143,4 +160,32 @@ export function safeKeys(valOrFun: any, defaults: string[] = []): string[] {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function safeEntries<T>(valOrFun: any, defaults: [string, T][] = []): [string, T][] {
   return safeConvert(valOrFun, defaults, Object.entries);
+}
+
+/**
+ * convert object to Map
+ */
+export function safeObjMap<T>(obj?: Record<string, T> | null): Map<string, T> {
+  return obj == null ? new Map() : new Map(Object.entries(obj));
+}
+
+/**
+ * convert array to Set
+ */
+export function safeArrSet<T>(arr?: T[] | null): Set<T> {
+  return arr == null ? new Set() : new Set(arr);
+}
+
+/**
+ * convert Map to object
+ */
+export function safeMapObj<T>(map?: Map<string, T> | null): Record<string, T> {
+  return map == null ? {} : Object.fromEntries(map);
+}
+
+/**
+ * convert Set to array
+ */
+export function safeSetArr<T>(set?: Set<T> | null): T[] {
+  return set == null ? [] : Array.from(set);
 }

@@ -1,5 +1,5 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries } from '../utils/safe-converter';
+import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj, safeSetArr } from '../utils/safe-converter';
 
 describe('safeString', () => {
   it('should return defaults if null or undefined', () => {
@@ -224,5 +224,140 @@ describe('numberKey;', () => {
     expect(numMap.has('0.3')).toBe(false);
     expect(strMap.has(1)).toBe(false);
     expect(strMap.has(d3)).toBe(false);
+  });
+});
+
+describe('safeJson', () => {
+  it('json map and obj', () => {
+    const obj = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30,
+    };
+
+    expect(JSON.stringify(obj)).toBe('{"firstName":"John","lastName":"Doe","age":30}');
+
+    const map = new Map();
+    map.set('firstName', 'John');
+    map.set('lastName', 'Doe');
+    map.set('age', 30);
+
+    expect(JSON.stringify(map)).toBe('{}');
+  });
+
+  it('should convert BigInt to string', () => {
+    const input = { value: 42n };
+    const result = safeJson(input);
+    expect(result).toEqual('{"value":"42"}');
+  });
+
+  it('should convert Map to object', () => {
+    const input = {
+      scores: new Map([
+        ['math', 90],
+        ['science', 85],
+      ]),
+    };
+    const result = safeJson(input);
+    expect(result).toEqual('{"scores":{"math":90,"science":85}}');
+  });
+
+  it('should convert Set to array', () => {
+    const input = {
+      uniqueItems: new Set([1, 2, 3, 4]),
+    };
+    const result = safeJson(input);
+    expect(result).toEqual('{"uniqueItems":[1,2,3,4]}');
+  });
+
+  it('should not modify other types', () => {
+    const input = {
+      name: 'Alice',
+      age: 30,
+      active: true,
+    };
+    const result = safeJson(input);
+    expect(result).toEqual('{"name":"Alice","age":30,"active":true}');
+  });
+
+  it('should handle mixed types', () => {
+    const input = {
+      name: 'Alice',
+      age: 30n,
+      scores: new Map([
+        ['math', 90],
+        ['science', 85],
+      ]),
+      uniqueItems: new Set([1, 2, 3, 4]),
+    };
+    const result = safeJson(input);
+    expect(result).toEqual('{"name":"Alice","age":"30","scores":{"math":90,"science":85},"uniqueItems":[1,2,3,4]}');
+  });
+
+  it('should return unchanged for null and undefined', () => {
+    const input = { a: null, b: undefined };
+    const result = safeJson(input);
+    expect(result).toEqual('{"a":null}');
+  });
+});
+
+describe('safeObjMap', () => {
+  it('should convert object to Map', () => {
+    const obj = { a: 1, b: 2 };
+    const result = safeObjMap(obj);
+    expect(result instanceof Map).toBe(true);
+    expect(result.size).toBe(2);
+    expect(result.get('a')).toBe(1);
+    expect(result.get('b')).toBe(2);
+  });
+
+  it('should return empty Map if null or undefined', () => {
+    expect(safeObjMap(null).size).toBe(0);
+    expect(safeObjMap(undefined).size).toBe(0);
+  });
+});
+
+describe('safeArrSet', () => {
+  it('should convert array to Set', () => {
+    const arr = [1, 2, 3, 2, 1];
+    const result = safeArrSet(arr);
+    expect(result instanceof Set).toBe(true);
+    expect(result.size).toBe(3);
+    expect(result.has(1)).toBe(true);
+    expect(result.has(2)).toBe(true);
+    expect(result.has(3)).toBe(true);
+  });
+
+  it('should return empty Set if null or undefined', () => {
+    expect(safeArrSet(null).size).toBe(0);
+    expect(safeArrSet(undefined).size).toBe(0);
+  });
+});
+
+describe('safeMapObj', () => {
+  it('should convert Map to object', () => {
+    const map = new Map([['a', 1], ['b', 2]]);
+    const result = safeMapObj(map);
+    expect(typeof result).toBe('object');
+    expect(result).toEqual({ a: 1, b: 2 });
+  });
+
+  it('should return empty object if null or undefined', () => {
+    expect(safeMapObj(null)).toEqual({});
+    expect(safeMapObj(undefined)).toEqual({});
+  });
+});
+
+describe('safeSetArr', () => {
+  it('should convert Set to array', () => {
+    const set = new Set([1, 2, 3]);
+    const result = safeSetArr(set);
+    expect(Array.isArray(result)).toBe(true);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  it('should return empty array if null or undefined', () => {
+    expect(safeSetArr(null)).toEqual([]);
+    expect(safeSetArr(undefined)).toEqual([]);
   });
 });

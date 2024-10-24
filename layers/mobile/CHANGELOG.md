@@ -1,11 +1,5 @@
 # @fessional/razor-mobile
 
-## 0.1.30
-
-### Patch Changes
-
-- ffa8942: ➕ pinia store #70
-
 ## 0.1.29
 
 ### Patch Changes

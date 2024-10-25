@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.31
+
+### Patch Changes
+
+- 2ff38f8: ⬆️ renovate and update deps #73
+
 ## 0.1.29
 
 ### Patch Changes

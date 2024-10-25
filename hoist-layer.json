@@ -8,6 +8,7 @@
       "vue": "catalog:common"
     },
     "devDependencies": {
+      "@iconify-json/line-md": "catalog:commonDev",
       "@iconify-json/mdi": "catalog:commonDev",
       "@nuxt/eslint": "catalog:commonDev",
       "@nuxt/test-utils": "catalog:commonDev",
@@ -43,6 +44,7 @@
     "devDependencies": {
       "@fessional/razor-common": "workspace:*",
       "@nuxtjs/ionic": "catalog:mobileDev",
+      "@iconify-json/line-md": "catalog:commonDev",
       "@iconify-json/mdi": "catalog:commonDev",
       "@nuxt/eslint": "catalog:commonDev",
       "@nuxt/test-utils": "catalog:commonDev",

@@ -2,12 +2,12 @@
 import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
-  alias: {
-    '~razor-mobile': fileURLToPath(new URL('./', import.meta.url)),
-  },
   extends: ['@fessional/razor-common'],
   modules: ['@nuxtjs/ionic'],
   ssr: false,
+  alias: {
+    '~razor-mobile': fileURLToPath(new URL('./', import.meta.url)),
+  },
   ionic: {
     config: {
       mode: 'md',

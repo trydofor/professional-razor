@@ -14,6 +14,7 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@iconify-json/line-md": "catalog:commonDev",
     "@iconify-json/mdi": "catalog:commonDev",
     "@nuxt/eslint": "catalog:commonDev",
     "@nuxt/test-utils": "catalog:commonDev",

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.32
+
+### Patch Changes
+
+- cd51c5c: ✨ v-autosize for transition-height #78
+
 ## 0.1.31
 
 ### Patch Changes

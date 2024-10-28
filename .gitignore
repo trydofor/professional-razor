@@ -26,7 +26,6 @@ coverage/
 node_modules/
 dist/
 platforms/
-plugins/
 
 # Nuxt dev/build outputs
 .output

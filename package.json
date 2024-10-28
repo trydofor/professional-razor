@@ -5,8 +5,8 @@
   "description": "Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase, suitable for small team and app to write app once, apply almost anywhere.",
   "packageManager": "pnpm@9.12.2",
   "engines": {
-    "node": "20",
-    "pnpm": "9"
+    "node": "20.18.0",
+    "pnpm": "9.12.2"
   },
   "files": [
     "hoist-layer.json",
@@ -25,8 +25,8 @@
     "del:pkg": "rimraf -g layers/**/node_modules/",
     "dep:lst": "taze -r -l latest",
     "dev:gen": "pnpm -r exec nuxi prepare",
-    "dev:test": "pnpm -r exec vitest --no-watch --coverage.enabled true",
     "dev:lint": "pnpm -r exec eslint .",
+    "dev:test": "pnpm -r exec vitest --no-watch --coverage.enabled true",
     "ver:add": "changeset",
     "ver:bump": "changeset version",
     "ver:publish": "changeset publish",

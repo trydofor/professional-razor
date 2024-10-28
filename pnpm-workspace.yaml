@@ -30,6 +30,7 @@ catalogs:
     "@vue/test-utils": "2.4.6"
     "eslint": "9.13.0"
     "happy-dom": "15.7.4"
+    "nuxi": "3.15.0"
     "nuxt": "3.13.2"
     "typescript": "5.6.3"
     "unocss": "0.63.6"

@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.32
+
+### Patch Changes
+
+- 3e3c691: ✨ v-autosize for transition-height #78
+
 ## 0.1.31
 
 ### Patch Changes

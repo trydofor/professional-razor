@@ -19,8 +19,6 @@ catalogs:
       specifier: 0.17.2
       version: 0.17.2
 
-pnpmfileChecksum: foqrp6rngctql4jdf3k5jk7fnu
-
 importers:
 
   .:

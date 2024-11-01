@@ -31,7 +31,6 @@
     "nuxt": "catalog:commonDev",
     "typescript": "catalog:commonDev",
     "unocss": "catalog:commonDev",
-    "vite-plugin-eslint2": "catalog:commonDev",
     "vitest": "catalog:commonDev",
     "vue-tsc": "catalog:commonDev"
   },

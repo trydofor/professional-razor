@@ -4,7 +4,6 @@ import { ApiRoute } from './utils/const-common';
 
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@nuxt/eslint', '@nuxt/test-utils/module', '@pinia/nuxt'],
-  devtools: { enabled: true },
   alias: {
     '&razor-common': fileURLToPath(new URL('./', import.meta.url)),
   },
@@ -16,7 +15,6 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
   eslint: {
-    checker: true,
     config: {
       stylistic: {
         semi: true,

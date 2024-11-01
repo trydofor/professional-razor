@@ -2,8 +2,7 @@
   "eslint.useFlatConfig": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "Codegeex.Comment.LanguagePreference": "English",
-  "files.encoding": "utf8bom",
+  "files.encoding": "utf8",
   "files.autoGuessEncoding": true,
   "files.insertFinalNewline": true,
   "cSpell.allowCompoundWords": true,
@@ -38,4 +37,8 @@
     "vitest",
     "vueuse"
   ],
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
 }

@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.34
+
+### Patch Changes
+
+- 8d8c831: 🧑‍💻 remove eslint on devServer #86
+
 ## 0.1.33
 
 ### Patch Changes

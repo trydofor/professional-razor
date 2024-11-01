@@ -26,7 +26,7 @@
     "dep:lst": "taze -r -l latest",
     "dev:gen": "pnpm -r exec nuxi prepare",
     "dev:lint": "pnpm -r exec eslint .",
-    "dev:test": "pnpm -r exec vitest --no-watch --coverage.enabled true",
+    "dev:test": "pnpm -r -F './layers/**' exec vitest --no-watch --coverage.enabled true",
     "ver:add": "changeset",
     "ver:bump": "changeset version",
     "ver:publish": "changeset publish",

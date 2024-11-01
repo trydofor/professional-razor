@@ -92,7 +92,8 @@ According to the official Vue naming rules, most things are plural,
 * entity code is in `*.ts`, type-only is in `*.d.ts`
 * `TypeX[]` instead of `Array<TypeX>` when no type inference
 * Use `if` for flow control, `||` or `??` for expression
-* Use absolute path (`@/`), relative path is only `./` and `../`
+* Use absolute path (`@`,`~`), relative path is only `./` and `../`
+* Use `&` for layer path alias
 
 ### Rule7 - vue coding convention
 

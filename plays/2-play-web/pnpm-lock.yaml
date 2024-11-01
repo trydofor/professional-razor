@@ -99,6 +99,12 @@ importers:
         specifier: catalog:common
         version: 3.5.12(typescript@5.6.3)
     devDependencies:
+      '@fessional/play-spa':
+        specifier: workspace:*
+        version: link:../1-play-spa
+      '@fessional/razor-common':
+        specifier: workspace:*
+        version: link:../../layers/common
       '@iconify-json/line-md':
         specifier: catalog:commonDev
         version: 1.2.2
@@ -1926,7 +1932,6 @@ packages:
   are-we-there-yet@2.0.0:
     resolution: {integrity: sha512-Ci/qENmwHnsYo9xKIcUJN5LeDKdJ6R1Z1j9V/J5wyq8nh/mYPEpIKJbBZXtZjG04HiK7zV/p6Vs9952MrMeUIw==}
     engines: {node: '>=10'}
-    deprecated: This package is no longer supported.
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}

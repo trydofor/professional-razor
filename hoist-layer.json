@@ -1,5 +1,199 @@
 [
   {
+    "name": "@fessional/play-app",
+    "dependencies": {
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "pinia": "catalog:common",
+      "vue": "catalog:common",
+      "@capacitor/preferences": "catalog:mobile",
+      "@ionic/vue": "catalog:mobile",
+      "@ionic/vue-router": "catalog:mobile",
+      "ionicons": "catalog:mobile"
+    },
+    "devDependencies": {
+      "@fessional/play-h5m": "workspace:*",
+      "@fessional/razor-mobile": "workspace:*",
+      "@fessional/play-spa": "workspace:*",
+      "@fessional/razor-common": "workspace:*",
+      "@iconify-json/line-md": "catalog:commonDev",
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@pinia/nuxt": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vitest/coverage-v8": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxi": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev",
+      "@nuxtjs/ionic": "catalog:mobileDev"
+    },
+    "hoistLayer": [
+      "@fessional/play-h5m"
+    ]
+  },
+  {
+    "name": "@fessional/play-exe",
+    "dependencies": {
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "pinia": "catalog:common",
+      "vue": "catalog:common"
+    },
+    "devDependencies": {
+      "@fessional/play-web": "workspace:*",
+      "@fessional/play-spa": "workspace:*",
+      "@fessional/razor-common": "workspace:*",
+      "@iconify-json/line-md": "catalog:commonDev",
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@pinia/nuxt": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vitest/coverage-v8": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxi": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev"
+    },
+    "hoistLayer": [
+      "@fessional/play-web"
+    ]
+  },
+  {
+    "name": "@fessional/play-h5m",
+    "dependencies": {
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "pinia": "catalog:common",
+      "vue": "catalog:common",
+      "@capacitor/preferences": "catalog:mobile",
+      "@ionic/vue": "catalog:mobile",
+      "@ionic/vue-router": "catalog:mobile",
+      "ionicons": "catalog:mobile"
+    },
+    "devDependencies": {
+      "@fessional/razor-mobile": "workspace:*",
+      "@fessional/play-spa": "workspace:*",
+      "@fessional/razor-common": "workspace:*",
+      "@iconify-json/line-md": "catalog:commonDev",
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@pinia/nuxt": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vitest/coverage-v8": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxi": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev",
+      "@nuxtjs/ionic": "catalog:mobileDev"
+    },
+    "hoistLayer": [
+      "@fessional/play-spa",
+      "@fessional/razor-mobile"
+    ]
+  },
+  {
+    "name": "@fessional/play-spa",
+    "dependencies": {
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "pinia": "catalog:common",
+      "vue": "catalog:common"
+    },
+    "devDependencies": {
+      "@fessional/razor-common": "workspace:*",
+      "@iconify-json/line-md": "catalog:commonDev",
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@pinia/nuxt": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vitest/coverage-v8": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxi": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev"
+    },
+    "hoistLayer": [
+      "@fessional/razor-common"
+    ]
+  },
+  {
+    "name": "@fessional/play-web",
+    "dependencies": {
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "pinia": "catalog:common",
+      "vue": "catalog:common"
+    },
+    "devDependencies": {
+      "@fessional/play-spa": "workspace:*",
+      "@fessional/razor-common": "workspace:*",
+      "@iconify-json/line-md": "catalog:commonDev",
+      "@iconify-json/mdi": "catalog:commonDev",
+      "@nuxt/eslint": "catalog:commonDev",
+      "@nuxt/test-utils": "catalog:commonDev",
+      "@pinia/nuxt": "catalog:commonDev",
+      "@unocss/core": "catalog:commonDev",
+      "@unocss/nuxt": "catalog:commonDev",
+      "@unocss/preset-icons": "catalog:commonDev",
+      "@unocss/preset-wind": "catalog:commonDev",
+      "@vitest/coverage-v8": "catalog:commonDev",
+      "@vue/test-utils": "catalog:commonDev",
+      "eslint": "catalog:commonDev",
+      "happy-dom": "catalog:commonDev",
+      "nuxi": "catalog:commonDev",
+      "nuxt": "catalog:commonDev",
+      "typescript": "catalog:commonDev",
+      "unocss": "catalog:commonDev",
+      "vite-plugin-eslint2": "catalog:commonDev",
+      "vitest": "catalog:commonDev",
+      "vue-tsc": "catalog:commonDev"
+    },
+    "hoistLayer": [
+      "@fessional/play-spa"
+    ]
+  },
+  {
     "name": "@fessional/razor-common",
     "dependencies": {
       "@vueuse/core": "catalog:common",

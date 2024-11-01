@@ -1,5 +1,5 @@
 ﻿import { loadingController, alertController } from '@ionic/vue';
-import { fetchTypedResultAsync } from '~razor-common/utils/typed-fetcher';
+import { fetchTypedResultAsync } from '&razor-common/utils/typed-fetcher';
 
 function _failure(message?: string, code?: string) {
   alertController.create({

@@ -3,6 +3,7 @@
 /**
  * NOTE1: This directive is only available on the client side.
  * and if no width or height is specified, it will be applied to both.
+ * use v-autosize="id-for-debug" to debug the size in log.
  *
  * WARN2: transition-height is not work if height=auto or display=none.
  * so you should use div to wrap the content with display=none.
@@ -17,14 +18,14 @@
  *   </div>
  * </div>
  *
- * <div v-autosize class="transition-height duration-500 overflow-hidden">
+ * <div v-autosize="show-box" class="transition-height duration-500 overflow-hidden">
  *   <div v-show="show" class="p-4 bg-gray-200">
  *     details to show/hide
  *   </div>
  * </div>
  * ```
  */
-export type AutosizeDirective = Directive<HTMLElement, undefined, string, 'width' | 'height'>;
+export type AutosizeDirective = Directive<HTMLElement, string, string, 'width' | 'height'>;
 
 export const clientAutosizeDirective = {
   mounted(el, bd) {
@@ -55,34 +56,40 @@ export const clientAutosizeDirective = {
     }
   },
 
-  updated(el) {
+  updated(el, bd) {
     const sz = el.__autosize;
     if (sz == null) return;
 
-    let widthPx: string | undefined;
+    let widthPx = null;
     if (sz.width != null) {
       const w = el.scrollWidth;
-      widthPx = w != sz.width ? `${w}px` : undefined;
-      el.style.width = `${sz.width}px`;
+      if (w !== sz.width) {
+        widthPx = `${w}px`;
+        el.style.width = `${sz.width}px`;
+      }
     }
 
-    let heightPx: string | undefined;
+    let heightPx = null;
     if (sz.height != null) {
       const h = el.scrollHeight;
-      heightPx = h != sz.height ? `${h}px` : undefined;
-      el.style.height = `${sz.height}px`;
+      if (h !== sz.height) {
+        heightPx = `${h}px`;
+        el.style.height = `${sz.height}px`;
+      }
     }
 
-    // console.log('__autosize' + el.id, sz.width, widthPx, sz.height, heightPx);
+    if (bd.value) {
+      console.log(`DEBUG: __autosize ${bd.value}: df=${widthPx != null || heightPx != null} w1=${sz.width}, w2=${widthPx}, h1=${sz.height}, h2=${heightPx}`);
+    }
 
-    if (widthPx || heightPx) {
+    if (widthPx != null || heightPx != null) {
       setTimeout(() => {
-        if (widthPx) el.style.width = widthPx;
-        if (heightPx) el.style.height = heightPx;
+        if (widthPx != null) el.style.width = widthPx;
+        if (heightPx != null) el.style.height = heightPx;
       }, 0);
     }
   },
-} as Directive<HTMLElement & { __autosize?: { width?: number; height?: number } }, undefined, string, 'width' | 'height'>;
+} as Directive<HTMLElement & { __autosize?: { width?: number; height?: number } }, string, string, 'width' | 'height'>;
 
 export default defineNuxtPlugin((nuxtApp) => {
   const autosize = nuxtApp.ssrContext ? {} : clientAutosizeDirective;

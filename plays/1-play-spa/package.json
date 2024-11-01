@@ -1,0 +1,18 @@
+{
+  "name": "@fessional/play-spa",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "description": "SPA setting for desktop/mobile",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "postinstall": "nuxi prepare"
+  },
+  "devDependencies": {
+    "@fessional/razor-common": "workspace:*"
+  },
+  "hoistLayer": [
+    "@fessional/razor-common"
+  ]
+}

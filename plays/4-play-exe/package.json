@@ -1,0 +1,18 @@
+{
+  "name": "@fessional/play-exe",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "description": "test and play for desktop/exe",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "postinstall": "nuxi prepare"
+  },
+  "devDependencies": {
+    "@fessional/play-web": "workspace:*"
+  },
+  "hoistLayer": [
+    "@fessional/play-web"
+  ]
+}

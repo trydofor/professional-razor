@@ -2,11 +2,11 @@
 import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
-  extends: ['@fessional/razor-common'],
+  extends: ['@fessional/play-spa', '@fessional/razor-mobile'],
   modules: ['@nuxtjs/ionic'],
-  ssr: false,
+  css: ['~/assets/css/ionic.css'],
   alias: {
-    '&razor-mobile': fileURLToPath(new URL('./', import.meta.url)),
+    '&h5m': fileURLToPath(new URL('./', import.meta.url)),
   },
   ionic: {
     config: {

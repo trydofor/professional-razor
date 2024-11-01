@@ -1,0 +1,18 @@
+{
+  "name": "@fessional/play-app",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "description": "test and play for desktop/app",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "postinstall": "nuxi prepare"
+  },
+  "devDependencies": {
+    "@fessional/play-h5m": "workspace:*"
+  },
+  "hoistLayer": [
+    "@fessional/play-h5m"
+  ]
+}

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.33
+
+### Patch Changes
+
+- ea84ff4: ♻️ debug autosize, `&` alias layer
+
 ## 0.1.32
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.35
+
+### Patch Changes
+
+- 79385f3: ⬆ nuxt 3.14, deps issue gone #86
+
 ## 0.1.34
 
 ### Patch Changes

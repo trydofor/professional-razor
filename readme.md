@@ -110,16 +110,26 @@ pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
 ## reset the ci lockfile
 git restore pnpm-lock.yaml
 ## install all deps by lockfile
-pnpm -r i --frozen-lockfile
+pnpm i --frozen-lockfile
 
 ## 💚 for Dev
 pnpm -w i --ignore-pnpmfile
-pnpm -r i
-# if Cannot find package 'nuxi' when nuxi prepare
-pnpm -r i -f
+pnpm i
 
 ## 🧪 testing
 pnpm dev:test
+## play web
+pnpm play:web
+
+## 💎 others
+## reset by bash
+pnpm store prune
+find . -name "node_modules" -type d -prune -exec rm -rf {} +
+find . -name "pnpm-lock.yaml" -type f -exec rm -f {} +
+asdf install
+pnpm -w i --ignore-pnpmfile
+pnpm i
+
 ## rm .nuxt, .output, dist
 pnpm del:gen
 ## rm node_modules

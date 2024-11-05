@@ -44,7 +44,7 @@ jobs:
           echo "reset the ci lockfile"
           git restore pnpm-lock.yaml
           echo "install all deps by lockfile"
-          pnpm -r i --frozen-lockfile
+          pnpm i --frozen-lockfile
 
           # https://github.com/changesets/action
           cat > "$HOME/.npmrc" << EOF

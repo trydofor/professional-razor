@@ -10,8 +10,8 @@ catalogs:
       specifier: 2.27.9
       version: 2.27.9
     pnpm-hoist-layer:
-      specifier: 1.1.6
-      version: 1.1.6
+      specifier: 1.1.9
+      version: 1.1.9
     rimraf:
       specifier: 6.0.1
       version: 6.0.1
@@ -30,7 +30,7 @@ importers:
         version: 2.27.9
       pnpm-hoist-layer:
         specifier: catalog:manage
-        version: 1.1.6
+        version: 1.1.9
       rimraf:
         specifier: catalog:manage
         version: 6.0.1
@@ -477,7 +477,7 @@ packages:
     resolution: {integrity: sha512-qROz3rSOjQYclmEQAajH9RhBuqpAGHM+5CNd9fk+TsF4JKmQsAI1egafW8XZZv8vARCo4nAmmt5d0eI2B8GUsA==}
 
   is-extglob@2.1.1:
-    resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
+    resolution: {integrity: sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=}
     engines: {node: '>=0.10.0'}
 
   is-fullwidth-code-point@3.0.0:
@@ -507,8 +507,8 @@ packages:
     resolution: {integrity: sha512-bZsjR/iRjl1Nk1UkjGpAzLNfQtzuijhn2g+pbZb98HQ1Gk8vM9hfbxeMBP+M2/UUdwj0RqGG3mlvk2MsAqwvEw==}
     engines: {node: 20 || >=22}
 
-  jiti@2.3.3:
-    resolution: {integrity: sha512-EX4oNDwcXSivPrw2qKH2LB5PoFxEvgtv2JgwW0bU858HoLQ+kutSvjLMUqBd0PeJYEinLWhoI9Ol0eYMqj/wNQ==}
+  jiti@2.4.0:
+    resolution: {integrity: sha512-H5UpaUI+aHOqZXlYOaFP/8AzKsg+guWu+Pr3Y8i7+Y3zr1aXAvCvTAQ1RxSc6oVD8R8c7brgNtTVP91E7upH/g==}
     hasBin: true
 
   js-yaml@3.14.1:
@@ -632,8 +632,8 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
-  pnpm-hoist-layer@1.1.6:
-    resolution: {integrity: sha512-qm9t4NVVp/MweCRGuX1D2BK7M6+8LqS2+QGbJcbuts2EVXbC0UtWhDNN0irhM454u0w+/lMN7mlY2EBqSumexA==}
+  pnpm-hoist-layer@1.1.9:
+    resolution: {integrity: sha512-HchO4yOo/84qj1NcJxiLaQFl2D10s+CKB4S6bE88ut/MQTcUxuPRWhdDCYYQ0gR+eAYccGimDkTzvZVGozJ2bw==}
 
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
@@ -654,7 +654,7 @@ packages:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
 
   require-directory@2.1.1:
-    resolution: {integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=}
+    resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
 
   resolve-from@5.0.0:
@@ -1281,7 +1281,7 @@ snapshots:
       bundle-require: 5.0.0(esbuild@0.23.1)
       debug: 4.3.7
       esbuild: 0.23.1
-      jiti: 2.3.3
+      jiti: 2.4.0
       pathe: 1.1.2
       tsx: 4.19.2
     transitivePeerDependencies:
@@ -1309,7 +1309,7 @@ snapshots:
     dependencies:
       '@isaacs/cliui': 8.0.2
 
-  jiti@2.3.3: {}
+  jiti@2.4.0: {}
 
   js-yaml@3.14.1:
     dependencies:
@@ -1407,7 +1407,7 @@ snapshots:
 
   pify@4.0.1: {}
 
-  pnpm-hoist-layer@1.1.6: {}
+  pnpm-hoist-layer@1.1.9: {}
 
   prettier@2.8.8: {}
 

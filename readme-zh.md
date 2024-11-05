@@ -110,16 +110,26 @@ pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
 ## 重置 ci 锁文件
 git restore pnpm-lock.yaml
 ## 根据锁文件，安装依赖
-pnpm -r i --frozen-lockfile
+pnpm i --frozen-lockfile
 
 ## 💚 for Dev
 pnpm -w i --ignore-pnpmfile
-pnpm -r i
-# 如果 nuxi prepare时，出现 Cannot find package 'nuxi' 错误
-pnpm -r i -f
+pnpm i
 
 ## 🧪 测试
 pnpm dev:test
+## 运行 web
+pnpm play:web
+
+## 💎 其他
+## 通过bash重置
+pnpm store prune
+find . -name "node_modules" -type d -prune -exec rm -rf {} +
+find . -name "pnpm-lock.yaml" -type f -exec rm -f {} +
+asdf install
+pnpm -w i --ignore-pnpmfile
+pnpm i
+
 ## 删除 .nuxt, .output, dist
 pnpm del:gen
 ## 删除 node_modules

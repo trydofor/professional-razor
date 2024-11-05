@@ -2,24 +2,25 @@
   {
     "name": "@fessional/play-app",
     "dependencies": {
-      "@vueuse/core": "catalog:common",
-      "@vueuse/nuxt": "catalog:common",
-      "pinia": "catalog:common",
-      "vue": "catalog:common",
       "@capacitor/preferences": "catalog:mobile",
       "@ionic/vue": "catalog:mobile",
       "@ionic/vue-router": "catalog:mobile",
-      "ionicons": "catalog:mobile"
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "ionicons": "catalog:mobile",
+      "pinia": "catalog:common",
+      "vue": "catalog:common"
     },
     "devDependencies": {
       "@fessional/play-h5m": "workspace:*",
-      "@fessional/razor-mobile": "workspace:*",
       "@fessional/play-spa": "workspace:*",
       "@fessional/razor-common": "workspace:*",
+      "@fessional/razor-mobile": "workspace:*",
       "@iconify-json/line-md": "catalog:commonDev",
       "@iconify-json/mdi": "catalog:commonDev",
       "@nuxt/eslint": "catalog:commonDev",
       "@nuxt/test-utils": "catalog:commonDev",
+      "@nuxtjs/ionic": "catalog:mobileDev",
       "@pinia/nuxt": "catalog:commonDev",
       "@unocss/core": "catalog:commonDev",
       "@unocss/nuxt": "catalog:commonDev",
@@ -34,8 +35,7 @@
       "typescript": "catalog:commonDev",
       "unocss": "catalog:commonDev",
       "vitest": "catalog:commonDev",
-      "vue-tsc": "catalog:commonDev",
-      "@nuxtjs/ionic": "catalog:mobileDev"
+      "vue-tsc": "catalog:commonDev"
     },
     "hoistLayer": [
       "@fessional/play-h5m"
@@ -50,8 +50,8 @@
       "vue": "catalog:common"
     },
     "devDependencies": {
-      "@fessional/play-web": "workspace:*",
       "@fessional/play-spa": "workspace:*",
+      "@fessional/play-web": "workspace:*",
       "@fessional/razor-common": "workspace:*",
       "@iconify-json/line-md": "catalog:commonDev",
       "@iconify-json/mdi": "catalog:commonDev",
@@ -80,23 +80,24 @@
   {
     "name": "@fessional/play-h5m",
     "dependencies": {
-      "@vueuse/core": "catalog:common",
-      "@vueuse/nuxt": "catalog:common",
-      "pinia": "catalog:common",
-      "vue": "catalog:common",
       "@capacitor/preferences": "catalog:mobile",
       "@ionic/vue": "catalog:mobile",
       "@ionic/vue-router": "catalog:mobile",
-      "ionicons": "catalog:mobile"
+      "@vueuse/core": "catalog:common",
+      "@vueuse/nuxt": "catalog:common",
+      "ionicons": "catalog:mobile",
+      "pinia": "catalog:common",
+      "vue": "catalog:common"
     },
     "devDependencies": {
-      "@fessional/razor-mobile": "workspace:*",
       "@fessional/play-spa": "workspace:*",
       "@fessional/razor-common": "workspace:*",
+      "@fessional/razor-mobile": "workspace:*",
       "@iconify-json/line-md": "catalog:commonDev",
       "@iconify-json/mdi": "catalog:commonDev",
       "@nuxt/eslint": "catalog:commonDev",
       "@nuxt/test-utils": "catalog:commonDev",
+      "@nuxtjs/ionic": "catalog:mobileDev",
       "@pinia/nuxt": "catalog:commonDev",
       "@unocss/core": "catalog:commonDev",
       "@unocss/nuxt": "catalog:commonDev",
@@ -111,8 +112,7 @@
       "typescript": "catalog:commonDev",
       "unocss": "catalog:commonDev",
       "vitest": "catalog:commonDev",
-      "vue-tsc": "catalog:commonDev",
-      "@nuxtjs/ionic": "catalog:mobileDev"
+      "vue-tsc": "catalog:commonDev"
     },
     "hoistLayer": [
       "@fessional/play-spa",
@@ -224,19 +224,19 @@
       "@capacitor/preferences": "catalog:mobile",
       "@ionic/vue": "catalog:mobile",
       "@ionic/vue-router": "catalog:mobile",
-      "ionicons": "catalog:mobile",
       "@vueuse/core": "catalog:common",
       "@vueuse/nuxt": "catalog:common",
+      "ionicons": "catalog:mobile",
       "pinia": "catalog:common",
       "vue": "catalog:common"
     },
     "devDependencies": {
       "@fessional/razor-common": "workspace:*",
-      "@nuxtjs/ionic": "catalog:mobileDev",
       "@iconify-json/line-md": "catalog:commonDev",
       "@iconify-json/mdi": "catalog:commonDev",
       "@nuxt/eslint": "catalog:commonDev",
       "@nuxt/test-utils": "catalog:commonDev",
+      "@nuxtjs/ionic": "catalog:mobileDev",
       "@pinia/nuxt": "catalog:commonDev",
       "@unocss/core": "catalog:commonDev",
       "@unocss/nuxt": "catalog:commonDev",

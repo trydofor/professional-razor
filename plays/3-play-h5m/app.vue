@@ -40,7 +40,7 @@
             :tab="tb.tab"
             :href="tb.href"
           >
-            <div :class="[tb.icon, ' text-3xl']" />
+            <div :class="[tb.icon, 'text-3xl']" />
             <IonLabel>{{ tb.label }}</IonLabel>
           </IonTabButton>
         </IonTabBar>

@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.36
+
+### Patch Changes
+
+- 83705ae: ⬆ shared-workspace-lockfile, up nuxt unocss
+
 ## 0.1.35
 
 ### Patch Changes

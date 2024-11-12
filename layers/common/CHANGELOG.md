@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.38
+
+### Patch Changes
+
+- 54722a7: 🐛 transition fails when many events #91
+
 ## 0.1.36
 
 ### Patch Changes

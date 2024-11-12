@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.1.37
+
+### Patch Changes
+
+- 4566028: 🐛 Animation fails when size=auto #91
+
 ## 0.1.36
 
 ### Patch Changes

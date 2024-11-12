@@ -1,8 +1,8 @@
 ﻿<template>
   <div>
     <div class="bg-gray-200 p-2">
-      💎 with v-auto-size, the transition-height goes smoothly as [1,2],
-      otherwise goes as [3,4]. vue Transition as [5,6]
+      💎 with v-auto-size, the transition-height goes smoothly as 1x,
+      otherwise goes as 2x. vue Transition as 3x
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item1" :key="it.id">
@@ -77,8 +77,9 @@ definePageMeta({
 
 const show1 = ref(0);
 const item1 = [
-  { id: 1, title: 'order1', details: 'detail 1' },
-  { id: 2, title: 'order2', details: 'detail 2' },
+  { id: 11, title: 'order11', details: 'detail 11' },
+  { id: 12, title: 'order12', details: 'detail 12' },
+  { id: 13, title: 'order13', details: 'detail 13' },
 ];
 function toggle1(id: number) {
   show1.value = show1.value === id ? 0 : id;
@@ -86,8 +87,9 @@ function toggle1(id: number) {
 
 const show2 = ref(0);
 const item2 = [
-  { id: 3, title: 'order3', details: 'detail 3' },
-  { id: 4, title: 'order4', details: 'detail 4' },
+  { id: 21, title: 'order21', details: 'detail 21' },
+  { id: 22, title: 'order22', details: 'detail 22' },
+  { id: 23, title: 'order23', details: 'detail 23' },
 ];
 function toggle2(id: number) {
   show2.value = show2.value === id ? 0 : id;
@@ -95,8 +97,9 @@ function toggle2(id: number) {
 
 const show3 = ref(0);
 const item3 = [
-  { id: 5, title: 'order5', details: 'detail 5' },
-  { id: 6, title: 'order6', details: 'detail 6' },
+  { id: 31, title: 'order31', details: 'detail 31' },
+  { id: 32, title: 'order32', details: 'detail 32' },
+  { id: 33, title: 'order33', details: 'detail 33' },
 ];
 function toggle3(id: number) {
   show3.value = show3.value === id ? 0 : id;

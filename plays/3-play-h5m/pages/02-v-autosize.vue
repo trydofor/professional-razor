@@ -14,7 +14,7 @@
     <IonContent>
       <div>
         <div class="bg-gray-200 p-2">
-          💎 with v-auto-size, the transition-height goes smoothly as [1,2]
+          💎 with v-auto-size, the transition-height goes smoothly as 1x
         </div>
         <div class="border-1 border-indigo">
           <div v-for="it in item1" :key="it.id">
@@ -53,6 +53,7 @@ const show1 = ref(0);
 const item1 = [
   { id: 1, title: 'order1', details: 'detail 1' },
   { id: 2, title: 'order2', details: 'detail 2' },
+  { id: 3, title: 'order3', details: 'detail 3' },
 ];
 function toggle1(id: number) {
   show1.value = show1.value === id ? 0 : id;

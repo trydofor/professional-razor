@@ -47,11 +47,13 @@ export const clientAutosizeDirective = {
 
     if (sz.width != null) {
       sz.width = el.scrollWidth;
+      // set 'auto' to enable calculate
       el.style.width = 'auto';
     }
 
     if (sz.height != null) {
       sz.height = el.scrollHeight;
+      // set 'auto' to enable calculate
       el.style.height = 'auto';
     }
   },
@@ -63,19 +65,17 @@ export const clientAutosizeDirective = {
     let widthPx = null;
     if (sz.width != null) {
       const w = el.scrollWidth;
-      if (w !== sz.width) {
-        widthPx = `${w}px`;
-        el.style.width = `${sz.width}px`;
-      }
+      if (w !== sz.width) widthPx = `${w}px`;
+      // rewrite 'auto' on beforeUpdate
+      el.style.width = `${sz.width}px`;
     }
 
     let heightPx = null;
     if (sz.height != null) {
       const h = el.scrollHeight;
-      if (h !== sz.height) {
-        heightPx = `${h}px`;
-        el.style.height = `${sz.height}px`;
-      }
+      if (h !== sz.height) heightPx = `${h}px`;
+      // rewrite 'auto' on beforeUpdate
+      el.style.height = `${sz.height}px`;
     }
 
     if (bd.value) {
@@ -83,6 +83,7 @@ export const clientAutosizeDirective = {
     }
 
     if (widthPx != null || heightPx != null) {
+      // set final size at next thread
       setTimeout(() => {
         if (widthPx != null) el.style.width = widthPx;
         if (heightPx != null) el.style.height = heightPx;

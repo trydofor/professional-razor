@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.2.0
+
+### Minor Changes
+
+- e5590c8: ♻️ rename devs, .env with runtimeConfig
+
 ## 0.1.38
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.1.39
+
+### Patch Changes
+
+- 86f485d: rename devs, .env wiht runtimeConfig
+
 ## 0.1.38
 
 ### Patch Changes

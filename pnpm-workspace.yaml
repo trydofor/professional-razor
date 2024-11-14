@@ -26,15 +26,16 @@ catalogs:
     "@unocss/nuxt": "0.64.0"
     "@unocss/preset-icons": "0.64.0"
     "@unocss/preset-wind": "0.64.0"
-    "@vitest/coverage-v8": "2.1.4"
+    "@vitest/coverage-v8": "2.1.5"
     "@vue/test-utils": "2.4.6"
     "eslint": "9.14.0"
-    "happy-dom": "15.11.0" # peer of @nuxt/test-utils
+    "happy-dom": "15.11.6" # peer of @nuxt/test-utils
     "nuxi": "3.15.0" # by nuxt
     "nuxt": "3.14.159"
     "typescript": "5.6.3"
     "unocss": "0.64.0"
-    "vitest": "2.1.4"
+    "vite": "5.4.11" # peer
+    "vitest": "2.1.5"
     "vue-tsc": "2.1.10"
   mobile:
     "@capacitor/preferences": "6.0.2"

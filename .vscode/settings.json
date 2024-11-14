@@ -4,6 +4,9 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "files.encoding": "utf8",
   "files.autoGuessEncoding": true,
+  "files.associations": {
+    "*.json5": "json5",
+  },
   "files.insertFinalNewline": true,
   "cSpell.allowCompoundWords": true,
   "cSpell.words": [

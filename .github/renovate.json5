@@ -1,3 +1,4 @@
+// https://docs.renovatebot.com/getting-started/installing-onboarding/
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [

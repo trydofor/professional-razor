@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.1.38",
   "description": "Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase, suitable for small team and app to write app once, apply almost anywhere.",
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@9.13.0",
   "engines": {
     "node": "20.18.0",
-    "pnpm": "9.12.3"
+    "pnpm": "9.13.0"
   },
   "files": [
     "hoist-layer.json",

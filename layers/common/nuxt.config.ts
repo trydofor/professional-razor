@@ -1,16 +1,26 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 import { fileURLToPath } from 'url';
-import { ApiRoute } from './utils/const-common';
+import { nuxtApiRoutePath, nuxtApiProxyRule, nuxtCompatibilityDate } from './configures/nuxt-config-helper';
 
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@nuxt/eslint', '@nuxt/test-utils/module', '@pinia/nuxt'],
+  // https://nuxt.com/docs/guide/going-further/runtime-config
+  runtimeConfig: {
+    public: {
+      apiRoute: nuxtApiRoutePath(),
+      apiProxy: '',
+    },
+  },
+  // https://nuxt.com/docs/guide/going-further/layers#tips
   alias: {
     '&razor-common': fileURLToPath(new URL('./', import.meta.url)),
   },
+  // https://nitro.build/config#routerules
   routeRules: {
-    [`${ApiRoute}/**`]: process.env.API_PROXY ? { proxy: `${process.env.API_PROXY}` } : undefined,
+    ...nuxtApiProxyRule(),
   },
-  compatibilityDate: '2024-10-23',
+  compatibilityDate: nuxtCompatibilityDate,
   typescript: {
     typeCheck: true,
   },

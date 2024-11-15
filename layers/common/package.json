@@ -27,6 +27,7 @@
     "@vue/test-utils": "catalog:commonDev",
     "eslint": "catalog:commonDev",
     "happy-dom": "catalog:commonDev",
+    "msw": "catalog:commonDev",
     "nuxi": "catalog:commonDev",
     "nuxt": "catalog:commonDev",
     "typescript": "catalog:commonDev",

@@ -1,5 +1,5 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj, safeSetArr } from '../utils/safe-converter';
+import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj, safeSetArr, safeArray } from '../utils/safe-converter';
 
 describe('safeString', () => {
   it('should return defaults if null or undefined', () => {
@@ -85,6 +85,59 @@ describe('safeBigint', () => {
 
   it('should return defaults for invalid string', () => {
     expect(safeBigint('invalid', 99n)).toBe(99n);
+  });
+});
+
+describe('safeArray', () => {
+  it('should return the default array if input is null', () => {
+    const result = safeArray(null, [1, 2, 3]);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  it('should return the default array if input is undefined', () => {
+    const result = safeArray(undefined, [1, 2, 3]);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  it('should return the input array if input is already an array', () => {
+    const input = [4, 5, 6];
+    const result = safeArray(input);
+    expect(result).toEqual(input);
+  });
+
+  it('should return an array wrapping a single non-array value', () => {
+    const result = safeArray('test');
+    expect(result).toEqual(['test']);
+  });
+
+  it('should handle functions that return arrays', () => {
+    const result = safeArray(() => [7, 8, 9]);
+    expect(result).toEqual([7, 8, 9]);
+  });
+
+  it('should handle functions that return non-array values', () => {
+    const result = safeArray(() => 'dynamic');
+    expect(result).toEqual(['dynamic']);
+  });
+
+  it('should handle nested functions and unwrap the result correctly', () => {
+    const result = safeArray(() => () => [10, 11, 12]);
+    expect(result).toEqual([10, 11, 12]);
+  });
+
+  it('should wrap non-array, non-function values in an array', () => {
+    const result = safeArray(42);
+    expect(result).toEqual([42]);
+  });
+
+  it('should return an empty array when defaults are not provided and input is null', () => {
+    const result = safeArray(null);
+    expect(result).toEqual([]);
+  });
+
+  it('should return an empty array when defaults are not provided and input is undefined', () => {
+    const result = safeArray(undefined);
+    expect(result).toEqual([]);
   });
 });
 

@@ -127,6 +127,33 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
 }
 
 /**
+ * Ensures that the input is converted to an array. If the input is `null` or `undefined`,
+ * it returns the provided default array.
+ *
+ * @template T - The type of elements in the array.
+ * @param valOrFun - The input value, which can be:
+ *   - An array: returned as-is.
+ *   - A function: the result of the function is recursively passed into `safeArray`.
+ *   - Any other value: wrapped in an array.
+ *   - `null` or `undefined`: returns the `defaults` array.
+ * @param defaults - The default array to return when `valOrFun` is `null` or `undefined`.
+ *   Defaults to an empty array.
+ * @returns An array containing the processed input or the default array.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function safeArray<T>(valOrFun: any, defaults: T[] = []) {
+  if (valOrFun == null) return defaults;
+  if (Array.isArray(valOrFun)) return valOrFun;
+
+  if (typeof valOrFun == 'function') {
+    return safeArray(valOrFun(), defaults);
+  }
+  else {
+    return [valOrFun];
+  }
+}
+
+/**
  * get non-null Object.values
  *
  * @param valOrFun value or function

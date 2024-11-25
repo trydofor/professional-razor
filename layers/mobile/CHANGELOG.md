@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.2.4
+
+### Patch Changes
+
+- 35f0bd1: ✨ Maybe<T> is null | undefined | T #102
+
 ## 0.2.3
 
 ### Patch Changes

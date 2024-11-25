@@ -33,7 +33,7 @@ export function safeJson(obj: unknown): string {
  *   - When `false` (the default), the function will continue to be invoked until it no longer returns a function, allowing for multiple resolutions.
  * @returns The converted value of type `T`, or the default value if the conversion is unsuccessful.
  */
-export function safeConvert<S, T>(valOrFun: S | (() => S), defaults: T, convert: (value: S) => T | null, once = false): T {
+export function safeConvert<S, T>(valOrFun: Maybe<S> | (() => Maybe<S>), defaults: T, convert: (value: S) => T | null, once = false): T {
   while (typeof valOrFun === 'function') {
     valOrFun = (valOrFun as () => S)();
     if (once) break;
@@ -149,12 +149,12 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
  * @param defaults - The default array to return if the input is `undefined` or `null`. Defaults to an empty array (`[]`).
  * @returns An array of type `T[]` containing the resolved values.
  */
-export function safeArray<T>(valOrFun: undefined | T | T[] | (() => undefined | T | T[]), defaults: T[] = []): T[] {
+export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), defaults: T[] = []): T[] {
   if (valOrFun == null) return defaults;
   if (Array.isArray(valOrFun)) return valOrFun;
 
-  if (typeof valOrFun == 'function') {
-    valOrFun = (valOrFun as () => undefined | T | T[])();
+  if (typeof valOrFun === 'function') {
+    valOrFun = (valOrFun as () => Maybe<T | T[]>)();
   }
 
   if (Array.isArray(valOrFun)) {
@@ -181,11 +181,11 @@ export function safeArray<T>(valOrFun: undefined | T | T[] | (() => undefined | 
  * @param defaults - The default value to return when the input is `undefined` or `null`.
  * @returns The resolved safe value of type `T`.
  */
-export function safeValue<T>(valOrFun: undefined | T | T[] | (() => undefined | T | T[]), defaults: T): T {
+export function safeValue<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), defaults: T): T {
   if (valOrFun == null) return defaults;
 
-  if (typeof valOrFun == 'function') {
-    valOrFun = (valOrFun as () => undefined | T | T[])();
+  if (typeof valOrFun === 'function') {
+    valOrFun = (valOrFun as () => Maybe<T | T[]>)();
   }
 
   if (Array.isArray(valOrFun)) {
@@ -234,27 +234,27 @@ export function safeEntries<T>(valOrFun: any, defaults: [string, T][] = []): [st
 /**
  * convert object to Map
  */
-export function safeObjMap<T>(obj?: Record<string, T> | null): Map<string, T> {
+export function safeObjMap<T>(obj?: Maybe<Record<string, T>>): Map<string, T> {
   return obj == null ? new Map() : new Map(Object.entries(obj));
 }
 
 /**
  * convert array to Set
  */
-export function safeArrSet<T>(arr?: T[] | null): Set<T> {
+export function safeArrSet<T>(arr?: Maybe<T[]>): Set<T> {
   return arr == null ? new Set() : new Set(arr);
 }
 
 /**
  * convert Map to object
  */
-export function safeMapObj<T>(map?: Map<string, T> | null): Record<string, T> {
+export function safeMapObj<T>(map?: Maybe<Map<string, T>>): Record<string, T> {
   return map == null ? {} : Object.fromEntries(map);
 }
 
 /**
  * convert Set to array
  */
-export function safeSetArr<T>(set?: Set<T> | null): T[] {
+export function safeSetArr<T>(set?: Maybe<Set<T>>): T[] {
   return set == null ? [] : Array.from(set);
 }

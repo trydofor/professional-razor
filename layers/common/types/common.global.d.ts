@@ -17,6 +17,11 @@
    * 0 if `null` | `undefined` | `false` | `NaN` | `''`
    */
   type NumberLike = null | undefined | boolean | number | string | bigint;
+
+  /**
+   * alias to `null` | `undefined` | `T`
+   */
+  type Maybe<T> = null | undefined | T;
 }
 
 //

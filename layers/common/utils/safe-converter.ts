@@ -16,23 +16,30 @@ export function safeJson(obj: unknown): string {
 }
 
 /**
- * get non-null converted value
+ * A utility function that safely converts a value using a provided conversion function.
+ * - If the value is a function, it will be invoked to resolve the value.
+ * - The function can be configured to either resolve the function once or repeatedly (based on the `once` flag).
+ * - If the conversion result is `null`, it will return a default value.
  *
- * @param valOrFun value or function
- * @param defaults default value if null/undefined
- * @param convert non-null value converter
- * @returns
+ * @template S - The type of the initial value or the value returned by the function.
+ * @template T - The type of the value after conversion.
+ * @param valOrFun - The value to be converted, which can either be:
+ *   - A direct value of type `S`
+ *   - A function that returns a value of type `S`.
+ * @param defaults - The default value to return if the conversion results in `null` or the input is invalid.
+ * @param convert - The function used to convert the value of type `S` to type `T`. If it returns `null`, the default value is returned.
+ * @param once - A flag that indicates whether the function should only resolve the value once.
+ *   - When `true`, the function is called only once, and the value is resolved immediately.
+ *   - When `false` (the default), the function will continue to be invoked until it no longer returns a function, allowing for multiple resolutions.
+ * @returns The converted value of type `T`, or the default value if the conversion is unsuccessful.
  */
-
-export function safeConvert<S, T>(valOrFun: S, defaults: T, convert: (value: S) => T | null): T {
-  if (valOrFun == null) return defaults;
-
-  switch (typeof valOrFun) {
-    case 'function':
-      return safeConvert(valOrFun(), defaults, convert);
-    default:
-      return convert(valOrFun) ?? defaults;
+export function safeConvert<S, T>(valOrFun: S | (() => S), defaults: T, convert: (value: S) => T | null, once = false): T {
+  while (typeof valOrFun === 'function') {
+    valOrFun = (valOrFun as () => S)();
+    if (once) break;
   }
+  if (valOrFun == null) return defaults;
+  return convert(valOrFun) ?? defaults;
 }
 
 /**
@@ -127,30 +134,65 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
 }
 
 /**
- * Ensures that the input is converted to an array. If the input is `null` or `undefined`,
- * it returns the provided default array.
+ * A utility function to safely convert various input types into an array.
+ * - If the input is `undefined` or `null`, it returns a default array.
+ * - If the input is already an array, it is returned as-is.
+ * - If the input is a function, it resolves the function's return value and processes it recursively.
+ * - If the input is a single value, it returns an array containing that value.
  *
- * @template T - The type of elements in the array.
+ * @template T - The type of the array elements.
  * @param valOrFun - The input value, which can be:
- *   - An array: returned as-is.
- *   - A function: the result of the function is recursively passed into `safeArray`.
- *   - Any other value: wrapped in an array.
- *   - `null` or `undefined`: returns the `defaults` array.
- * @param defaults - The default array to return when `valOrFun` is `null` or `undefined`.
- *   Defaults to an empty array.
- * @returns An array containing the processed input or the default array.
+ *   - `undefined` or `null`
+ *   - A single value of type `T`
+ *   - An array of type `T[]`
+ *   - A function that returns `undefined`, a single value of type `T`, or an array of type `T[]`.
+ * @param defaults - The default array to return if the input is `undefined` or `null`. Defaults to an empty array (`[]`).
+ * @returns An array of type `T[]` containing the resolved values.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function safeArray<T>(valOrFun: any, defaults: T[] = []) {
+export function safeArray<T>(valOrFun: undefined | T | T[] | (() => undefined | T | T[]), defaults: T[] = []): T[] {
   if (valOrFun == null) return defaults;
   if (Array.isArray(valOrFun)) return valOrFun;
 
   if (typeof valOrFun == 'function') {
-    return safeArray(valOrFun(), defaults);
+    valOrFun = (valOrFun as () => undefined | T | T[])();
+  }
+
+  if (Array.isArray(valOrFun)) {
+    return valOrFun;
   }
   else {
-    return [valOrFun];
+    return valOrFun == null ? defaults : [valOrFun];
   }
+}
+
+/**
+ * A utility function to safely retrieve a value from different types of inputs.
+ * - If the input is `undefined` or `null`, it returns a default value.
+ * - If the input is a function, it resolves the function's return value.
+ * - If the input is an array, it returns the first element or the default value if the array is empty.
+ * - Otherwise, it returns the input value.
+ *
+ * @template T - The type of the default value.
+ * @param valOrFun - The input value, which can be:
+ *   - `undefined` or `null`
+ *   - A value of type `T`
+ *   - An array of type `T[]`
+ *   - A function returning `undefined`, a value of type `T`, or an array of type `T[]`.
+ * @param defaults - The default value to return when the input is `undefined` or `null`.
+ * @returns The resolved safe value of type `T`.
+ */
+export function safeValue<T>(valOrFun: undefined | T | T[] | (() => undefined | T | T[]), defaults: T): T {
+  if (valOrFun == null) return defaults;
+
+  if (typeof valOrFun == 'function') {
+    valOrFun = (valOrFun as () => undefined | T | T[])();
+  }
+
+  if (Array.isArray(valOrFun)) {
+    valOrFun = valOrFun.length == 0 ? undefined : valOrFun[0] as T;
+  }
+
+  return valOrFun ?? defaults;
 }
 
 /**

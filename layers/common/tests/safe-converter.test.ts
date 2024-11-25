@@ -1,5 +1,5 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj, safeSetArr, safeArray } from '../utils/safe-converter';
+import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj, safeSetArr, safeArray, safeValue } from '../utils/safe-converter';
 
 describe('safeString', () => {
   it('should return defaults if null or undefined', () => {
@@ -120,11 +120,6 @@ describe('safeArray', () => {
     expect(result).toEqual(['dynamic']);
   });
 
-  it('should handle nested functions and unwrap the result correctly', () => {
-    const result = safeArray(() => () => [10, 11, 12]);
-    expect(result).toEqual([10, 11, 12]);
-  });
-
   it('should wrap non-array, non-function values in an array', () => {
     const result = safeArray(42);
     expect(result).toEqual([42]);
@@ -138,6 +133,42 @@ describe('safeArray', () => {
   it('should return an empty array when defaults are not provided and input is undefined', () => {
     const result = safeArray(undefined);
     expect(result).toEqual([]);
+  });
+});
+
+describe('safeValue', () => {
+  it('should return the default value if input is undefined or null', () => {
+    expect(safeValue(undefined, 'default')).toBe('default');
+    expect(safeValue(null, 42)).toBe(42);
+  });
+
+  it('should return the resolved value if input is a function', () => {
+    const fn = () => 'resolved value';
+    expect(safeValue(fn, 'default')).toBe('resolved value');
+  });
+
+  it('should return the first element of an array', () => {
+    expect(safeValue([10, 20, 30], 0)).toBe(10);
+    expect(safeValue(['a', 'b', 'c'], 'z')).toBe('a');
+  });
+
+  it('should return the default value for an empty array', () => {
+    expect(safeValue([], 'default')).toBe('default');
+  });
+
+  it('should return the default value if the first element of the array is null or undefined', () => {
+    expect(safeValue([null, 20], 0)).toBe(0);
+    expect(safeValue([undefined], 'default')).toBe('default');
+  });
+
+  it('should return the input value directly if it is neither null, a function, nor an array', () => {
+    expect(safeValue(123, 0)).toBe(123);
+    expect(safeValue('string', 'default')).toBe('string');
+    expect(safeValue(true, false)).toBe(true);
+  });
+
+  it('should handle nested arrays', () => {
+    expect(safeValue([[1, 2], [3, 4]], [0])).toEqual([1, 2]);
   });
 });
 

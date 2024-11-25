@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.2.3
+
+### Patch Changes
+
+- b9cb302: ✨ safeArray,safeValue converter
+
 ## 0.2.2
 
 ### Patch Changes

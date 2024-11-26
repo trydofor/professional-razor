@@ -23,6 +23,7 @@ export function safeJson(obj: unknown): string {
  *
  * @template S - The type of the initial value or the value returned by the function.
  * @template T - The type of the value after conversion.
+ * @template D - The type of defaults.
  * @param valOrFun - The value to be converted, which can either be:
  *   - A direct value of type `S`
  *   - A function that returns a value of type `S`.
@@ -33,7 +34,7 @@ export function safeJson(obj: unknown): string {
  *   - When `false` (the default), the function will continue to be invoked until it no longer returns a function, allowing for multiple resolutions.
  * @returns The converted value of type `T`, or the default value if the conversion is unsuccessful.
  */
-export function safeConvert<S, T>(valOrFun: Maybe<S> | (() => Maybe<S>), defaults: T, convert: (value: S) => T | null, once = false): T {
+export function safeConvert<S, T, D>(valOrFun: Maybe<S> | (() => Maybe<S>), defaults: D, convert: (value: S) => T | null, once = false): NonNullable<T> | D {
   while (typeof valOrFun === 'function') {
     valOrFun = (valOrFun as () => S)();
     if (once) break;
@@ -172,7 +173,8 @@ export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), 
  * - If the input is an array, it returns the first element or the default value if the array is empty.
  * - Otherwise, it returns the input value.
  *
- * @template T - The type of the default value.
+ * @template T - The type of the input value.
+ * @template D - The type of the defaults value.
  * @param valOrFun - The input value, which can be:
  *   - `undefined` or `null`
  *   - A value of type `T`
@@ -181,7 +183,7 @@ export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), 
  * @param defaults - The default value to return when the input is `undefined` or `null`.
  * @returns The resolved safe value of type `T`.
  */
-export function safeValue<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), defaults: T): T {
+export function safeValue<T, D>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), defaults: D): NonNullable<T> | D {
   if (valOrFun == null) return defaults;
 
   if (typeof valOrFun === 'function') {

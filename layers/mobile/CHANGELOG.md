@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.2.5
+
+### Patch Changes
+
+- c9f4dda: ✨ useIonRoute() for workaround #104
+
 ## 0.2.4
 
 ### Patch Changes

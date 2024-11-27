@@ -44,8 +44,10 @@
 
 * 驼峰 - `smallCamel`/小驼峰 和 `PascalCase`/大驼峰
 * 烤串 - `kebab-case`，全小写
-* `*.vue`及相关 - 必须大驼峰，与Vue一致
-* 目录及非vue文件 - 必须烤串，与`index.js`一致
+* `*.vue`及相关 - 必须大驼峰，与Vue一致，
+  如 `components/`, `composables/`, `stores/`
+* 目录及非vue文件 - 必须烤串，与`index.js`一致，
+  如 `assets/`, `pages/`, `types`, `plugins/`, `utils/`
 * 代码中 - js必须驼峰，html属性和css必须烤串
 * 组件标签 - 应该大驼峰，以区别于原生html标签
 * 组件属性 - js必须小驼峰，html必须烤串

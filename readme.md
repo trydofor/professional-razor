@@ -44,8 +44,10 @@ First, `html` and `http` are case-insensitive, and `mac` and `win` OS are case-i
 
 * `camel` - `smallCamel` and `BigCamel`/`PascalCase`
 * `kebab` - `kebab-case` all lowercase
-* `*.vue` and its file - MUST be `BigCamel`, consistent with Vue
-* dir and non-vue file - MUST be `kebab` consistent with `index.js`
+* `*.vue` and its file - MUST be `BigCamel`, consistent with Vue,
+  e.g. `components/`, `composables/`, `stores/`
+* dir and non-vue file - MUST be `kebab` consistent with `index.js`,
+  e.g. `assets/`, `pages/`, `types`, `plugins/`, `utils/`
 * source code - js MUST be `camel`, html attr and css MUST be `kebab`
 * component tag - SHOULD be `BigCamel`, to distinguish from original html
 * component prop - in js MUST be `smallCamel`, in html MUST be `kebab`

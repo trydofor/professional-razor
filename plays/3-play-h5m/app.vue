@@ -31,16 +31,18 @@
       </IonContent>
     </IonMenu>
     <IonPage id="main-content">
-      <IonTabs @ion-tabs-did-change="onIonTabsDidChange">
+      <IonTabs>
         <IonRouterOutlet />
         <IonTabBar slot="bottom">
           <IonTabButton
-            v-for="tb in tabs"
-            :key="tb.tab"
-            :tab="tb.tab"
+            v-for="(tb, ix) in tabs"
+            :key="'tab' + ix"
+            :disabled="tb.href === ''"
+            :tab="'tab' + ix"
             :href="tb.href"
+            :selected="tb.on"
           >
-            <div :class="[tb.icon, 'text-3xl']" />
+            <div :class="[tb.on ? tb.classOn : tb.classOff, 'text-3xl']" />
             <IonLabel>{{ tb.label }}</IonLabel>
           </IonTabButton>
         </IonTabBar>
@@ -50,7 +52,8 @@
 </template>
 
 <script setup lang="ts">
-const pageRoutes = useRouter().getRoutes().filter(it => it.path !== '/'); ;
+const router = useRouter();
+const pageRoutes = router.getRoutes().filter(it => it.path !== '/'); ;
 
 function index(path: string) {
   return path.length > 3 ? path.substring(1, 3) : '00';
@@ -58,44 +61,36 @@ function index(path: string) {
 
 const tabs = reactive([
   {
-    tab: 'main',
     label: 'Home',
-    href: '/00-index',
-    icon: 'i-mdi:home',
-    iconActive: 'i-mdi:home',
-    iconInactive: 'i-mdi:home-outline',
+    href: '/',
+    on: true,
+    classOn: 'i-mdi:home',
+    classOff: 'i-mdi:home-outline',
   },
   {
-    tab: 'dpiimg',
     label: 'DpiImg',
     href: '/01-dpi-image',
-    icon: 'i-mdi:image',
-    iconActive: 'i-mdi:image',
-    iconInactive: 'i-mdi:image-outline',
+    on: false,
+    classOn: 'i-mdi:image',
+    classOff: 'i-mdi:image-outline',
   },
   {
-    tab: 'autosize',
-    label: 'AutoSize',
+    label: 'Latest',
     href: '/02-v-autosize',
-    icon: 'i-mdi:animation',
-    iconActive: 'i-mdi:animation',
-    iconInactive: 'i-mdi:animation-outline',
+    on: false,
+    classOn: 'i-mdi:lightbulb-on',
+    classOff: 'i-mdi:lightbulb-on-10',
   },
 ]);
 
-function onIonTabsDidChange({ tab }: { tab: string }) {
-  activeTab(tab);
-}
-
-function activeTab(tabOrRef: string) {
-  console.log('>>>', tabOrRef);
-  for (const tb of tabs) {
-    if (tb.tab === tabOrRef || tb.href === tabOrRef) {
-      tb.icon = tb.iconActive;
-    }
-    else {
-      tb.icon = tb.iconInactive;
-    }
+router.afterEach((to) => {
+  const t = to.path.startsWith('/00') ? '/' : to.path;
+  if (t !== tabs[0].href && t !== tabs[1].href) {
+    tabs[2].href = t;
+    tabs[2].label = 'No#' + index(t);
   }
-}
+  for (const tb of tabs) {
+    tb.on = t === tb.href;
+  }
+});
 </script>

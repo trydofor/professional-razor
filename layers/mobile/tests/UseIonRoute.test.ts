@@ -3,7 +3,7 @@ import type { Router } from 'vue-router';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import { mount } from '@vue/test-utils';
 import { defineComponent, h } from 'vue';
-import { useIonRoute } from '~/composables/UseIonRoute';
+import { useIonRoute } from '../composables/UseIonRoute';
 
 function setupTestRouter(): Router {
   const routes = [

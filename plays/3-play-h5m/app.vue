@@ -83,6 +83,7 @@ const tabs = reactive([
   },
 ]);
 
+// https://ionicframework.com/docs/vue/navigation#working-with-tabs
 router.afterEach((to) => {
   const t = to.path.startsWith('/00') ? '/' : to.path;
   if (t !== tabs[0].href && t !== tabs[1].href) {

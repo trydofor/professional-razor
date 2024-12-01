@@ -34,7 +34,7 @@ export function safeJson(obj: unknown): string {
  *   - When `false` (the default), the function will continue to be invoked until it no longer returns a function, allowing for multiple resolutions.
  * @returns The converted value of type `T`, or the default value if the conversion is unsuccessful.
  */
-export function safeConvert<S, T, D>(valOrFun: Maybe<S> | (() => Maybe<S>), defaults: D, convert: (value: S) => T | null, once = false): NonNullable<T> | D {
+export function safeConvert<S, T, D>(valOrFun: Maybe<S> | (() => Maybe<S>), defaults: D, convert: (value: S) => T | null, once = false): OrElse<T, D> {
   while (typeof valOrFun === 'function') {
     valOrFun = (valOrFun as () => S)();
     if (once) break;
@@ -183,7 +183,7 @@ export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), 
  * @param defaults - The default value to return when the input is `undefined` or `null`.
  * @returns The resolved safe value of type `T`.
  */
-export function safeValue<T, D>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), defaults: D): NonNullable<T> | D {
+export function safeValue<T, D>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), defaults: D): OrElse<T, D> {
   if (valOrFun == null) return defaults;
 
   if (typeof valOrFun === 'function') {

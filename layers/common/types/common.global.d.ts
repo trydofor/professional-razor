@@ -14,7 +14,7 @@
   }
 
   /**
-   * 0 if `null` | `undefined` | `false` | `NaN` | `''`
+   * `0` if falsy (`null` | `undefined` | `false` | `NaN` | `''`)
    */
   type NumberLike = null | undefined | boolean | number | string | bigint;
 
@@ -22,6 +22,11 @@
    * alias to `null` | `undefined` | `T`
    */
   type Maybe<T> = null | undefined | T;
+
+  /**
+   * `D` if `T` is `null` | `undefined`.
+   */
+  type OrElse<T, D> = NonNullable<T> | D;
 }
 
 //

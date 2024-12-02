@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.2.6
+
+### Patch Changes
+
+- 6ec1a1a: 🐛 down typescript from 5.7.2 to 5.6.3 #106
+
 ## 0.2.5
 
 ### Patch Changes

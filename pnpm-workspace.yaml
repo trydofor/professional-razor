@@ -14,14 +14,14 @@ catalogs:
   common:
     "@vueuse/core": "12.0.0"
     "@vueuse/nuxt": "12.0.0"
-    "pinia": "2.2.6"
+    "pinia": "2.2.8"
     "vue": "3.5.13"
   commonDev:
     "@iconify-json/line-md": "1.2.2"
     "@iconify-json/mdi": "1.2.1"
     "@nuxt/eslint": "0.7.2"
-    "@nuxt/test-utils": "3.14.4"
-    "@pinia/nuxt": "0.7.0"
+    "@nuxt/test-utils": "3.14.4" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
+    "@pinia/nuxt": "0.8.0"
     "@unocss/core": "0.64.1"
     "@unocss/nuxt": "0.64.1"
     "@unocss/preset-icons": "0.64.1"
@@ -29,13 +29,13 @@ catalogs:
     "@vitest/coverage-v8": "2.1.6"
     "@vue/test-utils": "2.4.6"
     "eslint": "9.15.0" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
-    "happy-dom": "15.11.6" # peer of @nuxt/test-utils
+    "happy-dom": "15.11.6" # peer of @nuxt/test-utils # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
     "msw": "2.6.6" # API mocking
-    "nuxi": "3.15.0" # by nuxt
+    "nuxi": "3.15.0" # by nuxt # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
     "nuxt": "3.14.1592"
-    "typescript": "5.7.2"
+    "typescript": "5.6.3"
     "unocss": "0.64.1"
-    "vite": "5.4.11" # mute 'unmet peer' WARN, https://github.com/nuxt/nuxt/blob/v3.14.1592/packages/nuxt/package.json
+    "vite": "5.4.11" # mute 'unmet peer' # https://github.com/nuxt/nuxt/blob/v3.14.1592/packages/nuxt/package.json
     "vitest": "2.1.6"
     "vue-tsc": "2.1.10"
   mobile:

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.2.7
+
+### Patch Changes
+
+- bc407af: ✨ add IonAlertDismiss type #108
+
 ## 0.2.6
 
 ### Patch Changes

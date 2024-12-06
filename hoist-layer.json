@@ -3,6 +3,7 @@
     "name": "@fessional/play-app",
     "dependencies": {
       "@capacitor/preferences": "catalog:mobile",
+      "@ionic/core": "catalog:mobile",
       "@ionic/vue": "catalog:mobile",
       "@ionic/vue-router": "catalog:mobile",
       "@vueuse/core": "catalog:common",
@@ -85,6 +86,7 @@
     "name": "@fessional/play-h5m",
     "dependencies": {
       "@capacitor/preferences": "catalog:mobile",
+      "@ionic/core": "catalog:mobile",
       "@ionic/vue": "catalog:mobile",
       "@ionic/vue-router": "catalog:mobile",
       "@vueuse/core": "catalog:common",
@@ -234,6 +236,7 @@
     "name": "@fessional/razor-mobile",
     "dependencies": {
       "@capacitor/preferences": "catalog:mobile",
+      "@ionic/core": "catalog:mobile",
       "@ionic/vue": "catalog:mobile",
       "@ionic/vue-router": "catalog:mobile",
       "@vueuse/core": "catalog:common",

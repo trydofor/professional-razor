@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@capacitor/preferences": "catalog:mobile",
+    "@ionic/core": "catalog:mobile",
     "@ionic/vue": "catalog:mobile",
     "@ionic/vue-router": "catalog:mobile",
     "ionicons": "catalog:mobile"

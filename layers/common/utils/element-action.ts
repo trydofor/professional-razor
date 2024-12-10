@@ -18,7 +18,7 @@ export function selectElement<T = HTMLElement>(element: Ref<any> | string): T {
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function focusElement(element: Ref<any> | string, method = 'setFocus') {
-  nextTick(() => {
+  return nextTick(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ele = selectElement(element) as any;
 
@@ -36,11 +36,12 @@ export function focusElement(element: Ref<any> | string, method = 'setFocus') {
 /**
  * scroll the element to center
  * @param element the element Ref or id
+ * @param vertical vertical alignment of the element
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function scrollElement(element: Ref<any> | string) {
-  nextTick(() => {
+export function scrollElement(element: Ref<any> | string, vertical: 'center' | 'end' | 'nearest' | 'start' = 'center') {
+  return nextTick(() => {
     const ele = selectElement(element);
-    ele.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    ele.scrollIntoView({ behavior: 'smooth', block: vertical });
   });
 }

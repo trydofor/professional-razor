@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.3.0
+
+### Minor Changes
+
+- 8d1b7f4: ⬆️ refine deps and devDeps #110
+
 ## 0.2.7
 
 ### Patch Changes

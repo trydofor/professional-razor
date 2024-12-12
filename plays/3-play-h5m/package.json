@@ -1,17 +1,17 @@
 {
   "name": "@fessional/play-h5m",
-  "private": true,
-  "type": "module",
   "version": "0.0.1",
+  "private": true,
   "description": "test and play for mobile/h5m",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev",
     "postinstall": "nuxi prepare"
   },
   "devDependencies": {
-    "@fessional/razor-mobile": "workspace:*",
-    "@fessional/play-spa": "workspace:*"
+    "@fessional/play-spa": "workspace:*",
+    "@fessional/razor-mobile": "workspace:*"
   },
   "hoistLayer": [
     "@fessional/play-spa",

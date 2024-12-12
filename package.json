@@ -1,13 +1,8 @@
 {
   "name": "@fessional/razor",
-  "type": "module",
   "version": "0.2.7",
   "description": "Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase, suitable for small team and app to write app once, apply almost anywhere.",
-  "packageManager": "pnpm@9.14.4",
-  "engines": {
-    "node": "20.18.0",
-    "pnpm": "9.14.4"
-  },
+  "type": "module",
   "files": [
     "hoist-layer.json",
     "LICENSE",
@@ -28,22 +23,27 @@
     "dev:gen": "pnpm -r -F './layers/**' exec nuxi prepare",
     "dev:lint": "pnpm -r exec eslint .",
     "dev:test": "pnpm -r -F './layers/**' exec vitest --no-watch --coverage.enabled true",
+    "play:app": "pnpm -C plays/5-play-spa dev -p 3035 -o",
+    "play:del": "rimraf -g plays/**/node_modules/",
+    "play:dep": "pnpm -r -F './plays/**' i",
+    "play:exe": "pnpm -C plays/4-play-exe dev -p 3034 -o",
+    "play:gen": "pnpm -r -F './plays/**' exec nuxi prepare",
+    "play:h5m": "pnpm -C plays/3-play-h5m dev -p 3033 -o",
+    "play:web": "pnpm -C plays/2-play-web dev -p 3032 -o",
     "ver:add": "changeset",
     "ver:bump": "changeset version",
     "ver:publish": "changeset publish",
-    "ver:status": "changeset status --verbose",
-    "play:del": "rimraf -g plays/**/node_modules/",
-    "play:dep": "pnpm -r -F './plays/**' i",
-    "play:gen": "pnpm -r -F './plays/**' exec nuxi prepare",
-    "play:web": "pnpm -C plays/2-play-web dev -p 3032 -o",
-    "play:h5m": "pnpm -C plays/3-play-h5m dev -p 3033 -o",
-    "play:exe": "pnpm -C plays/4-play-exe dev -p 3034 -o",
-    "play:app": "pnpm -C plays/5-play-spa dev -p 3035 -o"
+    "ver:status": "changeset status --verbose"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:manage",
     "pnpm-hoist-layer": "catalog:manage",
     "rimraf": "catalog:manage",
     "taze": "catalog:manage"
+  },
+  "packageManager": "pnpm@9.14.4",
+  "engines": {
+    "node": "20.18.0",
+    "pnpm": "9.14.4"
   }
 }

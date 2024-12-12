@@ -1,26 +1,26 @@
 {
   "name": "@fessional/razor-mobile",
-  "type": "module",
   "version": "0.2.7",
   "description": "mobile layer with ionic and capacitor",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "build": "nuxi generate",
     "dev": "nuxi dev",
-    "preview": "nuxi preview",
     "postinstall": "nuxi prepare",
+    "preview": "nuxi preview",
     "test": "vitest"
-  },
-  "devDependencies": {
-    "@fessional/razor-common": "workspace:*",
-    "@nuxtjs/ionic": "catalog:mobileDev"
   },
   "dependencies": {
     "@capacitor/preferences": "catalog:mobile",
     "@ionic/core": "catalog:mobile",
     "@ionic/vue": "catalog:mobile",
     "@ionic/vue-router": "catalog:mobile",
+    "@nuxtjs/ionic": "catalog:mobile",
     "ionicons": "catalog:mobile"
+  },
+  "devDependencies": {
+    "@fessional/razor-common": "workspace:*"
   },
   "hoistLayer": [
     "@fessional/razor-common"

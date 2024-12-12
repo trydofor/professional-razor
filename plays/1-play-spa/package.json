@@ -1,9 +1,9 @@
 {
   "name": "@fessional/play-spa",
-  "private": true,
-  "type": "module",
   "version": "0.0.1",
+  "private": true,
   "description": "SPA setting for desktop/mobile",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev",

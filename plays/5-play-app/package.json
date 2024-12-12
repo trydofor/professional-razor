@@ -1,9 +1,9 @@
 {
   "name": "@fessional/play-app",
-  "private": true,
-  "type": "module",
   "version": "0.0.1",
+  "private": true,
   "description": "test and play for desktop/app",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev",

@@ -1,24 +1,37 @@
 {
   "name": "@fessional/razor-common",
-  "type": "module",
   "version": "0.2.7",
   "description": "common layer for mobile and desktop",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "types": "./index.d.ts",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
-    "preview": "nuxi preview",
     "postinstall": "nuxi prepare",
+    "preview": "nuxi preview",
     "test": "vitest"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "catalog:common",
+    "@vueuse/core": "catalog:common",
+    "@vueuse/nuxt": "catalog:common",
+    "date-fns": "catalog:common",
+    "js-md5": "catalog:common",
+    "nuxt": "catalog:common",
+    "nuxt-swiper": "catalog:common",
+    "pinia": "catalog:common",
+    "swiper": "catalog:common",
+    "ulid": "catalog:common",
+    "vue": "catalog:common",
+    "vue-router": "catalog:common"
   },
   "devDependencies": {
     "@iconify-json/line-md": "catalog:commonDev",
     "@iconify-json/mdi": "catalog:commonDev",
     "@nuxt/eslint": "catalog:commonDev",
     "@nuxt/test-utils": "catalog:commonDev",
-    "@pinia/nuxt": "catalog:commonDev",
     "@unocss/core": "catalog:commonDev",
     "@unocss/nuxt": "catalog:commonDev",
     "@unocss/preset-icons": "catalog:commonDev",
@@ -29,17 +42,10 @@
     "happy-dom": "catalog:commonDev",
     "msw": "catalog:commonDev",
     "nuxi": "catalog:commonDev",
-    "nuxt": "catalog:commonDev",
     "typescript": "catalog:commonDev",
     "unocss": "catalog:commonDev",
     "vite": "catalog:commonDev",
     "vitest": "catalog:commonDev",
     "vue-tsc": "catalog:commonDev"
-  },
-  "dependencies": {
-    "@vueuse/core": "catalog:common",
-    "@vueuse/nuxt": "catalog:common",
-    "pinia": "catalog:common",
-    "vue": "catalog:common"
   }
 }

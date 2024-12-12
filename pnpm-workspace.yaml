@@ -12,16 +12,23 @@ catalogs:
     "rimraf": "6.0.1"
     "taze": "0.18.0"
   common:
-    "@vueuse/core": "12.0.0"
+    "@pinia/nuxt": "0.9.0" # https://github.com/vuejs/pinia/blob/v2/packages/nuxt/package.json
+    "@vueuse/core": "12.0.0" #https://github.com/vueuse/vueuse/blob/v12.0.0/pnpm-workspace.yaml
     "@vueuse/nuxt": "12.0.0"
+    "date-fns": "4.1.0"
+    "js-md5": "0.8.3"
+    "nuxt-swiper": "2.0.0"
+    "nuxt": "3.14.1592"
     "pinia": "2.3.0" # https://github.com/vuejs/pinia/blob/v2/packages/pinia/CHANGELOG.md
-    "vue": "3.5.13"
+    "swiper": "11.1.15" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
+    "ulid": "2.3.0"
+    "vue-router": "4.4.5" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
+    "vue": "3.5.13" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
   commonDev:
     "@iconify-json/line-md": "1.2.2"
     "@iconify-json/mdi": "1.2.1"
     "@nuxt/eslint": "0.7.2" # https://github.com/nuxt/eslint/blob/main/pnpm-workspace.yaml
     "@nuxt/test-utils": "3.14.4" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
-    "@pinia/nuxt": "0.9.0" # https://github.com/vuejs/pinia/blob/v2/packages/nuxt/package.json
     "@unocss/core": "0.65.1" # https://github.com/unocss/unocss/blob/main/pnpm-workspace.yaml
     "@unocss/nuxt": "0.65.1"
     "@unocss/preset-icons": "0.65.1"
@@ -32,7 +39,6 @@ catalogs:
     "happy-dom": "15.11.7" # peer of @nuxt/test-utils # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
     "msw": "2.6.6" # API mocking
     "nuxi": "3.15.0" # by nuxt # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
-    "nuxt": "3.14.1592"
     "typescript": "5.6.3" # by vue-tsc https://github.com/vuejs/language-tools/issues/5018
     "unocss": "0.65.1"
     "vite": "5.4.11" # mute 'unmet peer' # https://github.com/nuxt/nuxt/blob/v3.14.1592/packages/nuxt/package.json
@@ -41,9 +47,8 @@ catalogs:
   mobile:
     "@capacitor/preferences": "6.0.3"
     "@ionic/core": "8.4.1" # by @ionic/vue, need types
-    "@ionic/vue": "8.4.1"
     "@ionic/vue-router": "8.4.1"
-    "ionicons": "7.4.0" # by @ionic/vue
-  mobileDev:
+    "@ionic/vue": "8.4.1"
     "@nuxtjs/ionic": "0.15.1"
+    "ionicons": "7.4.0" # by @ionic/vue
 

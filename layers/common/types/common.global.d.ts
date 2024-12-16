@@ -27,6 +27,15 @@
    * `D` if `T` is `null` | `undefined`.
    */
   type OrElse<T, D> = NonNullable<T> | D;
+
+  /**
+   * short string value of true or false
+   */
+  type BoolTof = 't' | 'f';
+  /**
+   * short number value of true or false
+   */
+  type BoolNum = 1 | 0;
 }
 
 //

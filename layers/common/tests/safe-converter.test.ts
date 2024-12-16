@@ -1,5 +1,54 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { safeString, safeNumber, safeBigint, safeValues, safeKeys, safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj, safeSetArr, safeArray, safeValue } from '../utils/safe-converter';
+import { safeString, safeNumber, safeBigint, safeBoolean, safeBoolTof, safeBoolNum, safeValues, safeKeys,
+  safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj,
+  safeSetArr, safeArray, safeValue, safeConvert } from '../utils/safe-converter';
+
+describe('safeConvert', () => {
+  it('should return converted value when input is valid', () => {
+    const result = safeConvert(5, 'default', value => value > 3 ? 'valid' : null);
+    expect(result).toBe('valid');
+  });
+
+  it('should return default value when conversion returns null', () => {
+    const result = safeConvert(2, 'default', value => value > 3 ? 'valid' : null);
+    expect(result).toBe('default');
+  });
+
+  it('should return default value when input is null or undefined', () => {
+    expect(safeConvert(null, 'default', value => String(value))).toBe('default');
+    expect(safeConvert(undefined, 'default', value => String(value))).toBe('default');
+  });
+
+  it('should handle function inputs and evaluate them correctly', () => {
+    const result = safeConvert(() => 10, 'default', value => value > 5 ? 'valid' : null);
+    expect(result).toBe('valid');
+  });
+
+  it('should break after one function evaluation if once is true', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const nestedFunction: any = () => () => 10;
+    const result = safeConvert(nestedFunction, 'default', value => value > 5 ? 'valid' : null, true);
+    expect(result).toBe('default');
+  });
+
+  it('should evaluate nested functions until a value is returned when once is false', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const nestedFunction: any = () => () => 10;
+    const result = safeConvert(nestedFunction, 'default', value => value > 5 ? 'valid' : null);
+    expect(result).toBe('valid');
+  });
+
+  it('should work with complex conversion logic', () => {
+    const complexConvert = (value: number) => (value % 2 === 0 ? 'even' : null);
+    expect(safeConvert(4, 'odd', complexConvert)).toBe('even');
+    expect(safeConvert(3, 'odd', complexConvert)).toBe('odd');
+  });
+
+  it('should handle different default types', () => {
+    expect(safeConvert(null, 0, (value: string) => parseInt(value, 10))).toBe(0);
+    expect(safeConvert('42', 0, (value: string) => parseInt(value, 10))).toBe(42);
+  });
+});
 
 describe('safeString', () => {
   it('should return defaults if null or undefined', () => {
@@ -60,6 +109,10 @@ describe('safeBigint', () => {
   it('should return defaults if null or undefined', () => {
     expect(safeBigint(null)).toBe(0n);
     expect(safeBigint(undefined)).toBe(0n);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(safeBigint({} as any)).toBe(0n);
+    expect(safeBigint(NaN)).toBe(0n);
   });
 
   it('should return the bigint itself if valOrFun is a bigint', () => {
@@ -88,6 +141,85 @@ describe('safeBigint', () => {
   });
 });
 
+describe('safeBoolean', () => {
+  it('should return true for truthy values', () => {
+    expect(safeBoolean(true)).toBe(true);
+    expect(safeBoolean(1)).toBe(true);
+    expect(safeBoolean(1n)).toBe(true);
+    expect(safeBoolean('true')).toBe(true);
+    expect(safeBoolean('TRUE')).toBe(true);
+    expect(safeBoolean('t')).toBe(true);
+    expect(safeBoolean('T')).toBe(true);
+    expect(safeBoolean('1')).toBe(true);
+  });
+
+  it('should return false for falsy values', () => {
+    expect(safeBoolean(false)).toBe(false);
+    expect(safeBoolean(0)).toBe(false);
+    expect(safeBoolean(0n)).toBe(false);
+    expect(safeBoolean('false')).toBe(false);
+    expect(safeBoolean('f')).toBe(false);
+    expect(safeBoolean('0')).toBe(false);
+  });
+
+  it('should handle function inputs', () => {
+    expect(safeBoolean(() => true)).toBe(true);
+    expect(safeBoolean(() => 0)).toBe(false);
+  });
+
+  it('should use the default value if conversion fails', () => {
+    expect(safeBoolean(null, true)).toBe(true);
+    expect(safeBoolean(undefined, true)).toBe(true);
+    expect(safeBoolean(NaN, true)).toBe(true);
+    expect(safeBoolean(null, false)).toBe(false);
+    expect(safeBoolean(undefined, false)).toBe(false);
+    expect(safeBoolean(NaN, false)).toBe(false);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(safeBoolean({} as any, true)).toBe(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(safeBoolean({} as any, false)).toBe(false);
+  });
+});
+
+describe('safeBoolTof', () => {
+  it('should return "t" for truthy values', () => {
+    expect(safeBoolTof(true)).toBe('t');
+    expect(safeBoolTof(1)).toBe('t');
+    expect(safeBoolTof('true')).toBe('t');
+  });
+
+  it('should return "f" for falsy values', () => {
+    expect(safeBoolTof(false)).toBe('f');
+    expect(safeBoolTof(0)).toBe('f');
+    expect(safeBoolTof('false')).toBe('f');
+  });
+
+  it('should handle function inputs', () => {
+    expect(safeBoolTof(() => true)).toBe('t');
+    expect(safeBoolTof(() => 0)).toBe('f');
+  });
+});
+
+describe('safeBoolNum', () => {
+  it('should return 1 for truthy values', () => {
+    expect(safeBoolNum(true)).toBe(1);
+    expect(safeBoolNum(1)).toBe(1);
+    expect(safeBoolNum('true')).toBe(1);
+  });
+
+  it('should return 0 for falsy values', () => {
+    expect(safeBoolNum(false)).toBe(0);
+    expect(safeBoolNum(0)).toBe(0);
+    expect(safeBoolNum('false')).toBe(0);
+  });
+
+  it('should handle function inputs', () => {
+    expect(safeBoolNum(() => true)).toBe(1);
+    expect(safeBoolNum(() => 0)).toBe(0);
+  });
+});
+
 describe('safeArray', () => {
   it('should return the default array if input is null', () => {
     const result = safeArray(null, [1, 2, 3]);
@@ -95,8 +227,8 @@ describe('safeArray', () => {
   });
 
   it('should return the default array if input is undefined', () => {
-    const result = safeArray(undefined, [1, 2, 3]);
-    expect(result).toEqual([1, 2, 3]);
+    expect(safeArray(undefined, [1, 2, 3])).toEqual([1, 2, 3]);
+    expect(safeArray(NaN, [1, 2, 3])).toEqual([1, 2, 3]);
   });
 
   it('should return the input array if input is already an array', () => {

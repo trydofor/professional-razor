@@ -44,6 +44,13 @@ export function safeConvert<S, T, D>(valOrFun: Maybe<S> | (() => Maybe<S>), defa
 }
 
 /**
+ * true if null | undefined | NaN
+ */
+export function isVoid(arg: unknown) {
+  return arg === null || arg === undefined || (typeof arg === 'number' && isNaN(arg));
+}
+
+/**
  * get non-null string. bigint to string
  *
  * @param valOrFun value or function
@@ -135,6 +142,55 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
 }
 
 /**
+ * Safely converts a value or function returning a value to a boolean.
+ *
+ * * defaults - if Nan, null, undefined
+ * * true - if !0n, !0, `t`, `1`, ~`true`
+ *
+ * @param valOrFun - A value of type `NumberLike` or a function that returns a `NumberLike`.
+ * @param defaults - A default value to use if the conversion fails (default is `false`).
+ * @returns `true` or `false` based on the value of `valOrFun` and conversion logic.
+ */
+export function safeBoolean(valOrFun: NumberLike | (() => NumberLike), defaults = false): boolean {
+  return safeConvert(valOrFun, defaults, (value) => {
+    switch (typeof value) {
+      case 'boolean':
+        return value;
+      case 'string':{
+        return value === 'true' || value === 't' || value === '1' || value === 'T' || value.toLowerCase() === 'true';
+      }
+      case 'number':{
+        return isNaN(value) ? null : value !== 0;
+      }
+      case 'bigint':
+        return value !== 0n;
+      default:
+        return null;
+    }
+  });
+}
+
+/**
+ * Converts a value to a 't' or 'f' string based on its truthiness.
+ *
+ * @see safeBoolean
+ * @returns 't' if the value converts to `true`, otherwise 'f'.
+ */
+export function safeBoolTof(valOrFun: NumberLike | (() => NumberLike), defaults = false): BoolTof {
+  return safeBoolean(valOrFun, defaults) ? 't' : 'f';
+}
+
+/**
+ * Converts a value to a numeric representation of its truthiness.
+ *
+ * @see safeBoolean
+ * @returns `1` if the value converts to `true`, otherwise `0`.
+ */
+export function safeBoolNum(valOrFun: NumberLike | (() => NumberLike), defaults = false): BoolNum {
+  return safeBoolean(valOrFun, defaults) ? 1 : 0;
+}
+
+/**
  * A utility function to safely convert various input types into an array.
  * - If the input is `undefined` or `null`, it returns a default array.
  * - If the input is already an array, it is returned as-is.
@@ -162,7 +218,7 @@ export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), 
     return valOrFun;
   }
   else {
-    return valOrFun == null ? defaults : [valOrFun];
+    return isVoid(valOrFun) ? defaults : [valOrFun] as T[];
   }
 }
 

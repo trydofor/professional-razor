@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.3.1
+
+### Patch Changes
+
+- df694fc: ✨ unocss ion-fit-card, common bool convertor
+
 ## 0.3.0
 
 ### Minor Changes

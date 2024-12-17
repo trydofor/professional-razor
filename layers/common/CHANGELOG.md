@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.3.4
+
+### Patch Changes
+
+- 7b6934f: ✨ global type of uno.config.mjs #115
+
 ## 0.3.2
 
 ### Patch Changes

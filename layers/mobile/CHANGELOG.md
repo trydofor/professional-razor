@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.2
+
+### Patch Changes
+
+- bf71b9d: ✨ merge unocss once in layers #115
+
 ## 0.3.1
 
 ### Patch Changes

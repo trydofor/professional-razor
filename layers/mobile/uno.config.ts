@@ -1,6 +1,8 @@
-﻿import { defineConfig } from 'unocss';
+﻿import { fileURLToPath } from 'url';
+import { mergeConfigs } from '@unocss/core';
+import config from './.nuxt/uno.config.mjs';
 
-export default defineConfig({
+export default mergeConfigs([fileURLToPath(import.meta.url).startsWith(process.cwd()) ? config : {}, {
   rules: [
     ['ion-var-fit', {
       '--width': 'fix-context',
@@ -17,4 +19,4 @@ export default defineConfig({
       'ion-fit-card': 'ion-var-fit ion-var-card',
     },
   ],
-});
+}]);

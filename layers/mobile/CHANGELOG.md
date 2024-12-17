@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.3
+
+### Patch Changes
+
+- ee4dec5: ✨ global type of uno.config.mjs #115
+
 ## 0.3.2
 
 ### Patch Changes

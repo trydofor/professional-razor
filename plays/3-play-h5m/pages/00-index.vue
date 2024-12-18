@@ -2,7 +2,7 @@
   <IonPage>
     <IonHeader>
       <IonToolbar>
-        <div class="flex flex-row gap-2 items-center">
+        <div class="flex flex-row items-center gap-2">
           <DpiImg :srcset="[storm1, storm2, storm3, storm4]" alt="movingkite logo" class="p-2" />
           <div>Index</div>
         </div>

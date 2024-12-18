@@ -1,6 +1,6 @@
 ﻿<template>
   <div>
-    <div v-for="route in pageRoutes" :key="route.path" class="py-1 w-full hover:bg-indigo-100">
+    <div v-for="route in pageRoutes" :key="route.path" class="w-full py-1 hover:bg-indigo-100">
       <NuxtLink :to="route.path">
         {{ index(route.path) }} - {{ route.name }}
       </NuxtLink>

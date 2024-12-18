@@ -22,7 +22,7 @@
         </div>
         <div class="border-1 border-indigo">
           <div v-for="it in item1" :key="it.id">
-            <div class="p-4 flex flex-row gap-1 items-center" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
+            <div class="flex flex-row items-center gap-1 p-4" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
               <div>✅ auto-size {{ it.title }}</div>
               <div
                 class="size-6"
@@ -30,10 +30,10 @@
                 @click="toggle1(it.id)"
               />
             </div>
-            <div v-autosize:height="{ debug: it.details, debounce: debounce }" class="transition-height duration-500 overflow-hidden">
+            <div v-autosize:height="{ debug: it.details, debounce: debounce }" class="overflow-hidden transition-height duration-500">
               <div
                 v-show="show1 === it.id"
-                class="p-4 bg-gray-200 animate-slide-in-down animate-duration-500"
+                class="animate-slide-in-down animate-duration-500 bg-gray-200 p-4"
                 @click="toggle1(it.id)"
               >
                 {{ it.details }}
@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <div class="p-4 bg-red-200">
+        <div class="bg-red-200 p-4">
           Others
         </div>
       </div>

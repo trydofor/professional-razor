@@ -10,7 +10,7 @@
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item1" :key="it.id">
-        <div class="p-4 flex flex-row gap-1 items-center" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
+        <div class="flex flex-row items-center gap-1 p-4" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
           <div>✅ auto-size {{ it.title }}</div>
           <div
             class="size-6"
@@ -18,10 +18,10 @@
             @click="toggle1(it.id)"
           />
         </div>
-        <div v-autosize:height="{ debug: it.details, debounce: debounce }" class="transition-height duration-500 overflow-hidden">
+        <div v-autosize:height="{ debug: it.details, debounce: debounce }" class="overflow-hidden transition-height duration-500">
           <div
             v-show="show1 === it.id"
-            class="p-4 bg-gray-200 animate-slide-in-down animate-duration-500"
+            class="animate-slide-in-down animate-duration-500 bg-gray-200 p-4"
             @click="toggle1(it.id)"
           >
             {{ it.details }}
@@ -31,17 +31,17 @@
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item2" :key="it.id">
-        <div class="p-4 bg-green-100 flex flex-row gap-1" @click="toggle2(it.id)">
+        <div class="flex flex-row gap-1 bg-green-100 p-4" @click="toggle2(it.id)">
           <div>no auto-size {{ it.title }}</div>
           <div
             class="size-6"
             :class="show2 === it.id ? 'i-mdi:arrow-up-circle-outline' :'i-mdi:arrow-down-circle-outline'"
           />
         </div>
-        <div class="transition-height duration-500 overflow-hidden">
+        <div class="overflow-hidden transition-height duration-500">
           <div
             v-show="show2 === it.id"
-            class="p-4 bg-gray-200 animate-slide-in-down animate-duration-500"
+            class="animate-slide-in-down animate-duration-500 bg-gray-200 p-4"
             @click="toggle2(it.id)"
           >
             {{ it.details }}
@@ -51,7 +51,7 @@
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item3" :key="it.id">
-        <div class="p-4 bg-green-200 flex flex-row gap-1" @click="toggle3(it.id)">
+        <div class="flex flex-row gap-1 bg-green-200 p-4" @click="toggle3(it.id)">
           <div> Transition {{ it.title }}</div>
           <div
             class="size-6"
@@ -61,7 +61,7 @@
         <Transition name="list">
           <div
             v-if="show3 === it.id"
-            class="p-4 bg-gray-200"
+            class="bg-gray-200 p-4"
             @click="toggle3(it.id)"
           >
             {{ it.details }}
@@ -69,7 +69,7 @@
         </Transition>
       </div>
     </div>
-    <div class="p-4 bg-red-200">
+    <div class="bg-red-200 p-4">
       Others
     </div>
   </div>

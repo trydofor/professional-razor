@@ -1,9 +1,9 @@
 ﻿<template>
   <div>
-    <div class="flex flex-col gap-1 fixed top-0 left-0 bg-gray-200 p-1">
+    <div class="fixed left-0 top-0 flex flex-col gap-1 bg-gray-200 p-1">
       <div class="i-mdi:home-circle size-6 hover:text-indigo" @click="router.push('/')" />
       <div class="i-mdi:arrow-back-circle size-6 hover:text-indigo" @click="router.back()" />
-      <div class="rounded-full bg-black text-white size-6 text-4 flex items-center justify-center">
+      <div class="size-6 flex items-center justify-center rounded-full bg-black text-4 text-white">
         {{ route.path == '/' ? '00' : route.path.substring(1, 3) }}
       </div>
     </div>

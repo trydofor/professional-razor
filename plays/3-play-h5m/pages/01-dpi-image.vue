@@ -12,7 +12,7 @@
       </IonToolbar>
     </IonHeader>
     <IonContent>
-      <div class="flex gap-2 flex-col">
+      <div class="flex flex-col gap-2">
         <div class="bg-gray-200 p-2">
           💎 in Chrome Develop, toggle Device Toolbar, set DPR to [1,2,3],
           the 'DipImg' never change size, keep the same as 'Img 1x'

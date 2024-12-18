@@ -30,9 +30,12 @@ catalogs:
     "@nuxt/eslint": "0.7.2" # https://github.com/nuxt/eslint/blob/main/pnpm-workspace.yaml
     "@nuxt/test-utils": "3.14.4" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json
     "@unocss/core": "0.65.1" # https://github.com/unocss/unocss/blob/main/pnpm-workspace.yaml
+    "@unocss/eslint-config": "0.65.1"
     "@unocss/nuxt": "0.65.1"
     "@unocss/preset-icons": "0.65.1"
     "@unocss/preset-wind": "0.65.1"
+    "@unocss/transformer-directives": "0.65.1"
+    "@unocss/transformer-variant-group": "0.65.1"
     "@vitest/coverage-v8": "2.1.8"
     "@vue/test-utils": "2.4.6"
     "eslint": "9.15.0" # https://github.com/nuxt/nuxt/blob/v3.14.1592/package.json

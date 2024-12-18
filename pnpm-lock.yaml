@@ -142,8 +142,6 @@ catalogs:
       specifier: 7.4.0
       version: 7.4.0
 
-pnpmfileChecksum: foqrp6rngctql4jdf3k5jk7fnu
-
 importers:
 
   .:
@@ -220,133 +218,6 @@ importers:
         version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
       '@unocss/nuxt':
         specifier: catalog:commonDev
-        version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/preset-wind':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.15.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 15.11.7
-      msw:
-        specifier: catalog:commonDev
-        version: 2.6.6(@types/node@22.10.2)(typescript@5.6.3)
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.15.0
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.6.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      vite:
-        specifier: catalog:commonDev
-        version: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-      vitest:
-        specifier: catalog:commonDev
-        version: 2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.1.10(typescript@5.6.3)
-
-  layers/mobile:
-    dependencies:
-      '@capacitor/preferences':
-        specifier: catalog:mobile
-        version: 6.0.3(@capacitor/core@6.2.0)
-      '@ionic/core':
-        specifier: catalog:mobile
-        version: 8.4.1
-      '@ionic/vue':
-        specifier: catalog:mobile
-        version: 8.4.1
-      '@ionic/vue-router':
-        specifier: catalog:mobile
-        version: 8.4.1
-      '@nuxtjs/ionic':
-        specifier: catalog:mobile
-        version: 0.15.1(magicast@0.3.5)(rollup@4.28.1)(vue@3.5.13(typescript@5.6.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.1)
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 12.0.0(typescript@5.6.3)
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 12.0.0(magicast@0.3.5)(nuxt@3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(rollup@4.28.1)(typescript@5.6.3)
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      ionicons:
-        specifier: catalog:mobile
-        version: 7.4.0
-      js-md5:
-        specifier: catalog:common
-        version: 0.8.3
-      nuxt:
-        specifier: catalog:common
-        version: 3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.1)
-      pinia:
-        specifier: catalog:common
-        version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.1.15
-      ulid:
-        specifier: catalog:common
-        version: 2.3.0
-      vue:
-        specifier: catalog:common
-        version: 3.5.13(typescript@5.6.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.4.5(vue@3.5.13(typescript@5.6.3))
-    devDependencies:
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.2
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.1
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 0.7.2(@vue/compiler-sfc@3.5.13)(eslint@9.15.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.14.4(@vue/test-utils@2.4.6)(h3@1.13.0)(happy-dom@15.11.7)(magicast@0.3.5)(nitropack@2.10.4(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(typescript@5.6.3))(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))(vue-router@4.4.5(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
         version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.23.1))
       '@unocss/preset-icons':
         specifier: catalog:commonDev
@@ -394,228 +265,7 @@ importers:
         specifier: catalog:commonDev
         version: 2.1.10(typescript@5.6.3)
 
-  plays/1-play-spa:
-    dependencies:
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.1)
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 12.0.0(typescript@5.6.3)
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 12.0.0(magicast@0.3.5)(nuxt@3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(rollup@4.28.1)(typescript@5.6.3)
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      js-md5:
-        specifier: catalog:common
-        version: 0.8.3
-      nuxt:
-        specifier: catalog:common
-        version: 3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.1)
-      pinia:
-        specifier: catalog:common
-        version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.1.15
-      ulid:
-        specifier: catalog:common
-        version: 2.3.0
-      vue:
-        specifier: catalog:common
-        version: 3.5.13(typescript@5.6.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.4.5(vue@3.5.13(typescript@5.6.3))
-    devDependencies:
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.2
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.1
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 0.7.2(@vue/compiler-sfc@3.5.13)(eslint@9.15.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.14.4(@vue/test-utils@2.4.6)(h3@1.13.0)(happy-dom@15.11.7)(magicast@0.3.5)(nitropack@2.10.4(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(typescript@5.6.3))(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))(vue-router@4.4.5(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/preset-wind':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.15.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 15.11.7
-      msw:
-        specifier: catalog:commonDev
-        version: 2.6.6(@types/node@22.10.2)(typescript@5.6.3)
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.15.0
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.6.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      vite:
-        specifier: catalog:commonDev
-        version: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-      vitest:
-        specifier: catalog:commonDev
-        version: 2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.1.10(typescript@5.6.3)
-
-  plays/2-play-web:
-    dependencies:
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.1)
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 12.0.0(typescript@5.6.3)
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 12.0.0(magicast@0.3.5)(nuxt@3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(rollup@4.28.1)(typescript@5.6.3)
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      js-md5:
-        specifier: catalog:common
-        version: 0.8.3
-      nuxt:
-        specifier: catalog:common
-        version: 3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.1)
-      pinia:
-        specifier: catalog:common
-        version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.1.15
-      ulid:
-        specifier: catalog:common
-        version: 2.3.0
-      vue:
-        specifier: catalog:common
-        version: 3.5.13(typescript@5.6.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.4.5(vue@3.5.13(typescript@5.6.3))
-    devDependencies:
-      '@fessional/play-spa':
-        specifier: workspace:*
-        version: link:../1-play-spa
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.2
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.1
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 0.7.2(@vue/compiler-sfc@3.5.13)(eslint@9.15.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.14.4(@vue/test-utils@2.4.6)(h3@1.13.0)(happy-dom@15.11.7)(magicast@0.3.5)(nitropack@2.10.4(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(typescript@5.6.3))(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))(vue-router@4.4.5(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/preset-wind':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.15.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 15.11.7
-      msw:
-        specifier: catalog:commonDev
-        version: 2.6.6(@types/node@22.10.2)(typescript@5.6.3)
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.15.0
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.6.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      vite:
-        specifier: catalog:commonDev
-        version: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-      vitest:
-        specifier: catalog:commonDev
-        version: 2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.1.10(typescript@5.6.3)
-
-  plays/3-play-h5m:
+  layers/mobile:
     dependencies:
       '@capacitor/preferences':
         specifier: catalog:mobile
@@ -632,372 +282,46 @@ importers:
       '@nuxtjs/ionic':
         specifier: catalog:mobile
         version: 0.15.1(magicast@0.3.5)(rollup@4.28.1)(vue@3.5.13(typescript@5.6.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.1)
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 12.0.0(typescript@5.6.3)
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 12.0.0(magicast@0.3.5)(nuxt@3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(rollup@4.28.1)(typescript@5.6.3)
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
       ionicons:
         specifier: catalog:mobile
         version: 7.4.0
-      js-md5:
-        specifier: catalog:common
-        version: 0.8.3
-      nuxt:
-        specifier: catalog:common
-        version: 3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.1)
-      pinia:
-        specifier: catalog:common
-        version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.1.15
-      ulid:
-        specifier: catalog:common
-        version: 2.3.0
-      vue:
-        specifier: catalog:common
-        version: 3.5.13(typescript@5.6.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.4.5(vue@3.5.13(typescript@5.6.3))
+    devDependencies:
+      '@fessional/razor-common':
+        specifier: workspace:*
+        version: link:../common
+
+  plays/1-play-spa:
+    devDependencies:
+      '@fessional/razor-common':
+        specifier: workspace:*
+        version: link:../../layers/common
+
+  plays/2-play-web:
     devDependencies:
       '@fessional/play-spa':
         specifier: workspace:*
         version: link:../1-play-spa
-      '@fessional/razor-common':
+
+  plays/3-play-h5m:
+    devDependencies:
+      '@fessional/play-spa':
         specifier: workspace:*
-        version: link:../../layers/common
+        version: link:../1-play-spa
       '@fessional/razor-mobile':
         specifier: workspace:*
         version: link:../../layers/mobile
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.2
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.1
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 0.7.2(@vue/compiler-sfc@3.5.13)(eslint@9.15.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.14.4(@vue/test-utils@2.4.6)(h3@1.13.0)(happy-dom@15.11.7)(magicast@0.3.5)(nitropack@2.10.4(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(typescript@5.6.3))(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))(vue-router@4.4.5(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/preset-wind':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.15.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 15.11.7
-      msw:
-        specifier: catalog:commonDev
-        version: 2.6.6(@types/node@22.10.2)(typescript@5.6.3)
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.15.0
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.6.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      vite:
-        specifier: catalog:commonDev
-        version: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-      vitest:
-        specifier: catalog:commonDev
-        version: 2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.1.10(typescript@5.6.3)
 
   plays/4-play-exe:
-    dependencies:
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.1)
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 12.0.0(typescript@5.6.3)
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 12.0.0(magicast@0.3.5)(nuxt@3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(rollup@4.28.1)(typescript@5.6.3)
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      js-md5:
-        specifier: catalog:common
-        version: 0.8.3
-      nuxt:
-        specifier: catalog:common
-        version: 3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.1)
-      pinia:
-        specifier: catalog:common
-        version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.1.15
-      ulid:
-        specifier: catalog:common
-        version: 2.3.0
-      vue:
-        specifier: catalog:common
-        version: 3.5.13(typescript@5.6.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.4.5(vue@3.5.13(typescript@5.6.3))
     devDependencies:
-      '@fessional/play-spa':
-        specifier: workspace:*
-        version: link:../1-play-spa
       '@fessional/play-web':
         specifier: workspace:*
         version: link:../2-play-web
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.2
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.1
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 0.7.2(@vue/compiler-sfc@3.5.13)(eslint@9.15.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.14.4(@vue/test-utils@2.4.6)(h3@1.13.0)(happy-dom@15.11.7)(magicast@0.3.5)(nitropack@2.10.4(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(typescript@5.6.3))(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))(vue-router@4.4.5(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/preset-wind':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.15.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 15.11.7
-      msw:
-        specifier: catalog:commonDev
-        version: 2.6.6(@types/node@22.10.2)(typescript@5.6.3)
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.15.0
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.6.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      vite:
-        specifier: catalog:commonDev
-        version: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-      vitest:
-        specifier: catalog:commonDev
-        version: 2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.1.10(typescript@5.6.3)
 
   plays/5-play-app:
-    dependencies:
-      '@capacitor/preferences':
-        specifier: catalog:mobile
-        version: 6.0.3(@capacitor/core@6.2.0)
-      '@ionic/core':
-        specifier: catalog:mobile
-        version: 8.4.1
-      '@ionic/vue':
-        specifier: catalog:mobile
-        version: 8.4.1
-      '@ionic/vue-router':
-        specifier: catalog:mobile
-        version: 8.4.1
-      '@nuxtjs/ionic':
-        specifier: catalog:mobile
-        version: 0.15.1(magicast@0.3.5)(rollup@4.28.1)(vue@3.5.13(typescript@5.6.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.1)
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 12.0.0(typescript@5.6.3)
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 12.0.0(magicast@0.3.5)(nuxt@3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(rollup@4.28.1)(typescript@5.6.3)
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      ionicons:
-        specifier: catalog:mobile
-        version: 7.4.0
-      js-md5:
-        specifier: catalog:common
-        version: 0.8.3
-      nuxt:
-        specifier: catalog:common
-        version: 3.14.1592(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(@parcel/watcher@2.5.0)(@types/node@22.10.2)(eslint@9.15.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.1)
-      pinia:
-        specifier: catalog:common
-        version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.1.15
-      ulid:
-        specifier: catalog:common
-        version: 2.3.0
-      vue:
-        specifier: catalog:common
-        version: 3.5.13(typescript@5.6.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.4.5(vue@3.5.13(typescript@5.6.3))
     devDependencies:
       '@fessional/play-h5m':
         specifier: workspace:*
         version: link:../3-play-h5m
-      '@fessional/play-spa':
-        specifier: workspace:*
-        version: link:../1-play-spa
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
-      '@fessional/razor-mobile':
-        specifier: workspace:*
-        version: link:../../layers/mobile
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.2
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.1
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 0.7.2(@vue/compiler-sfc@3.5.13)(eslint@9.15.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.14.4(@vue/test-utils@2.4.6)(h3@1.13.0)(happy-dom@15.11.7)(magicast@0.3.5)(nitropack@2.10.4(@capacitor/preferences@6.0.3(@capacitor/core@6.2.0))(typescript@5.6.3))(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))(vue-router@4.4.5(vue@3.5.13(typescript@5.6.3)))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 0.65.1(eslint@9.15.0(jiti@2.4.2))(typescript@5.6.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/preset-wind':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 0.65.1
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.15.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 15.11.7
-      msw:
-        specifier: catalog:commonDev
-        version: 2.6.6(@types/node@22.10.2)(typescript@5.6.3)
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.15.0
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.6.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      vite:
-        specifier: catalog:commonDev
-        version: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-      vitest:
-        specifier: catalog:commonDev
-        version: 2.1.8(@types/node@22.10.2)(happy-dom@15.11.7)(msw@2.6.6(@types/node@22.10.2)(typescript@5.6.3))(terser@5.37.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.1.10(typescript@5.6.3)
 
 packages:
 
@@ -3995,6 +3319,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
@@ -4175,6 +3500,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -5466,6 +4792,7 @@ packages:
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@4.4.1:
@@ -5790,6 +5117,7 @@ packages:
   superagent@8.1.2:
     resolution: {integrity: sha512-6WTxW1EB6yCxV5VFOIPQruWGHqc3yI7hEmZK6h+pyk69Lk/Ut7rLUY6W/ONF2MjBuGjvmMiIpsrVJ2vjrHlslA==}
     engines: {node: '>=6.4.0 <13 || >=14'}
+    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
 
   superjson@2.2.2:
     resolution: {integrity: sha512-5JRxVqC8I8NuOUjzBbvVJAKNM8qoVuH0O77h4WInc/qC2q5IreqKxYwgkga3PfA22OayK2ikceb/B26dztPl+Q==}
@@ -8467,31 +7795,6 @@ snapshots:
       - vue
       - webpack
 
-  '@unocss/nuxt@0.65.1(magicast@0.3.5)(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.24.0))':
-    dependencies:
-      '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
-      '@unocss/config': 0.65.1
-      '@unocss/core': 0.65.1
-      '@unocss/preset-attributify': 0.65.1
-      '@unocss/preset-icons': 0.65.1
-      '@unocss/preset-tagify': 0.65.1
-      '@unocss/preset-typography': 0.65.1
-      '@unocss/preset-uno': 0.65.1
-      '@unocss/preset-web-fonts': 0.65.1
-      '@unocss/preset-wind': 0.65.1
-      '@unocss/reset': 0.65.1
-      '@unocss/vite': 0.65.1(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/webpack': 0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0))
-      unocss: 0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-    transitivePeerDependencies:
-      - magicast
-      - postcss
-      - rollup
-      - supports-color
-      - vite
-      - vue
-      - webpack
-
   '@unocss/postcss@0.65.1(postcss@8.4.49)':
     dependencies:
       '@unocss/config': 0.65.1
@@ -8600,22 +7903,6 @@ snapshots:
       tinyglobby: 0.2.10
       unplugin: 1.16.0
       webpack: 5.97.1(esbuild@0.23.1)
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-
-  '@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0))':
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@rollup/pluginutils': 5.1.4(rollup@4.28.1)
-      '@unocss/config': 0.65.1
-      '@unocss/core': 0.65.1
-      chokidar: 3.6.0
-      magic-string: 0.30.17
-      tinyglobby: 0.2.10
-      unplugin: 1.16.0
-      webpack: 5.97.1(esbuild@0.24.0)
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - rollup
@@ -12343,17 +11630,6 @@ snapshots:
     optionalDependencies:
       esbuild: 0.23.1
 
-  terser-webpack-plugin@5.3.11(esbuild@0.24.0)(webpack@5.97.1(esbuild@0.24.0)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      jest-worker: 27.5.1
-      schema-utils: 4.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.37.0
-      webpack: 5.97.1(esbuild@0.24.0)
-    optionalDependencies:
-      esbuild: 0.24.0
-
   terser@5.37.0:
     dependencies:
       '@jridgewell/source-map': 0.3.6
@@ -12548,34 +11824,6 @@ snapshots:
       '@unocss/vite': 0.65.1(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
     optionalDependencies:
       '@unocss/webpack': 0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.23.1))
-      vite: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
-    transitivePeerDependencies:
-      - postcss
-      - rollup
-      - supports-color
-      - vue
-
-  unocss@0.65.1(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0)))(postcss@8.4.49)(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3)):
-    dependencies:
-      '@unocss/astro': 0.65.1(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-      '@unocss/cli': 0.65.1(rollup@4.28.1)
-      '@unocss/core': 0.65.1
-      '@unocss/postcss': 0.65.1(postcss@8.4.49)
-      '@unocss/preset-attributify': 0.65.1
-      '@unocss/preset-icons': 0.65.1
-      '@unocss/preset-mini': 0.65.1
-      '@unocss/preset-tagify': 0.65.1
-      '@unocss/preset-typography': 0.65.1
-      '@unocss/preset-uno': 0.65.1
-      '@unocss/preset-web-fonts': 0.65.1
-      '@unocss/preset-wind': 0.65.1
-      '@unocss/transformer-attributify-jsx': 0.65.1
-      '@unocss/transformer-compile-class': 0.65.1
-      '@unocss/transformer-directives': 0.65.1
-      '@unocss/transformer-variant-group': 0.65.1
-      '@unocss/vite': 0.65.1(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))
-    optionalDependencies:
-      '@unocss/webpack': 0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.24.0))
       vite: 5.4.11(@types/node@22.10.2)(terser@5.37.0)
     transitivePeerDependencies:
       - postcss
@@ -12951,36 +12199,6 @@ snapshots:
       schema-utils: 3.3.0
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.11(esbuild@0.23.1)(webpack@5.97.1(esbuild@0.23.1))
-      watchpack: 2.4.2
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-
-  webpack@5.97.1(esbuild@0.24.0):
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.6
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.14.0
-      browserslist: 4.24.3
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.17.1
-      es-module-lexer: 1.5.4
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.11(esbuild@0.24.0)(webpack@5.97.1(esbuild@0.24.0))
       watchpack: 2.4.2
       webpack-sources: 3.2.3
     transitivePeerDependencies:

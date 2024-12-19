@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.3.7
+
+### Patch Changes
+
+- add5910: ✨ ionicValidateInput support default v-model value #122
+
 ## 0.3.5
 
 ### Patch Changes

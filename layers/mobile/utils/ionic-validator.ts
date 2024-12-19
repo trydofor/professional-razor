@@ -12,7 +12,7 @@
  * </template>
  * <script setup lang="ts">
  *   const pkgInputRef = ref();
- *   const onPkgInput = validateIonicInput(pkgInputRef, /^[1-9][0-9]?$/);
+ *   const onPkgInput = validateIonicInput(pkgInputRef, /^[1-9][0-9]?$/, pkgInput);
  * </script>
  * ```
  *
@@ -24,18 +24,30 @@ export function ionicValidateInput(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputRef: Ref<any>,
   checkFun: RegExp | ((value: string, event?: Event) => boolean),
-): (ev: Event | string) => boolean | null {
-  return (ev: Event | string) => {
+  modelRef?: Ref<string>,
+): (ev?: Event | string | null) => boolean | null {
+  return (ev?: Event | string | null) => {
     const classList = inputRef.value.$el.classList;
-    const isValue = typeof ev === 'string';
 
-    if (isValue || /blur/i.test(ev.type)) {
-      classList.add('ion-touched');
-      if (!isValue) return null;
+    let value: string;
+    let event: Event | undefined;
+
+    if (ev == null) {
+      value = modelRef?.value ?? '';
+    }
+    else if (typeof ev === 'string') {
+      value = ev;
+    }
+    else {
+      if (/blur/i.test(ev.type)) {
+        classList.add('ion-touched');
+        return null;
+      }
+      event = ev;
+      value = (ev.target as HTMLInputElement).value;
     }
 
-    const value = isValue ? ev : (ev.target as HTMLInputElement).value;
-    const valid = typeof checkFun === 'function' ? checkFun(value, isValue ? undefined : ev) : checkFun.test(value);
+    const valid = typeof checkFun === 'function' ? checkFun(value, event) : checkFun.test(value);
 
     if (valid) {
       classList.add('ion-valid');

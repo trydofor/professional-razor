@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.8
+
+### Patch Changes
+
+- 2fb9612: ✨ ionicValidateInput support default v-model value #122
+
 ## 0.3.5
 
 ### Patch Changes

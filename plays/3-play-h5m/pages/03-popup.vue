@@ -12,9 +12,13 @@
       </IonToolbar>
     </IonHeader>
     <IonContent>
+      <div class="bg-gray-200 p-4">
+        popup as backdrop box at center,
+        style by uno rules and @apply
+      </div>
       <div class="p-4">
         <IonButton id="popup-default" class="text-white">
-          Popup Fit Card
+          Popup by rules
         </IonButton>
         <IonModal trigger="popup-default" class="ion-fit-card">
           <div class="h-30 w-40 p-4">

@@ -1,80 +1,107 @@
 ﻿// Import testing utilities
 import { describe, it, expect, vi } from 'vitest';
 import { ref } from 'vue';
+import type { IonInputEvent } from '../utils/ionic-validator';
 import { ionicValidateInput } from '../utils/ionic-validator';
 
-// Mock Ionic IonInput component
-const mockClassList = {
-  add: vi.fn(),
-  remove: vi.fn(),
-};
+describe('ionicValidateInput', () => {
+  it('validates input correctly with a regex', () => {
+    const mockClassList = {
+      add: vi.fn(),
+      remove: vi.fn(),
+    };
 
-const mockInputRef = ref({
-  $el: {
-    classList: mockClassList,
-  },
-});
+    const inputRef = ref({ $el: { classList: mockClassList } });
+    const checkFun = /^[1-9][0-9]?$/;
+    const modelRef = ref('');
 
-describe('validateIonicInput', () => {
-  // Test case: valid input using regex pattern
-  it('should add ion-valid class for valid input', () => {
-    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
+    const validator = ionicValidateInput(inputRef, checkFun, modelRef);
 
-    // Simulate valid input
-    const inputEvent = { target: { value: '10' } } as unknown as Event;
-    const result = validateFn(inputEvent);
+    // Test valid input
+    const event = {
+      detail: { value: '25' },
+      type: 'input',
+    } as IonInputEvent;
 
-    expect(result).toBe(true);
+    expect(validator(event)).toBe(true);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-valid');
     expect(mockClassList.remove).toHaveBeenCalledWith('ion-invalid');
-  });
 
-  // Test case: invalid input using regex pattern
-  it('should add ion-invalid class for invalid input', () => {
-    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
+    // Reset mocks
+    mockClassList.add.mockClear();
+    mockClassList.remove.mockClear();
 
-    // Simulate invalid input
-    const inputEvent = { target: { value: '100' } } as unknown as Event;
-    const result = validateFn(inputEvent);
+    // Test invalid input
+    const invalidEvent = {
+      detail: { value: '-5' },
+      type: 'input',
+    } as IonInputEvent;
 
-    expect(result).toBe(false);
+    expect(validator(invalidEvent)).toBe(false);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-invalid');
     expect(mockClassList.remove).toHaveBeenCalledWith('ion-valid');
   });
 
-  // Test case: input blur event
-  it('should add ion-touched class on blur', () => {
-    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
+  it('adds ion-touched class on blur', () => {
+    const mockClassList = {
+      add: vi.fn(),
+      remove: vi.fn(),
+    };
 
-    // Simulate blur event
-    const blurEvent = new Event('blur');
-    const result = validateFn(blurEvent);
+    const inputRef = ref({ $el: { classList: mockClassList } });
+    const checkFun = /^[1-9][0-9]?$/;
 
-    expect(result).toBeNull();
+    const validator = ionicValidateInput(inputRef, checkFun);
+
+    const blurEvent = { type: 'blur' } as IonInputEvent;
+
+    expect(validator(blurEvent)).toBe(null);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-touched');
   });
 
-  // Test case: direct string input
-  it('should add ion-valid class for valid string input', () => {
-    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
+  it('validates input with a custom function', () => {
+    const mockClassList = {
+      add: vi.fn(),
+      remove: vi.fn(),
+    };
 
-    // Simulate valid string input
-    const result = validateFn('5');
+    const inputRef = ref({ $el: { classList: mockClassList } });
+    const checkFun = (value: string) => value === 'valid';
+    const modelRef = ref('');
 
-    expect(result).toBe(true);
+    const validator = ionicValidateInput(inputRef, checkFun, modelRef);
+
+    // Test valid input
+    expect(validator('valid')).toBe(true);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-valid');
     expect(mockClassList.remove).toHaveBeenCalledWith('ion-invalid');
-  });
 
-  // Test case: invalid string input
-  it('should add ion-invalid class for invalid string input', () => {
-    const validateFn = ionicValidateInput(mockInputRef, /^[1-9][0-9]?$/);
+    // Reset mocks
+    mockClassList.add.mockClear();
+    mockClassList.remove.mockClear();
 
-    // Simulate invalid string input
-    const result = validateFn('100');
-
-    expect(result).toBe(false);
+    // Test invalid input
+    expect(validator('invalid')).toBe(false);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-invalid');
     expect(mockClassList.remove).toHaveBeenCalledWith('ion-valid');
+  });
+
+  it('uses modelRef value when event is null', () => {
+    const mockClassList = {
+      add: vi.fn(),
+      remove: vi.fn(),
+    };
+
+    const inputRef = ref({ $el: { classList: mockClassList } });
+    const checkFun = /^[1-9][0-9]?$/;
+    const modelRef = ref('42');
+
+    const validator = ionicValidateInput(inputRef, checkFun, modelRef);
+
+    expect(validator()).toBe(true);
+    expect(validator(null)).toBe(true);
+    expect(validator(undefined)).toBe(true);
+    expect(mockClassList.add).toHaveBeenCalledWith('ion-valid');
+    expect(mockClassList.remove).toHaveBeenCalledWith('ion-invalid');
   });
 });

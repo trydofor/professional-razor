@@ -10,15 +10,13 @@ export function useApiRoute() {
   const prefix = useRuntimeConfig().public.apiRoute;
   return {
     url: (uri: string) => prefix + uri,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    get: <Data>(uri: string, query?: Record<string, any>) => $fetch<DataResult<Data>>(
+    get: <Data>(uri: string, query?: SafeObj) => $fetch<DataResult<Data>>(
       prefix + uri,
       {
         method: 'get',
         query,
       }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    post: <Data>(uri: string, body?: Record<string, any> | URLSearchParams | FormData, query?: Record<string, any>) => $fetch<DataResult<Data>>(
+    post: <Data>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj) => $fetch<DataResult<Data>>(
       prefix + uri,
       {
         method: 'post',

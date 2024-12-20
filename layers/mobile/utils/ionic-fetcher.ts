@@ -11,8 +11,7 @@ function _failure(message?: string, code?: string) {
   });
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function _catches(err: any) {
+function _catches(err: SafeAny) {
   alertController.create({
     header: 'Failed to fetch data',
     message: err.message || 'Network error',

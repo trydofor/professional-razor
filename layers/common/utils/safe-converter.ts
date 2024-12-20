@@ -57,8 +57,7 @@ export function isVoid(arg: unknown) {
  * @param defaults default value if null/undefined
  * @returns
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function safeString(valOrFun: any, defaults: string = ''): string {
+export function safeString(valOrFun: SafeAny, defaults: string = ''): string {
   return safeConvert(valOrFun, defaults, (value) => {
     switch (typeof value) {
       case 'string':
@@ -282,8 +281,7 @@ export function safeValue<T, D>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>
  * @param defaults default value if null/undefined
  * @returns
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function safeValues<T>(valOrFun: any, defaults: T[] = []): T[] {
+export function safeValues<T>(valOrFun: SafeAny, defaults: T[] = []): T[] {
   return safeConvert(valOrFun, defaults, Object.values);
 }
 
@@ -294,8 +292,7 @@ export function safeValues<T>(valOrFun: any, defaults: T[] = []): T[] {
  * @param defaults default value if null/undefined
  * @returns
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function safeKeys(valOrFun: any, defaults: string[] = []): string[] {
+export function safeKeys(valOrFun: SafeAny, defaults: string[] = []): string[] {
   return safeConvert(valOrFun, defaults, Object.keys);
 }
 
@@ -306,8 +303,7 @@ export function safeKeys(valOrFun: any, defaults: string[] = []): string[] {
  * @param defaults default value if null/undefined
  * @returns
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function safeEntries<T>(valOrFun: any, defaults: [string, T][] = []): [string, T][] {
+export function safeEntries<T>(valOrFun: SafeAny, defaults: [string, T][] = []): [string, T][] {
   return safeConvert(valOrFun, defaults, Object.entries);
 }
 

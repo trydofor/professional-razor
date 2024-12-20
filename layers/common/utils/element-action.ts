@@ -4,8 +4,7 @@
  * @param element the element Ref or id
  * @returns the element
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function selectElement<T = HTMLElement>(element: Ref<any> | string): T {
+export function selectElement<T = HTMLElement>(element: Ref<SafeAny> | string): T {
   return typeof element === 'string'
     ? document.getElementById(element)
     : element.value.$el;
@@ -16,11 +15,9 @@ export function selectElement<T = HTMLElement>(element: Ref<any> | string): T {
  * @param element the element Ref or id
  * @param method the focus method name, if not found, use focus()
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function focusElement(element: Ref<any> | string, method = 'setFocus') {
+export function focusElement(element: Ref<SafeAny> | string, method = 'setFocus') {
   return nextTick(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const ele = selectElement(element) as any;
+    const ele = selectElement(element) as SafeAny;
 
     if (typeof ele[method] === 'function') {
       ele[method]();
@@ -38,8 +35,7 @@ export function focusElement(element: Ref<any> | string, method = 'setFocus') {
  * @param element the element Ref or id
  * @param vertical vertical alignment of the element
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function scrollElement(element: Ref<any> | string, vertical: 'center' | 'end' | 'nearest' | 'start' = 'center') {
+export function scrollElement(element: Ref<SafeAny> | string, vertical: 'center' | 'end' | 'nearest' | 'start' = 'center') {
   return nextTick(() => {
     const ele = selectElement(element);
     ele.scrollIntoView({ behavior: 'smooth', block: vertical });

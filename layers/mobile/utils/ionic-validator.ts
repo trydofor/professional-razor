@@ -24,8 +24,7 @@
 export type IonInputEvent = CustomEvent & { detail: { value?: string | null } };
 
 export function ionicValidateInput(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  inputRef: Ref<any>,
+  inputRef: Ref<SafeAny>,
   checkFun: RegExp | ((value: string, event?: IonInputEvent) => boolean),
   modelRef?: Ref<string>,
 ): (ev?: IonInputEvent | string | null) => boolean | null {

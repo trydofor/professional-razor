@@ -21,8 +21,7 @@ describe('ionicFetchingDataAsync', () => {
   it('should show loading while fetching and dismiss loading after fetching', async () => {
     const loadingUiMock = { present: vi.fn(), dismiss: vi.fn() };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (loadingController.create as any).mockResolvedValue(loadingUiMock);
+    (loadingController.create as SafeAny).mockResolvedValue(loadingUiMock);
 
     const fetching = Promise.resolve({ success: true, data: 'test-data' } as DataResult<string>);
 
@@ -41,8 +40,7 @@ describe('ionicFetchingDataAsync', () => {
   it('should handle failure by showing an alert when fetching fails', async () => {
     const alertMock = { present: vi.fn() };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (alertController.create as any).mockResolvedValue(alertMock);
+    (alertController.create as SafeAny).mockResolvedValue(alertMock);
 
     const fetching = Promise.resolve({ success: false, message: 'Fetch error', code: '404' } as DataResult<string>);
 
@@ -58,8 +56,7 @@ describe('ionicFetchingDataAsync', () => {
 
   it('should handle catches by showing an alert when an error is thrown', async () => {
     const alertMock = { present: vi.fn() };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (alertController.create as any).mockResolvedValue(alertMock);
+    (alertController.create as SafeAny).mockResolvedValue(alertMock);
 
     const fetching = Promise.reject(new Error('Network error'));
 
@@ -85,8 +82,7 @@ describe('ionicFetchingDataAsync', () => {
 
   it('should call alertFailure when fetching fails and loading Ref is provided', async () => {
     const alertMock = { present: vi.fn() };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (alertController.create as any).mockResolvedValue(alertMock);
+    (alertController.create as SafeAny).mockResolvedValue(alertMock);
 
     const loadingRef = ref(true);
     const fetching = Promise.resolve({ success: false, message: 'Fetch error', code: '500' } as DataResult<string>);

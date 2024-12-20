@@ -29,6 +29,18 @@
   type OrElse<T, D> = NonNullable<T> | D;
 
   /**
+   * typesafe use of `any` to reduce eslint comments
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type SafeAny = any;
+
+  /**
+   * typesafe use of `object` to reduce eslint comments
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type SafeObj = Record<string, any>;
+
+  /**
    * short string value of true or false
    */
   type BoolTof = 't' | 'f';

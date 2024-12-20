@@ -25,15 +25,13 @@ describe('safeConvert', () => {
   });
 
   it('should break after one function evaluation if once is true', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const nestedFunction: any = () => () => 10;
+    const nestedFunction: SafeAny = () => () => 10;
     const result = safeConvert(nestedFunction, 'default', value => value > 5 ? 'valid' : null, true);
     expect(result).toBe('default');
   });
 
   it('should evaluate nested functions until a value is returned when once is false', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const nestedFunction: any = () => () => 10;
+    const nestedFunction: SafeAny = () => () => 10;
     const result = safeConvert(nestedFunction, 'default', value => value > 5 ? 'valid' : null);
     expect(result).toBe('valid');
   });
@@ -138,8 +136,7 @@ describe('safeBigint', () => {
     expect(safeBigint(null)).toBe(0n);
     expect(safeBigint(undefined)).toBe(0n);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect(safeBigint({} as any)).toBe(0n);
+    expect(safeBigint({} as SafeAny)).toBe(0n);
     expect(safeBigint(NaN)).toBe(0n);
   });
 
@@ -203,10 +200,8 @@ describe('safeBoolean', () => {
     expect(safeBoolean(undefined, false)).toBe(false);
     expect(safeBoolean(NaN, false)).toBe(false);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect(safeBoolean({} as any, true)).toBe(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect(safeBoolean({} as any, false)).toBe(false);
+    expect(safeBoolean({} as SafeAny, true)).toBe(true);
+    expect(safeBoolean({} as SafeAny, false)).toBe(false);
   });
 });
 
@@ -439,8 +434,7 @@ describe('numberKey;', () => {
   const d3 = 0.1 + 0.2;
 
   it('number key of object', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const obj = { 1: '1', 0.3: '0.3' } as any;
+    const obj = { 1: '1', 0.3: '0.3' } as SafeAny;
     expect(obj[1]).toBe('1');
     expect(obj['1']).toBe('1');
     expect(obj[d3]).toBe(undefined);

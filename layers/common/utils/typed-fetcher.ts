@@ -18,8 +18,8 @@ export type TypedFetchOptions = {
    * catch of try fetching
    * @param err any caught error
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  catches?: (err: any) => void;
+
+  catches?: (err: SafeAny) => void;
 };
 
 function _doLoading(status: LoadingStatus, loading?: Ref<boolean> | ((status: LoadingStatus) => void)): void {
@@ -39,8 +39,7 @@ function _doResult<T>(failure?: (message?: string, code?: string) => void, resul
   return result;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function _doError(err: any, catches?: (err: any) => void): void {
+function _doError(err: SafeAny, catches?: (err: SafeAny) => void): void {
   if (catches) {
     catches(err);
   }

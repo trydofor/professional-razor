@@ -74,7 +74,29 @@ export function safeString(valOrFun: any, defaults: string = ''): string {
 }
 
 /**
- * get non-null and non-NaN number
+ * get non-null and non-NaN integer by parseInt
+ *
+ * @param valOrFun value or function
+ * @param defaults default value if null/undefined/NaN
+ * @returns
+ */
+export function safeInt(valOrFun: NumberLike | (() => NumberLike), defaults: number = 0): number {
+  return safeConvert(valOrFun, defaults, (value) => {
+    switch (typeof value) {
+      case 'number':
+        return isNaN(value) ? null : value;
+      case 'boolean':
+        return value ? 1 : 0;
+      default:{
+        const num = parseInt(String(value)); // Number('') === 0
+        return isNaN(num) ? null : num;
+      }
+    }
+  });
+}
+
+/**
+ * get non-null and non-NaN number by parseFloat
  *
  * @param valOrFun value or function
  * @param defaults default value if null/undefined/NaN
@@ -88,7 +110,7 @@ export function safeNumber(valOrFun: NumberLike | (() => NumberLike), defaults: 
       case 'boolean':
         return value ? 1 : 0;
       default:{
-        const num = parseInt(String(value)); // Number('') === 0
+        const num = parseFloat(String(value)); // Number('') === 0
         return isNaN(num) ? null : num;
       }
     }

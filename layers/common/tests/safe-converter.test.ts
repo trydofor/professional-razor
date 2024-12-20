@@ -1,5 +1,5 @@
 ﻿import { describe, it, expect } from 'vitest';
-import { safeString, safeNumber, safeBigint, safeBoolean, safeBoolTof, safeBoolNum, safeValues, safeKeys,
+import { safeString, safeNumber, safeInt, safeBigint, safeBoolean, safeBoolTof, safeBoolNum, safeValues, safeKeys,
   safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj,
   safeSetArr, safeArray, safeValue, safeConvert } from '../utils/safe-converter';
 
@@ -85,8 +85,8 @@ describe('safeNumber', () => {
   });
 
   it('should return the number itself if valOrFun is a valid number', () => {
-    expect(safeNumber(123)).toBe(123);
-    expect(safeNumber(-456)).toBe(-456);
+    expect(safeNumber(12.5)).toBe(12.5);
+    expect(safeNumber(-1.125)).toBe(-1.125);
   });
 
   it('should convert boolean to number (true -> 1, false -> 0)', () => {
@@ -95,13 +95,41 @@ describe('safeNumber', () => {
   });
 
   it('should return result of function if valOrFun is a function', () => {
-    expect(safeNumber(() => 42, 0)).toBe(42);
+    expect(safeNumber(() => 1.125, 0)).toBe(1.125);
   });
 
   it('should convert string, bigint, and other types to number', () => {
-    expect(safeNumber('123')).toBe(123);
-    expect(safeNumber(123n)).toBe(123);
-    expect(safeNumber('invalid', 99)).toBe(99); // Invalid string
+    expect(safeNumber('1.125')).toBe(1.125);
+    expect(safeNumber(125n)).toBe(125);
+    expect(safeNumber('invalid', 1.125)).toBe(1.125); // Invalid string
+  });
+});
+
+describe('safeInt', () => {
+  it('should return defaults if null, undefined, or NaN', () => {
+    expect(safeInt(null)).toBe(0);
+    expect(safeInt(undefined)).toBe(0);
+    expect(safeInt(NaN)).toBe(0);
+  });
+
+  it('should return the number itself if valOrFun is a valid number', () => {
+    expect(safeInt(123)).toBe(123);
+    expect(safeInt(-456)).toBe(-456);
+  });
+
+  it('should convert boolean to number (true -> 1, false -> 0)', () => {
+    expect(safeInt(true)).toBe(1);
+    expect(safeInt(false)).toBe(0);
+  });
+
+  it('should return result of function if valOrFun is a function', () => {
+    expect(safeInt(() => 42, 0)).toBe(42);
+  });
+
+  it('should convert string, bigint, and other types to number', () => {
+    expect(safeInt('123')).toBe(123);
+    expect(safeInt(123n)).toBe(123);
+    expect(safeInt('invalid', 99)).toBe(99); // Invalid string
   });
 });
 

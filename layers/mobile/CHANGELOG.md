@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.10
+
+### Patch Changes
+
+- 1d4ca29: ♻️ SafeAny, SafeObj, TypedFetch status function
+
 ## 0.3.9
 
 ### Patch Changes

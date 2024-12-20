@@ -2,14 +2,30 @@
 import { fetchTypedData, fetchTypedDataAsync } from '../utils/typed-fetcher';
 
 describe('fetchTypedData', () => {
+  it('should call loading with status error', () => {
+    const loadingSpy = vi.fn();
+    const catchesSpy = vi.fn();
+
+    const fetching = () => {
+      throw new Error('Test Error');
+    };
+
+    const result = fetchTypedResult(fetching, { loading: loadingSpy, catches: catchesSpy });
+
+    expect(loadingSpy).toHaveBeenNthCalledWith(1, 1);
+    expect(loadingSpy).toHaveBeenNthCalledWith(2, 2);
+    expect(catchesSpy).toHaveBeenNthCalledWith(1, new Error('Test Error'));
+    expect(result).toEqual({ success: false });
+  });
+
   it('should call loading with true and false', () => {
     const loadingSpy = vi.fn();
     const fetching = { success: true, data: 'test-data' } as DataResult<string>;
 
     fetchTypedData(fetching, { loading: loadingSpy });
 
-    expect(loadingSpy).toHaveBeenNthCalledWith(1, true);
-    expect(loadingSpy).toHaveBeenNthCalledWith(2, false);
+    expect(loadingSpy).toHaveBeenNthCalledWith(1, 1);
+    expect(loadingSpy).toHaveBeenNthCalledWith(2, 0);
   });
 
   it('should return data when fetching succeeds', () => {
@@ -57,8 +73,8 @@ describe('fetchTypedDataAsync', () => {
 
     await fetchTypedDataAsync(fetching, { loading: loadingSpy });
 
-    expect(loadingSpy).toHaveBeenNthCalledWith(1, true);
-    expect(loadingSpy).toHaveBeenNthCalledWith(2, false);
+    expect(loadingSpy).toHaveBeenNthCalledWith(1, 1);
+    expect(loadingSpy).toHaveBeenNthCalledWith(2, 0);
   });
 
   it('should return data when fetching succeeds asynchronously', async () => {

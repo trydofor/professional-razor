@@ -1,8 +1,13 @@
-﻿export type TypedFetchOptions = {
+﻿/**
+ * true if loading(1), false if done(0) or error(2)
+ */
+export type LoadingStatus = 1 | 0 | 2;
+
+export type TypedFetchOptions = {
   /**
-   * @param status - true if loading, false if done
+   * @param status - true if loading(1), false if done(0) or error(2)
    */
-  loading?: Ref<boolean> | ((status: boolean) => void);
+  loading?: Ref<boolean> | ((status: LoadingStatus) => void);
   /**
    * when DataResult.success is false
    * @param message - DataResult.message
@@ -17,12 +22,12 @@
   catches?: (err: any) => void;
 };
 
-function _doLoading(status: boolean, loading?: Ref<boolean> | ((status: boolean) => void)): void {
+function _doLoading(status: LoadingStatus, loading?: Ref<boolean> | ((status: LoadingStatus) => void)): void {
   if (typeof loading === 'function') {
     loading(status);
   }
   else if (loading != null) {
-    loading.value = status;
+    loading.value = status === 1;
   }
 }
 
@@ -81,17 +86,19 @@ export function fetchTypedResult<T>(
   fetching: DataResult<T> | (() => DataResult<T>),
   options: TypedFetchOptions = {},
 ): DataResult<T> {
-  _doLoading(true, options.loading);
+  _doLoading(1, options.loading);
 
+  let sts: LoadingStatus = 0;
   try {
     const result = typeof fetching === 'function' ? fetching() : fetching;
     return _doResult(options.failure, result);
   }
   catch (err) {
+    sts = 2;
     _doError(err, options.catches);
   }
   finally {
-    _doLoading(false, options.loading);
+    _doLoading(sts, options.loading);
   }
 
   return { success: false };
@@ -106,17 +113,19 @@ export async function fetchTypedResultAsync<T>(
   fetching: Promise<DataResult<T>> | (() => Promise<DataResult<T>>),
   options: TypedFetchOptions = {},
 ): Promise<DataResult<T>> {
-  _doLoading(true, options.loading);
+  _doLoading(1, options.loading);
 
+  let sts: LoadingStatus = 0;
   try {
     const result = await (typeof fetching === 'function' ? fetching() : fetching);
     return _doResult(options.failure, result);
   }
   catch (err) {
+    sts = 2;
     _doError(err, options.catches);
   }
   finally {
-    _doLoading(false, options.loading);
+    _doLoading(sts, options.loading);
   }
 
   return { success: false };

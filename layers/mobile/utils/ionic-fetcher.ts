@@ -1,5 +1,5 @@
 ﻿import { loadingController, alertController } from '@ionic/vue';
-import { fetchTypedResultAsync } from '&razor-common/utils/typed-fetcher';
+import { fetchTypedResultAsync, type LoadingStatus } from '&razor-common/utils/typed-fetcher';
 
 function _failure(message?: string, code?: string) {
   alertController.create({
@@ -27,7 +27,7 @@ function _catches(err: any) {
  * @param fetching - Promise of DataResult
  * @param loading - Ref of boolean instead of using loadingController
  */
-export async function ionicFetchDataAsync<T>(fetching: Promise<DataResult<T>>, loading?: Ref<boolean>): Promise<T | null> {
+export async function ionicFetchDataAsync<T>(fetching: Promise<DataResult<T>>, loading?: Ref<boolean> | ((status: LoadingStatus) => void)): Promise<T | null> {
   const result = await ionicFetchResultAsync(fetching, loading);
   return result.data ?? null;
 }
@@ -37,7 +37,7 @@ export async function ionicFetchDataAsync<T>(fetching: Promise<DataResult<T>>, l
  * @param fetching - Promise of DataResult
  * @param loading - Ref of boolean instead of using loadingController
  */
-export async function ionicFetchResultAsync<T>(fetching: Promise<DataResult<T>>, loading?: Ref<boolean>): Promise<DataResult<T>> {
+export async function ionicFetchResultAsync<T>(fetching: Promise<DataResult<T>>, loading?: Ref<boolean> | ((status: LoadingStatus) => void)): Promise<DataResult<T>> {
   if (loading) {
     return fetchTypedResultAsync(fetching, {
       loading,
@@ -52,8 +52,8 @@ export async function ionicFetchResultAsync<T>(fetching: Promise<DataResult<T>>,
     duration: 5000,
   });
 
-  const _loading = (bool: boolean) => {
-    if (bool) {
+  const _loading = (sts: LoadingStatus) => {
+    if (sts == 1) {
       ui.present();
     }
     else {

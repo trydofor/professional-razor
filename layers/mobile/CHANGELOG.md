@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.9
+
+### Patch Changes
+
+- 2efd652: ✨ formated type and safeNumber,safeInt
+
 ## 0.3.8
 
 ### Patch Changes

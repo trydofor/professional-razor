@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.11
+
+### Patch Changes
+
+- 905808e: ✨ default options to handle 401,403 #132
+
 ## 0.3.10
 
 ### Patch Changes

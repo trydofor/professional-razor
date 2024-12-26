@@ -334,3 +334,51 @@ export function safeMapObj<T>(map?: Maybe<Map<string, T>>): Record<string, T> {
 export function safeSetArr<T>(set?: Maybe<Set<T>>): T[] {
   return set == null ? [] : Array.from(set);
 }
+
+/**
+ * flat value T (not array) or its array to array,
+ * - `1, [2, 3], 4 => [1, 2, 3, 4]`
+ * - `[], [1, 2], [undefined], 3 => [1, 2, 3]`
+ */
+export function flatArray<T>(...items: Array<undefined | null | T | T[]>): T[] {
+  const arr = Array<T>();
+  for (const item of items) {
+    if (Array.isArray(item)) {
+      for (const it of item) {
+        if (it != null) arr.push(it);
+      }
+    }
+    else if (item != null) {
+      arr.push(item);
+    }
+  }
+  return arr;
+}
+
+/**
+ * flat obj's property T (not array) by its key to array
+ * - size = 0, key or value is null
+ * - size = 1, property should be T
+ * - size > 1, property should be T[]
+ */
+export function flatObject<T>(key: string, ...items: Array<{ [K in typeof key]?: T | T[] }>): T[] {
+  const its = items.map(it => it?.[key]).filter(it => it != null);
+  return flatArray<T>(...its);
+}
+
+/**
+ * merge obj's property T (not array) with items by key
+ * - size = 0, key or value is null
+ * - size = 1, property should be T
+ * - size > 1, property should be T[]
+ */
+export function mergeObject<T>(key: string, obj: { [K in typeof key]?: T | T[] }, ...items: Array<{ [K in typeof key]?: T | T[] }>) {
+  const its = items.map(it => it?.[key]).filter(it => it != null);
+  const arr = flatArray<T>(obj[key], ...its);
+  if (arr.length == 1) {
+    obj[key] = arr[0];
+  }
+  else if (arr.length > 1) {
+    obj[key] = arr;
+  }
+}

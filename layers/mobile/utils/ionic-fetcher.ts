@@ -3,8 +3,8 @@ import { fetchTypedResultAsync, type LoadingStatus } from '&razor-common/utils/t
 
 function _failure(message?: string, code?: string) {
   alertController.create({
-    header: 'Failed to fetch data',
-    message: message || code || 'Business error',
+    header: 'Data Processing Error',
+    message: message || code || 'Failed to fetch data',
     buttons: ['Close'],
   }).then((alert) => {
     alert.present();
@@ -12,9 +12,21 @@ function _failure(message?: string, code?: string) {
 }
 
 function _catches(err: SafeAny) {
+  let message = err.message || 'Network or Server Error';
+  const fe = apiRouteFetchError(err);
+  if (fe != null) {
+    // TODO i18n message
+    if (fe.statusCode === 401) {
+      message = 'Please login to continue.';
+    }
+    else if (fe.statusCode === 403) {
+      message = 'No permission to access';
+    }
+  }
+
   alertController.create({
-    header: 'Failed to fetch data',
-    message: err.message || 'Network error',
+    header: 'Network Request Error',
+    message,
     buttons: ['Close'],
   }).then((alert) => {
     alert.present();

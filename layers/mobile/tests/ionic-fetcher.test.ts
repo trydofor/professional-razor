@@ -47,7 +47,7 @@ describe('ionicFetchingDataAsync', () => {
     await ionicFetchDataAsync(fetching);
 
     expect(alertController.create).toHaveBeenCalledWith({
-      header: 'Failed to fetch data',
+      header: 'Data Processing Error',
       message: 'Fetch error',
       buttons: ['Close'],
     });
@@ -63,7 +63,7 @@ describe('ionicFetchingDataAsync', () => {
     await ionicFetchDataAsync(fetching);
 
     expect(alertController.create).toHaveBeenCalledWith({
-      header: 'Failed to fetch data',
+      header: 'Network Request Error',
       message: 'Network error',
       buttons: ['Close'],
     });
@@ -90,7 +90,7 @@ describe('ionicFetchingDataAsync', () => {
     await ionicFetchDataAsync(fetching, loadingRef);
 
     expect(alertController.create).toHaveBeenCalledWith({
-      header: 'Failed to fetch data',
+      header: 'Data Processing Error',
       message: 'Fetch error',
       buttons: ['Close'],
     });

@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.3.12
+
+### Patch Changes
+
+- d68aeb4: ✨ default options to handle 401,403 #132
+
 ## 0.3.10
 
 ### Patch Changes

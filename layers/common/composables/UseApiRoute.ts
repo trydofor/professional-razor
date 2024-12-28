@@ -92,14 +92,10 @@ export function useApiRoute(ops?: ApiRouteOptions) {
 
     const opt = { ...ops, ...op };
 
-    const oq = flatArray(ops.onRequest, op?.onRequest);
-    if (oq.length >= 1) opt.onRequest = oq;
-    const oqe = flatArray(ops.onRequestError, op?.onRequestError);
-    if (oqe.length >= 1) opt.onRequestError = oqe;
-    const or = flatArray(ops.onResponse, op?.onResponse);
-    if (or.length >= 1) opt.onResponse = or;
-    const ore = flatArray(ops.onResponseError, op?.onResponseError);
-    if (ore.length >= 1) opt.onResponseError = ore;
+    opt.onRequest = flatArray(ops.onRequest, op?.onRequest);
+    opt.onRequestError = flatArray(ops.onRequestError, op?.onRequestError);
+    opt.onResponse = flatArray(ops.onResponse, op?.onResponse);
+    opt.onResponseError = flatArray(ops.onResponseError, op?.onResponseError);
 
     return opt;
   }

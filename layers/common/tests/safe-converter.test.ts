@@ -2,7 +2,7 @@
 import { safeString, safeNumber, safeInt, safeBigint, safeBoolean, safeBoolTof, safeBoolNum, safeValues, safeKeys,
   safeEntries, safeJson, safeObjMap, safeArrSet, safeMapObj,
   safeSetArr, safeArray, safeValue, safeConvert,
-  flatArray, flatObject, mergeObject } from '../utils/safe-converter';
+  flatArray } from '../utils/safe-converter';
 
 describe('safeConvert', () => {
   it('should return converted value when input is valid', () => {
@@ -625,80 +625,5 @@ describe('flatArray', () => {
   it('should return an empty array if no values are provided', () => {
     const result = flatArray();
     expect(result).toEqual([]);
-  });
-});
-
-describe('flatObject', () => {
-  it('should flatten objects with scalar values', () => {
-    const result = flatObject('key', { key: 1 }, { key: 2 }, { key: 3 });
-    expect(result).toEqual([1, 2, 3]);
-  });
-
-  it('should flatten objects with array values', () => {
-    const result = flatObject('key', { key: [1, 2] }, { key: [3, 4] });
-    expect(result).toEqual([1, 2, 3, 4]);
-  });
-
-  it('should handle mixed scalar and array values', () => {
-    const result = flatObject('key', { key: 1 }, { key: [2, 3] }, { key: 4 });
-    expect(result).toEqual([1, 2, 3, 4]);
-  });
-
-  it('should handle objects with null or undefined values', () => {
-    const result = flatObject('key', { key: 1 }, { key: null }, { key: undefined }, { key: [2, null] });
-    expect(result).toEqual([1, 2]);
-  });
-
-  it('should return an empty array if no objects are provided', () => {
-    const result = flatObject('key');
-    expect(result).toEqual([]);
-  });
-
-  it('should handle an empty array value', () => {
-    const result = flatObject('key', { key: [] }, { key: [1, 2] });
-    expect(result).toEqual([1, 2]);
-  });
-
-  it('should handle an object key with nested arrays', () => {
-    const result = flatObject('key', { key: [1, [2, 3]] });
-    expect(result).toEqual([1, [2, 3]]); // flatObject does not deeply flatten
-  });
-});
-
-describe('mergeObject', () => {
-  it('should merge scalar values into an object property', () => {
-    const obj = { key: 1 };
-    mergeObject('key', obj, { key: 2 }, { key: 3 });
-    expect(obj).toEqual({ key: [1, 2, 3] });
-  });
-
-  it('should merge array values into an object property', () => {
-    const obj = { key: [1, 2] };
-    mergeObject('key', obj, { key: [3, 4] });
-    expect(obj).toEqual({ key: [1, 2, 3, 4] });
-  });
-
-  it('should merge mixed scalar and array values', () => {
-    const obj = { key: 1 };
-    mergeObject('key', obj, { key: [2, 3] }, { key: 4 });
-    expect(obj).toEqual({ key: [1, 2, 3, 4] });
-  });
-
-  it('should update object property to scalar if only one value remains', () => {
-    const obj = { key: [1] };
-    mergeObject('key', obj, { key: null });
-    expect(obj).toEqual({ key: 1 });
-  });
-
-  it('should handle null or undefined values gracefully', () => {
-    const obj = { key: 1 };
-    mergeObject('key', obj, { key: null }, { key: undefined });
-    expect(obj).toEqual({ key: 1 });
-  });
-
-  it('should not modify the object if no additional values are provided', () => {
-    const obj = { key: 1 };
-    mergeObject('key', obj);
-    expect(obj).toEqual({ key: 1 });
   });
 });

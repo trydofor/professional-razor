@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.3.14
+
+### Patch Changes
+
+- 4ae4465: ✨ onClickOut or onEscKey to handle modal #137
+
 ## 0.3.13
 
 ### Patch Changes

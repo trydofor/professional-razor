@@ -122,23 +122,14 @@ describe('useApiRoute with real $fetch requests', () => {
       eventSpy(ev);
     });
 
-    try {
-      await post('/test-401.json');
-      expect(0).toBe(1);
-    }
-    catch (e: SafeAny) {
-      const fe = apiRouteFetchError(e);
-      expect(fe?.statusCode).toBe(401);
-    }
+    await expect(post('/test-401.json')).rejects.toMatchObject({
+      status: 401,
+    });
 
-    try {
-      await post('/test-403.json');
-      expect(0).toBe(1);
-    }
-    catch (e: SafeAny) {
-      const fe = apiRouteFetchError(e);
-      expect(fe?.statusCode).toBe(403);
-    }
+    await expect(post('/test-403.json')).rejects.toSatisfy((error: SafeAny) => {
+      const fe = apiRouteFetchError(error);
+      return fe?.statusCode === 403;
+    });
 
     await post('/test-session.json');
     expect(eventSpy).toHaveBeenNthCalledWith(1, { status: 401 });

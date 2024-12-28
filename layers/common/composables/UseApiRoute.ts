@@ -18,7 +18,7 @@ export const apiRouteAuthEventBus = useEventBus(apiRouteAuthEventKey);
  * @param eventBus the event bus
  * @param statusOrHeader status or header(case insensitive)
  */
-export function apiRouteEmitOptions(statusOrHeader: (number | string)[], eventBus: UseEventBusReturn<ApiRouteAuthEvent, SafeAny> = apiRouteAuthEventBus): ApiRouteOptions {
+export function apiRouteEmitOptions(statusOrHeader: (number | string)[] = [401, 403], eventBus: UseEventBusReturn<ApiRouteAuthEvent, SafeAny> = apiRouteAuthEventBus): ApiRouteOptions {
   const status: number[] = [];
   const header: string[] = [];
   for (const k of statusOrHeader) {

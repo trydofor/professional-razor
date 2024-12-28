@@ -5,12 +5,95 @@ import { ionicFetchDataAsync } from '../utils/ionic-fetcher';
 // Mocking Ionic controllers
 vi.mock('@ionic/vue', () => ({
   loadingController: {
-    create: vi.fn(),
+    create: vi.fn().mockResolvedValue({
+      present: vi.fn(),
+      dismiss: vi.fn(),
+    }),
   },
   alertController: {
-    create: vi.fn(),
+    create: vi.fn().mockResolvedValue({
+      present: vi.fn(),
+    }),
   },
 }));
+
+describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
+  it('should handle success case with loading ref', async () => {
+    const loading = ref(false);
+    const mockResult = { success: true, data: 'test-data' };
+
+    const result = await ionicFetchDataAsync(Promise.resolve(mockResult), loading);
+
+    expect(result).toBe('test-data');
+    expect(loading.value).toBe(false);
+    expect(loadingController.create).not.toHaveBeenCalled();
+  });
+
+  it('should show loading spinner when no loading ref is provided', async () => {
+    const mockResult = { success: true, data: 'spinner-test' };
+
+    const result = await ionicFetchResultAsync(Promise.resolve(mockResult));
+
+    expect(result).toEqual(mockResult);
+    expect(loadingController.create).toHaveBeenCalledWith({
+      spinner: 'bubbles',
+      message: 'Processing ...',
+      duration: 5000,
+    });
+  });
+
+  it('should show alert on failure and handle error with custom alerter', async () => {
+    const mockError = new Error('Test Error');
+
+    const customAlerter = vi.fn().mockImplementation((result, error) => ({
+      header: 'Custom Error',
+      message: error.message,
+      buttons: ['Close'],
+    }));
+
+    const result = await ionicFetchResultAsync(
+      Promise.reject(mockError),
+      undefined,
+      customAlerter,
+    );
+
+    expect(result).toEqual({ success: false });
+    expect(customAlerter).toHaveBeenCalledWith(null, mockError);
+    expect(alertController.create).toHaveBeenCalledWith({
+      header: 'Custom Error',
+      message: 'Test Error',
+      buttons: ['Close'],
+    });
+  });
+
+  it('should use default alerter for network errors', async () => {
+    const mockError = new Error('Network Error');
+
+    const result = await ionicFetchResultAsync(Promise.reject(mockError));
+
+    expect(result).toEqual({ success: false });
+    expect(alertController.create).toHaveBeenCalledWith({
+      header: 'Network Request Error',
+      message: 'Network Error',
+      buttons: ['Close'],
+    });
+  });
+
+  it('should fallback to default alert if custom alerter returns true', async () => {
+    const mockResult = { success: false, message: 'Custom Failure' };
+
+    const customAlerter = vi.fn().mockReturnValue(true);
+
+    const result = await ionicFetchResultAsync(Promise.resolve(mockResult), undefined, customAlerter);
+
+    expect(result).toEqual(mockResult);
+    expect(alertController.create).toHaveBeenCalledWith({
+      header: 'Data Processing Error',
+      message: 'Custom Failure',
+      buttons: ['Close'],
+    });
+  });
+});
 
 describe('ionicFetchingDataAsync', () => {
   beforeEach(() => {

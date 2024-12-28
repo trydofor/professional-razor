@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.4.0
+
+### Minor Changes
+
+- 1735919: ♻️ fetcher can handle the return #139
+
 ## 0.3.14
 
 ### Patch Changes

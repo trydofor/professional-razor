@@ -1,24 +1,41 @@
-import { useEventBus, type EventBusKey, type UseEventBusReturn } from '@vueuse/core';
+import { useEventBus, type EventBusKey } from '@vueuse/core';
+import type { FetchContext } from 'ofetch';
 import { FetchError } from 'ofetch';
 
 // import type { FetchOptions } from 'ofetch';
 type ApiRouteOptions = NonNullable<Parameters<typeof $fetch>[1]>;
 
-type ApiRouteAuthEvent = {
+export type ApiRouteAuthEvent = {
   status: number;
   session?: string;
   headers?: Record<string, string>;
 };
 
+/**
+ * handle the event with context and control the return
+ *  - null - nop
+ *  - non-null - to set the response._data, get it by error.data if error
+ *  - FetchError - to set context.error, get it by error.cause
+ *  @see https://github.com/unjs/ofetch/blob/main/src/fetch.ts
+ */
+export type ApiRouteAuthHandle = (context: FetchContext, event: ApiRouteAuthEvent) => SafeAny | FetchError;
+
 export const apiRouteAuthEventKey: EventBusKey<ApiRouteAuthEvent> = Symbol('apiRouteResponseEventKey');
 export const apiRouteAuthEventBus = useEventBus(apiRouteAuthEventKey);
 
 /**
- * construct a onResponse by eventBus and listen status or header
- * @param eventBus the event bus
- * @param statusOrHeader status or header(case insensitive)
+ * emit event by apiRouteAuthEventBus, handle 401 to return `{success:false}`
  */
-export function apiRouteEmitOptions(statusOrHeader: (number | string)[] = [401, 403], eventBus: UseEventBusReturn<ApiRouteAuthEvent, SafeAny> = apiRouteAuthEventBus): ApiRouteOptions {
+export const apiRouteAuthEmitter: ApiRouteAuthHandle = (_, evt) => {
+  apiRouteAuthEventBus.emit(evt);
+  return evt.status === 401 ? { success: false } : null;
+};
+/**
+ * construct a onResponse by eventBus and listen status or header
+ * @param statusOrHeader status or header(case insensitive), `[401]` as default.
+ * @param handler the event bus, `apiRouteAuthEmitter` as default.
+ */
+export function apiRouteAuthOptions(statusOrHeader: (number | string)[] = [401], handler: ApiRouteAuthHandle = apiRouteAuthEmitter): ApiRouteOptions {
   const status: number[] = [];
   const header: string[] = [];
   for (const k of statusOrHeader) {
@@ -31,9 +48,9 @@ export function apiRouteEmitOptions(statusOrHeader: (number | string)[] = [401, 
   }
 
   return {
-    onResponse: ({ response }) => {
-      const evt: ApiRouteAuthEvent = { status: response.status };
-      const hds = response.headers;
+    onResponse: (ctx) => {
+      const evt: ApiRouteAuthEvent = { status: ctx.response.status };
+      const hds = ctx.response.headers;
 
       const sn = hds.get('session');
       if (sn) evt.session = sn;
@@ -47,7 +64,13 @@ export function apiRouteEmitOptions(statusOrHeader: (number | string)[] = [401, 
       }
 
       if (status.includes(evt.status) || evt.session != null || evt.headers != null) {
-        eventBus.emit(evt);
+        const rst = handler(ctx, evt);
+        if (rst instanceof FetchError) {
+          ctx.error = rst;
+        }
+        else if (rst != null) {
+          ctx.response._data = rst;
+        }
       }
     },
   };

@@ -1,8 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll, afterEach, vi } from 'vitest';
 import { setupServer } from 'msw/node';
 import { http, HttpResponse } from 'msw';
-import { createFetch } from 'ofetch';
-import { useApiRoute, apiRouteEmitOptions, apiRouteAuthEventBus, apiRouteFetchError } from '../composables/UseApiRoute';
+import { createFetch, FetchError } from 'ofetch';
+import { useEventBus } from '@vueuse/core';
+import { useApiRoute, apiRouteAuthOptions, apiRouteAuthEventBus, apiRouteFetchError } from '../composables/UseApiRoute';
 
 const session = 'wings-session';
 const cookie = `session=${session}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
@@ -114,7 +115,7 @@ describe('useApiRoute with real $fetch requests', () => {
   });
 
   it('should send POST with Auth Event', async () => {
-    const opts = apiRouteEmitOptions([401, 403, 'set-cookie']);
+    const opts = apiRouteAuthOptions([401, 403, 'set-cookie']);
     const { post } = useApiRoute(opts);
     const eventSpy = vi.fn();
 
@@ -122,18 +123,43 @@ describe('useApiRoute with real $fetch requests', () => {
       eventSpy(ev);
     });
 
-    await expect(post('/test-401.json')).rejects.toMatchObject({
-      status: 401,
+    await expect(post('/test-401.json')).rejects.toSatisfy((error: SafeAny) => {
+      const fe = apiRouteFetchError(error);
+      return JSON.stringify(fe?.data) === JSON.stringify({ success: false });
     });
-
     await expect(post('/test-403.json')).rejects.toSatisfy((error: SafeAny) => {
       const fe = apiRouteFetchError(error);
-      return fe?.statusCode === 403;
+      return fe?.status === 403;
     });
 
     await post('/test-session.json');
     expect(eventSpy).toHaveBeenNthCalledWith(1, { status: 401 });
     expect(eventSpy).toHaveBeenNthCalledWith(2, { status: 403 });
     expect(eventSpy).toHaveBeenNthCalledWith(3, { status: 200, session: session, headers: { 'set-cookie': cookie } });
+  });
+
+  it('should send POST with Auth Event replace error or result', async () => {
+    const authEventBus = useEventBus('test-useapi-event-bus');
+
+    const opts = apiRouteAuthOptions([401, 403], (_, evt) => {
+      authEventBus.emit(evt);
+      if (evt.status === 403) return new FetchError('error-403');
+    });
+    const { post } = useApiRoute(opts);
+    const eventSpy = vi.fn();
+
+    authEventBus.on((ev) => {
+      eventSpy(ev);
+    });
+
+    await expect(post('/test-401.json')).rejects.toMatchObject({
+      status: 401,
+    });
+    await expect(post('/test-403.json')).rejects.toSatisfy((err: SafeAny) => {
+      return err.cause.message === 'error-403';
+    });
+
+    expect(eventSpy).toHaveBeenNthCalledWith(1, { status: 401 });
+    expect(eventSpy).toHaveBeenNthCalledWith(2, { status: 403 });
   });
 });

@@ -62,7 +62,7 @@ export async function fetchTypedDataAsync<T>(
  * @param fetching - function/data of DataResult
  * @param options - options to handle loading, failure, error
  */
-export function fetchTypedResult<T>(
+export function fetchTypedResult<T = DataResult<SafeAny>>(
   fetching: T | (() => T),
   options: TypedFetchOptions<T> = { },
 ): T | null {

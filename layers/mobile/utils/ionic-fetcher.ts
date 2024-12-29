@@ -19,20 +19,25 @@ const _alerter: AlertHandler<SafeAny> = (result, error) => {
     };
   }
   else {
+    let header = 'Network Request Error';
     let message = error.message || 'Network or Server Error';
     const fe = apiRouteFetchError(error);
     if (fe != null) {
       // TODO i18n message
       if (fe.statusCode === 401) {
+        if (result?.success === false) return false; // handled by emit
+
+        header = 'Unauthorized';
         message = 'Please login to continue.';
       }
       else if (fe.statusCode === 403) {
+        header = 'Forbidden';
         message = 'No permission to access';
       }
     }
 
     return {
-      header: 'Network Request Error',
+      header,
       message,
       buttons: ['Close'],
     };

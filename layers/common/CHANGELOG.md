@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.4.2
+
+### Patch Changes
+
+- f077378: ✨ handle 401 return false dataresult #132
+
 ## 0.4.0
 
 ### Minor Changes

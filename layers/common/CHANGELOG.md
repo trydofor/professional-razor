@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.4.4
+
+### Patch Changes
+
+- 8ba188f: ✨ merge hooks option by call #132
+
 ## 0.4.3
 
 ### Patch Changes

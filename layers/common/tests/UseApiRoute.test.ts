@@ -163,3 +163,68 @@ describe('useApiRoute with real $fetch requests', () => {
     expect(eventSpy).toHaveBeenNthCalledWith(2, { status: 403 });
   });
 });
+
+describe('merge options', () => {
+  const op1 = {
+    onRequest: () => { console.log('onRequest 1'); },
+    onRequestError: () => { console.log('onRequestError 1'); },
+    onResponse: () => { console.log('onResponse 1'); },
+    onResponseError: () => { console.log('onResponseError 1'); },
+  } as NonNullable<Parameters<typeof $fetch>[1]>;
+
+  const op2 = {
+    onRequest: () => { console.log('onRequest 2'); },
+    onRequestError: () => { console.log('onRequestError 2'); },
+    onResponse: () => { console.log('onResponse 2'); },
+    onResponseError: () => { console.log('onResponseError 2'); },
+  } as NonNullable<Parameters<typeof $fetch>[1]>;
+
+  it('returns empty object if ops and op are null or undefined', () => {
+    const { opt } = useApiRoute();
+    expect(opt()).toEqual({});
+    expect(opt(op1)).toEqual(op1);
+  });
+
+  it('returns ops if op is null or undefined', () => {
+    const { opt } = useApiRoute(op1);
+    expect(opt()).toEqual({ ...op1 });
+  });
+
+  it('merges hooks into arrays by default when mergeHooks is null', () => {
+    const { opt } = useApiRoute(op1);
+    expect(opt(op2)).toEqual({
+      onRequest: [op2.onRequest, op1.onRequest],
+      onRequestError: [op2.onRequestError, op1.onRequestError],
+      onResponse: [op2.onResponse, op1.onResponse],
+      onResponseError: [op2.onResponseError, op1.onResponseError],
+    });
+  });
+
+  it('overrides hooks entirely when mergeHooks is true', () => {
+    const { opt } = useApiRoute(op1);
+    expect(opt({ mergeFetchHooks: true, ...op2 })).toEqual(op2);
+  });
+
+  it('uses ops hooks entirely when mergeHooks is false', () => {
+    const { opt } = useApiRoute(op1);
+    expect(opt({ mergeFetchHooks: false, ...op2 })).toEqual(op1);
+  });
+
+  it('handles fine-grained merging based on mergeHooks object', () => {
+    const op = {
+      mergeFetchHooks: {
+        onRequest: true,
+        onRequestError: false,
+        onResponse: undefined,
+      },
+      ...op2,
+    };
+    const { opt } = useApiRoute(op1);
+    expect(opt(op)).toEqual({
+      onRequest: op2.onRequest,
+      onRequestError: op1.onRequestError,
+      onResponse: [op2.onResponse, op1.onResponse],
+      onResponseError: [op2.onResponseError, op1.onResponseError],
+    });
+  });
+});

@@ -21,13 +21,13 @@ export type ApiRouteAuthEvent = {
 export type ApiRouteAuthHandle = (context: FetchContext, event: ApiRouteAuthEvent) => SafeAny | FetchError;
 
 export const apiRouteAuthEventKey: EventBusKey<ApiRouteAuthEvent> = Symbol('apiRouteResponseEventKey');
-export const apiRouteAuthEventBus = useEventBus(apiRouteAuthEventKey);
+export const apiRouteAuthEventBus = useEventBus<ApiRouteAuthEvent, FetchContext>(apiRouteAuthEventKey);
 
 /**
  * emit event by apiRouteAuthEventBus, handle 401 to return `{success:false}`
  */
-export const apiRouteAuthEmitter: ApiRouteAuthHandle = (_, evt) => {
-  apiRouteAuthEventBus.emit(evt);
+export const apiRouteAuthEmitter: ApiRouteAuthHandle = (ctx, evt) => {
+  apiRouteAuthEventBus.emit(evt, ctx);
   return evt.status === 401 ? { success: false } : null;
 };
 /**
@@ -81,6 +81,21 @@ export function apiRouteFetchError(err: SafeAny): FetchError | null {
 }
 
 /**
+ * how to merge this fetchHook(passin) with the that fetchHook(default) ,
+ * - true - all this, no that
+ * - false - no this, all that
+ * - null - both this and that, into array
+ */
+export type ApiRouteFetchHooksMerge = {
+  mergeFetchHooks?: boolean | {
+    onRequest?: boolean;
+    onRequestError?: boolean;
+    onResponse?: boolean;
+    onResponseError?: boolean;
+  };
+};
+
+/**
  * Provides utility functions for interacting with an API, including URL generation,
  * options merging, and HTTP request methods.
  *
@@ -103,22 +118,44 @@ export function useApiRoute(ops?: ApiRouteOptions) {
 
   /**
    * Merges the default fetch options with the given options.
-   * the default Behavior is replaced, but the following are merged to array,
-   * - onRequest, onRequestError
-   * - onResponse, onResponseError
+   * the default Behavior is replaced, but FetchHooks can merged into array,
+   * - onRequest, onRequestError, onResponse, onResponseError
    *
    * @param op - Specific fetch options for a request.
    * @returns A merged object containing the combined options.
    */
-  function opt(op?: ApiRouteOptions): ApiRouteOptions {
-    if (ops == null) return op == null ? {} : op;
-
+  function opt(op?: ApiRouteOptions & ApiRouteFetchHooksMerge): ApiRouteOptions {
+    if (op == null) return { ...ops };
     const opt = { ...ops, ...op };
+    delete opt.mergeFetchHooks;
+    if (ops == null) return opt;
 
-    opt.onRequest = flatArray(ops.onRequest, op?.onRequest);
-    opt.onRequestError = flatArray(ops.onRequestError, op?.onRequestError);
-    opt.onResponse = flatArray(ops.onResponse, op?.onResponse);
-    opt.onResponseError = flatArray(ops.onResponseError, op?.onResponseError);
+    const mergeHooks = op?.mergeFetchHooks;
+    if (mergeHooks == null) { // default into array
+      // user first, defaults last
+      opt.onRequest = flatArray(op.onRequest, ops.onRequest);
+      opt.onRequestError = flatArray(op.onRequestError, ops.onRequestError);
+      opt.onResponse = flatArray(op.onResponse, ops.onResponse);
+      opt.onResponseError = flatArray(op.onResponseError, ops.onResponseError);
+      return opt;
+    }
+    else if (typeof mergeHooks === 'boolean') { // all this, no that
+      opt.onRequest = mergeHooks ? op.onRequest : ops.onRequest;
+      opt.onRequestError = mergeHooks ? op.onRequestError : ops.onRequestError;
+      opt.onResponse = mergeHooks ? op.onResponse : ops.onResponse;
+      opt.onResponseError = mergeHooks ? op.onResponseError : ops.onResponseError;
+    }
+    else {
+      const merge = (mo: boolean | undefined, tz: SafeAny, tt: SafeAny): SafeAny => {
+        if (mo === true) return tz;
+        if (mo === false) return tt;
+        return flatArray(tz, tt);
+      };
+      opt.onRequest = merge(mergeHooks.onRequest, op.onRequest, ops.onRequest);
+      opt.onRequestError = merge(mergeHooks.onRequestError, op.onRequestError, ops.onRequestError);
+      opt.onResponse = merge(mergeHooks.onResponse, op.onResponse, ops.onResponse);
+      opt.onResponseError = merge(mergeHooks.onResponseError, op.onResponseError, ops.onResponseError);
+    }
 
     return opt;
   }
@@ -131,7 +168,7 @@ export function useApiRoute(ops?: ApiRouteOptions) {
    * @param op - Fetch options for the request.
    * @returns A promise resolving to the API's response as a `DataResult<T>`.
    */
-  function req<T>(uri: string, op: ApiRouteOptions) {
+  function req<T>(uri: string, op: ApiRouteOptions & ApiRouteFetchHooksMerge) {
     return $fetch<DataResult<T>>(url(uri), opt(op));
   }
 
@@ -143,7 +180,7 @@ export function useApiRoute(ops?: ApiRouteOptions) {
    * @param op - Fetch options for the request.
    * @returns A promise resolving to the API's response as a `DataResult<T>`.
    */
-  function raw<T>(uri: string, op: ApiRouteOptions) {
+  function raw<T>(uri: string, op: ApiRouteOptions & ApiRouteFetchHooksMerge) {
     return $fetch.raw<DataResult<T>>(url(uri), opt(op));
   }
 
@@ -156,7 +193,7 @@ export function useApiRoute(ops?: ApiRouteOptions) {
    * @param op - Optional fetch options to customize the request.
    * @returns A promise resolving to the API's response as a `DataResult<T>`.
    */
-  function get<T>(uri: string, query?: SafeObj, op?: ApiRouteOptions) {
+  function get<T>(uri: string, query?: SafeObj, op?: ApiRouteOptions & ApiRouteFetchHooksMerge) {
     return req<T>(uri, {
       ...op,
       method: 'get',
@@ -174,7 +211,7 @@ export function useApiRoute(ops?: ApiRouteOptions) {
    * @param op - Optional fetch options to customize the request.
    * @returns A promise resolving to the API's response as a `DataResult<T>`.
    */
-  function post<T>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: ApiRouteOptions) {
+  function post<T>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: ApiRouteOptions & ApiRouteFetchHooksMerge) {
     return req<T>(uri, {
       ...op,
       method: 'post',

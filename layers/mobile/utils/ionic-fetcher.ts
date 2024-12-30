@@ -52,7 +52,7 @@ function _results<T>(alerter: AlertHandler<T>): TypedFetchOptions<DataResult<T>>
     if (opt === true) {
       opt = _alerter(result, null);
     }
-    if (typeof opt !== 'boolean') {
+    if (opt != null && typeof opt === 'object') {
       alertController.create(opt).then(alert => alert.present());
     }
     return result ?? { success: false };
@@ -65,7 +65,7 @@ function _catches<T>(alerter: AlertHandler<T>): TypedFetchOptions<DataResult<T>>
     if (opt === true) {
       opt = _alerter(null, err);
     }
-    if (typeof opt !== 'boolean') {
+    if (opt != null && typeof opt === 'object') {
       alertController.create(opt).then(alert => alert.present());
     }
     return { success: false };
@@ -73,7 +73,12 @@ function _catches<T>(alerter: AlertHandler<T>): TypedFetchOptions<DataResult<T>>
 }
 
 /**
- * Show loading when fetching data, show alert if failed
+ * Show loading when fetching data, show alert if alerter return,
+ * - fail alert: failure with failMessage or failCode
+ * - error alert: catches with catchErr
+ * - true: skip to use default
+ * - false: no alert
+ *
  * @param fetching - Promise of DataResult
  * @param loading - Ref of boolean instead of using loadingController
  * @param alerter - handle the alert

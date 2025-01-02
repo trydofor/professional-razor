@@ -77,10 +77,12 @@ describe('safeString', () => {
 });
 
 describe('safeNumber', () => {
-  it('should return defaults if null, undefined, or NaN', () => {
+  it('should return defaults if null, undefined, NaN, Infinity', () => {
     expect(safeNumber(null)).toBe(0);
     expect(safeNumber(undefined)).toBe(0);
     expect(safeNumber(NaN)).toBe(0);
+    expect(safeNumber(-Infinity)).toBe(0);
+    expect(safeNumber(+Infinity)).toBe(0);
   });
 
   it('should return the number itself if valOrFun is a valid number', () => {
@@ -105,10 +107,12 @@ describe('safeNumber', () => {
 });
 
 describe('safeInt', () => {
-  it('should return defaults if null, undefined, or NaN', () => {
+  it('should return defaults if null, undefined, NaN, Infinity', () => {
     expect(safeInt(null)).toBe(0);
     expect(safeInt(undefined)).toBe(0);
     expect(safeInt(NaN)).toBe(0);
+    expect(safeNumber(-Infinity)).toBe(0);
+    expect(safeNumber(+Infinity)).toBe(0);
   });
 
   it('should return the number itself if valOrFun is a valid number', () => {
@@ -139,6 +143,8 @@ describe('safeBigint', () => {
 
     expect(safeBigint({} as SafeAny)).toBe(0n);
     expect(safeBigint(NaN)).toBe(0n);
+    expect(safeBigint(-Infinity)).toBe(0n);
+    expect(safeBigint(+Infinity)).toBe(0n);
   });
 
   it('should return the bigint itself if valOrFun is a bigint', () => {
@@ -197,9 +203,13 @@ describe('safeBoolean', () => {
     expect(safeBoolean(null, true)).toBe(true);
     expect(safeBoolean(undefined, true)).toBe(true);
     expect(safeBoolean(NaN, true)).toBe(true);
+    expect(safeBoolean(-Infinity, true)).toBe(true);
+    expect(safeBoolean(+Infinity, true)).toBe(true);
     expect(safeBoolean(null, false)).toBe(false);
     expect(safeBoolean(undefined, false)).toBe(false);
     expect(safeBoolean(NaN, false)).toBe(false);
+    expect(safeBoolean(-Infinity, false)).toBe(false);
+    expect(safeBoolean(+Infinity, false)).toBe(false);
 
     expect(safeBoolean({} as SafeAny, true)).toBe(true);
     expect(safeBoolean({} as SafeAny, false)).toBe(false);
@@ -253,6 +263,8 @@ describe('safeArray', () => {
   it('should return the default array if input is undefined', () => {
     expect(safeArray(undefined, [1, 2, 3])).toEqual([1, 2, 3]);
     expect(safeArray(NaN, [1, 2, 3])).toEqual([1, 2, 3]);
+    expect(safeArray(-Infinity, [1, 2, 3])).toEqual([1, 2, 3]);
+    expect(safeArray(+Infinity, [1, 2, 3])).toEqual([1, 2, 3]);
   });
 
   it('should return the input array if input is already an array', () => {

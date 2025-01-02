@@ -44,10 +44,17 @@ export function safeConvert<S, T, D>(valOrFun: Maybe<S> | (() => Maybe<S>), defa
 }
 
 /**
- * true if null | undefined | NaN
+ * true if null | undefined | NaN | Infinity
  */
-export function isVoid(arg: unknown) {
-  return arg === null || arg === undefined || (typeof arg === 'number' && isNaN(arg));
+export function isVoidValue(arg?: unknown) {
+  return arg === null || arg === undefined || (typeof arg === 'number' && !Number.isFinite(arg));
+}
+/**
+ * true if NaN | Infinity
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite
+ */
+export function isVoidNumber(arg?: number) {
+  return arg == null || !Number.isFinite(arg);
 }
 
 /**
@@ -83,12 +90,12 @@ export function safeInt(valOrFun: NumberLike | (() => NumberLike), defaults: num
   return safeConvert(valOrFun, defaults, (value) => {
     switch (typeof value) {
       case 'number':
-        return isNaN(value) ? null : value;
+        return isVoidNumber(value) ? null : value;
       case 'boolean':
         return value ? 1 : 0;
       default:{
         const num = parseInt(String(value)); // Number('') === 0
-        return isNaN(num) ? null : num;
+        return isVoidNumber(num) ? null : num;
       }
     }
   });
@@ -105,12 +112,12 @@ export function safeNumber(valOrFun: NumberLike | (() => NumberLike), defaults: 
   return safeConvert(valOrFun, defaults, (value) => {
     switch (typeof value) {
       case 'number':
-        return isNaN(value) ? null : value;
+        return isVoidNumber(value) ? null : value;
       case 'boolean':
         return value ? 1 : 0;
       default:{
         const num = parseFloat(String(value)); // Number('') === 0
-        return isNaN(num) ? null : num;
+        return isVoidNumber(num) ? null : num;
       }
     }
   });
@@ -132,7 +139,7 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
         return value ? 1n : 0n;
       case 'number':{
         const num = Math.trunc(value);
-        return isNaN(num) ? null : BigInt(num);
+        return isVoidNumber(num) ? null : BigInt(num);
       }
       case 'string':{
         const num = parseInt(value);
@@ -181,7 +188,7 @@ export function safeBoolean(valOrFun: NumberLike | (() => NumberLike), defaults 
         return value === 'true' || value === 't' || value === '1' || value === 'T' || value.toLowerCase() === 'true';
       }
       case 'number':{
-        return isNaN(value) ? null : value !== 0;
+        return isVoidNumber(value) ? null : value !== 0;
       }
       case 'bigint':
         return value !== 0n;
@@ -239,7 +246,7 @@ export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), 
     return valOrFun;
   }
   else {
-    return isVoid(valOrFun) ? defaults : [valOrFun] as T[];
+    return isVoidValue(valOrFun) ? defaults : [valOrFun] as T[];
   }
 }
 

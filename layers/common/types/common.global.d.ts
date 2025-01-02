@@ -14,7 +14,7 @@
   }
 
   /**
-   * `0` if falsy (`null` | `undefined` | `false` | `NaN` | `''`)
+   * `0` if falsy (`null` | `undefined` | `false` | `NaN` | `''` | Infinity)
    */
   type NumberLike = null | undefined | boolean | number | string | bigint;
 

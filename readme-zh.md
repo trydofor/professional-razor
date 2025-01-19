@@ -106,16 +106,37 @@
 ## 3.自己动手
 
 ```bash
+## 💚 asdf 管理 node 版本
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
+## 配置 zsh
+cat >> ~/.zshrc << 'EOF'
+export ASDF_NODEJS_AUTO_ENABLE_COREPACK=true
+export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed
+source "$HOME/.asdf/asdf.sh"
+EOF
+## 支持 .nvmrc 或 .node-version
+cat >> ~/.asdfrc << 'EOF'
+legacy_version_file=yes
+EOF
+
+## 安装 nodejs 插件
+asdf plugin add nodejs
+## 安装 nodejs 并 corepack enable
+asdf install nodejs
+## 通过 package.json 和 corepack
+pnpm -v
+## Corepack is about to download
+
 ## ✅ for CI
 ## 安装 pnpm-hoist-layer 到 devDeps
-pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
+pnpm -w i --no-frozen-lockfile
 ## 重置 ci 锁文件
 git restore pnpm-lock.yaml
 ## 根据锁文件，安装依赖
 pnpm i --frozen-lockfile
 
 ## 💚 for Dev
-pnpm -w i --ignore-pnpmfile
+pnpm -w i
 pnpm i
 
 ## 🧪 测试
@@ -129,7 +150,7 @@ pnpm store prune
 find . -name "node_modules" -type d -prune -exec rm -rf {} +
 find . -name "pnpm-lock.yaml" -type f -exec rm -f {} +
 asdf install
-pnpm -w i --ignore-pnpmfile
+pnpm -w 
 pnpm i
 
 ## 删除 .nuxt, .output, dist

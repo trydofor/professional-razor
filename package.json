@@ -41,9 +41,5 @@
     "rimraf": "catalog:manage",
     "taze": "catalog:manage"
   },
-  "packageManager": "pnpm@9.14.4",
-  "engines": {
-    "node": "20.18.0",
-    "pnpm": "9.14.4"
-  }
+  "packageManager": "pnpm@9.15.4"
 }

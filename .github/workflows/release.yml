@@ -22,25 +22,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Caching Toolchain
-        uses: actions/cache@v4
-        id: cache-sdk-repo
-        with:
-          path: |
-            ~/.asdf/
-            ~/.local/share/pnpm/store/
-          key: asdf-store-${{ runner.os }}
+      # https://pnpm.io/continuous-integration#github-actions
+      - name: Setup pnpm by packageManager
+        uses: pnpm/action-setup@v4
 
-      - name: Install Toolchain
-        uses: asdf-vm/actions/install@v3
+      - name: Setup nodejs by .nvmrc
+        uses: actions/setup-node@v4
         with:
-          skip_install: ${{ steps.cache-sdk-repo.outputs.cache-hit == 'true' }}
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
       - name: Prepare Project
         run: |
           chmod a+x .changeset/*.sh
           echo "install pnpm-hoist-layer to devDep"
-          pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
+          pnpm -w i --no-frozen-lockfile
           echo "reset the ci lockfile"
           git restore pnpm-lock.yaml
           echo "install all deps by lockfile"

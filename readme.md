@@ -106,16 +106,37 @@ According to the official Vue naming rules, most things are plural,
 ## 3.DoIt Yourself
 
 ```bash
+## 💚 asdf manage node version
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
+## config zsh
+cat >> ~/.zshrc << 'EOF'
+export ASDF_NODEJS_AUTO_ENABLE_COREPACK=true
+export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed
+source "$HOME/.asdf/asdf.sh"
+EOF
+## support .nvmrc or .node-version
+cat >> ~/.asdfrc << 'EOF'
+legacy_version_file=yes
+EOF
+
+## install nodejs plugin
+asdf plugin add nodejs
+## install nodejs and corepack enable
+asdf install nodejs
+## by package.json and corepack
+pnpm -v
+## Corepack is about to download
+
 ## ✅ for CI
 ## install pnpm-hoist-layer to devDep
-pnpm -w i --no-frozen-lockfile --ignore-pnpmfile
+pnpm -w i --no-frozen-lockfile
 ## reset the ci lockfile
 git restore pnpm-lock.yaml
 ## install all deps by lockfile
 pnpm i --frozen-lockfile
 
 ## 💚 for Dev
-pnpm -w i --ignore-pnpmfile
+pnpm -w i
 pnpm i
 
 ## 🧪 testing
@@ -129,7 +150,7 @@ pnpm store prune
 find . -name "node_modules" -type d -prune -exec rm -rf {} +
 find . -name "pnpm-lock.yaml" -type f -exec rm -f {} +
 asdf install
-pnpm -w i --ignore-pnpmfile
+pnpm -w i
 pnpm i
 
 ## rm .nuxt, .output, dist

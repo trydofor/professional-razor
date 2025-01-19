@@ -26,5 +26,6 @@
     "vitest.explorer",
     "zt5.http-server",
     "unional.vscode-sort-package-json",
+    "antfu.file-nesting",
   ]
 }

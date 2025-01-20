@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.4.5
+
+### Patch Changes
+
+- f65d091: 💚 asdf + corepack + .nvmrc #145
+
 ## 0.4.4
 
 ### Patch Changes

@@ -1,5 +1,6 @@
 ﻿import { loadingController, alertController, type AlertOptions } from '@ionic/vue';
-import { fetchTypedResultAsync, type LoadingStatus } from '&razor-common/utils/typed-fetcher';
+import { fetchTypedResult, type LoadingStatus } from '&razor-common/utils/typed-fetcher';
+import type { DataResult } from '&razor-common/types/common-result';
 
 /**
  * how to alert,
@@ -83,8 +84,8 @@ function _catches<T>(alerter: AlertHandler<T>): TypedFetchOptions<DataResult<T>>
  * @param loading - Ref of boolean instead of using loadingController
  * @param alerter - handle the alert
  */
-export async function ionicFetchDataAsync<T>(fetching: Promise<DataResult<T>>, loading?: TypedFetchOptions<SafeAny>['loading'], alerter: AlertHandler<T> = _alerter): Promise<T | null> {
-  const result = await ionicFetchResultAsync(fetching, loading, alerter);
+export async function ionicFetchData<T>(fetching: Promise<DataResult<T>>, loading?: TypedFetchOptions<SafeAny>['loading'], alerter: AlertHandler<T> = _alerter): Promise<T | null> {
+  const result = await ionicFetchResult(fetching, loading, alerter);
   return result?.data ?? null;
 }
 
@@ -96,9 +97,9 @@ export async function ionicFetchDataAsync<T>(fetching: Promise<DataResult<T>>, l
  * @param loading - Ref of boolean instead of using loadingController
  * @param alerter - handle the alert
  */
-export async function ionicFetchResultAsync<T>(fetching: Promise<DataResult<T>>, loading?: TypedFetchOptions<SafeAny>['loading'], alerter: AlertHandler<T> = _alerter): Promise<DataResult<T>> {
+export async function ionicFetchResult<T>(fetching: Promise<DataResult<T>>, loading?: TypedFetchOptions<SafeAny>['loading'], alerter: AlertHandler<T> = _alerter): Promise<DataResult<T>> {
   if (loading) {
-    return await fetchTypedResultAsync<DataResult<T>>(fetching, {
+    return await fetchTypedResult<DataResult<T>>(fetching, {
       loading,
       results: _results(alerter),
       catches: _catches(alerter),
@@ -120,7 +121,7 @@ export async function ionicFetchResultAsync<T>(fetching: Promise<DataResult<T>>,
     }
   };
 
-  return await fetchTypedResultAsync(fetching, {
+  return await fetchTypedResult(fetching, {
     loading: _loading,
     results: _results(alerter),
     catches: _catches(alerter),

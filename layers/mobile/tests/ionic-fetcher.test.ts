@@ -1,6 +1,7 @@
 ﻿import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { loadingController, alertController } from '@ionic/vue';
-import { ionicFetchDataAsync } from '../utils/ionic-fetcher';
+import { ionicFetchData } from '../utils/ionic-fetcher';
+import type { DataResult } from '&razor-common/types/common-result';
 
 // Mocking Ionic controllers
 vi.mock('@ionic/vue', () => ({
@@ -17,12 +18,12 @@ vi.mock('@ionic/vue', () => ({
   },
 }));
 
-describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
+describe('ionicFetchData and ionicFetchResult', () => {
   it('should handle success case with loading ref', async () => {
     const loading = ref(false);
     const mockResult = { success: true, data: 'test-data' };
 
-    const result = await ionicFetchDataAsync(Promise.resolve(mockResult), loading);
+    const result = await ionicFetchData(Promise.resolve(mockResult), loading);
 
     expect(result).toBe('test-data');
     expect(loading.value).toBe(false);
@@ -32,7 +33,7 @@ describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
   it('should show loading spinner when no loading ref is provided', async () => {
     const mockResult = { success: true, data: 'spinner-test' };
 
-    const result = await ionicFetchResultAsync(Promise.resolve(mockResult));
+    const result = await ionicFetchResult(Promise.resolve(mockResult));
 
     expect(result).toEqual(mockResult);
     expect(loadingController.create).toHaveBeenCalledWith({
@@ -51,7 +52,7 @@ describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
       buttons: ['Close'],
     }));
 
-    const result = await ionicFetchResultAsync(
+    const result = await ionicFetchResult(
       Promise.reject(mockError),
       undefined,
       customAlerter,
@@ -69,7 +70,7 @@ describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
   it('should use default alerter for network errors', async () => {
     const mockError = new Error('Network Error');
 
-    const result = await ionicFetchResultAsync(Promise.reject(mockError));
+    const result = await ionicFetchResult(Promise.reject(mockError));
 
     expect(result).toEqual({ success: false });
     expect(alertController.create).toHaveBeenCalledWith({
@@ -84,7 +85,7 @@ describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
 
     const customAlerter = vi.fn().mockReturnValue(true);
 
-    const result = await ionicFetchResultAsync(Promise.resolve(mockResult), undefined, customAlerter);
+    const result = await ionicFetchResult(Promise.resolve(mockResult), undefined, customAlerter);
 
     expect(result).toEqual(mockResult);
     expect(alertController.create).toHaveBeenCalledWith({
@@ -95,7 +96,7 @@ describe('ionicFetchDataAsync and ionicFetchResultAsync', () => {
   });
 });
 
-describe('ionicFetchingDataAsync', () => {
+describe('ionicFetchingData', () => {
   beforeEach(() => {
     // Reset mocks before each test
     vi.clearAllMocks();
@@ -108,7 +109,7 @@ describe('ionicFetchingDataAsync', () => {
 
     const fetching = Promise.resolve({ success: true, data: 'test-data' } as DataResult<string>);
 
-    const result = await ionicFetchDataAsync(fetching);
+    const result = await ionicFetchData(fetching);
 
     expect(loadingController.create).toHaveBeenCalledWith({
       spinner: 'bubbles',
@@ -127,7 +128,7 @@ describe('ionicFetchingDataAsync', () => {
 
     const fetching = Promise.resolve({ success: false, message: 'Fetch error', code: '404' } as DataResult<string>);
 
-    await ionicFetchDataAsync(fetching);
+    await ionicFetchData(fetching);
 
     expect(alertController.create).toHaveBeenCalledWith({
       header: 'Data Processing Error',
@@ -143,7 +144,7 @@ describe('ionicFetchingDataAsync', () => {
 
     const fetching = Promise.reject(new Error('Network error'));
 
-    await ionicFetchDataAsync(fetching);
+    await ionicFetchData(fetching);
 
     expect(alertController.create).toHaveBeenCalledWith({
       header: 'Network Request Error',
@@ -157,7 +158,7 @@ describe('ionicFetchingDataAsync', () => {
     const loadingRef = ref(false);
     const fetching = Promise.resolve({ success: true, data: 'test-data' } as DataResult<string>);
 
-    const result = await ionicFetchDataAsync(fetching, loadingRef);
+    const result = await ionicFetchData(fetching, loadingRef);
 
     expect(loadingRef.value).toBe(false); // loadingRef should be set to false after execution
     expect(result).toBe('test-data');
@@ -170,7 +171,7 @@ describe('ionicFetchingDataAsync', () => {
     const loadingRef = ref(true);
     const fetching = Promise.resolve({ success: false, message: 'Fetch error', code: '500' } as DataResult<string>);
 
-    await ionicFetchDataAsync(fetching, loadingRef);
+    await ionicFetchData(fetching, loadingRef);
 
     expect(alertController.create).toHaveBeenCalledWith({
       header: 'Data Processing Error',

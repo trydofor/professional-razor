@@ -1,19 +1,6 @@
 ﻿declare global {
 
   /**
-   * - success: response success
-   * - data: response data
-   * - message: human i18n message
-   * - code: business code
-   */
-  interface DataResult<T> {
-    success: boolean;
-    data?: T;
-    message?: string;
-    code?: string;
-  }
-
-  /**
    * `0` if falsy (`null` | `undefined` | `false` | `NaN` | `''` | Infinity)
    */
   type NumberLike = null | undefined | boolean | number | string | bigint;

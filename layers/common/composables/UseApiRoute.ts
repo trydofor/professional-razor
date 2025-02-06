@@ -1,6 +1,7 @@
 import { useEventBus, type EventBusKey } from '@vueuse/core';
 import type { FetchContext } from 'ofetch';
 import { FetchError } from 'ofetch';
+import type { DataResult } from '../types/common-result';
 
 // import type { FetchOptions } from 'ofetch';
 type ApiRouteOptions = NonNullable<Parameters<typeof $fetch>[1]>;

@@ -88,9 +88,6 @@ catalogs:
     happy-dom:
       specifier: 16.6.0
       version: 16.6.0
-    msw:
-      specifier: 2.7.0
-      version: 2.7.0
     nuxi:
       specifier: 3.20.0
       version: 3.20.0
@@ -245,9 +242,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -372,9 +366,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -481,9 +472,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -593,9 +581,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -726,9 +711,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -841,9 +823,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -977,9 +956,6 @@ importers:
       happy-dom:
         specifier: catalog:commonDev
         version: 16.6.0
-      msw:
-        specifier: catalog:commonDev
-        version: 2.7.0(@types/node@22.10.7)(typescript@5.7.3)
       nuxi:
         specifier: catalog:commonDev
         version: 3.20.0
@@ -6795,15 +6771,18 @@ snapshots:
   '@bundled-es-modules/cookie@2.0.1':
     dependencies:
       cookie: 0.7.2
+    optional: true
 
   '@bundled-es-modules/statuses@1.0.1':
     dependencies:
       statuses: 2.0.1
+    optional: true
 
   '@bundled-es-modules/tough-cookie@0.1.6':
     dependencies:
       '@types/tough-cookie': 4.0.5
       tough-cookie: 4.1.4
+    optional: true
 
   '@capacitor/cli@6.2.0':
     dependencies:
@@ -7324,6 +7303,7 @@ snapshots:
       '@inquirer/core': 10.1.4(@types/node@22.10.7)
       '@inquirer/type': 3.0.2(@types/node@22.10.7)
       '@types/node': 22.10.7
+    optional: true
 
   '@inquirer/core@10.1.4(@types/node@22.10.7)':
     dependencies:
@@ -7338,12 +7318,15 @@ snapshots:
       yoctocolors-cjs: 2.1.2
     transitivePeerDependencies:
       - '@types/node'
+    optional: true
 
-  '@inquirer/figures@1.0.9': {}
+  '@inquirer/figures@1.0.9':
+    optional: true
 
   '@inquirer/type@3.0.2(@types/node@22.10.7)':
     dependencies:
       '@types/node': 22.10.7
+    optional: true
 
   '@ionic/cli-framework-output@2.2.8':
     dependencies:
@@ -7657,6 +7640,7 @@ snapshots:
       is-node-process: 1.2.0
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
+    optional: true
 
   '@netlify/functions@2.8.2':
     dependencies:
@@ -8043,14 +8027,17 @@ snapshots:
 
   '@one-ini/wasm@0.1.1': {}
 
-  '@open-draft/deferred-promise@2.2.0': {}
+  '@open-draft/deferred-promise@2.2.0':
+    optional: true
 
   '@open-draft/logger@0.3.0':
     dependencies:
       is-node-process: 1.2.0
       outvariant: 1.4.3
+    optional: true
 
-  '@open-draft/until@2.1.0': {}
+  '@open-draft/until@2.1.0':
+    optional: true
 
   '@parcel/watcher-android-arm64@2.5.0':
     optional: true
@@ -8300,7 +8287,8 @@ snapshots:
 
   '@trysound/sax@0.2.0': {}
 
-  '@types/cookie@0.6.0': {}
+  '@types/cookie@0.6.0':
+    optional: true
 
   '@types/doctrine@0.0.9': {}
 
@@ -8340,9 +8328,11 @@ snapshots:
 
   '@types/slice-ansi@4.0.0': {}
 
-  '@types/statuses@2.0.5': {}
+  '@types/statuses@2.0.5':
+    optional: true
 
-  '@types/tough-cookie@4.0.5': {}
+  '@types/tough-cookie@4.0.5':
+    optional: true
 
   '@types/web-bluetooth@0.0.20': {}
 
@@ -9337,7 +9327,8 @@ snapshots:
 
   cli-width@3.0.0: {}
 
-  cli-width@4.1.0: {}
+  cli-width@4.1.0:
+    optional: true
 
   clipboardy@4.0.0:
     dependencies:
@@ -9410,7 +9401,8 @@ snapshots:
 
   cookie-es@1.2.2: {}
 
-  cookie@0.7.2: {}
+  cookie@0.7.2:
+    optional: true
 
   cookiejar@2.1.4: {}
 
@@ -10356,7 +10348,8 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  graphql@16.10.0: {}
+  graphql@16.10.0:
+    optional: true
 
   gzip-size@6.0.0:
     dependencies:
@@ -10394,7 +10387,8 @@ snapshots:
 
   he@1.2.0: {}
 
-  headers-polyfill@4.0.3: {}
+  headers-polyfill@4.0.3:
+    optional: true
 
   hexoid@1.0.0: {}
 
@@ -10575,7 +10569,8 @@ snapshots:
 
   is-module@1.0.0: {}
 
-  is-node-process@1.2.0: {}
+  is-node-process@1.2.0:
+    optional: true
 
   is-number@7.0.0: {}
 
@@ -11018,12 +11013,14 @@ snapshots:
       typescript: 5.7.3
     transitivePeerDependencies:
       - '@types/node'
+    optional: true
 
   muggle-string@0.4.1: {}
 
   mute-stream@0.0.8: {}
 
-  mute-stream@2.0.0: {}
+  mute-stream@2.0.0:
+    optional: true
 
   nanoid@3.3.8: {}
 
@@ -11419,7 +11416,8 @@ snapshots:
 
   outdent@0.5.0: {}
 
-  outvariant@1.4.3: {}
+  outvariant@1.4.3:
+    optional: true
 
   p-filter@2.1.0:
     dependencies:
@@ -11539,7 +11537,8 @@ snapshots:
       lru-cache: 11.0.2
       minipass: 7.1.2
 
-  path-to-regexp@6.3.0: {}
+  path-to-regexp@6.3.0:
+    optional: true
 
   path-type@4.0.0: {}
 
@@ -11793,6 +11792,7 @@ snapshots:
   psl@1.15.0:
     dependencies:
       punycode: 2.3.1
+    optional: true
 
   pump@3.0.2:
     dependencies:
@@ -11805,7 +11805,8 @@ snapshots:
     dependencies:
       side-channel: 1.1.0
 
-  querystringify@2.2.0: {}
+  querystringify@2.2.0:
+    optional: true
 
   queue-microtask@1.2.3: {}
 
@@ -11905,7 +11906,8 @@ snapshots:
 
   require-from-string@2.0.2: {}
 
-  requires-port@1.0.0: {}
+  requires-port@1.0.0:
+    optional: true
 
   resolve-from@4.0.0: {}
 
@@ -12226,7 +12228,8 @@ snapshots:
     optionalDependencies:
       bare-events: 2.5.4
 
-  strict-event-emitter@0.5.1: {}
+  strict-event-emitter@0.5.1:
+    optional: true
 
   string-width@4.2.3:
     dependencies:
@@ -12443,6 +12446,7 @@ snapshots:
       punycode: 2.3.1
       universalify: 0.2.0
       url-parse: 1.5.10
+    optional: true
 
   tr46@0.0.3: {}
 
@@ -12546,7 +12550,8 @@ snapshots:
 
   universalify@0.1.2: {}
 
-  universalify@0.2.0: {}
+  universalify@0.2.0:
+    optional: true
 
   universalify@2.0.1: {}
 
@@ -12678,6 +12683,7 @@ snapshots:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+    optional: true
 
   urlpattern-polyfill@8.0.2: {}
 
@@ -13002,6 +13008,7 @@ snapshots:
       ansi-styles: 4.3.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
+    optional: true
 
   wrap-ansi@7.0.0:
     dependencies:
@@ -13070,7 +13077,8 @@ snapshots:
 
   yocto-queue@1.1.1: {}
 
-  yoctocolors-cjs@2.1.2: {}
+  yoctocolors-cjs@2.1.2:
+    optional: true
 
   zhead@2.2.4: {}
 

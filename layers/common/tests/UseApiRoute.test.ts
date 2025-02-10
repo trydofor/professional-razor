@@ -1,55 +1,48 @@
-import { describe, it, expect, beforeAll, afterAll, afterEach, vi } from 'vitest';
-import { setupServer } from 'msw/node';
-import { http, HttpResponse } from 'msw';
-import { createFetch, FetchError } from 'ofetch';
-import { useEventBus } from '@vueuse/core';
-import { useApiRoute, apiRouteAuthOptions, apiRouteAuthEventBus, apiRouteFetchError } from '../composables/UseApiRoute';
+import { registerEndpoint } from '@nuxt/test-utils/runtime';
+import { describe, expect, it, vi } from 'vitest';
+import { apiResponseEventBus, apiRouteFetchError, useApiRoute } from '../composables/UseApiRoute';
+import { ApiResultError } from '../errors/common-error';
 
 const session = 'wings-session';
 const cookie = `session=${session}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
-const server = setupServer(
-  http.get('/api/v1/test-get.json', ({ request }) => {
-    const contentType = request.headers.get('content-type');
-    return HttpResponse.json({
-      success: true,
-      data: contentType,
-    });
-  }),
-  http.post('/api/v1/test-post.json', ({ request }) => {
-    const contentType = request.headers.get('content-type');
-    return HttpResponse.json({
-      success: true,
-      data: contentType,
-    });
-  }),
-  http.post('/api/v1/test-401.json', () => {
-    return HttpResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }),
-  http.post('/api/v1/test-403.json', () => {
-    return HttpResponse.json({ error: 'Forbidden' }, { status: 403 });
-  }),
-  http.post('/api/v1/test-session.json', () => {
-    return HttpResponse.json({
-      success: true,
-      data: cookie,
-    }, { headers: { 'Set-Cookie': cookie, 'Session': session } });
-  }),
-);
 
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
-  // eslint-disable-next-line
-  // @ts-ignore https://github.com/nuxt/test-utils/issues/775
-  // 404 Cannot find any path matching /api/v1/test-get.json if comment
-  globalThis.$fetch = createFetch();
+registerEndpoint('/api/v1/test-get.json', (event) => {
+  const contentType = event.node.req.headers['content-type'];
+  return { success: true, data: contentType ?? null };
 });
 
-afterEach(() => {
-  server.resetHandlers();
+registerEndpoint('/api/v1/test-post.json', (event) => {
+  const contentType = event.node.req.headers['content-type'];
+  return { success: true, data: contentType ?? null };
 });
 
-afterAll(() => {
-  server.close();
+registerEndpoint('/api/v1/test-403.json', (event) => {
+  event.node.res.statusCode = 403;
+  return { error: 'Forbidden' };
+});
+
+registerEndpoint('/api/v1/test-session.json', (event) => {
+  event.node.res.setHeader('Set-Cookie', cookie);
+  event.node.res.setHeader('Session', session);
+
+  return {
+    success: true,
+    data: cookie,
+  };
+});
+
+registerEndpoint('/api/v1/test-error.json', () => {
+  return {
+    success: false,
+    errors: [{ message: 'error' }],
+  };
+});
+
+registerEndpoint('/api/v1/test-false.json', () => {
+  return {
+    success: false,
+    message: 'false',
+  };
 });
 
 describe('useApiRoute with real $fetch requests', () => {
@@ -57,10 +50,10 @@ describe('useApiRoute with real $fetch requests', () => {
     const { get, raw } = useApiRoute();
     const rs1 = await get('/test-get.json');
     console.log('get', JSON.stringify(rs1));
-    expect(rs1.data).toBeNull();
+    expect(rs1.data).toEqual('application/json');
     const rs2 = await raw('/test-get.json', { method: 'get' });
     console.log('get', JSON.stringify(rs2));
-    expect(rs2._data).toEqual({ success: true, data: null });
+    expect(rs2._data).toEqual({ success: true, data: 'application/json' });
   });
 
   it('should send POST request with JSON Content-Type', async () => {
@@ -81,8 +74,7 @@ describe('useApiRoute with real $fetch requests', () => {
 
     const rs = await post('/test-post.json', formData);
     console.log('post FormData', JSON.stringify(rs));
-    // in nuxt dev, it auto set `multipart/form-data; boundary`, but test not !!
-    // expect(rs.data).toContain('multipart/form-data');
+    expect(rs.data).toContain('multipart/form-data');
   });
 
   it('should send POST request with URLSearchParams Content-Type', async () => {
@@ -114,53 +106,51 @@ describe('useApiRoute with real $fetch requests', () => {
     expect(opt.options).toContain('"params":{"k1":"v2"}');
   });
 
-  it('should send POST with Auth Event', async () => {
-    const opts = apiRouteAuthOptions([401, 403, 'set-cookie']);
-    const { post } = useApiRoute(opts);
+  it('should send POST with Session Event', async () => {
+    const { post } = useApiRoute();
     const eventSpy = vi.fn();
 
-    apiRouteAuthEventBus.on((ev) => {
-      eventSpy(ev);
+    apiResponseEventBus.on((ev) => {
+      eventSpy(ev.session);
     });
 
-    await expect(post('/test-401.json')).rejects.toSatisfy((error: SafeAny) => {
-      const fe = apiRouteFetchError(error);
-      return JSON.stringify(fe?.data) === JSON.stringify({ success: false });
-    });
+    await post('/test-session.json');
+    expect(eventSpy).toHaveBeenNthCalledWith(1, session);
+  });
+
+  it('should send POST with Error', async () => {
+    const { post } = useApiRoute();
+
     await expect(post('/test-403.json')).rejects.toSatisfy((error: SafeAny) => {
       const fe = apiRouteFetchError(error);
       return fe?.status === 403;
     });
 
-    await post('/test-session.json');
-    expect(eventSpy).toHaveBeenNthCalledWith(1, { status: 401 });
-    expect(eventSpy).toHaveBeenNthCalledWith(2, { status: 403 });
-    expect(eventSpy).toHaveBeenNthCalledWith(3, { status: 200, session: session, headers: { 'set-cookie': cookie } });
+    await expect(post('/test-error.json')).rejects.toSatisfy((error: SafeAny) => {
+      return error instanceof ApiResultError && error.errorResult != null;
+    });
+
+    await expect(post('/test-false.json')).rejects.toSatisfy((error: SafeAny) => {
+      return error instanceof ApiResultError && error.falseResult != null;
+    });
   });
 
-  it('should send POST with Auth Event replace error or result', async () => {
-    const authEventBus = useEventBus('test-useapi-event-bus');
-
-    const opts = apiRouteAuthOptions([401, 403], (_, evt) => {
-      authEventBus.emit(evt);
-      if (evt.status === 403) return new FetchError('error-403');
-    });
-    const { post } = useApiRoute(opts);
-    const eventSpy = vi.fn();
-
-    authEventBus.on((ev) => {
-      eventSpy(ev);
+  it('should send POST without FalseError', async () => {
+    const { post } = useApiRoute({
+      onResponse: [
+        apiResponseSessionHook(),
+        apiResponseStatusHook(),
+        apiResponseResultHook(false),
+      ],
     });
 
-    await expect(post('/test-401.json')).rejects.toMatchObject({
-      status: 401,
-    });
-    await expect(post('/test-403.json')).rejects.toSatisfy((err: SafeAny) => {
-      return err.cause.message === 'error-403';
+    await expect(post('/test-error.json')).rejects.toSatisfy((error: SafeAny) => {
+      return error instanceof ApiResultError && error.errorResult != null;
     });
 
-    expect(eventSpy).toHaveBeenNthCalledWith(1, { status: 401 });
-    expect(eventSpy).toHaveBeenNthCalledWith(2, { status: 403 });
+    await expect(post('/test-false.json')).resolves.toSatisfy((result: SafeAny) => {
+      return result.success === false;
+    });
   });
 });
 
@@ -180,7 +170,7 @@ describe('merge options', () => {
   } as NonNullable<Parameters<typeof $fetch>[1]>;
 
   it('returns empty object if ops and op are null or undefined', () => {
-    const { opt } = useApiRoute();
+    const { opt } = useApiRoute({});
     expect(opt()).toEqual({});
     expect(opt(op1)).toEqual(op1);
   });

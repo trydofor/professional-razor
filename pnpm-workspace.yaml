@@ -40,7 +40,6 @@ catalogs:
     "@vue/test-utils": "2.4.6"
     "eslint": "9.18.0" # https://github.com/nuxt/nuxt/blob/v3.15.2/package.json
     "happy-dom": "16.6.0" # peer of @nuxt/test-utils # https://github.com/nuxt/nuxt/blob/v3.15.2/package.json
-    "msw": "2.7.0" # API mocking
     "nuxi": "3.20.0" # by nuxt # https://github.com/nuxt/nuxt/blob/v3.15.2/package.json @nuxt/cli
     "typescript": "5.7.3" # https://github.com/nuxt/nuxt/blob/v3.15.2/package.json
     "unocss": "65.4.2"

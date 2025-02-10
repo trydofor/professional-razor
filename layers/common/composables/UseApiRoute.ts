@@ -1,93 +1,103 @@
 import { useEventBus, type EventBusKey } from '@vueuse/core';
 import type { FetchContext } from 'ofetch';
-import { FetchError } from 'ofetch';
-import type { DataResult } from '../types/common-result';
+import { FetchError, createFetchError } from 'ofetch';
+import type { ApiResult, DataResult } from '../types/common-result';
+import { ApiResultError } from '../errors/common-error';
+import { flatItems } from '../utils/safe-converter';
 
-// import type { FetchOptions } from 'ofetch';
-type ApiRouteOptions = NonNullable<Parameters<typeof $fetch>[1]>;
+// import type { FetchOptions } from 'ofetch'; // ng for $fetch
+type ApiFetchOptions = NonNullable<Parameters<typeof $fetch>[1]>;
+type UnMaybeArray<T> = Exclude<T, T[]>;
 
-export type ApiRouteAuthEvent = {
-  status: number;
-  session?: string;
-  headers?: Record<string, string>;
-};
+export type ApiResponseContext = Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'>;
+export type ApiRequestHook = UnMaybeArray<NonNullable<ApiFetchOptions['onRequest']>>;
+export type ApiResponseHook = UnMaybeArray<NonNullable<ApiFetchOptions['onResponse']>>;
 
-/**
- * handle the event with context and control the return
- *  - null - nop
- *  - non-null - to set the response._data, get it by error.data if error
- *  - FetchError - to set context.error, get it by error.cause
- *  @see https://github.com/unjs/ofetch/blob/main/src/fetch.ts
- */
-export type ApiRouteAuthHandle = (context: FetchContext, event: ApiRouteAuthEvent) => SafeAny | FetchError;
-
-export const apiRouteAuthEventKey: EventBusKey<ApiRouteAuthEvent> = Symbol('apiRouteResponseEventKey');
-export const apiRouteAuthEventBus = useEventBus<ApiRouteAuthEvent, FetchContext>(apiRouteAuthEventKey);
+export type ApiResponseEvent = { session?: string; context: ApiResponseContext };
+export const apiResponseEventKey: EventBusKey<ApiResponseEvent> = Symbol('apiResponseEventKey');
+export const apiResponseEventBus = useEventBus<ApiResponseEvent, ApiResponseContext>(apiResponseEventKey);
 
 /**
- * emit event by apiRouteAuthEventBus, handle 401 to return `{success:false}`
+ * * ✅ the browser's fetch automatically infers the Content-Type.
+ * * ❌ Node.js $fetch may not automatically set the Content-Type.
+ * * URLSearchParams - application/x-www-form-urlencoded
+ * * FormData - multipart/form-data
+ * * default - application/json
  */
-export const apiRouteAuthEmitter: ApiRouteAuthHandle = (ctx, evt) => {
-  apiRouteAuthEventBus.emit(evt, ctx);
-  return evt.status === 401 ? { success: false } : null;
-};
-/**
- * construct a onResponse by eventBus and listen status or header
- * @param statusOrHeader status or header(case insensitive), `[401]` as default.
- * @param handler the event bus, `apiRouteAuthEmitter` as default.
- */
-export function apiRouteAuthOptions(statusOrHeader: (number | string)[] = [401], handler: ApiRouteAuthHandle = apiRouteAuthEmitter): ApiRouteOptions {
-  const status: number[] = [];
-  const header: string[] = [];
-  for (const k of statusOrHeader) {
-    if (typeof k === 'string') {
-      header.push(k);
-    }
-    else {
-      status.push(k);
-    }
+export const apiRequestContentTypeHook: ApiRequestHook = (context) => {
+  const body = context.options.body;
+  const headers = context.options.headers;
+  if (headers.has('content-type')) return;
+
+  if (body instanceof URLSearchParams) {
+    headers.set('content-type', 'application/x-www-form-urlencoded');
   }
+  else if (body instanceof FormData) {
+    headers.set('content-type', 'multipart/form-data');
+  }
+  else {
+    headers.set('content-type', 'application/json');
+  }
+};
 
-  return {
-    onResponse: (ctx) => {
-      const evt: ApiRouteAuthEvent = { status: ctx.response.status };
-      const hds = ctx.response.headers;
-
-      const sn = hds.get('session');
-      if (sn) evt.session = sn;
-
-      for (const h of header) {
-        const hv = hds.get(h);
-        if (hv) {
-          if (evt.headers == null) evt.headers = {};
-          evt.headers[h] = hv;
-        }
+/**
+ * emit ApiResponseEvent by apiResponseEventBus if get value by header
+ *
+ * @param sessionHeader the header of response that holds session token, default 'session'
+ */
+export function apiResponseSessionHook(sessionHeader: string[] = ['session']): ApiResponseHook {
+  return (context) => {
+    const headers = context.response.headers;
+    for (const hd of sessionHeader) {
+      const session = headers.get(hd);
+      if (session) {
+        apiResponseEventBus.emit({ session, context }, context);
+        break;
       }
-
-      if (status.includes(evt.status) || evt.session != null || evt.headers != null) {
-        const rst = handler(ctx, evt);
-        if (rst instanceof FetchError) {
-          ctx.error = rst;
-        }
-        else if (rst != null) {
-          ctx.response._data = rst;
-        }
-      }
-    },
+    }
   };
 }
 
-export function apiRouteFetchError(err: SafeAny): FetchError | null {
-  return err instanceof FetchError ? err : null;
+/**
+ * throw FetchError if response.status not in status
+ *
+ * @param okStatus the success response code
+ */
+export function apiResponseStatusHook(okStatus: number[] = [200]): ApiResponseHook {
+  return (context) => {
+    if (!okStatus.includes(context.response.status)) {
+      throw createFetchError(context);
+    }
+  };
+}
+
+/**
+ * throw ApiResultError if not result.success
+ *
+ * @param apiFalse include the false
+ */
+export function apiResponseResultHook(apiFalse: boolean = true): ApiResponseHook {
+  return (context) => {
+    const result = context.response._data as ApiResult;
+    if (result != null && result.success === false) {
+      if (apiFalse || 'errors' in result) {
+        throw new ApiResultError(result);
+      }
+    }
+  };
+}
+
+export function apiRouteFetchError(err: SafeAny): FetchError | undefined {
+  return err instanceof FetchError ? err : undefined;
 }
 
 /**
  * how to merge this fetchHook(passin) with the that fetchHook(default) ,
  * - true - all this, no that
  * - false - no this, all that
- * - null - both this and that, into array
+ * - undefined/null - both this and that, into array
  */
-export type ApiRouteFetchHooksMerge = {
+export type ApiHookMergeOptions = {
   mergeFetchHooks?: boolean | {
     onRequest?: boolean;
     onRequestError?: boolean;
@@ -96,15 +106,24 @@ export type ApiRouteFetchHooksMerge = {
   };
 };
 
+export const defaultFetchOptions: ApiFetchOptions = {
+  onRequest: typeof window === 'undefined' ? undefined : apiRequestContentTypeHook,
+  onResponse: [
+    apiResponseSessionHook(),
+    apiResponseStatusHook(),
+    apiResponseResultHook(),
+  ],
+};
+
 /**
  * Provides utility functions for interacting with an API, including URL generation,
  * options merging, and HTTP request methods.
  *
- * @param ops - Default fetch options to be merged with each request's specific options.
+ * @param options - Default fetch options to be merged with each request's specific options.
  * @returns An object containing utility functions for API requests.
  * @see https://github.com/unjs/ofetch
  */
-export function useApiRoute(ops?: ApiRouteOptions) {
+export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
   const prefix = useRuntimeConfig().public.apiRoute;
 
   /**
@@ -125,77 +144,74 @@ export function useApiRoute(ops?: ApiRouteOptions) {
    * @param op - Specific fetch options for a request.
    * @returns A merged object containing the combined options.
    */
-  function opt(op?: ApiRouteOptions & ApiRouteFetchHooksMerge): ApiRouteOptions {
-    if (op == null) return { ...ops };
-    const opt = { ...ops, ...op };
+  function opt(op?: ApiFetchOptions & ApiHookMergeOptions): ApiFetchOptions {
+    if (op == null) return { ...options };
+    const opt = { ...options, ...op };
     delete opt.mergeFetchHooks;
-    if (ops == null) return opt;
+    if (options == null) return opt;
 
     const mergeHooks = op?.mergeFetchHooks;
     if (mergeHooks == null) { // default into array
       // user first, defaults last
-      opt.onRequest = flatArray(op.onRequest, ops.onRequest);
-      opt.onRequestError = flatArray(op.onRequestError, ops.onRequestError);
-      opt.onResponse = flatArray(op.onResponse, ops.onResponse);
-      opt.onResponseError = flatArray(op.onResponseError, ops.onResponseError);
+      opt.onRequest = flatItems([op.onRequest, options.onRequest]);
+      opt.onRequestError = flatItems([op.onRequestError, options.onRequestError]);
+      opt.onResponse = flatItems([op.onResponse, options.onResponse]);
+      opt.onResponseError = flatItems([op.onResponseError, options.onResponseError]);
       return opt;
     }
     else if (typeof mergeHooks === 'boolean') { // all this, no that
-      opt.onRequest = mergeHooks ? op.onRequest : ops.onRequest;
-      opt.onRequestError = mergeHooks ? op.onRequestError : ops.onRequestError;
-      opt.onResponse = mergeHooks ? op.onResponse : ops.onResponse;
-      opt.onResponseError = mergeHooks ? op.onResponseError : ops.onResponseError;
+      opt.onRequest = mergeHooks ? op.onRequest : options.onRequest;
+      opt.onRequestError = mergeHooks ? op.onRequestError : options.onRequestError;
+      opt.onResponse = mergeHooks ? op.onResponse : options.onResponse;
+      opt.onResponseError = mergeHooks ? op.onResponseError : options.onResponseError;
     }
     else {
       const merge = (mo: boolean | undefined, tz: SafeAny, tt: SafeAny): SafeAny => {
         if (mo === true) return tz;
         if (mo === false) return tt;
-        return flatArray(tz, tt);
+        return flatItems([tz, tt]);
       };
-      opt.onRequest = merge(mergeHooks.onRequest, op.onRequest, ops.onRequest);
-      opt.onRequestError = merge(mergeHooks.onRequestError, op.onRequestError, ops.onRequestError);
-      opt.onResponse = merge(mergeHooks.onResponse, op.onResponse, ops.onResponse);
-      opt.onResponseError = merge(mergeHooks.onResponseError, op.onResponseError, ops.onResponseError);
+      opt.onRequest = merge(mergeHooks.onRequest, op.onRequest, options.onRequest);
+      opt.onRequestError = merge(mergeHooks.onRequestError, op.onRequestError, options.onRequestError);
+      opt.onResponse = merge(mergeHooks.onResponse, op.onResponse, options.onResponse);
+      opt.onResponseError = merge(mergeHooks.onResponseError, op.onResponseError, options.onResponseError);
     }
 
     return opt;
   }
 
   /**
-   * Sends a fetch request to the given URI with the specified options.
+   * request to the given URI with the specified options.
    *
-   * @template T - The expected type of the data returned by the API.
    * @param uri - The endpoint URI to request.
    * @param op - Fetch options for the request.
-   * @returns A promise resolving to the API's response as a `DataResult<T>`.
+   * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function req<T>(uri: string, op: ApiRouteOptions & ApiRouteFetchHooksMerge) {
-    return $fetch<DataResult<T>>(url(uri), opt(op));
+  function req<D = SafeAny, T = DataResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
+    return $fetch<T>(url(uri), opt(op));
   }
 
   /**
-   * Sends a fetch request to the given URI with the specified options and get raw response.
+   * request to the given URI with the specified options and get raw response.
    *
-   * @template T - The expected type of the data returned by the API.
    * @param uri - The endpoint URI to request.
    * @param op - Fetch options for the request.
-   * @returns A promise resolving to the API's response as a `DataResult<T>`.
+   * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function raw<T>(uri: string, op: ApiRouteOptions & ApiRouteFetchHooksMerge) {
-    return $fetch.raw<DataResult<T>>(url(uri), opt(op));
+  function raw<D = SafeAny, T = DataResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
+    return $fetch.raw<T>(url(uri), opt(op));
   }
 
   /**
    * Sends a GET request to the specified URI with optional query parameters and fetch options.
    *
-   * @template T - The expected type of the data returned by the API.
    * @param uri - The endpoint URI to request.
    * @param query - Optional query parameters to include in the request.
    * @param op - Optional fetch options to customize the request.
-   * @returns A promise resolving to the API's response as a `DataResult<T>`.
+   * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function get<T>(uri: string, query?: SafeObj, op?: ApiRouteOptions & ApiRouteFetchHooksMerge) {
-    return req<T>(uri, {
+  function get<D = SafeAny, T = DataResult<D>>(uri: string, query?: SafeObj, op?: ApiFetchOptions & ApiHookMergeOptions) {
+    return req<D, T>(uri, {
       ...op,
       method: 'get',
       query,
@@ -205,15 +221,14 @@ export function useApiRoute(ops?: ApiRouteOptions) {
   /**
    * Sends a POST request to the specified URI with optional body, query parameters, and fetch options.
    *
-   * @template T - The expected type of the data returned by the API.
    * @param uri - The endpoint URI to request.
    * @param body - Optional request body, which can be an object, URLSearchParams, or FormData.
    * @param query - Optional query parameters to include in the request.
    * @param op - Optional fetch options to customize the request.
-   * @returns A promise resolving to the API's response as a `DataResult<T>`.
+   * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function post<T>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: ApiRouteOptions & ApiRouteFetchHooksMerge) {
-    return req<T>(uri, {
+  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: ApiFetchOptions & ApiHookMergeOptions) {
+    return req<D, T>(uri, {
       ...op,
       method: 'post',
       query,

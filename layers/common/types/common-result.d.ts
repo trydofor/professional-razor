@@ -14,13 +14,13 @@ export interface I18nMessage {
  * - target: target input name, 'city', 'tab1.zipcode'
  */
 export interface I18nNotice extends I18nMessage {
-  type: string;
+  type?: string;
   target?: string;
 }
 
 /**
  * - success: whether the result is success, default false.
- * - code: biz-code/err-code to the caller, should be null if empty
+ * - code: biz-code/err-code to the caller, should be undefined if empty
  */
 export interface ActionResult {
   success: boolean;
@@ -29,8 +29,8 @@ export interface ActionResult {
 
 /**
  * - success: false fixed
- * - code: err-code to the caller, should be null if empty
- * - errors: errors cause success to be false, should be null if empty.
+ * - code: err-code to the caller, should be undefined if empty
+ * - errors: errors cause success to be false, should be undefined if empty.
  */
 export interface ErrorResult extends ActionResult {
   errors: I18nNotice[];
@@ -38,7 +38,7 @@ export interface ErrorResult extends ActionResult {
 
 /**
  * - success: true or false
- * - code: biz-code to the caller, should be null if empty
+ * - code: biz-code to the caller, should be undefined if empty
  * - data: biz-data to the caller
  * - message: default i18n message or template
  * - i18nCode: i18n template code

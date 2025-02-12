@@ -13,6 +13,7 @@ catalogs:
     "taze": "18.2.0"
   common:
     "@pinia/nuxt": "0.9.0" # https://github.com/vuejs/pinia/blob/v2.3.0/packages/nuxt/package.json
+    "@sentry/nuxt": "9.0.0" # https://docs.sentry.io/platforms/javascript/guides/nuxt/manual-setup/
     "@vueuse/core": "12.4.0" #https://github.com/vueuse/vueuse/blob/v12.0.0/pnpm-workspace.yaml
     "@vueuse/nuxt": "12.4.0"
     "date-fns": "4.1.0"

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "catalog:common",
+    "@sentry/nuxt": "catalog:common",
     "@vueuse/core": "catalog:common",
     "@vueuse/nuxt": "catalog:common",
     "date-fns": "catalog:common",

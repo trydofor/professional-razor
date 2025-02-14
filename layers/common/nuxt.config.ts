@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   },
   // https://nitro.build/config#routerules
   routeRules: {
+    // nop if apiProxy is empty
     ...nuxtApiProxyRule(),
   },
   compatibilityDate: nuxtCompatibilityDate,

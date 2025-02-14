@@ -12,12 +12,6 @@ export default defineNuxtConfig({
       hashMode: true,
     },
   },
-  runtimeConfig: {
-    public: {
-      apiRoute: '/',
-      apiProxy: '',
-    },
-  },
   alias: {
     '&spa': fileURLToPath(new URL('./', import.meta.url)),
   },

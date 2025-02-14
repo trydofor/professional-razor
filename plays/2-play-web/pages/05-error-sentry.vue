@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-2">
-    <button id="sentryBtn" @click="captureClientError">
+    <button id="captureClientBtn" @click="captureClientError">
       Catch Client Error
     </button>
-    <button id="errorBtn" @click="throwClientError">
+    <button id="throwClientBtn" @click="throwClientError">
       Throw Client Error
     </button>
-    <button type="button" @click="spanServerError">
+    <button id="spanServerBtn" @click="spanServerError">
       Span Server Error
     </button>
   </div>
@@ -16,7 +16,7 @@
 import * as Sentry from '@sentry/nuxt';
 
 definePageMeta({
-  name: 'Example of Error Handling',
+  name: 'Sentry Error Handling',
 });
 
 function captureClientError() {

@@ -1,124 +1,87 @@
 ﻿import { describe, it, expect, vi } from 'vitest';
-import { fetchTypedData } from '../utils/typed-fetcher';
-import type { DataResult } from '../types/common-result';
+import type { DataResult, PageResult, ErrorResult } from '../types/common-result';
 
-describe('fetchTypedData', () => {
-  it('should call loading with true and false asynchronously', async () => {
-    const loadingSpy = vi.fn();
-    const fetching = Promise.resolve({ success: true, data: 'async-data' } as DataResult<string>);
+const mockDataResult: DataResult<string> = { success: true, data: 'test data' };
+const mockPageResult: PageResult<string> = { success: true, data: ['test data'], page: 1, size: 10, totalPage: 1, totalData: 1 };
+const mockErrorResult: ErrorResult = { success: false, errors: [{ type: 'Validation', target: 'field', message: 'Invalid input' }] };
 
-    await fetchTypedData(fetching, { loading: loadingSpy });
-
-    expect(loadingSpy).toHaveBeenNthCalledWith(1, 1);
-    expect(loadingSpy).toHaveBeenNthCalledWith(2, 0);
-  });
-
-  it('should return data when fetching succeeds asynchronously', async () => {
-    const fetching = Promise.resolve({ success: true, data: 'async-data' } as DataResult<string>);
-
-    const result = await fetchTypedData(fetching);
-
-    expect(result).toBe('async-data');
-  });
-
-  it('should call failure when fetching fails asynchronously', async () => {
-    const resultSpy = vi.fn();
-    const result = { success: false, message: 'async-error', code: '500' } as DataResult<string>;
-    const fetching = Promise.resolve(result);
-
-    await fetchTypedData(fetching, { results: resultSpy });
-
-    expect(resultSpy).toHaveBeenCalledWith(result);
-  });
-
-  it('should call catches when an error is thrown asynchronously', async () => {
-    const catchesSpy = vi.fn().mockReturnValue({ data: 'return if error' });
-    const throwingFetching = () => {
-      return Promise.reject(new Error('async test error'));
-    };
-
-    const result = await fetchTypedData(throwingFetching, { catches: catchesSpy });
-
-    expect(catchesSpy).toHaveBeenCalledWith(new Error('async test error'));
-    expect(result).toEqual('return if error');
-  });
-
-  it('should set loading value in Ref object asynchronously', async () => {
+describe('typed-fetcher', () => {
+  it('should update loading state correctly', async () => {
     const loading = ref(false);
-    const fetching = Promise.resolve({ success: true, data: 'async-data' } as DataResult<string>);
-
-    await fetchTypedData(fetching, { loading });
-
-    expect(loading.value).toBe(false); // loading should be set to false after execution
-  });
-});
-
-type DataType = { data?: Maybe<string> };
-
-describe('fetchTypedData with options', () => {
-  it('should handle asynchronous fetching with results and loading', async () => {
-    const loading = ref(false);
-    const options: TypedFetchOptions<DataType> = {
-      loading,
-      results: result => ({ data: result?.data?.toUpperCase() }),
-    };
-
-    const result = await fetchTypedData(
-      () =>
-        new Promise(resolve =>
-          setTimeout(() => resolve({ data: 'async-test' }), 100),
-        ) as Promise<DataType>,
-      options,
-    );
-
-    expect(result).toBe('ASYNC-TEST');
+    const mockResult: DataResult<string> = { success: true, data: 'test' };
+    const fetching = vi.fn().mockResolvedValue(mockResult);
+    await fetchTypedResult(fetching, { loading });
     expect(loading.value).toBe(false);
   });
 
-  it('should handle errors in asynchronous fetching', async () => {
-    const catches = vi.fn().mockReturnValue({ data: 'fallback-async' });
-    const options: TypedFetchOptions<DataType> = { catches };
-
-    const result = await fetchTypedData(
-      () =>
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error(' test error')), 100),
-        ),
-      options,
-    );
-
-    expect(result).toBe('fallback-async');
-    expect(catches).toHaveBeenCalled();
+  it('should handle loading function correctly', async () => {
+    const loadingFn = vi.fn();
+    const mockResult: DataResult<string> = { success: true, data: 'test' };
+    const fetching = vi.fn().mockResolvedValue(mockResult);
+    await fetchTypedResult(fetching, { loading: loadingFn });
+    expect(loadingFn).toHaveBeenCalledWith(1);
+    expect(loadingFn).toHaveBeenCalledWith(0);
   });
 
-  it('should throw error if catches return null in asynchronous fetching', async () => {
-    const options: TypedFetchOptions<DataType> = {
-      catches: () => null,
-    };
-
-    await expect(
-      fetchTypedData(
-        () =>
-          new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Throwing async error')), 100),
-          ),
-        options,
-      ),
-    ).rejects.toThrow('Throwing async error');
+  it('fetchTypedData should return DataResult', async () => {
+    const result = await fetchTypedData(Promise.resolve(mockDataResult));
+    expect(result).toEqual(mockDataResult);
   });
 
-  it('should use loading ref correctly', async () => {
-    const loading = ref(false);
-    const options: TypedFetchOptions<DataType> = { loading };
+  it('fetchTypedPage should return PageResult', async () => {
+    const result = await fetchTypedPage(Promise.resolve(mockPageResult));
+    expect(result).toEqual(mockPageResult);
+  });
 
-    await fetchTypedData(
-      () =>
-        new Promise(resolve =>
-          setTimeout(() => resolve({ data: 'test-loading-ref' }), 100),
-        ) as Promise<DataType>,
-      options,
+  it('fetchTypedResult should return correct result', async () => {
+    const result = await fetchTypedResult(Promise.resolve(mockDataResult));
+    expect(result).toEqual(mockDataResult);
+  });
+
+  it('fetchTypedResult should handle errors with catches option', async () => {
+    const error = new Error('Test error');
+    const catchingFn = vi.fn(() => mockErrorResult);
+
+    const result = await fetchTypedResult(
+      () => Promise.reject(error),
+      { catches: catchingFn },
     );
 
-    expect(loading.value).toBe(false);
+    expect(result).toEqual(mockErrorResult);
+    expect(catchingFn).toHaveBeenCalledWith(error);
+  });
+
+  it('fetchTypedResult should rethrow error if catches returns null', async () => {
+    const error = new Error('Test error');
+    const catchingFn = vi.fn(() => null);
+
+    await expect(fetchTypedResult(
+      () => Promise.reject(error),
+      { catches: catchingFn },
+    )).rejects.toThrow(error);
+  });
+
+  it('fetchTypedResult should apply results transformation', async () => {
+    const transformFn = vi.fn(() => ({ success: true, data: 'transformed' }));
+    const result = await fetchTypedResult(Promise.resolve(mockDataResult), { results: transformFn });
+    expect(result).toEqual({ success: true, data: 'transformed' });
+  });
+
+  it('getDataResult should return DataResult if valid', () => {
+    expect(getDataResult(mockDataResult)).toEqual(mockDataResult);
+    expect(getDataResult(mockPageResult)).toBeNull();
+    expect(getDataResult(mockErrorResult)).toBeNull();
+  });
+
+  it('getPageResult should return PageResult if valid', () => {
+    expect(getPageResult(mockPageResult)).toEqual(mockPageResult);
+    expect(getPageResult(mockDataResult)).toBeNull();
+    expect(getPageResult(mockErrorResult)).toBeNull();
+  });
+
+  it('getErrorResult should return ErrorResult if valid', () => {
+    expect(getErrorResult(mockErrorResult)).toEqual(mockErrorResult);
+    expect(getErrorResult(mockDataResult)).toBeNull();
+    expect(getErrorResult(mockPageResult)).toBeNull();
   });
 });

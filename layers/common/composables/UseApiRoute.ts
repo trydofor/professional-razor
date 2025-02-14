@@ -15,7 +15,7 @@ export type ApiResponseHook = UnMaybeArray<NonNullable<ApiFetchOptions['onRespon
 
 export type ApiResponseEvent = { session?: string; context: ApiResponseContext };
 export const apiResponseEventKey: EventBusKey<ApiResponseEvent> = Symbol('apiResponseEventKey');
-export const apiResponseEventBus = useEventBus<ApiResponseEvent, ApiResponseContext>(apiResponseEventKey);
+export const apiResponseEventBus = useEventBus<ApiResponseEvent, undefined>(apiResponseEventKey);
 
 /**
  * * ✅ the browser's fetch automatically infers the Content-Type.
@@ -45,13 +45,14 @@ export const apiRequestContentTypeHook: ApiRequestHook = (context) => {
  *
  * @param sessionHeader the header of response that holds session token, default 'session'
  */
-export function apiResponseSessionHook(sessionHeader: string[] = ['session']): ApiResponseHook {
+export function apiResponseSessionHook(sessionHeader: string[] = ['session'], eventKey: EventBusKey<ApiResponseEvent> = apiResponseEventKey): ApiResponseHook {
+  const eventBus = useEventBus(eventKey);
   return (context) => {
     const headers = context.response.headers;
     for (const hd of sessionHeader) {
       const session = headers.get(hd);
       if (session) {
-        apiResponseEventBus.emit({ session, context }, context);
+        eventBus.emit({ session, context });
         break;
       }
     }
@@ -185,9 +186,9 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    *
    * @param uri - The endpoint URI to request.
    * @param op - Fetch options for the request.
-   * @returns A promise of response, default as `T<D> = DataResult<any>`.
+   * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
-  function req<D = SafeAny, T = DataResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
+  function req<D = SafeAny, T = ApiResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
     return $fetch<T>(url(uri), opt(op));
   }
 
@@ -196,9 +197,9 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    *
    * @param uri - The endpoint URI to request.
    * @param op - Fetch options for the request.
-   * @returns A promise of response, default as `T<D> = DataResult<any>`.
+   * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
-  function raw<D = SafeAny, T = DataResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
+  function raw<D = SafeAny, T = ApiResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
     return $fetch.raw<T>(url(uri), opt(op));
   }
 

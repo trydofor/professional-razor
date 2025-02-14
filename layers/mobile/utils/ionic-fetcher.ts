@@ -1,109 +1,127 @@
 ﻿import { loadingController, alertController, type AlertOptions } from '@ionic/vue';
-import { fetchTypedResult, type LoadingStatus } from '&razor-common/utils/typed-fetcher';
-import type { DataResult } from '&razor-common/types/common-result';
+import type { ApiResult, DataResult, PageResult } from '&razor-common/types/common-result';
 
 /**
- * how to alert,
- * - fail alert: failure with failMessage or failCode
- * - error alert: catches with catchErr
- * - true: skip to use default
- * - false: no alert
+ * how to alert and return, only one of result and error is not null
+ *
+ * * alert false
+ *   - success == false && error == null
+ *   - i.e. FalseResult, ErrorResult if not pre-handling
+ * * alert error
+ *   - result == null && error != null
+ *   - i.e. FetchError, FalseResult, ErrorResult
+ * * result - the new result will return if nonnull, nop if null
  */
-export type AlertHandler<T> = (result?: Maybe<DataResult<T>>, error?: SafeAny) => AlertOptions | boolean;
+export type AlertHandler<T = ApiResult> = (result?: Maybe<T>, error?: SafeAny) => { alert?: AlertOptions; result?: T };
 
-const _alerter: AlertHandler<SafeAny> = (result, error) => {
+export type IonicFetchOptions<T = ApiResult> = TypedFetchOptions<T> & { alerter?: AlertHandler<T> };
+
+/**
+ * handle the error and return `{ success: false }`
+ */
+export const defaultFetchAlerter: AlertHandler<SafeAny> = (result, error) => {
   if (error == null) {
     return {
-      header: 'Data Processing Error',
-      message: result?.message || result?.code || 'Failed to fetch data',
-      buttons: ['Close'],
+      alert: {
+        header: 'Data Processing Error',
+        message: result?.message || result?.code || 'Failed to fetch data',
+        buttons: ['Close'],
+      },
     };
   }
-  else {
-    let header = 'Network Request Error';
-    let message = error.message || 'Network or Server Error';
-    const fe = apiRouteFetchError(error);
-    if (fe != null) {
-      // TODO i18n message
-      if (fe.statusCode === 401) {
-        if (fe.data?.success === false) return false; // handled by emit
 
-        header = 'Unauthorized';
-        message = 'Please login to continue.';
-      }
-      else if (fe.statusCode === 403) {
-        header = 'Forbidden';
-        message = 'No permission to access';
-      }
+  let header = 'Network Request Error';
+  let message = error.message || 'Network or Server Error';
+  // TODO handle errorResult,falseResult and its i18n message
+  const fe = apiRouteFetchError(error);
+  if (fe != null) {
+    if (fe.statusCode === 401) {
+      header = 'Unauthorized';
+      message = 'Please login to continue.';
     }
+    else if (fe.statusCode === 403) {
+      header = 'Forbidden';
+      message = 'No permission to access';
+    }
+  }
 
-    return {
+  return {
+    alert: {
       header,
       message,
       buttons: ['Close'],
-    };
-  }
+    },
+    result: { success: false },
+  };
 };
 
-function _results<T>(alerter: AlertHandler<T>): TypedFetchOptions<DataResult<T>>['results'] {
-  return (result) => {
-    if (result?.success) return result;
+function mergeOpts(options: IonicFetchOptions<SafeAny>): IonicFetchOptions<SafeAny> {
+  const alerter = options.alerter;
+  if (alerter == null) return options;
 
-    let opt = alerter(result, null);
-    if (opt === true) {
-      opt = _alerter(result, null);
-    }
-    if (opt != null && typeof opt === 'object') {
-      alertController.create(opt).then(alert => alert.present());
-    }
-    return result ?? { success: false };
-  };
-}
+  options.results = (result) => {
+    if (result?.success === true) return null;
 
-function _catches<T>(alerter: AlertHandler<T>): TypedFetchOptions<DataResult<T>>['catches'] {
-  return (err: SafeAny) => {
-    let opt = alerter(null, err);
-    if (opt === true) {
-      opt = _alerter(null, err);
+    const opt = alerter(result, null);
+
+    if (opt.alert != null) {
+      alertController.create(opt.alert).then(alert => alert.present());
     }
-    if (opt != null && typeof opt === 'object') {
-      alertController.create(opt).then(alert => alert.present());
-    }
-    return { success: false };
+    return opt.result;
   };
+
+  options.catches = (err: SafeAny) => {
+    const opt = alerter(null, err);
+
+    if (opt.alert != null) {
+      alertController.create(opt.alert).then(alert => alert.present());
+    }
+    return opt.result;
+  };
+
+  return options;
 }
 
 /**
- * Show loading when fetching data, show alert if alerter return,
- * - fail alert: failure with failMessage or failCode
- * - error alert: catches with catchErr
- * - true: skip to use default
- * - false: no alert
+ * Show loading when fetching result, construct options via alerter
  *
- * @param fetching - Promise of DataResult
- * @param loading - Ref of boolean instead of using loadingController
- * @param alerter - handle the alert
+ * @param fetching - function/Promise of DataResult
+ * @param options - options to handle loading, result, error
  */
-export async function ionicFetchData<T>(fetching: Promise<DataResult<T>>, loading?: TypedFetchOptions<SafeAny>['loading'], alerter: AlertHandler<T> = _alerter): Promise<T | null> {
-  const result = await ionicFetchResult(fetching, loading, alerter);
-  return result?.data ?? null;
+export async function ionicFetchData<T>(
+  fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
+  options: IonicFetchOptions<ApiResult<T>> = {},
+): Promise<DataResult<T> | null> {
+  const result = await ionicFetchResult(fetching, options);
+  return getDataResult(result);
 }
 
 /**
- * Show loading when fetching result, show alert if failed,
- * return `{ success: false }` if got null.
+ * Show loading when fetching result, construct options via alerter
+ *
+ * @param fetching - function/Promise of PageResult
+ * @param options - options to handle loading, result, error
+ */
+export async function ionicFetchPage<T>(
+  fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
+  options: IonicFetchOptions<ApiResult<T>> = {},
+): Promise<PageResult<T> | null> {
+  const result = await ionicFetchResult(fetching, options);
+  return getPageResult(result);
+}
+
+/**
+ * Show loading when fetching result, construct options via alerter
  *
  * @param fetching - Promise of DataResult
- * @param loading - Ref of boolean instead of using loadingController
- * @param alerter - handle the alert
+ * @param options - alerter to show false and error
  */
-export async function ionicFetchResult<T>(fetching: Promise<DataResult<T>>, loading?: TypedFetchOptions<SafeAny>['loading'], alerter: AlertHandler<T> = _alerter): Promise<DataResult<T>> {
-  if (loading) {
-    return await fetchTypedResult<DataResult<T>>(fetching, {
-      loading,
-      results: _results(alerter),
-      catches: _catches(alerter),
-    }) ?? { success: false };
+export async function ionicFetchResult<T = ApiResult>(
+  fetching: Promise<T> | (() => Promise<T>),
+  options: IonicFetchOptions<T> = {},
+): Promise<T | null> {
+  if (options) {
+    return await fetchTypedResult<T>(fetching, mergeOpts(options));
   }
 
   const ui = await loadingController.create({
@@ -112,7 +130,8 @@ export async function ionicFetchResult<T>(fetching: Promise<DataResult<T>>, load
     duration: 5000,
   });
 
-  const _loading = (sts: LoadingStatus) => {
+  options = {} as TypedFetchOptions<T>;
+  options.loading = (sts: LoadingStatus) => {
     if (sts == 1) {
       ui.present();
     }
@@ -121,9 +140,5 @@ export async function ionicFetchResult<T>(fetching: Promise<DataResult<T>>, load
     }
   };
 
-  return await fetchTypedResult(fetching, {
-    loading: _loading,
-    results: _results(alerter),
-    catches: _catches(alerter),
-  }) ?? { success: false };
+  return await fetchTypedResult(fetching, mergeOpts(options));
 }

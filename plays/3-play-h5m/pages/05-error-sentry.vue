@@ -13,13 +13,13 @@
     </IonHeader>
     <IonContent>
       <div class="flex flex-col gap-2">
-        <IonButton id="sentryBtn" @click="captureClientError">
+        <IonButton id="captureClientErrorBtn" @click="captureClientError">
           Catch Client Error
         </IonButton>
-        <IonButton id="errorBtn" @click="throwClientError">
+        <IonButton id="throwClientBtn" @click="throwClientError">
           Throw Client Error
         </IonButton>
-        <IonButton type="button" @click="spanServerError">
+        <IonButton id="spanServerBtn" @click="spanServerError">
           Span Server Error
         </IonButton>
       </div>
@@ -31,7 +31,7 @@
 import * as Sentry from '@sentry/nuxt';
 
 definePageMeta({
-  name: 'Example of Error Handling',
+  name: 'Sentry Error Handling',
 });
 
 function captureClientError() {

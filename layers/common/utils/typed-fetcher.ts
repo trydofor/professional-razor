@@ -1,9 +1,11 @@
-﻿/**
+﻿import type { ApiResult, DataResult, PageResult, ErrorResult } from '../types/common-result';
+
+/**
  * true if loading(1), false if done(0) or error(2)
  */
 export type LoadingStatus = 1 | 0 | 2;
 
-export type TypedFetchOptions<T> = {
+export type TypedFetchOptions<T = ApiResult> = {
   /**
    * true if loading(1), false if done(0) or error(2)
    */
@@ -30,24 +32,40 @@ function _doLoading(status: LoadingStatus, loading?: TypedFetchOptions<SafeAny>[
 }
 
 /**
- * fetching data with loading, failure, error handling
+ * fetching data result with loading, result, error handling, null if not data result
+ *
  * @param fetching - function/Promise of DataResult
- * @param options - options to handle loading, failure, error
+ * @param options - options to handle loading, result, error
  */
 export async function fetchTypedData<T>(
-  fetching: Promise<{ data?: T }> | (() => Promise<{ data?: T }>),
-  options: TypedFetchOptions<{ data?: T }> = {},
-): Promise<T | null> {
+  fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
+  options: TypedFetchOptions<ApiResult<T>> = {},
+): Promise<DataResult<T> | null> {
   const result = await fetchTypedResult(fetching, options);
-  return result?.data ?? null;
+  return getDataResult(result);
 }
 
 /**
- * fetching result with loading, failure, error handling
- * @param fetching - function/Promise of DataResult
- * @param options - options to handle loading, failure, error
+ * fetching page result with loading, result, error handling, null if not page result
+ *
+ * @param fetching - function/Promise of PageResult
+ * @param options - options to handle loading, result, error
  */
-export async function fetchTypedResult<T>(
+export async function fetchTypedPage<T>(
+  fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
+  options: TypedFetchOptions<ApiResult<T>> = {},
+): Promise<PageResult<T> | null> {
+  const result = await fetchTypedResult(fetching, options);
+  return getPageResult(result);
+}
+
+/**
+ * fetching any result with loading, result, error handling
+ *
+ * @param fetching - function/Promise of any result
+ * @param options - options to handle loading, result, error
+ */
+export async function fetchTypedResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
   options: TypedFetchOptions<T> = {},
 ): Promise<T | null> {
@@ -75,4 +93,17 @@ export async function fetchTypedResult<T>(
   }
 
   return result;
+}
+
+export function getDataResult<T>(result?: ApiResult<T> | null): DataResult<T> | null {
+  return (result == null || 'errors' in result || 'page' in result) ? null : result;
+}
+
+export function getPageResult<T>(result?: ApiResult<T> | null): PageResult<T> | null {
+  if (result == null || 'errors' in result) return null;
+  return 'page' in result ? result : null;
+}
+
+export function getErrorResult(result?: ApiResult<SafeAny> | null): ErrorResult | null {
+  return (result != null && 'errors' in result) ? result : null;
 }

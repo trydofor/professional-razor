@@ -48,8 +48,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { ErrorResult, DataResult } from '&razor-common/types/common-result';
-
 definePageMeta({
   name: 'ApiRoute Error Handling',
 });

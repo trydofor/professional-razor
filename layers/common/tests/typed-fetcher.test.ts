@@ -1,5 +1,4 @@
 ﻿import { describe, it, expect, vi } from 'vitest';
-import type { DataResult, PageResult, ErrorResult } from '../types/common-result';
 
 const mockDataResult: DataResult<string> = { success: true, data: 'test data' };
 const mockPageResult: PageResult<string> = { success: true, data: ['test data'], page: 1, size: 10, totalPage: 1, totalData: 1 };

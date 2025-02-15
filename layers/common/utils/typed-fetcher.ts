@@ -1,6 +1,4 @@
-﻿import type { ApiResult, DataResult, PageResult, ErrorResult } from '../types/common-result';
-
-/**
+﻿/**
  * true if loading(1), false if done(0) or error(2)
  */
 export type LoadingStatus = 1 | 0 | 2;

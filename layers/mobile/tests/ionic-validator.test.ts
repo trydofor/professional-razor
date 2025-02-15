@@ -1,8 +1,6 @@
 ﻿// Import testing utilities
 import { describe, it, expect, vi } from 'vitest';
 import { ref } from 'vue';
-import type { IonInputEvent } from '../utils/ionic-validator';
-import { ionicValidateInput } from '../utils/ionic-validator';
 
 describe('ionicValidateInput', () => {
   it('validates input correctly with a regex', () => {

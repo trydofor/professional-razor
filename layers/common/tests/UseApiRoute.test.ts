@@ -1,7 +1,6 @@
 import { registerEndpoint } from '@nuxt/test-utils/runtime';
 import { describe, expect, it, vi } from 'vitest';
 import { apiResponseEventBus, apiRouteFetchError, useApiRoute } from '../composables/UseApiRoute';
-import { ApiResultError } from '../errors/common-error';
 
 const session = 'wings-session';
 const cookie = `session=${session}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;

@@ -1,5 +1,4 @@
 ﻿import { loadingController, alertController, type AlertOptions } from '@ionic/vue';
-import type { ApiResult, DataResult, PageResult } from '&razor-common/types/common-result';
 
 /**
  * how to alert and return, only one of result and error is not null
@@ -14,6 +13,9 @@ import type { ApiResult, DataResult, PageResult } from '&razor-common/types/comm
  */
 export type AlertHandler<T = ApiResult> = (result?: Maybe<T>, error?: SafeAny) => { alert?: AlertOptions; result?: T };
 
+/**
+ * use alerter to override results and catches if absent
+ */
 export type IonicFetchOptions<T = ApiResult> = TypedFetchOptions<T> & { alerter?: AlertHandler<T> };
 
 /**
@@ -55,11 +57,11 @@ export const defaultFetchAlerter: AlertHandler<SafeAny> = (result, error) => {
   };
 };
 
-function mergeOpts(options: IonicFetchOptions<SafeAny>): IonicFetchOptions<SafeAny> {
+function mergeOpts(options: IonicFetchOptions<SafeAny>): TypedFetchOptions<SafeAny> {
   const alerter = options.alerter;
   if (alerter == null) return options;
 
-  options.results = (result) => {
+  options.results ??= (result) => {
     if (result?.success === true) return null;
 
     const opt = alerter(result, null);
@@ -70,7 +72,7 @@ function mergeOpts(options: IonicFetchOptions<SafeAny>): IonicFetchOptions<SafeA
     return opt.result;
   };
 
-  options.catches = (err: SafeAny) => {
+  options.catches ??= (err: SafeAny) => {
     const opt = alerter(null, err);
 
     if (opt.alert != null) {
@@ -120,7 +122,7 @@ export async function ionicFetchResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
   options: IonicFetchOptions<T> = {},
 ): Promise<T | null> {
-  if (options) {
+  if (options.loading != null) {
     return await fetchTypedResult<T>(fetching, mergeOpts(options));
   }
 
@@ -130,7 +132,6 @@ export async function ionicFetchResult<T = ApiResult>(
     duration: 5000,
   });
 
-  options = {} as TypedFetchOptions<T>;
   options.loading = (sts: LoadingStatus) => {
     if (sts == 1) {
       ui.present();

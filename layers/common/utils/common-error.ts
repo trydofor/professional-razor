@@ -1,8 +1,9 @@
-import type { ApiResult, ErrorResult, DataResult } from '../types/common-result';
-
 export const TypeApiError = 'ApiErrorResult';
 export const TypeApiFalse = 'ApiFalseResult';
 
+/**
+ * api result with error or false
+ */
 export class ApiResultError extends Error {
   public falseResult: DataResult | undefined | null;
   public errorResult: ErrorResult | undefined | null;

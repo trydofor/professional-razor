@@ -1,9 +1,6 @@
 import { useEventBus, type EventBusKey } from '@vueuse/core';
 import type { FetchContext } from 'ofetch';
 import { FetchError, createFetchError } from 'ofetch';
-import type { ApiResult, DataResult } from '../types/common-result';
-import { ApiResultError } from '../errors/common-error';
-import { flatItems } from '../utils/safe-converter';
 
 // import type { FetchOptions } from 'ofetch'; // ng for $fetch
 type ApiFetchOptions = NonNullable<Parameters<typeof $fetch>[1]>;

@@ -1,4 +1,4 @@
-import type { ApiEchoBody } from '&spa/types/api-echo';
+import type { ApiEchoBody } from '../../../types/api-echo';
 
 // https://nuxt.com/docs/guide/directory-structure/server
 
@@ -31,6 +31,9 @@ export default defineEventHandler(async (event) => {
   if (requestBody.header) {
     setResponseHeaders(event, requestBody.header);
   }
+
+  const sleep = requestBody.delay ?? 300;
+  await new Promise(resolve => setTimeout(resolve, sleep));
 
   return requestBody.body ?? {};
 });

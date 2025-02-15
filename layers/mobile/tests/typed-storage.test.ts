@@ -1,6 +1,5 @@
 ﻿import { flushPromises } from '@vue/test-utils';
 import { expect, test } from 'vitest';
-import { defTypedStorage, useTypedStorage } from '../utils/typed-storage';
 
 test('defineStorage setter', () => {
   const storage = defTypedStorage<string>({ key: 'test1' });

@@ -11,6 +11,26 @@
   type Maybe<T> = null | undefined | T;
 
   /**
+   * item or its array
+   */
+  type MayArray<T> = T | T[];
+
+  /**
+   * item of the array or itself
+   */
+  type NonArray<T> = T extends (infer U)[] ? U : T;
+
+  /**
+   * item or its Promise
+   */
+  type MayPromise<T> = T | Promise<T>;
+
+  /**
+   * resolved item of the Promise or itself
+   */
+  type NonPromise<T> = T extends Promise<infer U> ? U : T;
+
+  /**
    * `D` if `T` is `null` | `undefined`.
    */
   type OrElse<T, D> = NonNullable<T> | D;

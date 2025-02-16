@@ -9,4 +9,12 @@ Sentry.init({
   // We recommend adjusting this value in production, or using tracesSampler
   // for finer control
   tracesSampleRate: 1.0,
+  beforeSend(event, hint) {
+    const error = hint.originalException as { name: string };
+    if (typeof error?.name === 'string' && error.name.endsWith('Thrown')) {
+      console.log('ignore xxxThrown');
+      return null;
+    }
+    return event;
+  },
 });

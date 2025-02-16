@@ -57,6 +57,12 @@ export const defaultFetchAlerter: AlertHandler<SafeAny> = (result, error) => {
   };
 };
 
+/**
+ * Merges the given IonicFetchOptions with default result and catch handlers if an alerter is provided.
+ *
+ * @param {IonicFetchOptions<SafeAny>} options - The options to be merged.
+ * @returns {TypedFetchOptions<SafeAny>} - The merged options.
+ */
 function mergeOpts(options: IonicFetchOptions<SafeAny>): TypedFetchOptions<SafeAny> {
   const alerter = options.alerter;
   if (alerter == null) return options;

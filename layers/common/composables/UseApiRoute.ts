@@ -1,14 +1,10 @@
 import { useEventBus, type EventBusKey } from '@vueuse/core';
-import type { FetchContext } from 'ofetch';
+import type { FetchContext, FetchOptions } from 'ofetch';
 import { FetchError, createFetchError } from 'ofetch';
 
-// import type { FetchOptions } from 'ofetch'; // ng for $fetch
-type ApiFetchOptions = NonNullable<Parameters<typeof $fetch>[1]>;
-type UnMaybeArray<T> = Exclude<T, T[]>;
-
 export type ApiResponseContext = Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'>;
-export type ApiRequestHook = UnMaybeArray<NonNullable<ApiFetchOptions['onRequest']>>;
-export type ApiResponseHook = UnMaybeArray<NonNullable<ApiFetchOptions['onResponse']>>;
+export type ApiRequestHook = NonArray<NonNullable<FetchOptions['onRequest']>>;
+export type ApiResponseHook = NonArray<NonNullable<FetchOptions['onResponse']>>;
 
 export type ApiResponseEvent = { session?: string; context: ApiResponseContext };
 export const apiResponseEventKey: EventBusKey<ApiResponseEvent> = Symbol('apiResponseEventKey');
@@ -104,7 +100,7 @@ export type ApiHookMergeOptions = {
   };
 };
 
-export const defaultFetchOptions: ApiFetchOptions = {
+export const defaultFetchOptions: FetchOptions = {
   onRequest: typeof window === 'undefined' ? undefined : apiRequestContentTypeHook,
   onResponse: [
     apiResponseSessionHook(),
@@ -121,7 +117,7 @@ export const defaultFetchOptions: ApiFetchOptions = {
  * @returns An object containing utility functions for API requests.
  * @see https://github.com/unjs/ofetch
  */
-export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
+export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
   const prefix = useRuntimeConfig().public.apiRoute;
 
   /**
@@ -142,7 +138,7 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    * @param op - Specific fetch options for a request.
    * @returns A merged object containing the combined options.
    */
-  function opt(op?: ApiFetchOptions & ApiHookMergeOptions): ApiFetchOptions {
+  function opt(op?: FetchOptions & ApiHookMergeOptions): FetchOptions {
     if (op == null) return { ...options };
     const opt = { ...options, ...op };
     delete opt.mergeFetchHooks;
@@ -185,8 +181,8 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    * @param op - Fetch options for the request.
    * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
-  function req<D = SafeAny, T = ApiResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
-    return $fetch<T>(url(uri), opt(op));
+  function req<D = SafeAny, T = ApiResult<D>>(uri: string, op: FetchOptions & ApiHookMergeOptions) {
+    return $fetch<T>(url(uri), opt(op) as SafeAny);
   }
 
   /**
@@ -196,8 +192,8 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    * @param op - Fetch options for the request.
    * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
-  function raw<D = SafeAny, T = ApiResult<D>>(uri: string, op: ApiFetchOptions & ApiHookMergeOptions) {
-    return $fetch.raw<T>(url(uri), opt(op));
+  function raw<D = SafeAny, T = ApiResult<D>>(uri: string, op: FetchOptions & ApiHookMergeOptions) {
+    return $fetch.raw<T>(url(uri), opt(op) as SafeAny);
   }
 
   /**
@@ -208,7 +204,7 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    * @param op - Optional fetch options to customize the request.
    * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function get<D = SafeAny, T = DataResult<D>>(uri: string, query?: SafeObj, op?: ApiFetchOptions & ApiHookMergeOptions) {
+  function get<D = SafeAny, T = DataResult<D>>(uri: string, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions) {
     return req<D, T>(uri, {
       ...op,
       method: 'get',
@@ -225,7 +221,7 @@ export function useApiRoute(options: ApiFetchOptions = defaultFetchOptions) {
    * @param op - Optional fetch options to customize the request.
    * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: ApiFetchOptions & ApiHookMergeOptions) {
+  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions) {
     return req<D, T>(uri, {
       ...op,
       method: 'post',

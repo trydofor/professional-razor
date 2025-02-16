@@ -1,8 +1,13 @@
+import type { RouteLocationRaw } from 'vue-router';
+
 export const TypeApiError = 'ApiErrorResult';
 export const TypeApiFalse = 'ApiFalseResult';
 
 /**
  * api result with error or false
+ *
+ * @class ApiResultError
+ * @extends {Error}
  */
 export class ApiResultError extends Error {
   public falseResult: DataResult | undefined | null;
@@ -19,4 +24,28 @@ export class ApiResultError extends Error {
     }
     Object.setPrototypeOf(this, ApiResultError.prototype);
   }
+}
+
+/**
+ * should ignore this thrown
+ */
+export class IgnoredThrown {
+  public name = 'IgnoredThrown';
+  constructor(public message: string = 'ignored this thrown') {}
+}
+
+/**
+ * should notice to user in UI
+ */
+export class NoticeThrown {
+  public name = 'NoticeThrown';
+  constructor(public errors: I18nNotice[]) {}
+}
+
+/**
+ * should navigate to the route
+ */
+export class NavigateThrown {
+  public name = 'NavigateThrown';
+  constructor(public route: RouteLocationRaw) {}
 }

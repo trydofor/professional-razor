@@ -1,3 +1,4 @@
+import { IgnoredThrown } from '../../../layers/common/utils/common-throw';
 <template>
   <IonPage>
     <IonHeader>
@@ -27,6 +28,9 @@
         </IonButton>
         <IonButton @click="onHeaderSession(false)">
           Fetch Session Failure
+        </IonButton>
+        <IonButton @click="onIgnoredThrown">
+          Ignored Thrown
         </IonButton>
         <IonButton color="success" @click="onClean">
           Clean
@@ -63,7 +67,12 @@ apiResponseEventBus.on((evt) => {
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
 onErrorCaptured((err, ins, info) => {
-  errorText.value = 'ERROR: ' + JSON.stringify(err) + '@' + new Date().getMilliseconds();
+  if (err instanceof IgnoredThrown) {
+    errorText.value = 'ERROR: sentry ignore IgnoredThrown  @' + new Date().getMilliseconds();
+    return true;
+  }
+
+  errorText.value = 'ERROR: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
   console.log(err, ins, info);
   return false;
 });
@@ -138,5 +147,9 @@ async function onStatus401() {
 
   console.log('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: Status401';
+}
+
+async function onIgnoredThrown() {
+  throw new IgnoredThrown('Ignored Thrown');
 }
 </script>

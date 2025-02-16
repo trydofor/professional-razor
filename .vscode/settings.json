@@ -48,4 +48,14 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
   },
+  "marscode.chatLanguage": "en",
+  "marscode.codeCompletionPro": {
+    "enableCodeCompletionPro": true
+  },
+  "marscode.enableInlineCommand": true,
+  "marscode.enableCodelens": {
+    "enableInlineDocumentation": true,
+    "enableInlineUnitTest": true,
+    "enableInlineExplain": false
+  },
 }

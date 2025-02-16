@@ -92,16 +92,3 @@ export async function fetchTypedResult<T = ApiResult>(
 
   return result;
 }
-
-export function getDataResult<T>(result?: ApiResult<T> | null): DataResult<T> | null {
-  return (result == null || 'errors' in result || 'page' in result) ? null : result;
-}
-
-export function getPageResult<T>(result?: ApiResult<T> | null): PageResult<T> | null {
-  if (result == null || 'errors' in result) return null;
-  return 'page' in result ? result : null;
-}
-
-export function getErrorResult(result?: ApiResult<SafeAny> | null): ErrorResult | null {
-  return (result != null && 'errors' in result) ? result : null;
-}

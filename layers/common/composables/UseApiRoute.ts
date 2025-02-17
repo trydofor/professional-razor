@@ -1,5 +1,6 @@
 import { useEventBus, type EventBusKey } from '@vueuse/core';
-import type { FetchContext, FetchOptions } from 'ofetch';
+import type { FetchContext, FetchOptions, $Fetch } from 'ofetch';
+// https://nuxt.com/docs/api/utils/dollarfetch
 import { FetchError, createFetchError } from 'ofetch';
 
 export type ApiResponseContext = Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'>;
@@ -182,7 +183,8 @@ export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
    * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
   function req<D = SafeAny, T = ApiResult<D>>(uri: string, op: FetchOptions & ApiHookMergeOptions) {
-    return $fetch<T>(url(uri), opt(op) as SafeAny);
+    // for vue-tsc type check failure
+    return ($fetch as $Fetch)<T>(url(uri), opt(op) as SafeAny);
   }
 
   /**
@@ -193,7 +195,8 @@ export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
    * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
   function raw<D = SafeAny, T = ApiResult<D>>(uri: string, op: FetchOptions & ApiHookMergeOptions) {
-    return $fetch.raw<T>(url(uri), opt(op) as SafeAny);
+    // for vue-tsc type check failure
+    return ($fetch as $Fetch).raw<T>(url(uri), opt(op) as SafeAny);
   }
 
   /**

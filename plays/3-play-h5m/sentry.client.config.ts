@@ -10,9 +10,13 @@ Sentry.init({
   // for finer control
   tracesSampleRate: 1.0,
   beforeSend(event, hint) {
-    const error = hint.originalException as { name: string };
+    const error = hint.originalException as Error;
     if (typeof error?.name === 'string' && error.name.endsWith('Thrown')) {
-      console.log('ignore xxxThrown');
+      console.debug('ignore Thrown=' + error?.name);
+      return null;
+    }
+    if (typeof error?.message === 'string' && error.name.startsWith('ignore')) {
+      console.debug('ignore message=' + error?.message);
       return null;
     }
     return event;

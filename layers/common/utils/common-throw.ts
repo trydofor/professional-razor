@@ -31,7 +31,15 @@ export class ApiResultError extends Error {
  */
 export class IgnoredThrown {
   public name = 'IgnoredThrown';
-  constructor(public message: string = 'ignored this thrown') {}
+  constructor(public message: string) {}
+}
+
+/**
+ * should handle the type and data as big return
+ */
+export class ReturnThrown {
+  public name = 'ReturnThrown';
+  constructor(public type: string, public data: SafeAny) {}
 }
 
 /**
@@ -39,7 +47,7 @@ export class IgnoredThrown {
  */
 export class NoticeThrown {
   public name = 'NoticeThrown';
-  constructor(public errors: I18nNotice[]) {}
+  constructor(public notice: I18nNotice[]) {}
 }
 
 /**
@@ -49,3 +57,8 @@ export class NavigateThrown {
   public name = 'NavigateThrown';
   constructor(public route: RouteLocationRaw) {}
 }
+
+/**
+ * default ignore thrown instance
+ */
+export const Ignored = new IgnoredThrown('ignored this thrown');

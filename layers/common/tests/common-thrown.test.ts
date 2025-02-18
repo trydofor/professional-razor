@@ -81,3 +81,46 @@ describe('ApiResultError', () => {
     expect(error).toBeInstanceOf(ApiResultError);
   });
 });
+
+describe('IgnoredThrown', () => {
+  it('should create an instance with a message', () => {
+    const ignored = new IgnoredThrown('Test message');
+    expect(ignored.name).toBe('IgnoredThrown');
+    expect(ignored.message).toBe('Test message');
+  });
+});
+
+describe('ReturnThrown', () => {
+  it('should create an instance with type and data', () => {
+    const returnThrown = new ReturnThrown('TestType', { key: 'value' });
+    expect(returnThrown.name).toBe('ReturnThrown');
+    expect(returnThrown.type).toBe('TestType');
+    expect(returnThrown.data).toEqual({ key: 'value' });
+  });
+});
+
+describe('NoticeThrown', () => {
+  const mockI18nNotice = [{ message: 'Notice message' }];
+  it('should create an instance with notice data', () => {
+    const noticeThrown = new NoticeThrown(mockI18nNotice);
+    expect(noticeThrown.name).toBe('NoticeThrown');
+    expect(noticeThrown.notice).toEqual(mockI18nNotice);
+  });
+});
+
+describe('NavigateThrown', () => {
+  const mockRoute = { path: '/test' };
+  it('should create an instance with a route', () => {
+    const navigateThrown = new NavigateThrown(mockRoute);
+    expect(navigateThrown.name).toBe('NavigateThrown');
+    expect(navigateThrown.route).toEqual(mockRoute);
+  });
+});
+
+describe('Ignored constant', () => {
+  it('should be an instance of IgnoredThrown', () => {
+    expect(Ignored).toBeInstanceOf(IgnoredThrown);
+    expect(Ignored.name).toBe('IgnoredThrown');
+    expect(Ignored.message).toBe('ignored this thrown');
+  });
+});

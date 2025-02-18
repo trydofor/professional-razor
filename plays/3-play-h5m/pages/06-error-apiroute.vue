@@ -1,4 +1,5 @@
 import { IgnoredThrown } from '../../../layers/common/utils/common-throw';
+import { useThrownCaptured } from '../../../layers/common/composables/UseThrownCaptured';
 <template>
   <IonPage>
     <IonHeader>
@@ -36,7 +37,8 @@ import { IgnoredThrown } from '../../../layers/common/utils/common-throw';
           Clean
         </IonButton>
       </div>
-      <div>
+      <div class="p-4">
+        <div>open devtools check console and network to see sentry error</div>
         <div class="h-8 text-green">
           {{ eventText }}
         </div>
@@ -65,17 +67,14 @@ apiResponseEventBus.on((evt) => {
   eventText.value = 'EVENT: session=' + evt.session + '@' + new Date().getMilliseconds();
 });
 
-// https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
-onErrorCaptured((err, ins, info) => {
-  if (err instanceof IgnoredThrown) {
-    errorText.value = 'ERROR: sentry ignore IgnoredThrown  @' + new Date().getMilliseconds();
-    return true;
-  }
-
-  errorText.value = 'ERROR: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
+const thrownCaptured = useThrownCaptured();
+thrownCaptured.putThrownHook('200.sentry-error', (err, ins, info) => {
+  errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
   console.log(err, ins, info);
-  return false;
 });
+
+// https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
+onErrorCaptured(thrownCaptured.callThrownHook);
 
 function onClean() {
   errorText.value = '';

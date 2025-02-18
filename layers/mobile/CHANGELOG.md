@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.5.0
+
+### Minor Changes
+
+- cce9c22: error handling refactor
+
 ## 0.4.5
 
 ### Patch Changes

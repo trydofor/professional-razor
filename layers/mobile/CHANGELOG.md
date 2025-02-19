@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.5.2
+
+### Patch Changes
+
+- 04a3605: ✨ rehook and wrap vue:error #161
+
 ## 0.5.0
 
 ### Minor Changes

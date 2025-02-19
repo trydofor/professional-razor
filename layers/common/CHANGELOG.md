@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.5.1
+
+### Patch Changes
+
+- 79e7565: rehook and wrap vue:error
+
 ## 0.5.0
 
 ### Minor Changes

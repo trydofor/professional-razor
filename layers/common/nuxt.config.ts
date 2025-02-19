@@ -16,6 +16,8 @@ export default defineNuxtConfig({
     public: {
       apiRoute: nuxtApiRoutePath(),
       apiProxy: '',
+      rehookVueError: true,
+      thrownCaptured: true,
     },
   },
   // https://nuxt.com/docs/guide/going-further/layers#tips

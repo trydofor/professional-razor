@@ -6,7 +6,7 @@ export const nuxtCompatibilityDate = '2024-10-23';
  * return ApiRoutePath if envFirst and process.env.NUXT_PUBLIC_API_ROUTE,
  * otherwise '/api/v1'
  */
-export function nuxtApiRoutePath(envFirst = false) {
+export function nuxtApiRoutePath(envFirst = false): string {
   if (envFirst) {
     const v = process.env.NUXT_PUBLIC_API_ROUTE;
     if (v) return v;

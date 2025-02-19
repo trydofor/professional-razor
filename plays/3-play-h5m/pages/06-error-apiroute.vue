@@ -1,5 +1,3 @@
-import { IgnoredThrown } from '../../../layers/common/utils/common-throw';
-import { useThrownCaptured } from '../../../layers/common/composables/UseThrownCaptured';
 <template>
   <IonPage>
     <IonHeader>
@@ -68,13 +66,19 @@ apiResponseEventBus.on((evt) => {
 });
 
 const thrownCaptured = useThrownCaptured();
-thrownCaptured.putThrownHook('200.sentry-error', (err, ins, info) => {
+thrownCaptured.putThrownHook('200.component-error-logger', (err, ins, info) => {
   errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
-  console.log(err, ins, info);
+  console.log('200.component-error-logger', err, ins, info);
 });
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
 onErrorCaptured(thrownCaptured.callThrownHook);
+
+const { $thrownCaptured } = useNuxtApp();
+$thrownCaptured.putThrownHook('300.before-sentry-error', (err, ins, info) => {
+  console.log('300.before-sentry-error', err, ins, info);
+});
+$thrownCaptured.sortThrownHook();
 
 function onClean() {
   errorText.value = '';

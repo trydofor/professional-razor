@@ -1,7 +1,7 @@
 ﻿import type { Directive } from 'vue';
 
 /**
- * NOTE1: This directive is only available on the client side.
+ * NOTE1: This directive is only for the client, NOP on the server.
  * and if no width or height is specified, it will be applied to both.
  * use v-autosize="id-for-debug" to debug the size in log.
  *
@@ -155,13 +155,18 @@ export const clientAutosizeDirective = {
     }
   },
 } as Directive<
-  HTMLElement & AutosizeInnerData
-  , { debug?: string | number; debounce?: number } | string | number
-  , string
-  , 'width' | 'height'
+  HTMLElement & AutosizeInnerData,
+  { debug?: string | number; debounce?: number } | string | number,
+  string,
+  'width' | 'height'
 >;
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const autosize = nuxtApp.ssrContext ? {} : clientAutosizeDirective;
-  nuxtApp.vueApp.directive('autosize', autosize);
+export default defineNuxtPlugin({
+  name: 'autosize-directive-plugin',
+  enforce: 'post',
+  setup(nuxtApp) {
+    const autosize = nuxtApp.ssrContext ? {} : clientAutosizeDirective;
+    // to avoid error on server
+    nuxtApp.vueApp.directive('autosize', autosize);
+  },
 });

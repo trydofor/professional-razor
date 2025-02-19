@@ -1,21 +1,14 @@
-/**
- * make 'vue:error' hook of nuxt act as onErrorCaptured of vue
- *
- * @see https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
- * @see https://nuxt.com/docs/getting-started/error-handling#vue-errors
- * @see https://github.com/nuxt/nuxt/blob/main/packages/nuxt/src/app/components/nuxt-root.vue
- */
-
 type ErrorHook = Parameters<typeof onErrorCaptured>[0];
 
 const ignoredThrownHook: ErrorHook = (err: SafeAny) => {
   if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
 };
 
-export function useThrownCaptured() {
-  let hooks = new Map<string, ErrorHook>([
-    ['100.ignoredThrownHook', ignoredThrownHook],
-  ]);
+export function useThrownCaptured(withIgnored: boolean = true) {
+  let hooks = new Map<string, ErrorHook>();
+  if (withIgnored) {
+    hooks.set('100.ignoredThrownHook', ignoredThrownHook);
+  }
 
   /**
    * name must be unique, `###.name` is recommended.
@@ -36,6 +29,11 @@ export function useThrownCaptured() {
 
   /**
    * stops the continuous call if a hook returns a boolean value
+   *
+   * - false - stop the call in this, and in vue
+   * - true - stop the call in this, but not in vue
+   * - void - continue the call in this and in vue
+   * @see https://github.com/vuejs/core/blob/0c8dd94ef9fe33f72732e7d9ec52b8e72918df8f/packages/runtime-core/src/errorHandling.ts#L112
    */
   function callThrownHook(...args: Parameters<ErrorHook>): boolean | undefined {
     for (const [name, hook] of hooks) {
@@ -50,7 +48,10 @@ export function useThrownCaptured() {
     }
   }
 
-  function sortThrownHook(sorter: (a: string, b: string) => number): void {
+  function sortThrownHook(sorter?: (a: string, b: string) => number): void {
+    if (sorter == null) {
+      sorter = (a, b) => a.localeCompare(b);
+    }
     hooks = new Map([...hooks.entries()].sort(([a], [b]) => sorter(a, b)));
   }
 

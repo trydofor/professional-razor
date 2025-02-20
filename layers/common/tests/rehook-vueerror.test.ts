@@ -17,6 +17,6 @@ describe('rehook-vue-error-plugin', async () => {
     await nuxtApp.callHook('app:created', nuxtApp.vueApp);
     expect((nuxtApp.hooks as SafeAny)._hooks['vue:error']).toBeInstanceOf(Array);
     expect((nuxtApp.hooks as SafeAny)._hooks['vue:error'].length).toBe(1);
-    console.log((nuxtApp.hooks as SafeAny)._hooks['vue:error']);
+    logger.log((nuxtApp.hooks as SafeAny)._hooks['vue:error']);
   });
 });

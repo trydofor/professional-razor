@@ -43,7 +43,7 @@ export function useThrownCaptured(withIgnored: boolean = true) {
         if (rt === true) return true;
       }
       catch (e) {
-        console.error(`failed to hook thrown hook=${name}`, e);
+        logger.error(`failed to hook thrown hook=${name}`, e);
       }
     }
   }

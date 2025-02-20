@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { ref } from 'vue';
 import { onClickOutside, onKeyDown } from '@vueuse/core';
-import { useClickoutKeydown } from '../composables/UseClickoutKeydown';
 
 vi.mock('@vueuse/core', () => ({
   onClickOutside: vi.fn((eleRef, handler) => {

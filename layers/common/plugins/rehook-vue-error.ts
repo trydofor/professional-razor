@@ -13,7 +13,7 @@ export default defineNuxtPlugin({
     const thrownCaptured = useThrownCaptured();
 
     if (config.rehookVueError === true) {
-      console.debug('rehookVueError enabled');
+      logger.info('rehookVueError enabled');
       nuxtApp.hook('app:created', () => {
         const nuxtHooks = nuxtApp.hooks;
 
@@ -25,7 +25,7 @@ export default defineNuxtPlugin({
         const oldHooks = _hooks['vue:error'] as (Parameters<typeof onErrorCaptured>[0])[];
         if (oldHooks != null && oldHooks.length > 0) {
           const hookName = 'vue:error:rehook' as SafeAny;
-          console.debug(`rebook ${hookName} count=${oldHooks.length}`);
+          logger.info('rebook %s count=%d', hookName, oldHooks.length);
           for (const hook of oldHooks) {
             nuxtHooks.hook(hookName, hook);
           }
@@ -41,7 +41,7 @@ export default defineNuxtPlugin({
     }
 
     if (config.thrownCaptured === true) {
-      console.debug('thrownCaptured provided');
+      logger.info('thrownCaptured provided');
       return {
         provide: {
           thrownCaptured,

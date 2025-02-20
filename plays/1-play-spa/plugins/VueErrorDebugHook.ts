@@ -3,10 +3,10 @@ export default defineNuxtPlugin({
   parallel: true,
   setup(nuxtApp) {
     nuxtApp.hooks.hook('vue:error', (err) => {
-      console.debug('vue-error-debug 1:', err);
+      logger.error('vue-error-debug 1:', err);
     });
     nuxtApp.hooks.hook('vue:error', (err) => {
-      console.debug('vue-error-debug 2:', err);
+      logger.error('vue-error-debug 2:', err);
     });
   },
 });

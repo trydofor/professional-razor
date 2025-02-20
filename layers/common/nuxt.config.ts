@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       apiProxy: '',
       rehookVueError: true,
       thrownCaptured: true,
+      loggerLevel: '', // LogLevels
     },
   },
   // https://nuxt.com/docs/guide/going-further/layers#tips

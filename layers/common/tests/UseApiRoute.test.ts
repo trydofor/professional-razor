@@ -1,6 +1,5 @@
 import { registerEndpoint } from '@nuxt/test-utils/runtime';
 import { describe, expect, it, vi } from 'vitest';
-import { apiResponseEventBus, apiRouteFetchError, useApiRoute } from '../composables/UseApiRoute';
 
 const session = 'wings-session';
 const cookie = `session=${session}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
@@ -48,10 +47,10 @@ describe('useApiRoute with real $fetch requests', () => {
   it('should send GET request with correct Content-Type (no body)', async () => {
     const { get, raw } = useApiRoute();
     const rs1 = await get('/test-get.json');
-    console.log('get', JSON.stringify(rs1));
+    logger.debug('get', JSON.stringify(rs1));
     expect(rs1.data).toEqual('application/json');
     const rs2 = await raw('/test-get.json', { method: 'get' });
-    console.log('get', JSON.stringify(rs2));
+    logger.debug('get', JSON.stringify(rs2));
     expect(rs2._data).toEqual({ success: true, data: 'application/json' });
   });
 
@@ -59,10 +58,10 @@ describe('useApiRoute with real $fetch requests', () => {
     const { post, raw } = useApiRoute();
     const jsonBody = { key: 'value' };
     const rs1 = await post('/test-post.json', jsonBody);
-    console.log('post JSON', JSON.stringify(rs1));
+    logger.debug('post JSON', JSON.stringify(rs1));
     expect(rs1.data).toBe('application/json');
     const rs2 = await raw('/test-post.json', { method: 'post', body: jsonBody });
-    console.log('post JSON', JSON.stringify(rs2));
+    logger.debug('post JSON', JSON.stringify(rs2));
     expect(rs2._data).toEqual({ success: true, data: 'application/json' });
   });
 
@@ -72,7 +71,7 @@ describe('useApiRoute with real $fetch requests', () => {
     formData.append('key', 'value');
 
     const rs = await post('/test-post.json', formData);
-    console.log('post FormData', JSON.stringify(rs));
+    logger.debug('post FormData', JSON.stringify(rs));
     expect(rs.data).toContain('multipart/form-data');
   });
 
@@ -82,7 +81,7 @@ describe('useApiRoute with real $fetch requests', () => {
     params.append('key', 'value');
 
     const rs = await post('/test-post.json', params);
-    console.log('post SearchParams', JSON.stringify(rs));
+    logger.debug('post SearchParams', JSON.stringify(rs));
     expect(rs.data).toContain('application/x-www-form-urlencoded');
   });
 
@@ -94,12 +93,12 @@ describe('useApiRoute with real $fetch requests', () => {
     const opt = { options: {} };
     const rs = await post('/test-post.json', params, { k1: 'v2' }, {
       onRequest: (ctx) => {
-        // console.log('ctx', JSON.stringify(ctx));
+        // logger.debug('ctx', JSON.stringify(ctx));
         opt.options = JSON.stringify(ctx.options);
       },
     });
-    console.log('post SearchParams', JSON.stringify(rs));
-    console.log('onRequest', JSON.stringify(opt));
+    logger.debug('post SearchParams', JSON.stringify(rs));
+    logger.debug('onRequest', JSON.stringify(opt));
     expect(rs.data).toContain('application/x-www-form-urlencoded');
     expect(opt.options).toContain('"query":{"k1":"v2"}');
     expect(opt.options).toContain('"params":{"k1":"v2"}');
@@ -155,17 +154,17 @@ describe('useApiRoute with real $fetch requests', () => {
 
 describe('merge options', () => {
   const op1 = {
-    onRequest: () => { console.log('onRequest 1'); },
-    onRequestError: () => { console.log('onRequestError 1'); },
-    onResponse: () => { console.log('onResponse 1'); },
-    onResponseError: () => { console.log('onResponseError 1'); },
+    onRequest: () => { logger.debug('onRequest 1'); },
+    onRequestError: () => { logger.debug('onRequestError 1'); },
+    onResponse: () => { logger.debug('onResponse 1'); },
+    onResponseError: () => { logger.debug('onResponseError 1'); },
   } as NonNullable<Parameters<typeof $fetch>[1]>;
 
   const op2 = {
-    onRequest: () => { console.log('onRequest 2'); },
-    onRequestError: () => { console.log('onRequestError 2'); },
-    onResponse: () => { console.log('onResponse 2'); },
-    onResponseError: () => { console.log('onResponseError 2'); },
+    onRequest: () => { logger.debug('onRequest 2'); },
+    onRequestError: () => { logger.debug('onRequestError 2'); },
+    onResponse: () => { logger.debug('onResponse 2'); },
+    onResponseError: () => { logger.debug('onResponseError 2'); },
   } as NonNullable<Parameters<typeof $fetch>[1]>;
 
   it('returns empty object if ops and op are null or undefined', () => {

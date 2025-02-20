@@ -139,11 +139,12 @@ export const clientAutosizeDirective = {
     }
 
     if (asz.debug) {
-      console.log(`DEBUG: __autosize debug=${asz.debug}, style=${
-        widthPx != null || heightPx != null
-      }: w2=${widthPx}, h2=${heightPx}, data=${
-        JSON.stringify(asz)
-      }`);
+      logger.info('__autosize style=%s: w2=%s, h2=%s, data=%s',
+        widthPx != null || heightPx != null,
+        widthPx,
+        heightPx,
+        JSON.stringify(asz),
+      );
     }
 
     if (widthPx != null || heightPx != null) {

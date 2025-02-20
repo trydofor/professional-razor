@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as Sentry from '@sentry/nuxt';
+import { captureException, startSpan } from '@sentry/nuxt';
 
 definePageMeta({
   name: 'Sentry Error Handling',
@@ -39,7 +39,7 @@ function captureClientError() {
     throw new Error('Test error from Vue!');
   }
   catch (err) {
-    Sentry.captureException(err);
+    captureException(err);
   }
 }
 
@@ -48,7 +48,7 @@ function throwClientError() {
 }
 
 function spanServerError() {
-  Sentry.startSpan(
+  startSpan(
     {
       name: 'Example Frontend Span',
       op: 'test',

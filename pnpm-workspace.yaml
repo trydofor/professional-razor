@@ -12,6 +12,7 @@ catalogs:
     "rimraf": "6.0.1"
     "taze": "18.5.0"
   common:
+    "@nuxtjs/i18n": "9.2.1" # https://github.com/nuxt-modules/i18n/blob/main/package.json
     "@pinia/nuxt": "0.10.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/nuxt/package.json
     "@sentry/nuxt": "9.1.0" # https://docs.sentry.io/platforms/javascript/guides/nuxt/manual-setup/
     "@vueuse/core": "12.7.0" #https://github.com/vueuse/vueuse/blob/v12.7.0/pnpm-workspace.yaml

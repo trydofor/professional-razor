@@ -5,14 +5,14 @@ import { nuxtApiRoutePath, nuxtApiProxyRule, nuxtCompatibilityDate } from './con
 
 export default defineNuxtConfig({
   modules: [
-    '@unocss/nuxt',
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
+    '@nuxtjs/i18n',
     '@pinia/nuxt',
+    '@unocss/nuxt',
     'nuxt-swiper',
   ],
-  // https://nuxt.com/docs/guide/going-further/runtime-config
-  runtimeConfig: {
+  runtimeConfig: { // https://nuxt.com/docs/guide/going-further/runtime-config
     public: {
       apiRoute: nuxtApiRoutePath(),
       apiProxy: '',
@@ -21,12 +21,10 @@ export default defineNuxtConfig({
       loggerLevel: '', // LogLevels
     },
   },
-  // https://nuxt.com/docs/guide/going-further/layers#tips
-  alias: {
+  alias: { // https://nuxt.com/docs/guide/going-further/layers#tips
     '&razor-common': fileURLToPath(new URL('./', import.meta.url)),
   },
-  // https://nitro.build/config#routerules
-  routeRules: {
+  routeRules: { // https://nitro.build/config#routerules
     // nop if apiProxy is empty
     ...nuxtApiProxyRule(),
   },
@@ -41,8 +39,30 @@ export default defineNuxtConfig({
       },
     },
   },
-  // https://unocss.dev/integrations/nuxt
-  unocss: {
+  i18n: { // https://i18n.nuxtjs.org/docs/guide/layers
+    defaultLocale: 'en',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'Wings-Locale',
+      redirectOn: 'root',
+    },
+    experimental: {
+      autoImportTranslationFunctions: true,
+    },
+    locales: [
+      {
+        code: 'en',
+        file: 'en-US.ts',
+        language: 'en-US', // https://i18n.nuxtjs.org/docs/guide/seo
+      },
+      {
+        code: 'zh',
+        file: 'zh-CN.ts',
+        language: 'zh-CN',
+      },
+    ],
+  },
+  unocss: { // https://unocss.dev/integrations/nuxt
     nuxtLayers: true,
   },
 });

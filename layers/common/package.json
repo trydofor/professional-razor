@@ -14,6 +14,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "catalog:common",
     "@pinia/nuxt": "catalog:common",
     "@sentry/nuxt": "catalog:common",
     "@vueuse/core": "catalog:common",

@@ -16,7 +16,7 @@ export function useThrownCaptured(withIgnored: boolean = true) {
    */
   function putThrownHook(name: string, hook: ErrorHook): () => void {
     hooks.set(name, hook);
-    return () => hooks.delete(name);
+    return () => delThrownHook(name);
   }
 
   function delThrownHook(name: string): ErrorHook | undefined {

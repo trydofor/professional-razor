@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 describe('ApiResultError', () => {
   it('should initialize with an ErrorResult and set errors', () => {
@@ -104,7 +104,7 @@ describe('NoticeThrown', () => {
   it('should create an instance with notice data', () => {
     const noticeThrown = new NoticeThrown(mockI18nNotice);
     expect(noticeThrown.name).toBe('NoticeThrown');
-    expect(noticeThrown.notice).toEqual(mockI18nNotice);
+    expect(noticeThrown.notices).toEqual(mockI18nNotice);
   });
 });
 
@@ -122,5 +122,70 @@ describe('Ignored constant', () => {
     expect(Ignored).toBeInstanceOf(IgnoredThrown);
     expect(Ignored.name).toBe('IgnoredThrown');
     expect(Ignored.message).toBe('ignored this thrown');
+  });
+});
+
+describe('globalThrownCaptured', () => {
+  it('should ignore IgnoredThrown instance', async () => {
+    const result = await globalThrownCaptured.call(new IgnoredThrown('ignored message'), null, 'test');
+    expect(result).toBe(false);
+  });
+
+  it('should handle NoticeThrown and emit notices', async () => {
+    const notice: I18nNotice = { type: 'warning', message: 'Test Notice' };
+    const noticeSpy = vi.spyOn(globalNoticeCaptured, 'emit').mockImplementation(() => Promise.resolve(undefined));
+
+    const result = await globalThrownCaptured.call(new NoticeThrown([notice]), null, 'test');
+
+    expect(noticeSpy).toHaveBeenCalledWith(notice);
+    expect(result).toBe(false);
+    noticeSpy.mockRestore();
+  });
+
+  it('should handle ApiResultError with error result and emit notices', async () => {
+    const noticeSpy = vi.spyOn(globalNoticeCaptured, 'emit').mockImplementation(() => Promise.resolve(undefined));
+
+    const errorResult = {
+      success: false,
+      errors: [{ message: 'API Error Message' }],
+    };
+    const apiError = new ApiResultError(errorResult);
+
+    const result = await globalThrownCaptured.call(apiError, null, 'test');
+
+    expect(noticeSpy).toHaveBeenCalledWith({ message: 'API Error Message' });
+    expect(result).toBe(false);
+    noticeSpy.mockRestore();
+  });
+
+  it('should handle ApiResultError with false result and emit notices', async () => {
+    const noticeSpy = vi.spyOn(globalNoticeCaptured, 'emit').mockImplementation(() => Promise.resolve(undefined));
+
+    const falseResult = {
+      success: false,
+      message: 'API False Message',
+      i18nCode: 'error.false_result',
+      i18nArgs: [],
+    };
+    const apiError = new ApiResultError(falseResult);
+
+    const result = await globalThrownCaptured.call(apiError, null, 'test');
+
+    expect(noticeSpy).toHaveBeenCalledWith({
+      type: TypeApiFalse,
+      message: 'API False Message',
+      i18nCode: 'error.false_result',
+      i18nArgs: [],
+    });
+    expect(result).toBe(false);
+    noticeSpy.mockRestore();
+  });
+
+  it('should handle NavigateThrown by returning undefined', async () => {
+    const navError = new NavigateThrown({ path: '/home' });
+
+    const result = await globalThrownCaptured.call(navError, null, 'test');
+
+    expect(result).toBeUndefined();
   });
 });

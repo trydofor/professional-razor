@@ -17,7 +17,6 @@ export default defineNuxtConfig({
       apiRoute: nuxtApiRoutePath(),
       apiProxy: '',
       rehookVueError: true,
-      thrownCaptured: true,
       loggerLevel: '', // LogLevels
     },
   },

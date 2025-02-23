@@ -1,15 +1,15 @@
-import { useEventBus, type EventBusKey } from '@vueuse/core';
-import type { FetchContext, FetchOptions, $Fetch } from 'ofetch';
+import type { EventBusKey } from '@vueuse/core';
+import { useEventBus } from '@vueuse/core';
+import type { FetchOptions, $Fetch, FetchContext } from 'ofetch';
 // https://nuxt.com/docs/api/utils/dollarfetch
 import { FetchError, createFetchError } from 'ofetch';
 
-export type ApiResponseContext = Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'>;
 export type ApiRequestHook = NonArray<NonNullable<FetchOptions['onRequest']>>;
 export type ApiResponseHook = NonArray<NonNullable<FetchOptions['onResponse']>>;
 
-export type ApiResponseEvent = { session?: string; context: ApiResponseContext };
+type ApiResponseEvent = { session?: string; context: Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'> };
 export const apiResponseEventKey: EventBusKey<ApiResponseEvent> = Symbol('apiResponseEventKey');
-export const apiResponseEventBus = useEventBus<ApiResponseEvent, undefined>(apiResponseEventKey);
+export const apiResponseEventBus = useEventBus<ApiResponseEvent, SafeObj>(apiResponseEventKey);
 
 /**
  * * ✅ the browser's fetch automatically infers the Content-Type.
@@ -39,14 +39,15 @@ export const apiRequestContentTypeHook: ApiRequestHook = (context) => {
  *
  * @param sessionHeader the header of response that holds session token, default 'session'
  */
-export function apiResponseSessionHook(sessionHeader: string[] = ['session'], eventKey: EventBusKey<ApiResponseEvent> = apiResponseEventKey): ApiResponseHook {
+export function apiResponseSessionHook(sessionHeader: string[] = ['session'], eventKey = apiResponseEventKey): ApiResponseHook {
   const eventBus = useEventBus(eventKey);
   return (context) => {
     const headers = context.response.headers;
     for (const hd of sessionHeader) {
       const session = headers.get(hd);
-      if (session) {
-        eventBus.emit({ session, context });
+      if (session != null) {
+        // empty means logout
+        eventBus.emit({ session, context }, {});
         break;
       }
     }

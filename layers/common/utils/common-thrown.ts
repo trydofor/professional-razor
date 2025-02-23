@@ -47,7 +47,7 @@ export class ReturnThrown {
  */
 export class NoticeThrown {
   public name = 'NoticeThrown';
-  constructor(public notice: I18nNotice[]) {}
+  constructor(public notices: I18nNotice[]) {}
 }
 
 /**
@@ -62,3 +62,47 @@ export class NavigateThrown {
  * default ignore thrown instance
  */
 export const Ignored = new IgnoredThrown('ignored this thrown');
+
+export const globalNoticeCaptured = new PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>>();
+
+export const globalThrownCaptured = new PriorityHook<Parameters<typeof onErrorCaptured>[0]>([
+  {
+    id: 'ignored-thrown-hook',
+    order: 100,
+    hook: (err: SafeAny) => {
+      if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
+    },
+  },
+  {
+    id: 'notice-thrown-hook',
+    order: 200,
+    hook: (err: SafeAny) => {
+      let notices: I18nNotice[] | undefined;
+      if (err instanceof ApiResultError) {
+        if (err.errorResult) {
+          notices = err.errorResult.errors;
+        }
+        else if (err.falseResult) {
+          const fr = err.falseResult;
+          notices = [{
+            type: TypeApiFalse,
+            message: fr.message,
+            i18nCode: fr.i18nCode,
+            i18nArgs: fr.i18nArgs,
+          }];
+        }
+      }
+      else if (err instanceof NoticeThrown) {
+        notices = err.notices;
+      }
+
+      if (notices && notices.length > 0) {
+        for (const notice of notices) {
+          globalNoticeCaptured.emit(notice);
+        }
+        return false;
+      }
+    },
+  },
+],
+);

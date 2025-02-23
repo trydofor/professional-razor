@@ -1,52 +1,48 @@
 /**
- * make 'vue:error' hook of nuxt act as onErrorCaptured of vue
+ * make 'vue:error' hook of nuxt act as onErrorCaptured of vue.
+ *
+ * - enable by rehookVueError=true
+ * - put nuxt-vue-error-hooks to globalThrownCaptured
  *
  * @see https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
  * @see https://nuxt.com/docs/getting-started/error-handling#vue-errors
  */
-
 export default defineNuxtPlugin({
   name: 'rehook-vue-error-plugin',
   enforce: 'pre',
   setup(nuxtApp) {
-    const config = useRuntimeConfig().public;
-    const thrownCaptured = useThrownCaptured();
+    if (useRuntimeConfig().public.rehookVueError !== true) return;
 
-    if (config.rehookVueError === true) {
-      logger.info('rehookVueError enabled');
-      nuxtApp.hook('app:created', () => {
-        const nuxtHooks = nuxtApp.hooks;
+    logger.info('enable rehookVueError via globalThrownCaptured');
+    nuxtApp.hook('app:created', () => {
+      const nuxtHooks = nuxtApp.hooks;
 
-        const _hooks = (nuxtHooks as SafeAny)._hooks;
-        if (_hooks == undefined) {
-          throw new Error('no _hooks found, check https://github.com/unjs/hookable/blob/main/src/hookable.ts');
+      const _hooks = (nuxtHooks as SafeAny)._hooks;
+      if (_hooks == undefined) {
+        throw new Error('no _hooks found, check https://github.com/unjs/hookable/blob/main/src/hookable.ts');
+      }
+
+      const oldHooks = _hooks['vue:error'] as (Parameters<typeof onErrorCaptured>[0])[];
+      if (oldHooks != null && oldHooks.length > 0) {
+        const hookName = 'vue:error:rehook' as SafeAny;
+        logger.info('rebook %s count=%d', hookName, oldHooks.length);
+        for (const hook of oldHooks) {
+          nuxtHooks.hook(hookName, hook);
         }
-
-        const oldHooks = _hooks['vue:error'] as (Parameters<typeof onErrorCaptured>[0])[];
-        if (oldHooks != null && oldHooks.length > 0) {
-          const hookName = 'vue:error:rehook' as SafeAny;
-          logger.info('rebook %s count=%d', hookName, oldHooks.length);
-          for (const hook of oldHooks) {
-            nuxtHooks.hook(hookName, hook);
-          }
-          oldHooks.length = 0; // clear the old hooks
-          thrownCaptured.putThrownHook('999.call-nuxt-vue-error-hooks', (err, vm, info) => {
+        oldHooks.length = 0; // clear the old hooks
+        globalThrownCaptured.put({
+          id: 'nuxt-vue-error-hooks',
+          order: 900,
+          hook: (err, vm, info) => {
             // https://github.com/nuxt/nuxt/blob/main/packages/nuxt/src/app/components/nuxt-root.vue
-            nuxtHooks.callHook(hookName, err, vm, info);
-          });
-        }
+            nuxtHooks.callHook(hookName, err, vm, info).catch(
+              he => logger.error('[nuxt] Error in `vue:error` hook', he),
+            );
+          },
+        }, false);
+      }
 
-        nuxtHooks.hook('vue:error', thrownCaptured.callThrownHook as SafeAny);
-      });
-    }
-
-    if (config.thrownCaptured === true) {
-      logger.info('thrownCaptured provided');
-      return {
-        provide: {
-          thrownCaptured,
-        },
-      };
-    }
+      nuxtHooks.hook('vue:error', globalThrownCaptured.call as SafeAny);
+    });
   },
 });

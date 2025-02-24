@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.5.3
+
+### Patch Changes
+
+- d9a8161: ✨ common notice and demoplay #164
+
 ## 0.5.2
 
 ### Patch Changes

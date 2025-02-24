@@ -125,17 +125,17 @@ describe('Ignored constant', () => {
   });
 });
 
-describe('globalThrownCaptured', () => {
+describe('globalThrownCapturer', () => {
   it('should ignore IgnoredThrown instance', async () => {
-    const result = await globalThrownCaptured.call(new IgnoredThrown('ignored message'), null, 'test');
+    const result = await globalThrownCapturer.call(new IgnoredThrown('ignored message'), null, 'test');
     expect(result).toBe(false);
   });
 
   it('should handle NoticeThrown and emit notices', async () => {
     const notice: I18nNotice = { type: 'warning', message: 'Test Notice' };
-    const noticeSpy = vi.spyOn(globalNoticeCaptured, 'emit').mockImplementation(() => Promise.resolve(undefined));
+    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'emit').mockImplementation(() => Promise.resolve(undefined));
 
-    const result = await globalThrownCaptured.call(new NoticeThrown([notice]), null, 'test');
+    const result = await globalThrownCapturer.call(new NoticeThrown([notice]), null, 'test');
 
     expect(noticeSpy).toHaveBeenCalledWith(notice);
     expect(result).toBe(false);
@@ -143,7 +143,7 @@ describe('globalThrownCaptured', () => {
   });
 
   it('should handle ApiResultError with error result and emit notices', async () => {
-    const noticeSpy = vi.spyOn(globalNoticeCaptured, 'emit').mockImplementation(() => Promise.resolve(undefined));
+    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'emit').mockImplementation(() => Promise.resolve(undefined));
 
     const errorResult = {
       success: false,
@@ -151,7 +151,7 @@ describe('globalThrownCaptured', () => {
     };
     const apiError = new ApiResultError(errorResult);
 
-    const result = await globalThrownCaptured.call(apiError, null, 'test');
+    const result = await globalThrownCapturer.call(apiError, null, 'test');
 
     expect(noticeSpy).toHaveBeenCalledWith({ message: 'API Error Message' });
     expect(result).toBe(false);
@@ -159,7 +159,7 @@ describe('globalThrownCaptured', () => {
   });
 
   it('should handle ApiResultError with false result and emit notices', async () => {
-    const noticeSpy = vi.spyOn(globalNoticeCaptured, 'emit').mockImplementation(() => Promise.resolve(undefined));
+    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'emit').mockImplementation(() => Promise.resolve(undefined));
 
     const falseResult = {
       success: false,
@@ -169,7 +169,7 @@ describe('globalThrownCaptured', () => {
     };
     const apiError = new ApiResultError(falseResult);
 
-    const result = await globalThrownCaptured.call(apiError, null, 'test');
+    const result = await globalThrownCapturer.call(apiError, null, 'test');
 
     expect(noticeSpy).toHaveBeenCalledWith({
       type: TypeApiFalse,
@@ -184,7 +184,7 @@ describe('globalThrownCaptured', () => {
   it('should handle NavigateThrown by returning undefined', async () => {
     const navError = new NavigateThrown({ path: '/home' });
 
-    const result = await globalThrownCaptured.call(navError, null, 'test');
+    const result = await globalThrownCapturer.call(navError, null, 'test');
 
     expect(result).toBeUndefined();
   });

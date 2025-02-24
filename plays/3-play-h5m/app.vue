@@ -31,6 +31,7 @@
       </IonContent>
     </IonMenu>
     <IonPage id="main-content">
+      <ThrownCapturer />
       <IonTabs>
         <IonRouterOutlet />
         <IonTabBar slot="bottom">

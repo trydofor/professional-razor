@@ -6,17 +6,17 @@ declare module '@vue/runtime-core' {
   }
 }
 
-declare module '#app' {
-  interface NuxtApp {
-    $thrownCaptured: ReturnType<typeof useThrownCaptured>;
-  }
-}
+// declare module '#app' {
+//   interface NuxtApp {
+//     $thrownCaptured: ReturnType<typeof useThrownCaptured>;
+//   }
+// }
 
-declare module 'vue' {
-  interface ComponentCustomProperties {
-    $thrownCaptured: ReturnType<typeof useThrownCaptured>;
-  }
-}
+// declare module 'vue' {
+//   interface ComponentCustomProperties {
+//     $thrownCaptured: ReturnType<typeof useThrownCaptured>;
+//   }
+// }
 
 //
 export {};

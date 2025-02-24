@@ -51,15 +51,18 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
+        name: 'English',
         file: 'en-US.ts',
         language: 'en-US', // https://i18n.nuxtjs.org/docs/guide/seo
       },
       {
         code: 'zh',
+        name: '简体中文',
         file: 'zh-CN.ts',
         language: 'zh-CN',
       },
     ],
+    strategy: 'no_prefix',
   },
   unocss: { // https://unocss.dev/integrations/nuxt
     nuxtLayers: true,

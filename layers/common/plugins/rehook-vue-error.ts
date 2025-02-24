@@ -2,7 +2,7 @@
  * make 'vue:error' hook of nuxt act as onErrorCaptured of vue.
  *
  * - enable by rehookVueError=true
- * - put nuxt-vue-error-hooks to globalThrownCaptured
+ * - put nuxt-vue-error-hooks to globalThrownCapturer
  *
  * @see https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
  * @see https://nuxt.com/docs/getting-started/error-handling#vue-errors
@@ -13,7 +13,7 @@ export default defineNuxtPlugin({
   setup(nuxtApp) {
     if (useRuntimeConfig().public.rehookVueError !== true) return;
 
-    logger.info('enable rehookVueError via globalThrownCaptured');
+    logger.info('enable rehookVueError via globalThrownCapturer');
     nuxtApp.hook('app:created', () => {
       const nuxtHooks = nuxtApp.hooks;
 
@@ -30,9 +30,9 @@ export default defineNuxtPlugin({
           nuxtHooks.hook(hookName, hook);
         }
         oldHooks.length = 0; // clear the old hooks
-        globalThrownCaptured.put({
-          id: 'nuxt-vue-error-hooks',
-          order: 900,
+        globalThrownCapturer.put({
+          id: 'NuxtVueErrorHooks',
+          order: 9000,
           hook: (err, vm, info) => {
             // https://github.com/nuxt/nuxt/blob/main/packages/nuxt/src/app/components/nuxt-root.vue
             nuxtHooks.callHook(hookName, err, vm, info).catch(
@@ -42,7 +42,7 @@ export default defineNuxtPlugin({
         }, false);
       }
 
-      nuxtHooks.hook('vue:error', globalThrownCaptured.call as SafeAny);
+      nuxtHooks.hook('vue:error', globalThrownCapturer.call as SafeAny);
     });
   },
 });

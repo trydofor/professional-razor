@@ -63,19 +63,21 @@ export class NavigateThrown {
  */
 export const Ignored = new IgnoredThrown('ignored this thrown');
 
-export const globalNoticeCaptured = new PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>>();
+export const ThrownCapturer = PriorityHook<Parameters<typeof onErrorCaptured>[0]>;
 
-export const globalThrownCaptured = new PriorityHook<Parameters<typeof onErrorCaptured>[0]>([
+export const globalNoticeCapturer = new PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>>();
+
+export const globalThrownCapturer = new ThrownCapturer([
   {
-    id: 'ignored-thrown-hook',
-    order: 100,
+    id: 'IgnoredThrownHook',
+    order: 1000,
     hook: (err: SafeAny) => {
       if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
     },
   },
   {
-    id: 'notice-thrown-hook',
-    order: 200,
+    id: 'I18nNoticeHook',
+    order: 2000,
     hook: (err: SafeAny) => {
       let notices: I18nNotice[] | undefined;
       if (err instanceof ApiResultError) {
@@ -98,7 +100,7 @@ export const globalThrownCaptured = new PriorityHook<Parameters<typeof onErrorCa
 
       if (notices && notices.length > 0) {
         for (const notice of notices) {
-          globalNoticeCaptured.emit(notice);
+          globalNoticeCapturer.emit(notice);
         }
         return false;
       }

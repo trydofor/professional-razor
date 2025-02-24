@@ -31,6 +31,9 @@
         <IonButton @click="onIgnoredThrown">
           Ignored Thrown
         </IonButton>
+        <IonButton @click="onNavigateThrown">
+          Navigate Thrown to Home
+        </IonButton>
         <IonButton color="success" @click="onClean">
           Clean
         </IonButton>
@@ -65,20 +68,18 @@ apiResponseEventBus.on((evt) => {
   eventText.value = 'EVENT: session=' + evt.session + '@' + new Date().getMilliseconds();
 });
 
-const thrownCaptured = useThrownCaptured();
-thrownCaptured.putThrownHook('200.component-error-logger', (err, ins, info) => {
+const thrownCaptured = new ThrownCapturer();
+thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err, ins, info) => {
   errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
   console.log('200.component-error-logger', err, ins, info);
-});
+} });
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
-onErrorCaptured(thrownCaptured.callThrownHook);
+onErrorCaptured(thrownCaptured.call);
 
-const { $thrownCaptured } = useNuxtApp();
-$thrownCaptured.putThrownHook('300.before-sentry-error', (err, ins, info) => {
+globalThrownCapturer.put({ id: 'before-sentry-error', order: 300, hook: (err, ins, info) => {
   console.log('300.before-sentry-error', err, ins, info);
-});
-$thrownCaptured.sortThrownHook();
+} });
 
 function onClean() {
   errorText.value = '';
@@ -154,5 +155,9 @@ async function onStatus401() {
 
 async function onIgnoredThrown() {
   throw new IgnoredThrown('Ignored Thrown');
+}
+
+async function onNavigateThrown() {
+  throw new NavigateThrown({ path: '/' });
 }
 </script>

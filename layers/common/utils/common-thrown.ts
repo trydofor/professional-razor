@@ -64,47 +64,69 @@ export class NavigateThrown {
 export const Ignored = new IgnoredThrown('ignored this thrown');
 
 export const ThrownCapturer = PriorityHook<Parameters<typeof onErrorCaptured>[0]>;
+export const NoticeCapturer = PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>>;
 
-export const globalNoticeCapturer = new PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>>();
+/**
+ * global notice capturer used by globalThrownCapturer.
+ */
+export const globalNoticeCapturer = new NoticeCapturer();
 
+/**
+ * non-empty array or undefined
+ */
+export function thrownToNotices(err: SafeAny): I18nNotice[] | undefined {
+  let notices: I18nNotice[] | undefined;
+  if (err instanceof ApiResultError) {
+    if (err.errorResult) {
+      notices = err.errorResult.errors;
+    }
+    else if (err.falseResult) {
+      const fr = err.falseResult;
+      notices = [{
+        type: TypeApiFalse,
+        message: fr.message,
+        i18nCode: fr.i18nCode,
+        i18nArgs: fr.i18nArgs,
+      }];
+    }
+  }
+  else if (err instanceof NoticeThrown) {
+    notices = err.notices;
+  }
+  return notices && notices.length > 0 ? notices : undefined;
+}
+
+export function captureNoticelikeThrown(capturer = globalNoticeCapturer): Parameters<typeof onErrorCaptured>[0] {
+  return (err: SafeAny) => {
+    const notices = thrownToNotices(err);
+
+    if (notices) {
+      for (const notice of notices) {
+        capturer.emit(notice);
+      }
+      return false;
+    }
+  };
+}
+
+export const captureIgnoredThrown: Parameters<typeof onErrorCaptured>[0] = (err: SafeAny) => {
+  if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
+};
+
+/**
+ * should use on app top vue component, e.g. App.vue or Layout.vue.
+ * `onErrorCaptured(globalThrownCapturer.call)` to handle thrown first.
+ */
 export const globalThrownCapturer = new ThrownCapturer([
   {
     id: 'IgnoredThrownHook',
     order: 1000,
-    hook: (err: SafeAny) => {
-      if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
-    },
+    hook: captureIgnoredThrown,
   },
   {
     id: 'I18nNoticeHook',
     order: 2000,
-    hook: (err: SafeAny) => {
-      let notices: I18nNotice[] | undefined;
-      if (err instanceof ApiResultError) {
-        if (err.errorResult) {
-          notices = err.errorResult.errors;
-        }
-        else if (err.falseResult) {
-          const fr = err.falseResult;
-          notices = [{
-            type: TypeApiFalse,
-            message: fr.message,
-            i18nCode: fr.i18nCode,
-            i18nArgs: fr.i18nArgs,
-          }];
-        }
-      }
-      else if (err instanceof NoticeThrown) {
-        notices = err.notices;
-      }
-
-      if (notices && notices.length > 0) {
-        for (const notice of notices) {
-          globalNoticeCapturer.emit(notice);
-        }
-        return false;
-      }
-    },
+    hook: captureNoticelikeThrown(),
   },
 ],
 );

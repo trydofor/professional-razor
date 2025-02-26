@@ -84,6 +84,7 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
     for (const hk of snapshot) {
       try {
         const rt = hk.hook(...args);
+        // logger.info('call hook=%s', hk.id, typeof rt, rt);
         if (rt == null) continue;
 
         if (typeof rt.then === 'function' && typeof rt.catch === 'function') {

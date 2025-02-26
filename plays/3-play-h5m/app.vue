@@ -31,7 +31,7 @@
       </IonContent>
     </IonMenu>
     <IonPage id="main-content">
-      <ThrownCapturer />
+      <GlobalThrownCapturer />
       <IonTabs>
         <IonRouterOutlet />
         <IonTabBar slot="bottom">
@@ -95,4 +95,6 @@ router.afterEach((to) => {
     tb.on = t === tb.href;
   }
 });
+
+onErrorCaptured(globalThrownCapturer.call);
 </script>

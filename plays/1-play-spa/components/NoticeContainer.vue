@@ -1,22 +1,26 @@
 <template>
   <IonAlert
     :is-open="alertOpen"
-    header="Inner Notice"
+    header="Notice Container"
+    sub-header="Inner Notice Capturer"
     :message="alertMessage"
     :buttons="['OK']"
     @did-dismiss="alertOpen = false"
   />
+  <slot />
 </template>
 
 <script lang="ts" setup>
 const alertOpen = ref(false);
 const alertMessage = ref('');
 
-// handle global notices
-globalNoticeCapturer.put({ id: 'InnerNoticeThrown', order: 200, hook: (ntc) => {
+const noticeCapturer = useNoticeCapturer(true);
+noticeCapturer.put({ id: 'InnerNoticeThrown', order: 200, hook: (ntc) => {
   const msg = ntc.i18nCode ? $t(ntc.i18nCode, ntc.i18nArgs ?? []) : ntc.message || 'No I18N';
   alertMessage.value = msg;
   alertOpen.value = true;
   return false;
 } });
+
+onErrorCaptured(captureNoticelikeThrown(noticeCapturer));
 </script>

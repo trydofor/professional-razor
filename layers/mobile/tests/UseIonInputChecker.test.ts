@@ -2,7 +2,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { ref } from 'vue';
 
-describe('ionicValidateInput', () => {
+describe('useIonInputChecker', () => {
   it('validates input correctly with a regex', () => {
     const mockClassList = {
       add: vi.fn(),
@@ -13,7 +13,7 @@ describe('ionicValidateInput', () => {
     const checkFun = /^[1-9][0-9]?$/;
     const modelRef = ref('');
 
-    const validator = ionicValidateInput(inputRef, checkFun, modelRef);
+    const validator = useIonInputChecker({ el: inputRef, check: checkFun, model: modelRef });
 
     // Test valid input
     const event = {
@@ -49,11 +49,11 @@ describe('ionicValidateInput', () => {
     const inputRef = ref({ $el: { classList: mockClassList } });
     const checkFun = /^[1-9][0-9]?$/;
 
-    const validator = ionicValidateInput(inputRef, checkFun);
+    const validator = useIonInputChecker({ el: inputRef, check: checkFun });
 
-    const blurEvent = { type: 'blur' } as IonInputEvent;
+    const blurEvent = { type: 'blur', detail: { value: '25' } } as IonInputEvent;
 
-    expect(validator(blurEvent)).toBe(null);
+    expect(validator(blurEvent)).toBe(undefined);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-touched');
   });
 
@@ -67,7 +67,7 @@ describe('ionicValidateInput', () => {
     const checkFun = (value: string) => value === 'valid';
     const modelRef = ref('');
 
-    const validator = ionicValidateInput(inputRef, checkFun, modelRef);
+    const validator = useIonInputChecker({ el: inputRef, check: checkFun, model: modelRef });
 
     // Test valid input
     expect(validator('valid')).toBe(true);
@@ -94,7 +94,7 @@ describe('ionicValidateInput', () => {
     const checkFun = /^[1-9][0-9]?$/;
     const modelRef = ref('42');
 
-    const validator = ionicValidateInput(inputRef, checkFun, modelRef);
+    const validator = useIonInputChecker({ el: inputRef, check: checkFun, model: modelRef });
 
     expect(validator()).toBe(true);
     expect(validator(null)).toBe(true);

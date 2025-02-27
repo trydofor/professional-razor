@@ -13,7 +13,7 @@
       ref="inputSendZipRef"
       v-model="inputSendZip"
       class="w-full py-4 font-bold tracking-widest"
-      label="should be numbers"
+      label="Zipcode([0-9]{6,})"
       inputmode="numeric"
       label-placement="floating"
       fill="outline"
@@ -26,6 +26,18 @@
       <!-- <div slot="start" class="i-flag:us-4x3" /> -->
       <!-- TODO https://github.com/ionic-team/ionic-framework/issues/28665  -->
     </IonInput>
+    <IonButton @click="onApiError">
+      Zipcode Error by Api Async
+    </IonButton>
+    <IonButton @click="onApiErrorSyncReturn">
+      Zipcode Error by Api Sync return
+    </IonButton>
+    <IonButton @click="onApiErrorSyncCatch">
+      Zipcode Error by Api Sync catch
+    </IonButton>
+    <IonButton @click="onNotifyError">
+      Zipcode Error by Notice
+    </IonButton>
     <div class="h-8">
       <IonToggle v-model="toggleThrowAlert">
         {{ toggleThrowAlert ? 'Throw':'Emit' }} Alert
@@ -64,29 +76,23 @@ const i18n404 = {
 } as I18nMessage;
 
 function onToast() {
-  if (toggleThrowAlert.value) {
-    throw new NoticeThrown([i18nToast]);
-  }
-  else {
-    noticeCapturer.emit(i18nToast);
-  }
+  sendMessage(i18nToast);
 }
 
 function onAlert() {
-  if (toggleThrowAlert.value) {
-    throw new NoticeThrown([i18nAlert]);
-  }
-  else {
-    noticeCapturer.emit(i18nAlert);
-  }
+  sendMessage(i18nAlert);
 }
 
 function onAlert404() {
+  sendMessage(i18n404);
+}
+
+function sendMessage(notice: I18nMessage) {
   if (toggleThrowAlert.value) {
-    throw new NoticeThrown([i18n404]);
+    throw new NoticeThrown([notice]);
   }
   else {
-    noticeCapturer.emit(i18n404);
+    noticeCapturer.emit(notice);
   }
 }
 
@@ -100,7 +106,49 @@ function onShowCapturers() {
 }
 
 const inputSendZip = ref('');
-const errorSendZip = ref('');
+const errorSendZip = ref('bad zipcode');
 const inputSendZipRef = useTemplateRef('inputSendZipRef');
-const checkSendZip = ionicValidateInput(inputSendZipRef, /^[0-9]{5}(-?[0-9]{4})?$/, inputSendZip);
+
+const checkSendZip = useIonInputChecker({
+  el: inputSendZipRef,
+  check: /^[0-9]{6,}$/,
+  model: inputSendZip,
+  notify: {
+    handle: noticeCapturer,
+    output: errorSendZip,
+    accept: 'zip',
+  },
+});
+
+const zipcodeNotice = {
+  target: 'zip',
+  message: 'should not be shown',
+  i18nCode: 'error.assert.greater2',
+  i18nArgs: ['zipcode', 100000],
+} as I18nNotice;
+
+const apiRoute = useApiRoute();
+const body = {
+  success: false,
+  errors: [
+    zipcodeNotice,
+  ],
+} as ErrorResult;
+
+async function onApiError() {
+  await apiRoute.post('/echo', { body });
+}
+
+function onApiErrorSyncReturn() {
+  return apiRoute.post('/echo', { body });
+}
+
+const thrownCapturer = useThrownCapturer();
+function onApiErrorSyncCatch() {
+  apiRoute.post('/echo', { body }).catch(thrownCapturer.call as SafeAny);
+}
+
+function onNotifyError() {
+  checkSendZip(zipcodeNotice);
+}
 </script>

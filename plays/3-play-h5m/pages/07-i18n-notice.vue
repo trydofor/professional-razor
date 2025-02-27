@@ -1,5 +1,3 @@
-import { NoticeCapturer } from '../../../layers/common/utils/common-thrown';
-import { nuxtCompatibilityDate } from '../../../layers/common/configures/nuxt-config-helper';
 <template>
   <IonPage>
     <IonHeader>

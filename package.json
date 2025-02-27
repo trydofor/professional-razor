@@ -21,6 +21,7 @@
     "dep:up": "taze -r -l latest",
     "dev:dep": "pnpm -r -F './layers/**' i",
     "dev:gen": "pnpm -r -F './layers/**' exec nuxi prepare",
+    "dev:init": "pnpm -w i && pnpm i",
     "dev:lint": "pnpm -r exec eslint .",
     "dev:test": "pnpm -r -F './layers/**' exec vitest --no-watch --coverage.enabled true",
     "play:app": "pnpm -C plays/5-play-spa dev -p 3035 -o",

@@ -49,10 +49,11 @@ catalogs:
     "vitest": "3.0.5" # https://github.com/nuxt/nuxt/blob/v3.15.4/packages/nuxt/package.json
     "vue-tsc": "2.2.2" # https://github.com/nuxt/nuxt/blob/v3.15.4/package.json
   mobile:
-    "@capacitor/preferences": "7.0.0" # https://github.com/ionic-team/capacitor-plugins/blob/main/preferences/package.json
-    "@ionic/core": "8.4.3" # by @ionic/vue, need types
-    "@ionic/vue-router": "8.4.3" # https://github.com/ionic-team/ionic-framework/releases
-    "@ionic/vue": "8.4.3"
+    "@capacitor/preferences": "6.0.3" # https://github.com/ionic-team/capacitor-plugins/blob/main/preferences/package.json
+    # keep 8.4.2 until fix https://github.com/ionic-team/ionic-framework/issues/30206
+    "@ionic/core": "8.4.2" # by @ionic/vue, need types
+    "@ionic/vue-router": "8.4.2" # https://github.com/ionic-team/ionic-framework/releases
+    "@ionic/vue": "8.4.2"
     "@nuxtjs/ionic": "0.16.0" # https://github.com/nuxt-modules/ionic
     "ionicons": "7.4.0" # by @ionic/vue
 

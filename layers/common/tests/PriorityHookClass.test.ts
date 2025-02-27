@@ -192,7 +192,7 @@ describe('PriorityHook - call and emit tests', () => {
     expect(result).toBe('stop');
     expect(hook1).toHaveBeenCalledWith('test');
     expect(hook2).toHaveBeenCalledWith('test');
-    expect(hook3).not.toHaveBeenCalled(); // 确保 hook3 没有被执行
+    expect(hook3).not.toHaveBeenCalled();
   });
 
   it('should continue emit() when hook returns Promise<null> or Promise<undefined>', async () => {

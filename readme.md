@@ -126,6 +126,7 @@ asdf install nodejs
 ## by package.json and corepack
 pnpm -v
 ## Corepack is about to download
+pnpm dev:init
 
 ## ✅ for CI
 ## install pnpm-hoist-layer to devDep

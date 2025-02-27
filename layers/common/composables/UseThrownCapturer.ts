@@ -1,7 +1,7 @@
 /**
  * Injection key for the `ThrownCapturer` instance
  */
-export const ThrownCapturerInjectKey: InjectionKey<typeof globalThrownCapturer> = Symbol('ThrownCapturerInjectKey');
+export const ThrownCapturerInjectKey: InjectionKey<InstanceType<typeof ThrownCapturer>> = Symbol('ThrownCapturerInjectKey');
 
 /**
  * get ThrownCapturer instance when asProvider is,

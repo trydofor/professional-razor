@@ -1,7 +1,7 @@
 /**
  * Injection key for the `NoticeCapturer` instance
  */
-export const NoticeCapturerInjectKey: InjectionKey<typeof globalNoticeCapturer> = Symbol('NoticeCapturerInjectKey');
+export const NoticeCapturerInjectKey: InjectionKey<InstanceType<typeof NoticeCapturer>> = Symbol('NoticeCapturerInjectKey');
 
 /**
  * get NoticeCapturer instance when asProvider is,

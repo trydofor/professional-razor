@@ -14,7 +14,7 @@
     <IonContent>
       <div class="bg-gray-200 p-4">
         Auto validate on input/blur, 3+ ascii is ok.
-        but Manually validate 5+ ascii.
+        but Manually validate, need 5+ ascii.
       </div>
       <div class="p-4">
         <IonInput
@@ -46,6 +46,6 @@ definePageMeta({
 
 const inputFirstName = ref('');
 const inputFirstNameRef = useTemplateRef('inputFirstNameRef');
-const checkFirstName = ionicValidateInput(inputFirstNameRef, /^[\x20-\x7E]{3,}$/, inputFirstName);
-const checkFirstNameManual = ionicValidateInput(inputFirstNameRef, /^[\x20-\x7E]{5,}$/, inputFirstName);
+const checkFirstName = useIonInputChecker({ el: inputFirstNameRef, check: /^[\x20-\x7E]{3,}$/, model: inputFirstName });
+const checkFirstNameManual = useIonInputChecker({ el: inputFirstNameRef, check: /^[\x20-\x7E]{5,}$/, model: inputFirstName });
 </script>

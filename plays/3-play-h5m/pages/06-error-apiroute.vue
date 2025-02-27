@@ -71,14 +71,14 @@ apiResponseEventBus.on((evt) => {
 const thrownCaptured = new ThrownCapturer();
 thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err, ins, info) => {
   errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
-  console.log('200.component-error-logger', err, ins, info);
+  logger.info('200.component-error-logger', err, ins, info);
 } });
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
 onErrorCaptured(thrownCaptured.call);
 
 globalThrownCapturer.put({ id: 'before-sentry-error', order: 300, hook: (err, ins, info) => {
-  console.log('300.before-sentry-error', err, ins, info);
+  logger.info('300.before-sentry-error', err, ins, info);
 } });
 
 function onClean() {
@@ -104,7 +104,7 @@ async function onErrorResult() {
 
   const fetchError = apiRoute.post('/echo', { body });
   const apiResult = await ionicFetchResult(fetchError);
-  console.log('should not be here, thrown before this', apiResult);
+  logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: ErrorResult';
 }
 
@@ -120,7 +120,7 @@ async function onFalseResult() {
   const fetchError = apiRoute.post('/echo', { body });
   const apiResult = await ionicFetchResult(fetchError);
 
-  console.log('should not be here, thrown before this', apiResult);
+  logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: FalseResult';
 }
 
@@ -136,7 +136,7 @@ async function onHeaderSession(success = true) {
 
   const fetchError = apiRoute.post('/echo', { header, body });
   const apiResult = await ionicFetchResult(fetchError);
-  console.log('should be here? =' + success, apiResult);
+  logger.error('should be here? =' + success, apiResult);
   shouldNot.value = success ? '' : 'should not show this';
 }
 
@@ -149,7 +149,7 @@ async function onStatus401() {
   const fetchError = apiRoute.post('/echo', { status: 401, body });
   const apiResult = await ionicFetchResult(fetchError);
 
-  console.log('should not be here, thrown before this', apiResult);
+  logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: Status401';
 }
 

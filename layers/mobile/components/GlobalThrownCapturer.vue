@@ -30,15 +30,9 @@ async function presentAlert(message: string) {
 };
 
 // handle global notices
+const { t } = useI18n();
 globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
-  let message;
-  const code = ntc.i18nCode;
-  if (code) {
-    message = $t(code, ntc.i18nArgs ?? []);
-    if ((message === code || message == null) && ntc.message) {
-      message = ntc.message;
-    }
-  }
+  const message = getLocaleMessage(ntc, t);
   if (!message) return;
 
   // no await

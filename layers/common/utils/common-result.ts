@@ -70,3 +70,12 @@ export function getPageResult<T>(result?: ApiResult<T> | null): PageResult<T> | 
 export function getErrorResult(result?: ApiResult<SafeAny> | null): ErrorResult | null {
   return (result != null && 'errors' in result) ? result : null;
 }
+
+export function getLocaleMessage(i18n: I18nMessage, tc: (code: string, args: unknown[]) => Maybe<string>): string | undefined {
+  const code = i18n.i18nCode;
+  const deft = i18n.message;
+  if (code == null || code === '') return deft;
+
+  const msg = tc(code, i18n.i18nArgs ?? []);
+  return msg == null || (msg === code && deft != null) ? deft : msg;
+}

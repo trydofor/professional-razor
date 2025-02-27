@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.5.4
+
+### Patch Changes
+
+- 2d0b9ad: ✅ input validate and error capture
+
 ## 0.5.3
 
 ### Patch Changes

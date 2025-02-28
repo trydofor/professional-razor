@@ -131,9 +131,9 @@ describe('globalThrownCapturer', () => {
     expect(result).toBe(false);
   });
 
-  it('should handle NoticeThrown and emit notices', async () => {
+  it('should handle NoticeThrown and call notices', async () => {
     const notice: I18nNotice = { type: 'warning', message: 'Test Notice' };
-    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'emit').mockImplementation(() => Promise.resolve(undefined));
+    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'call').mockImplementation(() => Promise.resolve(undefined));
 
     const result = await globalThrownCapturer.call(new NoticeThrown([notice]), null, 'test');
 
@@ -142,8 +142,8 @@ describe('globalThrownCapturer', () => {
     noticeSpy.mockRestore();
   });
 
-  it('should handle ApiResultError with error result and emit notices', async () => {
-    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'emit').mockImplementation(() => Promise.resolve(undefined));
+  it('should handle ApiResultError with error result and hook notices', async () => {
+    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'call').mockImplementation(() => Promise.resolve(undefined));
 
     const errorResult = {
       success: false,
@@ -151,15 +151,15 @@ describe('globalThrownCapturer', () => {
     };
     const apiError = new ApiResultError(errorResult);
 
-    const result = await globalThrownCapturer.call(apiError, null, 'test');
+    const result = await globalThrownCapturer.hookError(apiError, null, 'test');
 
     expect(noticeSpy).toHaveBeenCalledWith({ message: 'API Error Message' });
     expect(result).toBe(false);
     noticeSpy.mockRestore();
   });
 
-  it('should handle ApiResultError with false result and emit notices', async () => {
-    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'emit').mockImplementation(() => Promise.resolve(undefined));
+  it('should handle ApiResultError with false result and hook notices', async () => {
+    const noticeSpy = vi.spyOn(globalNoticeCapturer, 'call').mockImplementation(() => Promise.resolve(undefined));
 
     const falseResult = {
       success: false,
@@ -169,7 +169,7 @@ describe('globalThrownCapturer', () => {
     };
     const apiError = new ApiResultError(falseResult);
 
-    const result = await globalThrownCapturer.call(apiError, null, 'test');
+    const result = await globalThrownCapturer.hookCatch(apiError);
 
     expect(noticeSpy).toHaveBeenCalledWith({
       type: TypeApiFalse,

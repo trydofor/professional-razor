@@ -75,11 +75,11 @@ thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err, ins, 
 } });
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
-onErrorCaptured(thrownCaptured.call);
+onErrorCaptured(thrownCaptured.hookError);
 
 globalThrownCapturer.put({ id: 'before-sentry-error', order: 300, hook: (err, ins, info) => {
   logger.info('300.before-sentry-error', err, ins, info);
-} });
+} }, onScopeDispose);
 
 function onClean() {
   errorText.value = '';

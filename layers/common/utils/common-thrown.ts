@@ -63,8 +63,30 @@ export class NavigateThrown {
  */
 export const Ignored = new IgnoredThrown('ignored this thrown');
 
-export const ThrownCapturer = PriorityHook<Parameters<typeof onErrorCaptured>[0]>;
-export const NoticeCapturer = PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>>;
+type OnErrorCapturedHook = Parameters<typeof onErrorCaptured>[0];
+
+export class ThrownCapturer extends PriorityHook<OnErrorCapturedHook> {
+  constructor(inits: ConstructorParameters<typeof PriorityHook>[0] = []) {
+    super(inits);
+    this._scope = onScopeDispose;
+  }
+
+  hookError: OnErrorCapturedHook = (err, vm, info) => {
+    return this.call(err, vm, info);
+  };
+
+  hookCatch: ((err: SafeAny) => void) = this.hookError as SafeAny;
+}
+
+export class NoticeCapturer extends PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>> {
+  constructor(inits: ConstructorParameters<typeof PriorityHook>[0] = []) {
+    super(inits);
+    this._scope = onScopeDispose;
+  }
+
+  hookError: OnErrorCapturedHook = captureNoticelikeThrown(this);
+  hookCatch: ((err: SafeAny) => void) = this.hookError as SafeAny;
+}
 
 /**
  * global notice capturer used by globalThrownCapturer.
@@ -96,20 +118,20 @@ export function thrownToNotices(err: SafeAny): I18nNotice[] | undefined {
   return notices && notices.length > 0 ? notices : undefined;
 }
 
-export function captureNoticelikeThrown(capturer = globalNoticeCapturer): Parameters<typeof onErrorCaptured>[0] {
+export function captureNoticelikeThrown(capturer = globalNoticeCapturer): OnErrorCapturedHook {
   return (err: SafeAny) => {
     const notices = thrownToNotices(err);
 
     if (notices) {
       for (const notice of notices) {
-        capturer.emit(notice);
+        capturer.call(notice);
       }
       return false;
     }
   };
 }
 
-export const captureIgnoredThrown: Parameters<typeof onErrorCaptured>[0] = (err: SafeAny) => {
+export const captureIgnoredThrown: OnErrorCapturedHook = (err: SafeAny) => {
   if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
 };
 
@@ -126,7 +148,7 @@ export const globalThrownCapturer = new ThrownCapturer([
   {
     id: 'I18nNoticeHook',
     order: 2000,
-    hook: captureNoticelikeThrown(),
+    hook: globalNoticeCapturer.hookError,
   },
 ],
 );

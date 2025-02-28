@@ -39,7 +39,7 @@ globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const fun = (ntc.type === 'toast' ? presentToast : presentAlert);
   fun(message);
   return false;
-} }, false);
+} });
 
 // handle global router changes
 const router = useIonRouter();
@@ -48,5 +48,5 @@ globalThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => 
     router.push(err.route);
     return false;
   }
-} }, false);
+} });
 </script>

@@ -20,7 +20,7 @@ noticeCapturer.put({ id: 'InnerNoticeThrown', order: 200, hook: (ntc) => {
   alertMessage.value = msg;
   alertOpen.value = true;
   return false;
-} });
+} }, onScopeDispose);
 
-onErrorCaptured(captureNoticelikeThrown(noticeCapturer));
+onErrorCaptured(noticeCapturer.hookError);
 </script>

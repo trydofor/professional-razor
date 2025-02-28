@@ -236,12 +236,10 @@ describe('PriorityHook - call and emit tests', () => {
   it('should warn if call() receives a Promise', () => {
     const hookManager = new PriorityHook<(input: string) => string | Promise<string>>();
 
-    // const loggerWarn = vi.fn();
-    // logger.mockTypes(() => loggerWarn);
     const loggerWarn = vi.spyOn(logger, 'warn').mockImplementation(() => {});
     const hook1 = vi.fn(() => Promise.resolve('async-value'));
 
-    hookManager.put({ id: 'asyncHook', order: 1, hook: hook1 }, false);
+    hookManager.put({ id: 'asyncHook', order: 1, hook: hook1 });
 
     const result = hookManager.call('test');
 
@@ -282,5 +280,48 @@ describe('PriorityHook - call and emit tests', () => {
     expect(result).toBe('stop-here');
     expect(hook1).toHaveBeenCalled();
     expect(hook2).not.toHaveBeenCalled();
+  });
+
+  it('ensures copy-on-write behavior during async emit', async () => {
+    const priorityHook = new PriorityHook<(input: string) => MayPromise<string | null>>();
+    priorityHook.put({ id: 'a', order: 1, hook: async msg => msg });
+
+    const prevHooks = priorityHook.each(hooks => hooks);
+
+    const emitPromise = priorityHook.emit('test');
+    priorityHook.sort();
+    await emitPromise;
+
+    const newHooks = priorityHook.each(hooks => hooks);
+    expect(prevHooks).not.toBe(newHooks);
+  });
+
+  it('logs a warning when call() receives a Promise', () => {
+    const priorityHook = new PriorityHook<(input: string) => MayPromise<string | null>>();
+    const asyncHook = vi.fn(async msg => msg + ' Async');
+    const loggerSpy = vi.spyOn(logger, 'warn').mockImplementation(() => {});
+
+    priorityHook.put({ id: 'async', order: 1, hook: asyncHook as SafeAny });
+
+    priorityHook.call('test');
+    expect(loggerSpy).toHaveBeenCalledWith(expect.stringContaining('Synchronous call() received a Promise'));
+
+    loggerSpy.mockRestore();
+  });
+
+  it('logs an error when a hook in emit() throws an error', async () => {
+    const priorityHook = new PriorityHook<(input: string) => MayPromise<string | null>>();
+    const errorHook = vi.fn(async () => {
+      throw new Error('Emit Hook Error');
+    });
+    const loggerSpy = vi.spyOn(logger, 'error').mockImplementation(() => {});
+
+    priorityHook.put({ id: 'error', order: 1, hook: errorHook });
+
+    await priorityHook.emit('test');
+
+    expect(loggerSpy).toHaveBeenCalledWith(expect.stringContaining('failed to hook thrown hook=error'));
+
+    loggerSpy.mockRestore();
   });
 });

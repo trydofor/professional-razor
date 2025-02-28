@@ -96,5 +96,5 @@ router.afterEach((to) => {
   }
 });
 
-onErrorCaptured(globalThrownCapturer.call);
+onErrorCaptured(globalThrownCapturer.hookError);
 </script>

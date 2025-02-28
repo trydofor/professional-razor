@@ -145,7 +145,7 @@ function onApiErrorSyncReturn() {
 
 const thrownCapturer = useThrownCapturer();
 function onApiErrorSyncCatch() {
-  apiRoute.post('/echo', { body }).catch(thrownCapturer.call as SafeAny);
+  apiRoute.post('/echo', { body }).catch(thrownCapturer.hookCatch);
 }
 
 function onNotifyError() {

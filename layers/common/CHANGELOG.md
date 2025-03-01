@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.5.5
+
+### Patch Changes
+
+- 59b2d31: ♻️ Type Guard instead of get util #168
+
 ## 0.5.4
 
 ### Patch Changes

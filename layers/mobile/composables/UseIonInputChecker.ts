@@ -53,7 +53,7 @@ export function useIonInputChecker(opt: {
       order: opt.notify.order || 100,
       hook: (ntc: I18nNotice) => {
         if (acc(ntc)) {
-          const msg = getLocaleMessage(ntc, t);
+          const msg = localizeMessage(ntc, t);
           if (msg) {
             if (typeof out === 'function') {
               out(msg);

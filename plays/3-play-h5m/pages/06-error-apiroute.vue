@@ -62,7 +62,7 @@ definePageMeta({
 const errorText = ref('');
 const eventText = ref('');
 const shouldNot = ref('');
-const apiRoute = useApiRoute();
+const apiRoute = useApiRouteFetcher();
 
 apiResponseEventBus.on((evt) => {
   eventText.value = 'EVENT: session=' + evt.session + '@' + new Date().getMilliseconds();

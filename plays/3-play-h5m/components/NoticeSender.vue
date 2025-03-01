@@ -127,7 +127,7 @@ const zipcodeNotice = {
   i18nArgs: ['zipcode', 100000],
 } as I18nNotice;
 
-const apiRoute = useApiRoute();
+const apiRoute = useApiRouteFetcher();
 const body = {
   success: false,
   errors: [

@@ -35,13 +35,12 @@ export const defaultFetchAlerter: AlertHandler<SafeAny> = (result, error) => {
   let header = 'Network Request Error';
   let message = error.message || 'Network or Server Error';
   // TODO handle errorResult,falseResult and its i18n message
-  const fe = apiRouteFetchError(error);
-  if (fe != null) {
-    if (fe.statusCode === 401) {
+  if (isFetchError(error)) {
+    if (error.statusCode === 401) {
       header = 'Unauthorized';
       message = 'Please login to continue.';
     }
-    else if (fe.statusCode === 403) {
+    else if (error.statusCode === 403) {
       header = 'Forbidden';
       message = 'No permission to access';
     }
@@ -101,7 +100,7 @@ export async function ionicFetchData<T>(
   options: IonicFetchOptions<ApiResult<T>> = {},
 ): Promise<DataResult<T> | null> {
   const result = await ionicFetchResult(fetching, options);
-  return getDataResult(result);
+  return isDataResult(result) ? result : null;
 }
 
 /**
@@ -115,7 +114,7 @@ export async function ionicFetchPage<T>(
   options: IonicFetchOptions<ApiResult<T>> = {},
 ): Promise<PageResult<T> | null> {
   const result = await ionicFetchResult(fetching, options);
-  return getPageResult(result);
+  return isPageResult(result) ? result : null;
 }
 
 /**

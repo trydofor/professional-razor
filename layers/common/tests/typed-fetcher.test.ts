@@ -67,20 +67,20 @@ describe('typed-fetcher', () => {
   });
 
   it('getDataResult should return DataResult if valid', () => {
-    expect(getDataResult(mockDataResult)).toEqual(mockDataResult);
-    expect(getDataResult(mockPageResult)).toBeNull();
-    expect(getDataResult(mockErrorResult)).toBeNull();
+    expect(isDataResult(mockDataResult)).toBe(true);
+    expect(isDataResult(mockPageResult)).toBe(false);
+    expect(isDataResult(mockErrorResult)).toBe(false);
   });
 
   it('getPageResult should return PageResult if valid', () => {
-    expect(getPageResult(mockPageResult)).toEqual(mockPageResult);
-    expect(getPageResult(mockDataResult)).toBeNull();
-    expect(getPageResult(mockErrorResult)).toBeNull();
+    expect(isPageResult(mockPageResult)).toBe(true);
+    expect(isPageResult(mockDataResult)).toBe(false);
+    expect(isPageResult(mockErrorResult)).toBe(false);
   });
 
   it('getErrorResult should return ErrorResult if valid', () => {
-    expect(getErrorResult(mockErrorResult)).toEqual(mockErrorResult);
-    expect(getErrorResult(mockDataResult)).toBeNull();
-    expect(getErrorResult(mockPageResult)).toBeNull();
+    expect(isErrorResult(mockErrorResult)).toBe(true);
+    expect(isErrorResult(mockDataResult)).toBe(false);
+    expect(isErrorResult(mockPageResult)).toBe(false);
   });
 });

@@ -48,6 +48,12 @@
   type SafeObj = Record<string, any>;
 
   /**
+   * typesafe use of `Function` to reduce eslint comments
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+  type SafeFun = Function;
+
+  /**
    * short string value of true or false
    */
   type BoolTof = 't' | 'f';

@@ -58,20 +58,21 @@ export interface PageResult<T = unknown> extends DataResult<T[]> {
 
 export type ApiResult<T = unknown> = DataResult<T> | PageResult<T> | ErrorResult;
 
-export function getDataResult<T>(result?: ApiResult<T> | null): DataResult<T> | null {
-  return (result == null || 'errors' in result || 'page' in result) ? null : result;
+export function isDataResult<T>(result?: ApiResult<T> | null): result is DataResult<T> {
+  if (result == null || 'errors' in result) return false;
+  return !('page' in result);
 }
 
-export function getPageResult<T>(result?: ApiResult<T> | null): PageResult<T> | null {
-  if (result == null || 'errors' in result) return null;
-  return 'page' in result ? result : null;
+export function isPageResult<T>(result?: ApiResult<T> | null): result is PageResult<T> {
+  if (result == null || 'errors' in result) return false;
+  return 'page' in result;
 }
 
-export function getErrorResult(result?: ApiResult<SafeAny> | null): ErrorResult | null {
-  return (result != null && 'errors' in result) ? result : null;
+export function isErrorResult(result?: ApiResult<SafeAny> | null): result is ErrorResult {
+  return (result != null && 'errors' in result);
 }
 
-export function getLocaleMessage(i18n: I18nMessage, tc: (code: string, args: unknown[]) => Maybe<string>): string | undefined {
+export function localizeMessage(i18n: I18nMessage, tc: (code: string, args: unknown[]) => Maybe<string>): string | undefined {
   const code = i18n.i18nCode;
   const deft = i18n.message;
   if (code == null || code === '') return deft;

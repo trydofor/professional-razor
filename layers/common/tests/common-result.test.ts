@@ -20,31 +20,31 @@ describe('API Result Helpers', () => {
     errors: [{ type: 'Validation', target: 'email', message: 'Invalid Email' }],
   };
 
-  it('getDataResult should return DataResult when valid', () => {
-    expect(getDataResult(dataResult)).toEqual(dataResult);
-    expect(getDataResult(pageResult)).toBeNull(); // pageResult 应该返回 null
-    expect(getDataResult(errorResult)).toBeNull(); // errorResult 也应返回 null
-    expect(getDataResult(null)).toBeNull();
-    expect(getDataResult(undefined)).toBeNull();
+  it('isDataResult should return DataResult when valid', () => {
+    expect(isDataResult(dataResult)).toBe(true);
+    expect(isDataResult(pageResult)).toBe(false);
+    expect(isDataResult(errorResult)).toBe(false);
+    expect(isDataResult(null)).toBe(false);
+    expect(isDataResult(undefined)).toBe(false);
   });
 
   it('getPageResult should return PageResult when valid', () => {
-    expect(getPageResult(pageResult)).toEqual(pageResult);
-    expect(getPageResult(dataResult)).toBeNull(); // dataResult 应该返回 null
-    expect(getPageResult(errorResult)).toBeNull(); // errorResult 也应返回 null
-    expect(getPageResult(null)).toBeNull();
-    expect(getPageResult(undefined)).toBeNull();
+    expect(isPageResult(pageResult)).toBe(true);
+    expect(isPageResult(dataResult)).toBe(false);
+    expect(isPageResult(errorResult)).toBe(false);
+    expect(isPageResult(null)).toBe(false);
+    expect(isPageResult(undefined)).toBe(false);
   });
 
   it('getErrorResult should return ErrorResult when valid', () => {
-    expect(getErrorResult(errorResult)).toEqual(errorResult);
-    expect(getErrorResult(dataResult)).toBeNull();
-    expect(getErrorResult(pageResult)).toBeNull();
-    expect(getErrorResult(null)).toBeNull();
-    expect(getErrorResult(undefined)).toBeNull();
+    expect(isErrorResult(errorResult)).toBe(true);
+    expect(isErrorResult(dataResult)).toBe(false);
+    expect(isErrorResult(pageResult)).toBe(false);
+    expect(isErrorResult(null)).toBe(false);
+    expect(isErrorResult(undefined)).toBe(false);
   });
 
-  describe('getLocaleMessage', () => {
+  describe('localizeMessage', () => {
     const mockTranslate = (code: string, args: unknown[]) => {
       if (code === 'hello.world') return 'Hello, World!';
       if (code === 'with.args') return `Hello, ${args[0]}!`;
@@ -53,21 +53,21 @@ describe('API Result Helpers', () => {
 
     it('should return translated message when available', () => {
       const msg: I18nMessage = { i18nCode: 'hello.world' };
-      expect(getLocaleMessage(msg, mockTranslate)).toBe('Hello, World!');
+      expect(localizeMessage(msg, mockTranslate)).toBe('Hello, World!');
     });
 
     it('should return formatted message with arguments', () => {
       const msg: I18nMessage = { i18nCode: 'with.args', i18nArgs: ['Alice'] };
-      expect(getLocaleMessage(msg, mockTranslate)).toBe('Hello, Alice!');
+      expect(localizeMessage(msg, mockTranslate)).toBe('Hello, Alice!');
     });
 
     it('should return default message when translation is unavailable', () => {
       const msg: I18nMessage = { i18nCode: 'unknown.code', message: 'Fallback Message' };
-      expect(getLocaleMessage(msg, mockTranslate)).toBe('Fallback Message');
+      expect(localizeMessage(msg, mockTranslate)).toBe('Fallback Message');
     });
 
     it('should return undefined when no i18nCode or message is provided', () => {
-      expect(getLocaleMessage({}, mockTranslate)).toBeUndefined();
+      expect(localizeMessage({}, mockTranslate)).toBeUndefined();
     });
   });
 });

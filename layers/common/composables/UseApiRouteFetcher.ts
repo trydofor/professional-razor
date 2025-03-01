@@ -18,20 +18,22 @@ export const apiResponseEventBus = useEventBus<ApiResponseEvent, SafeObj>(apiRes
  * * FormData - multipart/form-data
  * * default - application/json
  */
-export const apiRequestContentTypeHook: ApiRequestHook = (context) => {
-  const body = context.options.body;
-  const headers = context.options.headers;
-  if (headers.has('content-type')) return;
+export function apiRequestContentTypeHook(id: string = 'requestContentType'): ApiRequestHook & { id: string } {
+  return attachId(id, (context) => {
+    const body = context.options.body;
+    const headers = context.options.headers;
+    if (headers.has('content-type')) return;
 
-  if (body instanceof URLSearchParams) {
-    headers.set('content-type', 'application/x-www-form-urlencoded');
-  }
-  else if (body instanceof FormData) {
-    headers.set('content-type', 'multipart/form-data');
-  }
-  else {
-    headers.set('content-type', 'application/json');
-  }
+    if (body instanceof URLSearchParams) {
+      headers.set('content-type', 'application/x-www-form-urlencoded');
+    }
+    else if (body instanceof FormData) {
+      headers.set('content-type', 'multipart/form-data');
+    }
+    else {
+      headers.set('content-type', 'application/json');
+    }
+  });
 };
 
 /**
@@ -39,9 +41,9 @@ export const apiRequestContentTypeHook: ApiRequestHook = (context) => {
  *
  * @param sessionHeader the header of response that holds session token, default 'session'
  */
-export function apiResponseSessionHook(sessionHeader: string[] = ['session'], eventKey = apiResponseEventKey): ApiResponseHook {
+export function apiResponseSessionHook(sessionHeader: string[] = ['session'], eventKey = apiResponseEventKey, id: string = 'responseSession'): ApiResponseHook {
   const eventBus = useEventBus(eventKey);
-  return (context) => {
+  return attachId(id, (context) => {
     const headers = context.response.headers;
     for (const hd of sessionHeader) {
       const session = headers.get(hd);
@@ -51,7 +53,7 @@ export function apiResponseSessionHook(sessionHeader: string[] = ['session'], ev
         break;
       }
     }
-  };
+  });
 }
 
 /**
@@ -59,39 +61,51 @@ export function apiResponseSessionHook(sessionHeader: string[] = ['session'], ev
  *
  * @param okStatus the success response code
  */
-export function apiResponseStatusHook(okStatus: number[] = [200]): ApiResponseHook {
-  return (context) => {
+export function apiResponseStatusHook(okStatus: number[] = [200], id: string = 'responseStatus'): ApiResponseHook {
+  return attachId(id, (context) => {
     if (!okStatus.includes(context.response.status)) {
       throw createFetchError(context);
     }
-  };
+  });
 }
 
 /**
  * throw ApiResultError if not result.success
- *
- * @param apiFalse include the false
+ * whether include the false result, default true
  */
-export function apiResponseResultHook(apiFalse: boolean = true): ApiResponseHook {
-  return (context) => {
+export function apiResponseResultHook(includeFalse: boolean = true, id: string = 'responseSuccessResult'): ApiResponseHook {
+  return attachId(id, (context) => {
     const result = context.response._data as ApiResult;
     if (result != null && result.success === false) {
-      if (apiFalse || 'errors' in result) {
+      if (includeFalse || 'errors' in result) {
         throw new ApiResultError(result);
       }
     }
-  };
+  });
 }
 
-export function apiRouteFetchError(err: SafeAny): FetchError | undefined {
-  return err instanceof FetchError ? err : undefined;
+export function isFetchError(err: SafeAny): err is FetchError {
+  return err instanceof FetchError;
 }
+
+export const defaultFetchHooks = {
+  requestContentType: apiRequestContentTypeHook(),
+  responseSession: apiResponseSessionHook(),
+  responseStatus: apiResponseStatusHook(),
+  responseResult: apiResponseResultHook(),
+};
 
 /**
  * how to merge this fetchHook(passin) with the that fetchHook(default) ,
+ *
+ * mergeFetchHooks merge hooks:
  * - true - all this, no that
  * - false - no this, all that
  * - undefined/null - both this and that, into array
+ *
+ * identifyFetchHooks to pick after merge:
+ * - false - remove the hook  if exists
+ * - true/undefined/null - NOP
  */
 export type ApiHookMergeOptions = {
   mergeFetchHooks?: boolean | {
@@ -100,14 +114,15 @@ export type ApiHookMergeOptions = {
     onResponse?: boolean;
     onResponseError?: boolean;
   };
+  identifyFetchHooks?: Partial<Record<keyof typeof defaultFetchHooks, boolean>> & Record<string, boolean>;
 };
 
 export const defaultFetchOptions: FetchOptions = {
-  onRequest: typeof window === 'undefined' ? undefined : apiRequestContentTypeHook,
+  onRequest: typeof window === 'undefined' ? undefined : defaultFetchHooks.requestContentType,
   onResponse: [
-    apiResponseSessionHook(),
-    apiResponseStatusHook(),
-    apiResponseResultHook(),
+    defaultFetchHooks.responseSession,
+    defaultFetchHooks.responseStatus,
+    defaultFetchHooks.responseResult,
   ],
 };
 
@@ -119,7 +134,7 @@ export const defaultFetchOptions: FetchOptions = {
  * @returns An object containing utility functions for API requests.
  * @see https://github.com/unjs/ofetch
  */
-export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
+export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) {
   const prefix = useRuntimeConfig().public.apiRoute;
 
   /**
@@ -142,9 +157,10 @@ export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
    */
   function opt(op?: FetchOptions & ApiHookMergeOptions): FetchOptions {
     if (op == null) return { ...options };
+
     const opt = { ...options, ...op };
     delete opt.mergeFetchHooks;
-    if (options == null) return opt;
+    delete opt.identifyFetchHooks;
 
     const mergeHooks = op?.mergeFetchHooks;
     if (mergeHooks == null) { // default into array
@@ -153,7 +169,6 @@ export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
       opt.onRequestError = flatItems([op.onRequestError, options.onRequestError]);
       opt.onResponse = flatItems([op.onResponse, options.onResponse]);
       opt.onResponseError = flatItems([op.onResponseError, options.onResponseError]);
-      return opt;
     }
     else if (typeof mergeHooks === 'boolean') { // all this, no that
       opt.onRequest = mergeHooks ? op.onRequest : options.onRequest;
@@ -171,6 +186,24 @@ export function useApiRoute(options: FetchOptions = defaultFetchOptions) {
       opt.onRequestError = merge(mergeHooks.onRequestError, op.onRequestError, options.onRequestError);
       opt.onResponse = merge(mergeHooks.onResponse, op.onResponse, options.onResponse);
       opt.onResponseError = merge(mergeHooks.onResponseError, op.onResponseError, options.onResponseError);
+    }
+
+    if (op?.identifyFetchHooks != null) {
+      const ids = op.identifyFetchHooks;
+      const filter = (hooks: SafeAny): SafeAny => {
+        if (hooks == null) return undefined;
+        if (Array.isArray(hooks)) {
+          return hooks.filter(hk => !(typeof hk.id === 'string' && ids[hk.id] === false));
+        }
+        else {
+          return typeof hooks.id === 'string' && ids[hooks.id] === false ? undefined : hooks;
+        }
+      };
+
+      opt.onRequest = filter(opt.onRequest);
+      opt.onRequestError = filter(opt.onRequestError);
+      opt.onResponse = filter(opt.onResponse);
+      opt.onResponseError = filter(opt.onResponseError);
     }
 
     return opt;

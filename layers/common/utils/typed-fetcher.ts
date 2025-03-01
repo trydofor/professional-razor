@@ -40,7 +40,7 @@ export async function fetchTypedData<T>(
   options: TypedFetchOptions<ApiResult<T>> = {},
 ): Promise<DataResult<T> | null> {
   const result = await fetchTypedResult(fetching, options);
-  return getDataResult(result);
+  return isDataResult(result) ? result : null;
 }
 
 /**
@@ -54,7 +54,7 @@ export async function fetchTypedPage<T>(
   options: TypedFetchOptions<ApiResult<T>> = {},
 ): Promise<PageResult<T> | null> {
   const result = await fetchTypedResult(fetching, options);
-  return getPageResult(result);
+  return isPageResult(result) ? result : null;
 }
 
 /**

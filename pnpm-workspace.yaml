@@ -14,7 +14,7 @@ catalogs:
   common:
     "@nuxtjs/i18n": "9.2.1" # https://github.com/nuxt-modules/i18n/blob/main/package.json
     "@pinia/nuxt": "0.10.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/nuxt/package.json
-    "@sentry/nuxt": "9.1.0" # https://docs.sentry.io/platforms/javascript/guides/nuxt/manual-setup/
+    "@sentry/nuxt": "9.3.0" # https://github.com/getsentry/sentry-javascript/blob/develop/packages/nuxt/package.json
     "@vueuse/core": "12.7.0" #https://github.com/vueuse/vueuse/blob/v12.7.0/pnpm-workspace.yaml
     "@vueuse/nuxt": "12.7.0"
     "date-fns": "4.1.0"

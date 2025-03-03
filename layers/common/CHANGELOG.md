@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.5.7
+
+### Patch Changes
+
+- a373911: ✨ global toast,alert capturer #170
+
 ## 0.5.5
 
 ### Patch Changes

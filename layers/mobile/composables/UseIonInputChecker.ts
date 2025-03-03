@@ -27,12 +27,13 @@ function isIonInputEvent(event: SafeAny): event is IonInputEvent {
   return 'detail' in event;
 }
 
+let counter = 0;
 export function useIonInputChecker(opt: {
   el: Ref<SafeAny>;
   check: RegExp | ((value: string, event?: IonInputEvent) => boolean);
   model?: Ref<string> | (() => string);
   notify?: {
-    handle: InstanceType<typeof NoticeCapturer>;
+    handle: InstanceType<ClassNoticeCapturer>;
     output: Ref<string> | ((err: string) => void);
     accept: string | ((ntc: I18nNotice) => boolean | undefined);
     id?: string;
@@ -45,11 +46,26 @@ export function useIonInputChecker(opt: {
   // regitster notice handler
   if (opt.notify != null) {
     const tg = opt.notify.accept;
-    const acc = typeof tg === 'string' ? (n: I18nNotice) => n.target === tg : tg;
+    let acc;
+    let id = opt.notify.id;
+    if (typeof tg === 'string') {
+      acc = (n: I18nNotice) => n.target === tg;
+      id ??= tg;
+    }
+    else {
+      acc = tg;
+    }
+
+    if (id == null) {
+      id = `input-checker-${counter++}`;
+      logger.warn('no id for notice handler, use counter %s', id);
+    }
+
     const out = opt.notify.output;
     const { t } = useI18n();
+
     opt.notify.handle.put({
-      id: opt.notify.id || 'ionic-input-checker',
+      id,
       order: opt.notify.order || 100,
       hook: (ntc: I18nNotice) => {
         if (acc(ntc)) {

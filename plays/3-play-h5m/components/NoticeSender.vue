@@ -38,6 +38,9 @@
     <IonButton @click="onNotifyError">
       Zipcode Error by Notice
     </IonButton>
+    <IonButton @click="onBubbleUp">
+      System Error Bubble Up
+    </IonButton>
     <div class="h-8">
       <IonToggle v-model="toggleThrowAlert">
         {{ toggleThrowAlert ? 'Throw':'Emit' }} Alert
@@ -89,7 +92,7 @@ function onAlert404() {
 
 function sendMessage(notice: I18nMessage) {
   if (toggleThrowAlert.value) {
-    throw new NoticeThrown([notice]);
+    throw newNoticeThrown(notice);
   }
   else {
     noticeCapturer.emit(notice);
@@ -150,5 +153,9 @@ function onApiErrorSyncCatch() {
 
 function onNotifyError() {
   checkSendZip(zipcodeNotice);
+}
+
+function onBubbleUp() {
+  throw newSystemError('system', 'bubble up');
 }
 </script>

@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { PriorityHook } from '../classes/ClassPriorityHook';
 
 describe('PriorityHook', () => {
   it('should initialize with empty hooks', () => {

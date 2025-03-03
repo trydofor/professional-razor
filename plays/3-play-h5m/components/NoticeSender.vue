@@ -89,7 +89,7 @@ function onAlert404() {
 
 function sendMessage(notice: I18nMessage) {
   if (toggleThrowAlert.value) {
-    throw new NoticeThrown([notice]);
+    throw newNoticeThrown(notice);
   }
   else {
     noticeCapturer.emit(notice);

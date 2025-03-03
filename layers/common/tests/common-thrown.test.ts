@@ -90,12 +90,12 @@ describe('IgnoredThrown', () => {
   });
 });
 
-describe('ReturnThrown', () => {
+describe('DataThrown', () => {
   it('should create an instance with type and data', () => {
-    const returnThrown = new ReturnThrown('TestType', { key: 'value' });
-    expect(returnThrown.name).toBe('ReturnThrown');
-    expect(returnThrown.type).toBe('TestType');
-    expect(returnThrown.data).toEqual({ key: 'value' });
+    const dataThrown = new DataThrown('TestType', { key: 'value' });
+    expect(dataThrown.name).toBe('DataThrown');
+    expect(dataThrown.type).toBe('TestType');
+    expect(dataThrown.data).toEqual({ key: 'value' });
   });
 });
 

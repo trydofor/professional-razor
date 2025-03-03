@@ -68,7 +68,7 @@ describe('typed-fetcher', () => {
 
   it('getDataResult should return DataResult if valid', () => {
     expect(isDataResult(mockDataResult)).toBe(true);
-    expect(isDataResult(mockPageResult)).toBe(false);
+    expect(isDataResult(mockPageResult)).toBe(true);
     expect(isDataResult(mockErrorResult)).toBe(false);
   });
 

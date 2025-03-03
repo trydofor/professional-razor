@@ -8,7 +8,7 @@ describe('useThrownCapturer', () => {
 
     const TestComponent = defineComponent({
       setup() {
-        injectedInstance = useThrownCapturer(true);
+        injectedInstance = useThrownCapturer(UseCapturerType.Provider);
         return () => null;
       },
     });
@@ -31,7 +31,7 @@ describe('useThrownCapturer', () => {
 
     const Child = defineComponent({
       setup() {
-        const instance = useThrownCapturer(false);
+        const instance = useThrownCapturer(UseCapturerType.Injected);
         return { instance };
       },
     });
@@ -46,7 +46,7 @@ describe('useThrownCapturer', () => {
   it('should fallback to globalThrownCapturer when no provider exists', () => {
     const wrapper = mount(defineComponent({
       setup() {
-        const instance = useThrownCapturer(false);
+        const instance = useThrownCapturer(UseCapturerType.Injected);
         return { instance };
       },
       template: '<div></div>',

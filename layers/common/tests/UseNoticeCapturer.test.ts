@@ -8,7 +8,7 @@ describe('useNoticeCapturer', () => {
 
     const TestComponent = defineComponent({
       setup() {
-        injectedInstance = useNoticeCapturer(true);
+        injectedInstance = useNoticeCapturer(UseCapturerType.Provider);
         return () => null;
       },
     });
@@ -31,7 +31,7 @@ describe('useNoticeCapturer', () => {
 
     const Child = defineComponent({
       setup() {
-        const instance = useNoticeCapturer(false);
+        const instance = useNoticeCapturer(UseCapturerType.Injected);
         return { instance };
       },
     });
@@ -46,7 +46,7 @@ describe('useNoticeCapturer', () => {
   it('should fallback to globalNoticeCapturer when no provider exists', () => {
     const wrapper = mount(defineComponent({
       setup() {
-        const instance = useNoticeCapturer(false);
+        const instance = useNoticeCapturer(UseCapturerType.Injected);
         return { instance };
       },
       template: '<div></div>',

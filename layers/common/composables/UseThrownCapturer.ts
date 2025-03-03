@@ -6,18 +6,19 @@ export const ThrownCapturerInjectKey: InjectionKey<InstanceType<typeof ThrownCap
 /**
  * get ThrownCapturer instance when asProvider is,
  *
- * * true - create new instance and provide by ThrownCapturerInjectKey
- * * false (default) - the injected instance by ThrownCapturerInjectKey, or globalThrownCapturer if not injected
+ * * Provider - create new instance and provide by ThrownCapturerInjectKey
+ * * ProviderCapturer - as Provider hook error by onErrorCaptured
+ * * Injected - the injected instance by ThrownCapturerInjectKey, or globalThrownCapturer if not injected
  */
-export function useThrownCapturer(asProvider: boolean = false) {
-  let thrownCapturer;
-
-  if (asProvider) {
-    thrownCapturer = new ThrownCapturer();
-    provide(ThrownCapturerInjectKey, thrownCapturer);
+export function useThrownCapturer(role = UseCapturerType.Injected) {
+  if (role === UseCapturerType.Injected) {
+    return inject(ThrownCapturerInjectKey, globalThrownCapturer);
   }
-  else {
-    thrownCapturer = inject(ThrownCapturerInjectKey, globalThrownCapturer);
+
+  const thrownCapturer = new ThrownCapturer();
+  provide(ThrownCapturerInjectKey, thrownCapturer);
+  if (role === UseCapturerType.ProviderCapturer) {
+    onErrorCaptured(thrownCapturer.hookError);
   }
 
   return thrownCapturer;

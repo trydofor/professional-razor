@@ -78,7 +78,7 @@ export function apiResponseResultHook(includeFalse: boolean = true, id: string =
     const result = context.response._data as ApiResult;
     if (result != null && result.success === false) {
       if (includeFalse || 'errors' in result) {
-        throw new ApiResultError(result);
+        throw newApiResultError(result);
       }
     }
   });

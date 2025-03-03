@@ -51,14 +51,14 @@ globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
 // handle global router changes
 const router = useIonRouter();
 globalThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
-  if (err instanceof NavigateThrown && err.route) {
+  if (isNavigateThrown(err) && err.route) {
     router.push(err.route);
     return false;
   }
 } });
 
 globalThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
-  if (err instanceof DataThrown) {
+  if (isDataThrown(err)) {
     if (err.type === 'Alert') {
       presentAlert(err.data);
       return false;

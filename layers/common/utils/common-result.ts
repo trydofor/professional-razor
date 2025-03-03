@@ -67,7 +67,7 @@ export function mustDataResult<T>(result?: ApiResult<T> | null): DataResult<T> {
     return result;
   }
   else {
-    throw new SystemError('require DataResult', result);
+    throw newSystemError('require DataResult', result);
   }
 }
 
@@ -80,7 +80,7 @@ export function mustPageResult<T>(result?: ApiResult<T> | null): PageResult<T> {
     return result;
   }
   else {
-    throw new SystemError('require PageResult', result);
+    throw newSystemError('require PageResult', result);
   }
 }
 

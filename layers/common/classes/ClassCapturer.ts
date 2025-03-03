@@ -1,0 +1,65 @@
+import { PriorityHook, type PriorityHookType } from './ClassPriorityHook';
+
+type OnErrorCapturedHook = Parameters<typeof onErrorCaptured>[0];
+type OnNoticeCapturedHook = (notice: I18nNotice) => MayPromise<boolean | undefined>;
+
+/**
+ * non-empty array or undefined
+ */
+export function thrownToNotices(err: SafeAny): I18nNotice[] | undefined {
+  let notices: I18nNotice[] | undefined;
+  if (isApiResultError(err)) {
+    if (err.errorResult) {
+      notices = err.errorResult.errors;
+    }
+    else if (err.falseResult) {
+      const fr = err.falseResult;
+      notices = [{
+        type: TypeApiFalse,
+        message: fr.message,
+        i18nCode: fr.i18nCode,
+        i18nArgs: fr.i18nArgs,
+      }];
+    }
+  }
+  else if (isNoticeThrown(err)) {
+    notices = err.notices;
+  }
+  return notices && notices.length > 0 ? notices : undefined;
+}
+
+export function captureNoticelikeThrown(capturer: NoticeCapturer): OnErrorCapturedHook {
+  return (err: SafeAny) => {
+    const notices = thrownToNotices(err);
+
+    if (notices) {
+      for (const notice of notices) {
+        capturer.call(notice);
+      }
+      return false;
+    }
+  };
+}
+
+export class NoticeCapturer extends PriorityHook<OnNoticeCapturedHook> {
+  constructor(inits: PriorityHookType<OnNoticeCapturedHook>[] = []) {
+    super(inits);
+    this._scope = onScopeDispose;
+  }
+
+  hookError = captureNoticelikeThrown(this);
+  hookCatch: ((err: SafeAny) => void) = this.hookError as SafeAny;
+}
+
+export class ThrownCapturer extends PriorityHook<OnErrorCapturedHook> {
+  constructor(inits: PriorityHookType<OnErrorCapturedHook>[] = []) {
+    super(inits);
+    this._scope = onScopeDispose;
+  }
+
+  hookError: OnErrorCapturedHook = (err, vm, info) => {
+    return this.call(err, vm, info);
+  };
+
+  hookCatch: ((err: SafeAny) => void) = this.hookError as SafeAny;
+}

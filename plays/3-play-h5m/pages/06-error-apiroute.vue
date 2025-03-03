@@ -68,7 +68,7 @@ apiResponseEventBus.on((evt) => {
   eventText.value = 'EVENT: session=' + evt.session + '@' + new Date().getMilliseconds();
 });
 
-const thrownCaptured = new ThrownCapturer();
+const thrownCaptured = useThrownCapturer(false);
 thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err, ins, info) => {
   errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
   logger.info('200.component-error-logger', err, ins, info);
@@ -154,10 +154,10 @@ async function onStatus401() {
 }
 
 async function onIgnoredThrown() {
-  throw new IgnoredThrown('Ignored Thrown');
+  throw newIgnoredThrown('Ignored Thrown');
 }
 
 async function onNavigateThrown() {
-  throw new NavigateThrown({ path: '/' });
+  throw newNavigateThrown({ path: '/' });
 }
 </script>

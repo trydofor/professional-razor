@@ -13,10 +13,10 @@ describe('ApiResultError', () => {
     };
 
     try {
-      throw new ApiResultError(errorResult);
+      throw newApiResultError(errorResult);
     }
     catch (error) {
-      if (error instanceof ApiResultError) {
+      if (isApiResultError(error)) {
         expect(error.message).toEqual('Error 2');
         expect(error.errorResult).toEqual(errorResult);
         expect(error.falseResult).toBeUndefined();
@@ -27,12 +27,12 @@ describe('ApiResultError', () => {
     }
 
     try {
-      throw new ApiResultError(errorResult);
+      throw newApiResultError(errorResult);
       // normal biz-logic
     }
     catch (err) {
       // rethrow to default errorHandlers
-      if (!(err instanceof ApiResultError)) throw err;
+      if (!(isApiResultError(err))) throw err;
 
       if (err.errorResult != null) {
         // handle errors
@@ -50,7 +50,7 @@ describe('ApiResultError', () => {
       data: 'Not Found',
     };
 
-    const error = new ApiResultError(dataResult);
+    const error = newApiResultError(dataResult);
 
     expect(error.message).toEqual(TypeApiFalse);
     expect(error.falseResult).toEqual(dataResult);
@@ -63,7 +63,7 @@ describe('ApiResultError', () => {
       message: 'An error occurred',
     };
 
-    const error = new ApiResultError(apiResult);
+    const error = newApiResultError(apiResult);
 
     expect(error.message).toEqual('An error occurred');
     expect(error.falseResult).toEqual(apiResult);
@@ -76,15 +76,15 @@ describe('ApiResultError', () => {
       message: 'An error occurred',
     };
 
-    const error = new ApiResultError(apiResult);
+    const error = newApiResultError(apiResult);
 
-    expect(error).toBeInstanceOf(ApiResultError);
+    expect(isApiResultError(error)).toBe(true);
   });
 });
 
 describe('IgnoredThrown', () => {
   it('should create an instance with a message', () => {
-    const ignored = new IgnoredThrown('Test message');
+    const ignored = newIgnoredThrown('Test message');
     expect(ignored.name).toBe('IgnoredThrown');
     expect(ignored.message).toBe('Test message');
   });
@@ -92,7 +92,7 @@ describe('IgnoredThrown', () => {
 
 describe('DataThrown', () => {
   it('should create an instance with type and data', () => {
-    const dataThrown = new DataThrown('TestType', { key: 'value' });
+    const dataThrown = newDataThrown('TestType', { key: 'value' });
     expect(dataThrown.name).toBe('DataThrown');
     expect(dataThrown.type).toBe('TestType');
     expect(dataThrown.data).toEqual({ key: 'value' });
@@ -100,18 +100,18 @@ describe('DataThrown', () => {
 });
 
 describe('NoticeThrown', () => {
-  const mockI18nNotice = [{ message: 'Notice message' }];
+  const mockI18nNotice = { message: 'Notice message' };
   it('should create an instance with notice data', () => {
-    const noticeThrown = new NoticeThrown(mockI18nNotice);
+    const noticeThrown = newNoticeThrown(mockI18nNotice);
     expect(noticeThrown.name).toBe('NoticeThrown');
-    expect(noticeThrown.notices).toEqual(mockI18nNotice);
+    expect(noticeThrown.notices).toEqual([mockI18nNotice]);
   });
 });
 
 describe('NavigateThrown', () => {
   const mockRoute = { path: '/test' };
   it('should create an instance with a route', () => {
-    const navigateThrown = new NavigateThrown(mockRoute);
+    const navigateThrown = newNavigateThrown(mockRoute);
     expect(navigateThrown.name).toBe('NavigateThrown');
     expect(navigateThrown.route).toEqual(mockRoute);
   });
@@ -119,7 +119,7 @@ describe('NavigateThrown', () => {
 
 describe('Ignored constant', () => {
   it('should be an instance of IgnoredThrown', () => {
-    expect(Ignored).toBeInstanceOf(IgnoredThrown);
+    expect(isIgnoredThrown(Ignored)).toBe(true);
     expect(Ignored.name).toBe('IgnoredThrown');
     expect(Ignored.message).toBe('ignored this thrown');
   });
@@ -127,7 +127,7 @@ describe('Ignored constant', () => {
 
 describe('globalThrownCapturer', () => {
   it('should ignore IgnoredThrown instance', async () => {
-    const result = await globalThrownCapturer.call(new IgnoredThrown('ignored message'), null, 'test');
+    const result = await globalThrownCapturer.call(newIgnoredThrown('ignored message'), null, 'test');
     expect(result).toBe(false);
   });
 
@@ -135,7 +135,7 @@ describe('globalThrownCapturer', () => {
     const notice: I18nNotice = { type: 'warning', message: 'Test Notice' };
     const noticeSpy = vi.spyOn(globalNoticeCapturer, 'call').mockImplementation(() => Promise.resolve(undefined));
 
-    const result = await globalThrownCapturer.call(new NoticeThrown([notice]), null, 'test');
+    const result = await globalThrownCapturer.call(newNoticeThrown(notice), null, 'test');
 
     expect(noticeSpy).toHaveBeenCalledWith(notice);
     expect(result).toBe(false);
@@ -149,7 +149,7 @@ describe('globalThrownCapturer', () => {
       success: false,
       errors: [{ message: 'API Error Message' }],
     };
-    const apiError = new ApiResultError(errorResult);
+    const apiError = newApiResultError(errorResult);
 
     const result = await globalThrownCapturer.hookError(apiError, null, 'test');
 
@@ -167,7 +167,7 @@ describe('globalThrownCapturer', () => {
       i18nCode: 'error.false_result',
       i18nArgs: [],
     };
-    const apiError = new ApiResultError(falseResult);
+    const apiError = newApiResultError(falseResult);
 
     const result = await globalThrownCapturer.hookCatch(apiError);
 
@@ -182,7 +182,7 @@ describe('globalThrownCapturer', () => {
   });
 
   it('should handle NavigateThrown by returning undefined', async () => {
-    const navError = new NavigateThrown({ path: '/home' });
+    const navError = newNavigateThrown({ path: '/home' });
 
     const result = await globalThrownCapturer.call(navError, null, 'test');
 

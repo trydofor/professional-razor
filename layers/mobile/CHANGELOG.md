@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.5.6
+
+### Patch Changes
+
+- cc2ec3f: ✨ global toast,alert capturer #170
+
 ## 0.5.5
 
 ### Patch Changes

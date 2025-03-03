@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.5.8
+
+### Patch Changes
+
+- 21dcc60: 🐛 been declared, when export class #173
+
 ## 0.5.7
 
 ### Patch Changes

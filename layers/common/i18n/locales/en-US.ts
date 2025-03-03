@@ -25,4 +25,5 @@ export default {
   'error.assert.lessEqual2': '{0} must be less than or equal to {1}',
   'error.assert.less2': '{0} must be less than {1}',
 
+  'error.system.message1': 'system error:{0}',
 };

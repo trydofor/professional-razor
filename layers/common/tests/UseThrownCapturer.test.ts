@@ -31,7 +31,7 @@ describe('useThrownCapturer', () => {
 
     const Child = defineComponent({
       setup() {
-        const instance = useThrownCapturer(false);
+        const instance = useThrownCapturer();
         return { instance };
       },
     });
@@ -46,7 +46,7 @@ describe('useThrownCapturer', () => {
   it('should fallback to globalThrownCapturer when no provider exists', () => {
     const wrapper = mount(defineComponent({
       setup() {
-        const instance = useThrownCapturer(false);
+        const instance = useThrownCapturer();
         return { instance };
       },
       template: '<div></div>',

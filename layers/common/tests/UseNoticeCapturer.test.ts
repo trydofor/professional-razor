@@ -31,7 +31,7 @@ describe('useNoticeCapturer', () => {
 
     const Child = defineComponent({
       setup() {
-        const instance = useNoticeCapturer(false);
+        const instance = useNoticeCapturer();
         return { instance };
       },
     });
@@ -46,7 +46,7 @@ describe('useNoticeCapturer', () => {
   it('should fallback to globalNoticeCapturer when no provider exists', () => {
     const wrapper = mount(defineComponent({
       setup() {
-        const instance = useNoticeCapturer(false);
+        const instance = useNoticeCapturer();
         return { instance };
       },
       template: '<div></div>',

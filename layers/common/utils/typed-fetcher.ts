@@ -1,7 +1,11 @@
 ﻿/**
  * true if loading(1), false if done(0) or error(2)
  */
-export type LoadingStatus = 1 | 0 | 2;
+export const enum LoadingStatus {
+  Done = 0,
+  Loading = 1,
+  Error = 2,
+};
 
 export type TypedFetchOptions<T = ApiResult> = {
   /**
@@ -11,7 +15,7 @@ export type TypedFetchOptions<T = ApiResult> = {
   /**
    * handle the result to return
    */
-  results?: (result?: Maybe<T>) => Maybe<T>;
+  results?: (result?: T) => Maybe<T>;
   /**
    * handle the error of try-catch, should
    * - throws if return null
@@ -25,7 +29,7 @@ function _doLoading(status: LoadingStatus, loading?: TypedFetchOptions<SafeAny>[
     loading(status);
   }
   else if (loading != null) {
-    loading.value = status === 1;
+    loading.value = status === LoadingStatus.Loading;
   }
 }
 
@@ -38,9 +42,9 @@ function _doLoading(status: LoadingStatus, loading?: TypedFetchOptions<SafeAny>[
 export async function fetchTypedData<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
   options: TypedFetchOptions<ApiResult<T>> = {},
-): Promise<DataResult<T> | null> {
+): Promise<DataResult<T>> {
   const result = await fetchTypedResult(fetching, options);
-  return isDataResult(result) ? result : null;
+  return mustDataResult(result);
 }
 
 /**
@@ -52,9 +56,9 @@ export async function fetchTypedData<T>(
 export async function fetchTypedPage<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
   options: TypedFetchOptions<ApiResult<T>> = {},
-): Promise<PageResult<T> | null> {
+): Promise<PageResult<T>> {
   const result = await fetchTypedResult(fetching, options);
-  return isPageResult(result) ? result : null;
+  return mustPageResult(result);
 }
 
 /**
@@ -66,29 +70,27 @@ export async function fetchTypedPage<T>(
 export async function fetchTypedResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
   options: TypedFetchOptions<T> = {},
-): Promise<T | null> {
-  _doLoading(1, options.loading);
+): Promise<T> {
+  _doLoading(LoadingStatus.Loading, options.loading);
 
-  let sts: LoadingStatus = 0;
-  let result: T | null = null;
+  let sts: LoadingStatus = LoadingStatus.Done;
   try {
-    result = await (typeof fetching === 'function' ? fetching() : fetching);
+    let result: T = await (typeof fetching === 'function' ? fetching() : fetching);
     if (options.results != null) {
       const tmp = options.results(result);
       if (tmp != null) result = tmp;
     }
+    return result;
   }
   catch (err) {
-    sts = 2;
+    sts = LoadingStatus.Error;
     if (options.catches != null) {
       const tmp = options.catches(err);
-      if (tmp != null) result = tmp;
+      if (tmp != null) return tmp;
     }
-    if (result == null) throw err;
+    throw err;
   }
   finally {
     _doLoading(sts, options.loading);
   }
-
-  return result;
 }

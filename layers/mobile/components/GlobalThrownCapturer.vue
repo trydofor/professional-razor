@@ -1,14 +1,19 @@
 <script lang="ts" setup>
+import type { AlertOptions, ToastOptions } from '@ionic/vue';
+
 const step = 50; // bottom is positive, top is negative
 let toastOffset = 0;
 
-async function presentToast(message: string) {
-  const toast = await toastController.create({
-    message,
-    duration: 1500,
-    icon: ioniconsAlertCircleOutline,
-    position: 'bottom',
-  });
+async function presentToast(message: string | ToastOptions) {
+  const opts: ToastOptions = typeof message === 'string'
+    ? {
+        message,
+        duration: 1500,
+        icon: ioniconsAlertCircleOutline,
+        position: 'bottom',
+      }
+    : message;
+  const toast = await toastController.create(opts);
 
   toastOffset -= step;
   toast.style.setProperty('margin-top', `${toastOffset}px`);
@@ -19,13 +24,15 @@ async function presentToast(message: string) {
   await toast.present();
 }
 
-async function presentAlert(message: string) {
-  const alert = await alertController.create({
-    header: 'Notice',
-    message,
-    buttons: ['OK'],
-  });
-
+async function presentAlert(message: string | AlertOptions) {
+  const opts: AlertOptions = typeof message === 'string'
+    ? {
+        header: 'Notice',
+        message,
+        buttons: ['OK'],
+      }
+    : message;
+  const alert = await alertController.create(opts);
   await alert.present();
 };
 
@@ -47,6 +54,19 @@ globalThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => 
   if (err instanceof NavigateThrown && err.route) {
     router.push(err.route);
     return false;
+  }
+} });
+
+globalThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
+  if (err instanceof DataThrown) {
+    if (err.type === 'Alert') {
+      presentAlert(err.data);
+      return false;
+    }
+    if (err.type === 'Toast') {
+      presentToast(err.data);
+      return false;
+    }
   }
 } });
 </script>

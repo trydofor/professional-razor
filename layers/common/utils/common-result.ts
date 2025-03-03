@@ -59,13 +59,29 @@ export interface PageResult<T = unknown> extends DataResult<T[]> {
 export type ApiResult<T = unknown> = DataResult<T> | PageResult<T> | ErrorResult;
 
 export function isDataResult<T>(result?: ApiResult<T> | null): result is DataResult<T> {
-  if (result == null || 'errors' in result) return false;
-  return !('page' in result);
+  return result != null && !('errors' in result);
+}
+
+export function mustDataResult<T>(result?: ApiResult<T> | null): DataResult<T> {
+  if (isDataResult(result)) {
+    return result;
+  }
+  else {
+    throw new SystemError('require DataResult', result);
+  }
 }
 
 export function isPageResult<T>(result?: ApiResult<T> | null): result is PageResult<T> {
-  if (result == null || 'errors' in result) return false;
-  return 'page' in result;
+  return isDataResult(result) && typeof (result as SafeAny).page === 'number';
+}
+
+export function mustPageResult<T>(result?: ApiResult<T> | null): PageResult<T> {
+  if (isPageResult(result)) {
+    return result;
+  }
+  else {
+    throw new SystemError('require PageResult', result);
+  }
 }
 
 export function isErrorResult(result?: ApiResult<SafeAny> | null): result is ErrorResult {

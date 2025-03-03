@@ -26,6 +26,13 @@ export class ApiResultError extends Error {
   }
 }
 
+export class SystemError extends Error {
+  constructor(message: string, public attachment?: SafeAny) {
+    super(message);
+    Object.setPrototypeOf(this, TypeError.prototype);
+  }
+}
+
 /**
  * should ignore this thrown
  */
@@ -35,10 +42,10 @@ export class IgnoredThrown {
 }
 
 /**
- * should handle the type and data as big return
+ * should handle the type and data
  */
-export class ReturnThrown {
-  public name = 'ReturnThrown';
+export class DataThrown {
+  public name = 'DataThrown';
   constructor(public type: string, public data: SafeAny) {}
 }
 
@@ -135,6 +142,17 @@ export const captureIgnoredThrown: OnErrorCapturedHook = (err: SafeAny) => {
   if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
 };
 
+export const captureSystemError: OnErrorCapturedHook = (err: SafeAny) => {
+  if (err instanceof SystemError) {
+    globalNoticeCapturer.call({
+      message: err.message,
+      i18nCode: 'error.system.message1',
+      i18nArgs: [err.message],
+    });
+    return true; // bubble up to sentry
+  }
+};
+
 /**
  * should use on app top vue component, e.g. App.vue or Layout.vue.
  * `onErrorCaptured(globalThrownCapturer.call)` to handle thrown first.
@@ -149,6 +167,11 @@ export const globalThrownCapturer = new ThrownCapturer([
     id: 'I18nNoticeHook',
     order: 2000,
     hook: globalNoticeCapturer.hookError,
+  },
+  {
+    id: 'noticeSystemError',
+    order: 2010,
+    hook: captureSystemError,
   },
 ],
 );

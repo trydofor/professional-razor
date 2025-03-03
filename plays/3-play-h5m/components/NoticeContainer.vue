@@ -14,13 +14,11 @@
 const alertOpen = ref(false);
 const alertMessage = ref('');
 
-const noticeCapturer = useNoticeCapturer(true);
+const noticeCapturer = useNoticeCapturer(true, true);
 noticeCapturer.put({ id: 'InnerNoticeThrown', order: 200, hook: (ntc) => {
   const msg = ntc.i18nCode ? $t(ntc.i18nCode, ntc.i18nArgs ?? []) : ntc.message || 'No I18N';
   alertMessage.value = msg;
   alertOpen.value = true;
   return false;
 } }, onScopeDispose);
-
-onErrorCaptured(noticeCapturer.hookError);
 </script>

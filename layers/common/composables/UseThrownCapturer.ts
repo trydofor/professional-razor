@@ -4,21 +4,21 @@
 export const ThrownCapturerInjectKey: InjectionKey<InstanceType<typeof ThrownCapturer>> = Symbol('ThrownCapturerInjectKey');
 
 /**
- * get ThrownCapturer instance when asProvider is,
+ * Composable function to manage ThrownCapturer instance injection and error capturing.
+ * return the injected or the global one if no args. otherwise, create a new one.
  *
- * * true - create new instance and provide by ThrownCapturerInjectKey
- * * false (default) - the injected instance by ThrownCapturerInjectKey, or globalThrownCapturer if not injected
+ * @param provider - When true, provides a new instance to the Vue hierarchy
+ * @param capturer - When true, registers error capture hook
+ * @returns ThrownCapturer instance (injected when no args, new instance when creating)
  */
-export function useThrownCapturer(asProvider: boolean = false) {
-  let thrownCapturer;
+export function useThrownCapturer(provider?: boolean, capturer?: boolean) {
+  if (provider == null && capturer == null) {
+    return inject(ThrownCapturerInjectKey, globalThrownCapturer);
+  }
 
-  if (asProvider) {
-    thrownCapturer = new ThrownCapturer();
-    provide(ThrownCapturerInjectKey, thrownCapturer);
-  }
-  else {
-    thrownCapturer = inject(ThrownCapturerInjectKey, globalThrownCapturer);
-  }
+  const thrownCapturer = new ThrownCapturer();
+  if (provider) provide(ThrownCapturerInjectKey, thrownCapturer);
+  if (capturer) onErrorCaptured(thrownCapturer.hookError);
 
   return thrownCapturer;
 }

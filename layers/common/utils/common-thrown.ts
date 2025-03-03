@@ -1,99 +1,7 @@
-import type { RouteLocationRaw } from 'vue-router';
-
-export const TypeApiError = 'ApiErrorResult';
-export const TypeApiFalse = 'ApiFalseResult';
-
-/**
- * api result with error or false
- *
- * @class ApiResultError
- * @extends {Error}
- */
-export class ApiResultError extends Error {
-  public falseResult: DataResult | undefined | null;
-  public errorResult: ErrorResult | undefined | null;
-
-  constructor(result: ApiResult) {
-    if ('errors' in result) {
-      super(result.errors.filter(e => e.message).map(e => e.message).join('\n') || TypeApiError);
-      this.errorResult = result;
-    }
-    else {
-      super(result.message || TypeApiFalse);
-      this.falseResult = result;
-    }
-    Object.setPrototypeOf(this, ApiResultError.prototype);
-  }
-}
-
-export class SystemError extends Error {
-  constructor(message: string, public attachment?: SafeAny) {
-    super(message);
-    Object.setPrototypeOf(this, TypeError.prototype);
-  }
-}
-
-/**
- * should ignore this thrown
- */
-export class IgnoredThrown {
-  public name = 'IgnoredThrown';
-  constructor(public message: string) {}
-}
-
-/**
- * should handle the type and data
- */
-export class DataThrown {
-  public name = 'DataThrown';
-  constructor(public type: string, public data: SafeAny) {}
-}
-
-/**
- * should notice to user in UI
- */
-export class NoticeThrown {
-  public name = 'NoticeThrown';
-  constructor(public notices: I18nNotice[]) {}
-}
-
-/**
- * should navigate to the route
- */
-export class NavigateThrown {
-  public name = 'NavigateThrown';
-  constructor(public route: RouteLocationRaw) {}
-}
-
 /**
  * default ignore thrown instance
  */
 export const Ignored = new IgnoredThrown('ignored this thrown');
-
-type OnErrorCapturedHook = Parameters<typeof onErrorCaptured>[0];
-
-export class ThrownCapturer extends PriorityHook<OnErrorCapturedHook> {
-  constructor(inits: ConstructorParameters<typeof PriorityHook>[0] = []) {
-    super(inits);
-    this._scope = onScopeDispose;
-  }
-
-  hookError: OnErrorCapturedHook = (err, vm, info) => {
-    return this.call(err, vm, info);
-  };
-
-  hookCatch: ((err: SafeAny) => void) = this.hookError as SafeAny;
-}
-
-export class NoticeCapturer extends PriorityHook<(notice: I18nNotice) => MayPromise<boolean | undefined>> {
-  constructor(inits: ConstructorParameters<typeof PriorityHook>[0] = []) {
-    super(inits);
-    this._scope = onScopeDispose;
-  }
-
-  hookError: OnErrorCapturedHook = captureNoticelikeThrown(this);
-  hookCatch: ((err: SafeAny) => void) = this.hookError as SafeAny;
-}
 
 /**
  * global notice capturer used by globalThrownCapturer.
@@ -125,24 +33,11 @@ export function thrownToNotices(err: SafeAny): I18nNotice[] | undefined {
   return notices && notices.length > 0 ? notices : undefined;
 }
 
-export function captureNoticelikeThrown(capturer = globalNoticeCapturer): OnErrorCapturedHook {
-  return (err: SafeAny) => {
-    const notices = thrownToNotices(err);
-
-    if (notices) {
-      for (const notice of notices) {
-        capturer.call(notice);
-      }
-      return false;
-    }
-  };
-}
-
-export const captureIgnoredThrown: OnErrorCapturedHook = (err: SafeAny) => {
+export const captureIgnoredThrown: Parameters<typeof onErrorCaptured>[0] = (err: SafeAny) => {
   if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
 };
 
-export const captureSystemError: OnErrorCapturedHook = (err: SafeAny) => {
+export const captureSystemError: Parameters<typeof onErrorCaptured>[0] = (err: SafeAny) => {
   if (err instanceof SystemError) {
     globalNoticeCapturer.call({
       message: err.message,

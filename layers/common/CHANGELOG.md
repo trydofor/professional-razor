@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.5.10
+
+### Patch Changes
+
+- 2fdcf9d: 🐛 been declared, when export class #173
+
 ## 0.5.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.5.11
+
+### Patch Changes
+
+- 8bb5561: 🐛 been declared, when export class #173
+
 ## 0.5.7
 
 ### Patch Changes

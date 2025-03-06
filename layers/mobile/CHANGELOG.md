@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.6.0
+
+### Minor Changes
+
+- 929fbf6: ♻️ accept header for fetch/devProxy #178
+
 ## 0.5.11
 
 ### Patch Changes

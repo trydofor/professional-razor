@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import { fileURLToPath } from 'url';
-import { nuxtApiRoutePath, nuxtApiProxyRule, nuxtCompatibilityDate } from './configures/nuxt-config-helper';
+import { nuxtPublicApiRoute, nuxtPublicDevProxy, nuxtCompatibilityDate } from './configures/nuxt-config-helper';
 
 export default defineNuxtConfig({
   modules: [
@@ -14,8 +14,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: { // https://nuxt.com/docs/guide/going-further/runtime-config
     public: {
-      apiRoute: nuxtApiRoutePath(),
-      apiProxy: '',
+      apiRoute: nuxtPublicApiRoute(),
+      devProxy: '',
       rehookVueError: true,
       loggerLevel: '', // LogLevels
     },
@@ -23,11 +23,12 @@ export default defineNuxtConfig({
   alias: { // https://nuxt.com/docs/guide/going-further/layers#tips
     '&razor-common': fileURLToPath(new URL('./', import.meta.url)),
   },
-  routeRules: { // https://nitro.build/config#routerules
-    // nop if apiProxy is empty
-    ...nuxtApiProxyRule(),
-  },
   compatibilityDate: nuxtCompatibilityDate,
+  nitro: { // https://nitro.build/config#devproxy
+    devProxy: {
+      ...nuxtPublicDevProxy(),
+    },
+  },
   typescript: {
     typeCheck: true,
   },

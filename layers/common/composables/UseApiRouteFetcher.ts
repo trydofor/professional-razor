@@ -12,26 +12,37 @@ export const apiResponseEventKey: EventBusKey<ApiResponseEvent> = Symbol('apiRes
 export const apiResponseEventBus = useEventBus<ApiResponseEvent, SafeObj>(apiResponseEventKey);
 
 /**
- * * ✅ the browser's fetch automatically infers the Content-Type.
- * * ❌ Node.js $fetch may not automatically set the Content-Type.
+ * ✅ browser fetch automatically infers the Content-Type.
+ * ❌ Node.js $fetch may not automatically set the Content-Type.
+ *
+ * header Content-Type
  * * URLSearchParams - application/x-www-form-urlencoded
  * * FormData - multipart/form-data
  * * default - application/json
+ *
+ * header Accept
+ * * default - application/json, text/html
+ *
+ * @see https://github.com/unjs/ofetch/blob/main/src/fetch.ts
  */
-export function apiRequestContentTypeHook(id: string = 'requestContentType'): ApiRequestHook & { id: string } {
+export function apiRequestAcceptContentHook(accept = 'application/json, text/html', id = 'requestAcceptContent'): ApiRequestHook & { id: string } {
   return attachId(id, (context) => {
     const body = context.options.body;
     const headers = context.options.headers;
-    if (headers.has('content-type')) return;
 
-    if (body instanceof URLSearchParams) {
-      headers.set('content-type', 'application/x-www-form-urlencoded');
+    if (!headers.has('content-type')) {
+      let contentType = 'application/json';
+      if (body instanceof URLSearchParams) {
+        contentType = 'application/x-www-form-urlencoded';
+      }
+      else if (body instanceof FormData) {
+        contentType = 'multipart/form-data';
+      }
+      headers.set('content-type', contentType);
     }
-    else if (body instanceof FormData) {
-      headers.set('content-type', 'multipart/form-data');
-    }
-    else {
-      headers.set('content-type', 'application/json');
+
+    if (!context.options.headers.has('accept')) {
+      context.options.headers.set('accept', accept);
     }
   });
 };
@@ -41,7 +52,7 @@ export function apiRequestContentTypeHook(id: string = 'requestContentType'): Ap
  *
  * @param sessionHeader the header of response that holds session token, default 'session'
  */
-export function apiResponseSessionHook(sessionHeader: string[] = ['session'], eventKey = apiResponseEventKey, id: string = 'responseSession'): ApiResponseHook {
+export function apiResponseSessionHook(sessionHeader = ['session'], eventKey = apiResponseEventKey, id = 'responseSession'): ApiResponseHook & { id: string } {
   const eventBus = useEventBus(eventKey);
   return attachId(id, (context) => {
     const headers = context.response.headers;
@@ -61,9 +72,9 @@ export function apiResponseSessionHook(sessionHeader: string[] = ['session'], ev
  *
  * @param okStatus the success response code
  */
-export function apiResponseStatusHook(okStatus: number[] = [200], id: string = 'responseStatus'): ApiResponseHook {
+export function apiResponseStatusHook(okStatus = [200], id = 'responseStatus'): ApiResponseHook & { id: string } {
   return attachId(id, (context) => {
-    if (!okStatus.includes(context.response.status)) {
+    if (context.options.ignoreResponseError != true && !okStatus.includes(context.response.status)) {
       throw createFetchError(context);
     }
   });
@@ -73,7 +84,7 @@ export function apiResponseStatusHook(okStatus: number[] = [200], id: string = '
  * throw ApiResultError if not result.success
  * whether include the false result, default true
  */
-export function apiResponseResultHook(includeFalse: boolean = true, id: string = 'responseSuccessResult'): ApiResponseHook {
+export function apiResponseResultHook(includeFalse = true, id = 'responseSuccessResult'): ApiResponseHook & { id: string } {
   return attachId(id, (context) => {
     const result = context.response._data as ApiResult;
     if (result != null && result.success === false) {
@@ -89,7 +100,7 @@ export function isFetchError(err: unknown): err is FetchError {
 }
 
 export const defaultFetchHooks = {
-  requestContentType: apiRequestContentTypeHook(),
+  requestAcceptContent: apiRequestAcceptContentHook(),
   responseSession: apiResponseSessionHook(),
   responseStatus: apiResponseStatusHook(),
   responseResult: apiResponseResultHook(),
@@ -118,7 +129,7 @@ export type ApiHookMergeOptions = {
 };
 
 export const defaultFetchOptions: FetchOptions = {
-  onRequest: typeof window === 'undefined' ? undefined : defaultFetchHooks.requestContentType,
+  onRequest: defaultFetchHooks.requestAcceptContent,
   onResponse: [
     defaultFetchHooks.responseSession,
     defaultFetchHooks.responseStatus,

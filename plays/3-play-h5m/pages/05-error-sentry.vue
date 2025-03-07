@@ -48,7 +48,7 @@ function throwClientError() {
 }
 
 function spanServerError() {
-  startSpan(
+  return startSpan(
     {
       name: 'Example Frontend Span',
       op: 'test',

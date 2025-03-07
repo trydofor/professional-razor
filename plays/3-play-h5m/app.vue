@@ -96,4 +96,11 @@ router.afterEach((to) => {
     tb.on = t === tb.href;
   }
 });
+
+globalThrownCapturer.put({ id: 'GlobalSentryErrorNotice', order: 8000, hook: (err: SafeAny) => {
+  globalNoticeCapturer.call({
+    message: 'this error will sent to sentry, check log',
+  });
+  logger.error('this error will sent to sentry', err);
+} });
 </script>

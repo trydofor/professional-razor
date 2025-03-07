@@ -91,7 +91,8 @@ describe('useApiRouteFetcher with real $fetch requests', () => {
     params.append('key', 'value');
 
     const opt = { options: {} };
-    const rs = await post('/test-post.json', params, { k1: 'v2' }, {
+    const rs = await post('/test-post.json', params, {
+      query: { k1: 'v2' },
       onRequest: (ctx) => {
         // logger.debug('ctx', JSON.stringify(ctx));
         opt.options = JSON.stringify(ctx.options);

@@ -285,15 +285,13 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
    *
    * @param uri - The endpoint URI to request.
    * @param body - Optional request body, which can be an object, URLSearchParams, or FormData.
-   * @param query - Optional query parameters to include in the request.
    * @param op - Optional fetch options to customize the request.
    * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: SafeObj | URLSearchParams | FormData, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions) {
+  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions) {
     return req<D, T>(uri, {
       ...op,
       method: 'post',
-      query,
       body,
     });
   }

@@ -20,7 +20,7 @@
           Fetch False Result
         </IonButton>
         <IonButton @click="onStatus401">
-          Fetch Status 401
+          Fetch Status 401, ignoreResponseError
         </IonButton>
         <IonButton @click="onHeaderSession(true)">
           Fetch Session Success
@@ -69,16 +69,16 @@ apiResponseEventBus.on((evt) => {
 });
 
 const thrownCaptured = useThrownCapturer(false);
-thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err, ins, info) => {
+thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err) => {
   errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
-  logger.info('200.component-error-logger', err, ins, info);
+  logger.info('200.component-error-logger', err);
 } });
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
 onErrorCaptured(thrownCaptured.hookError);
 
-globalThrownCapturer.put({ id: 'before-sentry-error', order: 300, hook: (err, ins, info) => {
-  logger.info('300.before-sentry-error', err, ins, info);
+globalThrownCapturer.put({ id: 'before-sentry-error', order: 300, hook: (err) => {
+  logger.info('300.before-sentry-error', err);
 } }, onScopeDispose);
 
 function onClean() {
@@ -130,13 +130,20 @@ async function onHeaderSession(success = true) {
   const header = {
     session: 'session-token',
   };
+
   const body = {
     success,
-  } as DataResult;
+  } as SafeAny;
+
+  if (!success) {
+    body.errors = [{
+      message: 'session header false',
+    }];
+  }
 
   const fetchError = apiRoute.post('/echo', { header, body });
   const apiResult = await ionicFetchResult(fetchError);
-  logger.error('should be here? =' + success, apiResult);
+  logger.info('api result', apiResult);
   shouldNot.value = success ? '' : 'should not show this';
 }
 
@@ -146,7 +153,7 @@ async function onStatus401() {
     success: false,
   } as DataResult;
 
-  const fetchError = apiRoute.post('/echo', { status: 401, body });
+  const fetchError = apiRoute.post('/echo', { status: 401, body }, { ignoreResponseError: true });
   const apiResult = await ionicFetchResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);

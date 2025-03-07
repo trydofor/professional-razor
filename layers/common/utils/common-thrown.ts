@@ -40,7 +40,7 @@ export const globalThrownCapturer = newThrownCapturer([
   },
   {
     id: 'noticeSystemError',
-    order: 2010,
+    order: 9000,
     hook: captureSystemError,
   },
 ],

@@ -28,17 +28,35 @@ async function presentToast(message: string | ToastOptions) {
   await toast.present();
 }
 
+const alertQueue: AlertOptions[] = [];
+let alertShown = false;
 async function presentAlert(message: string | AlertOptions) {
-  const opts: AlertOptions = typeof message === 'string'
+  alertQueue.push(typeof message === 'string'
     ? {
         header: 'Notice',
         message,
         buttons: ['OK'],
       }
-    : message;
+    : message);
+
+  if (!alertShown) {
+    void showNextAlert(); // no Unhandled Promise
+  }
+};
+
+async function showNextAlert() {
+  if (alertQueue.length === 0) {
+    alertShown = false;
+    return;
+  }
+
+  alertShown = true;
+  const opts = alertQueue.shift()!;
   const alert = await alertController.create(opts);
   await alert.present();
-};
+  await alert.onDidDismiss();
+  showNextAlert();
+}
 
 // handle global notices
 const { t } = useI18n();

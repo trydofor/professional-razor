@@ -1,7 +1,7 @@
 /**
- * - message: default i18n message or template
- * - i18nCode: i18n template code
- * - i18nArgs: i18n template args
+ * * message: default i18n message or template
+ * * i18nCode: i18n template code
+ * * i18nArgs: i18n template args
  */
 export interface I18nMessage {
   message?: string;
@@ -10,8 +10,8 @@ export interface I18nMessage {
 }
 
 /**
- * - type: message type, 'Validation', 'IllegalArgument', 'IllegalState'
- * - target: target input name, 'city', 'tab1.zipcode'
+ * * type: message type, 'Validation', 'IllegalArgument', 'IllegalState'
+ * * target: target input name, 'city', 'tab1.zipcode'
  */
 export interface I18nNotice extends I18nMessage {
   type?: string;
@@ -19,8 +19,8 @@ export interface I18nNotice extends I18nMessage {
 }
 
 /**
- * - success: whether the result is success, default false.
- * - code: biz-code/err-code to the caller, should be undefined if empty
+ * * success: whether the result is success, default false.
+ * * code: biz-code/err-code to the caller, should be undefined if empty
  */
 export interface ActionResult {
   success: boolean;
@@ -28,21 +28,21 @@ export interface ActionResult {
 }
 
 /**
- * - success: false fixed
- * - code: err-code to the caller, should be undefined if empty
- * - errors: errors cause success to be false, should be undefined if empty.
+ * * success: false fixed
+ * * code: err-code to the caller, should be undefined if empty
+ * * errors: errors cause success to be false, should be undefined if empty.
  */
 export interface ErrorResult extends ActionResult {
   errors: I18nNotice[];
 }
 
 /**
- * - success: true or false
- * - code: biz-code to the caller, should be undefined if empty
- * - data: biz-data to the caller
- * - message: default i18n message or template
- * - i18nCode: i18n template code
- * - i18nArgs: i18n template args
+ * * success: true or false
+ * * code: biz-code to the caller, should be undefined if empty
+ * * data: biz-data to the caller
+ * * message: default i18n message or template
+ * * i18nCode: i18n template code
+ * * i18nArgs: i18n template args
  */
 export interface DataResult<T = unknown> extends ActionResult, I18nMessage {
   data?: T;

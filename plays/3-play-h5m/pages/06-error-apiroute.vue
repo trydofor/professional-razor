@@ -65,7 +65,7 @@ const shouldNot = ref('');
 const apiRoute = useApiRouteFetcher();
 
 apiResponseEventBus.on((evt) => {
-  eventText.value = 'EVENT: session=' + evt.session + '@' + new Date().getMilliseconds();
+  eventText.value = `EVENT: session=${evt.session} status=${evt.status} @` + new Date().getMilliseconds();
 });
 
 const thrownCaptured = useThrownCapturer(false);

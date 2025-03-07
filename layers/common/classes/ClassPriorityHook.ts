@@ -88,9 +88,10 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
   /**
    * sync call the hook, stops the continuous call if a hook returns non-null value.
    *
-   * - false - stop the call in this, and in vue
-   * - non-null - stop the call in this, but not in vue
-   * - void - continue the call in this and in vue
+   * * false - stop the call in this, and in vue
+   * * non-null - stop the call in this, but not in vue
+   * * void - continue the call in this and in vue
+   *
    * @see https://github.com/vuejs/core/blob/0c8dd94ef9fe33f72732e7d9ec52b8e72918df8f/packages/runtime-core/src/errorHandling.ts#L112
    */
   call(...args: Parameters<H>): NonPromise<ReturnType<H>> | undefined {

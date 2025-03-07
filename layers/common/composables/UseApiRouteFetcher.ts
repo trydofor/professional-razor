@@ -7,9 +7,10 @@ import { FetchError, createFetchError } from 'ofetch';
 export type ApiRequestHook = NonArray<NonNullable<FetchOptions['onRequest']>>;
 export type ApiResponseHook = NonArray<NonNullable<FetchOptions['onResponse']>>;
 
-type ApiResponseEvent = { session?: string; context: Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'> };
+export type ApiResponseEvent = { status: number; session?: string };
+export type ApiResponseContext = Required<Pick<FetchContext, 'response'>> & Omit<FetchContext, 'response'>;
 export const apiResponseEventKey: EventBusKey<ApiResponseEvent> = Symbol('apiResponseEventKey');
-export const apiResponseEventBus = useEventBus<ApiResponseEvent, SafeObj>(apiResponseEventKey);
+export const apiResponseEventBus = useEventBus<ApiResponseEvent, ApiResponseContext>(apiResponseEventKey);
 
 /**
  * ✅ browser fetch automatically infers the Content-Type.
@@ -60,7 +61,7 @@ export function apiResponseSessionHook(sessionHeader = ['session'], eventKey = a
       const session = headers.get(hd);
       if (session != null) {
         // empty means logout
-        eventBus.emit({ session, context }, {});
+        eventBus.emit({ status: context.response.status, session }, context);
         break;
       }
     }
@@ -68,14 +69,30 @@ export function apiResponseSessionHook(sessionHeader = ['session'], eventKey = a
 }
 
 /**
- * throw FetchError if response.status not in status
+ * if response.status is not in okStatus, throw before onResponseError hook,
+ * i.e. not handle by onResponseError hook, the throws if options.ignoreResponseError
+ * * true - throw Ignored
+ * * false - emit ApiResponseEvent by apiResponseEventBus, then throw FetchError
+ * default okStatus,
+ * * 200 - OK
+ * * 201 - Created
+ * * 202 - Accepted
+ * * 204 - No Content
+ * * 206 - Partial Content
  *
- * @param okStatus the success response code
+ * @param okStatus default [200, 201, 202, 204, 206]
  */
-export function apiResponseStatusHook(okStatus = [200], id = 'responseStatus'): ApiResponseHook & { id: string } {
+export function apiResponseStatusHook(okStatus = [200, 201, 202, 204, 206], eventKey = apiResponseEventKey, id = 'responseStatus'): ApiResponseHook & { id: string } {
+  const eventBus = useEventBus(eventKey);
   return attachId(id, (context) => {
-    if (context.options.ignoreResponseError != true && !okStatus.includes(context.response.status)) {
-      throw createFetchError(context);
+    if (!okStatus.includes(context.response.status)) {
+      if (context.options.ignoreResponseError === true) {
+        throw Ignored;
+      }
+      else {
+        eventBus.emit({ status: context.response.status }, context);
+        throw createFetchError(context);
+      }
     }
   });
 }
@@ -110,13 +127,13 @@ export const defaultFetchHooks = {
  * how to merge this fetchHook(passin) with the that fetchHook(default) ,
  *
  * mergeFetchHooks merge hooks:
- * - true - all this, no that
- * - false - no this, all that
- * - undefined/null - both this and that, into array
+ * * true - all this, no that
+ * * false - no this, all that
+ * * undefined/null - both this and that, into array
  *
  * identifyFetchHooks to pick after merge:
- * - false - remove the hook  if exists
- * - true/undefined/null - NOP
+ * * false - remove the hook  if exists
+ * * true/undefined/null - NOP
  */
 export type ApiHookMergeOptions = {
   mergeFetchHooks?: boolean | {
@@ -161,7 +178,10 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
   /**
    * Merges the default fetch options with the given options.
    * the default Behavior is replaced, but FetchHooks can merged into array,
-   * - onRequest, onRequestError, onResponse, onResponseError
+   * * onRequest
+   * * onRequestError
+   * * onResponse
+   * * onResponseError
    *
    * @param op - Specific fetch options for a request.
    * @returns A merged object containing the combined options.

@@ -17,8 +17,8 @@ export function attachId<T extends object | SafeFun>(id: string, ins: T): T & { 
 
 /**
  * Flattens an array of possibly nested arrays and removes `null` or `undefined` values.
- * - `1, [2, 3], 4 => [1, 2, 3, 4]`
- * - `[], [1, 2], [undefined], 3 => [1, 2, 3]`
+ * * `1, [2, 3], 4 => [1, 2, 3, 4]`
+ * * `[], [1, 2], [undefined], 3 => [1, 2, 3]`
  * @template T - The non-nullable type of the elements in the array.
  * @param {Array<undefined | null | T | T[]>} items - The input array containing possibly nested elements.
  * @returns {T[]} A flattened array without `null` or `undefined` values.

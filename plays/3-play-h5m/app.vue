@@ -1,55 +1,56 @@
 ﻿<template>
-  <IonApp>
-    <IonMenu content-id="main-content" side="end">
-      <IonHeader>
-        <IonMenuToggle>
-          <IonToolbar>
-            <IonButtons slot="end">
-              <IonButton>
-                <div class="i-mdi-close text-3xl text-primary" />
-              </IonButton>
-            </IonButtons>
-            <IonTitle>Menu Title</IonTitle>
-          </IonToolbar>
-        </IonMenuToggle>
-      </IonHeader>
-      <IonContent>
-        <IonMenuToggle>
-          <IonList>
-            <IonItem
-              v-for="rt in pageRoutes"
-              :key="rt.path"
-              :button="true"
-              :router-link="rt.path"
+  <GlobalThrownCapturer>
+    <IonApp>
+      <IonMenu content-id="main-content" side="end">
+        <IonHeader>
+          <IonMenuToggle>
+            <IonToolbar>
+              <IonButtons slot="end">
+                <IonButton>
+                  <div class="i-mdi-close text-3xl text-primary" />
+                </IonButton>
+              </IonButtons>
+              <IonTitle>Menu Title</IonTitle>
+            </IonToolbar>
+          </IonMenuToggle>
+        </IonHeader>
+        <IonContent>
+          <IonMenuToggle>
+            <IonList>
+              <IonItem
+                v-for="rt in pageRoutes"
+                :key="rt.path"
+                :button="true"
+                :router-link="rt.path"
+              >
+                <IonLabel>
+                  {{ index(rt.path) }} - {{ rt.name }}
+                </IonLabel>
+              </IonItem>
+            </IonList>
+          </IonMenuToggle>
+        </IonContent>
+      </IonMenu>
+      <IonPage id="main-content">
+        <IonTabs>
+          <IonRouterOutlet />
+          <IonTabBar slot="bottom">
+            <IonTabButton
+              v-for="(tb, ix) in tabs"
+              :key="'tab' + ix"
+              :disabled="tb.href === ''"
+              :tab="'tab' + ix"
+              :href="tb.href"
+              :selected="tb.on"
             >
-              <IonLabel>
-                {{ index(rt.path) }} - {{ rt.name }}
-              </IonLabel>
-            </IonItem>
-          </IonList>
-        </IonMenuToggle>
-      </IonContent>
-    </IonMenu>
-    <IonPage id="main-content">
-      <GlobalThrownCapturer />
-      <IonTabs>
-        <IonRouterOutlet />
-        <IonTabBar slot="bottom">
-          <IonTabButton
-            v-for="(tb, ix) in tabs"
-            :key="'tab' + ix"
-            :disabled="tb.href === ''"
-            :tab="'tab' + ix"
-            :href="tb.href"
-            :selected="tb.on"
-          >
-            <div :class="[tb.on ? tb.classOn : tb.classOff, 'text-3xl']" />
-            <IonLabel>{{ tb.label }}</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonPage>
-  </IonApp>
+              <div :class="[tb.on ? tb.classOn : tb.classOff, 'text-3xl']" />
+              <IonLabel>{{ tb.label }}</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonPage>
+    </IonApp>
+  </GlobalThrownCapturer>
 </template>
 
 <script setup lang="ts">
@@ -95,6 +96,4 @@ router.afterEach((to) => {
     tb.on = t === tb.href;
   }
 });
-
-onErrorCaptured(globalThrownCapturer.hookError);
 </script>

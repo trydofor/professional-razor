@@ -4,8 +4,8 @@ import { onKeyDown, onClickOutside } from '@vueuse/core';
 /**
  * listen PointerEvent or KeyboardEvent
  *
- * - click outside of the element
- * - keydown, default `Escape`
+ * * click outside of the element
+ * * keydown, default `Escape`
  */
 export function useClickoutKeydown(eleRef: MaybeElementRef, keys: KeyFilter = 'Escape', handler: (evt: PointerEvent | KeyboardEvent) => void) {
   let clickoutStub: (() => void) | null = null;

@@ -1,3 +1,7 @@
+<template>
+  <slot />
+</template>
+
 <script lang="ts" setup>
 import type { AlertOptions, ToastOptions } from '@ionic/vue';
 
@@ -69,4 +73,13 @@ globalThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) =
     }
   }
 } });
+
+const slots = useSlots();
+if (slots.default) {
+  logger.info('register onErrorCaptured(globalThrownCapturer.hookError) by default slot');
+  onErrorCaptured(globalThrownCapturer.hookError);
+}
+else {
+  logger.warn('should register onErrorCaptured(globalThrownCapturer.hookError) to top level component');
+}
 </script>

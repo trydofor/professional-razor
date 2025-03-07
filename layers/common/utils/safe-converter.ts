@@ -7,9 +7,9 @@ export function safeJson(obj: unknown): string {
 
 /**
  * A utility function that safely converts a value using a provided conversion function.
- * - If the value is a function, it will be invoked to resolve the value.
- * - The function can be configured to either resolve the function once or repeatedly (based on the `once` flag).
- * - If the conversion result is `null`, it will return a default value.
+ * * If the value is a function, it will be invoked to resolve the value.
+ * * The function can be configured to either resolve the function once or repeatedly (based on the `once` flag).
+ * * If the conversion result is `null`, it will return a default value.
  *
  * @template S - The type of the initial value or the value returned by the function.
  * @template T - The type of the value after conversion.
@@ -210,10 +210,10 @@ export function safeBoolNum(valOrFun: NumberLike | (() => NumberLike), defaults 
 
 /**
  * A utility function to safely convert various input types into an array.
- * - If the input is `undefined` or `null`, it returns a default array.
- * - If the input is already an array, it is returned as-is.
- * - If the input is a function, it resolves the function's return value and processes it recursively.
- * - If the input is a single value, it returns an array containing that value.
+ * * If the input is `undefined` or `null`, it returns a default array.
+ * * If the input is already an array, it is returned as-is.
+ * * If the input is a function, it resolves the function's return value and processes it recursively.
+ * * If the input is a single value, it returns an array containing that value.
  *
  * @template T - The type of the array elements.
  * @param valOrFun - The input value, which can be:
@@ -242,10 +242,10 @@ export function safeArray<T>(valOrFun: Maybe<T | T[]> | (() => Maybe<T | T[]>), 
 
 /**
  * A utility function to safely retrieve a value from different types of inputs.
- * - If the input is `undefined` or `null`, it returns a default value.
- * - If the input is a function, it resolves the function's return value.
- * - If the input is an array, it returns the first element or the default value if the array is empty.
- * - Otherwise, it returns the input value.
+ * * If the input is `undefined` or `null`, it returns a default value.
+ * * If the input is a function, it resolves the function's return value.
+ * * If the input is an array, it returns the first element or the default value if the array is empty.
+ * * Otherwise, it returns the input value.
  *
  * @template T - The type of the input value.
  * @template D - The type of the defaults value.

@@ -18,8 +18,8 @@ export type TypedFetchOptions<T = ApiResult> = {
   results?: (result?: T) => Maybe<T>;
   /**
    * handle the error of try-catch, should
-   * - throws if return null
-   * - return if return non-null
+   * * throws if return null
+   * * return if return non-null
    */
   catches?: (err: SafeAny) => Maybe<T>;
 };

@@ -1,5 +1,5 @@
 ﻿<template>
-  <GlobalThrownCapturer>
+  <AppThrownCapturer>
     <IonApp>
       <IonMenu content-id="main-content" side="end">
         <IonHeader>
@@ -50,7 +50,7 @@
         </IonTabs>
       </IonPage>
     </IonApp>
-  </GlobalThrownCapturer>
+  </AppThrownCapturer>
 </template>
 
 <script setup lang="ts">

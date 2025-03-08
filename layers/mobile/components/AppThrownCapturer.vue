@@ -133,4 +133,9 @@ if (slots.default) {
 else {
   logger.warn('should register onErrorCaptured(globalThrownCapturer.hookError) to top level component');
 }
+
+//
+appToastEventBus.on(msg => presentToast(msg));
+appAlertEventBus.on(msg => presentAlert(msg));
+defineExpose({ presentToast, presentAlert });
 </script>

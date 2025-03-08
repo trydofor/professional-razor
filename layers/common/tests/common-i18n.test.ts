@@ -13,7 +13,7 @@ describe('localizeMessage', () => {
   });
 
   it('should return the code itself when translation is missing and no default is provided', () => {
-    expect(localize('missing')).toBe(undefined);
+    expect(localize('missing')).toBe('');
   });
 
   it('should return message when elze is true', () => {
@@ -36,7 +36,7 @@ describe('localizeMessage', () => {
   });
 
   it('should return undefined when input is undefined and no elze is provided', () => {
-    expect(localize(undefined)).toBe(undefined);
+    expect(localize(undefined)).toBe('');
   });
 
   it('should return elze when input is undefined and elze is string', () => {
@@ -44,7 +44,7 @@ describe('localizeMessage', () => {
   });
 
   it('should return undefined when input is an empty string', () => {
-    expect(localize('')).toBe(undefined);
+    expect(localize('')).toBe('');
   });
 
   it('should return default message when i18nCode is empty', () => {
@@ -58,17 +58,20 @@ describe('localizeMessage', () => {
   });
 
   it('should not modify args if present', () => {
-    const mockTranslatorWithArgs = vi.fn((code: string, args?: unknown[]) => (args ? `Translated ${args[0]}` : 'Translated'));
+    const mockTranslatorWithArgs = vi.fn((code: string, args?: unknown[]) => (args ? `${code} ${args[0]}` : code === 'Deep' ? 'Deeply' : code));
     const localizeWithArgs = localizeMessage(mockTranslatorWithArgs);
 
-    const i18nWithArgs: I18nMessage = { i18nCode: 'exist', message: 'Message', i18nArgs: ['Arg'] };
-    expect(localizeWithArgs(i18nWithArgs)).toBe('Translated Arg');
+    const i18nWithArgs1: I18nMessage = { i18nCode: 'exist', message: 'Message', i18nArgs: ['Arg'] };
+    expect(localizeWithArgs(i18nWithArgs1)).toBe('exist Arg');
+
+    const i18nWithArgs2: I18nMessage = { i18nCode: 'exist', message: 'Message', i18nArgs: ['Deep'] };
+    expect(localizeWithArgs(i18nWithArgs2)).toBe('exist Deeply');
   });
 
   it('should return undefined when translation function returns null', () => {
     const mockTranslatorNull = vi.fn(() => null);
     const localizeNull = localizeMessage(mockTranslatorNull);
-    expect(localizeNull('exist')).toBe(undefined);
+    expect(localizeNull('exist')).toBe('');
   });
 
   it('should return default value when translation function returns code itself', () => {

@@ -62,8 +62,7 @@ export function useIonInputChecker(opt: {
     }
 
     const out = opt.notify.output;
-    const { t } = useI18n();
-    const localize = localizeMessage(t);
+    const localize = useLocalizeMessage();
 
     opt.notify.handle.put({
       id,

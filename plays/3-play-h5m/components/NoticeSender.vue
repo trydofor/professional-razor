@@ -156,6 +156,6 @@ function onNotifyError() {
 }
 
 function onBubbleUp() {
-  throw newSystemError('system', 'bubble up');
+  throw newSystemError('ui.label.error', 'bubble up');
 }
 </script>

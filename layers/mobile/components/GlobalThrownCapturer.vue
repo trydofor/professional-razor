@@ -4,21 +4,38 @@
 
 <script lang="ts" setup>
 import type { AlertOptions, ToastOptions } from '@ionic/vue';
+import type { FetchError } from 'ofetch';
 
-const step = 50; // bottom is positive, top is negative
+const props = defineProps<{
+  preStatus?: (status: number, err: FetchError) => boolean | undefined;
+  toastOpts?: (message: string | ToastOptions) => ToastOptions;
+  alertOpts?: (message: string | AlertOptions) => AlertOptions;
+  toastStep?: number;
+}>();
+
+const localize = useLocalizeMessage();
+
+const defaultToastOpts = (message: string | ToastOptions): ToastOptions => typeof message === 'string'
+  ? {
+      duration: 1500,
+      icon: ioniconsAlertCircleOutline,
+      position: 'bottom',
+      message,
+    }
+  : message;
+const defaultAlertOpts = (message: string | AlertOptions): AlertOptions => typeof message === 'string'
+  ? {
+      header: localize('ui.label.notice', 'Notice'),
+      buttons: [localize('ui.button.ok', 'OK')],
+      message,
+    }
+  : message;
+
 let toastOffset = 0;
-
 async function presentToast(message: string | ToastOptions) {
-  const opts: ToastOptions = typeof message === 'string'
-    ? {
-        message,
-        duration: 1500,
-        icon: ioniconsAlertCircleOutline,
-        position: 'bottom',
-      }
-    : message;
+  const opts = props.toastOpts?.(message) ?? defaultToastOpts(message);
   const toast = await toastController.create(opts);
-
+  const step = props.toastStep ?? 50; // bottom is positive, top is negative
   toastOffset -= step;
   toast.style.setProperty('margin-top', `${toastOffset}px`);
 
@@ -31,14 +48,7 @@ async function presentToast(message: string | ToastOptions) {
 const alertQueue: AlertOptions[] = [];
 let alertShown = false;
 async function presentAlert(message: string | AlertOptions) {
-  alertQueue.push(typeof message === 'string'
-    ? {
-        header: 'Notice',
-        message,
-        buttons: ['OK'],
-      }
-    : message);
-
+  alertQueue.push(props.alertOpts?.(message) ?? defaultAlertOpts(message));
   if (!alertShown) {
     void showNextAlert(); // no Unhandled Promise
   }
@@ -59,13 +69,11 @@ async function showNextAlert() {
 }
 
 // handle global notices
-const { t } = useI18n();
-const localize = localizeMessage(t);
 globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const message = localize(ntc);
   if (message) {
   // no await
-    const fun = (ntc.type === 'toast' ? presentToast : presentAlert);
+    const fun = (ntc.type === 'Toast' ? presentToast : presentAlert);
     fun(message);
     return false;
   }
@@ -97,6 +105,11 @@ globalThrownCapturer.put({ id: 'FetchStatusThrown', order: 9000, hook: (err) => 
   if (isFetchError(err)) {
     const status = err.response?.status;
     if (typeof status !== 'number') return;
+
+    const rt = props.preStatus?.(status, err);
+    if (typeof rt === 'boolean') {
+      return rt;
+    }
 
     const message = localize(`error.fetcher.${status}`);
     if (message) {

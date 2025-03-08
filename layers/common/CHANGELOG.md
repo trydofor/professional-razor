@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.6.5
+
+### Patch Changes
+
+- 53c4604: ignore response error and handle status #180
+
 ## 0.6.0
 
 ### Minor Changes

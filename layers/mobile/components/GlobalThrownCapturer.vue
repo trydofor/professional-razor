@@ -60,14 +60,15 @@ async function showNextAlert() {
 
 // handle global notices
 const { t } = useI18n();
+const localize = localizeMessage(t);
 globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
-  const message = localizeMessage(ntc, t);
-  if (!message) return;
-
+  const message = localize(ntc);
+  if (message) {
   // no await
-  const fun = (ntc.type === 'toast' ? presentToast : presentAlert);
-  fun(message);
-  return false;
+    const fun = (ntc.type === 'toast' ? presentToast : presentAlert);
+    fun(message);
+    return false;
+  }
 } });
 
 // handle global router changes
@@ -88,6 +89,25 @@ globalThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) =
     if (err.type === 'Toast') {
       presentToast(err.data as ToastOptions);
       return false;
+    }
+  }
+} });
+
+globalThrownCapturer.put({ id: 'FetchStatusThrown', order: 9000, hook: (err) => {
+  if (isFetchError(err)) {
+    const status = err.response?.status;
+    if (typeof status !== 'number') return;
+
+    const message = localize(`error.fetcher.${status}`);
+    if (message) {
+      presentAlert(message);
+      if (status === 401 || status === 403) {
+        apiResponseEventBus.emit({ status }, err as ApiResponseContext);
+        return false;
+      }
+      else {
+        return true; // bottom up to sentry
+      }
     }
   }
 } });

@@ -97,7 +97,7 @@ router.afterEach((to) => {
   }
 });
 
-globalThrownCapturer.put({ id: 'GlobalSentryErrorNotice', order: 8000, hook: (err: SafeAny) => {
+globalThrownCapturer.put({ id: 'GlobalSentryErrorNotice', order: 9100, hook: (err: SafeAny) => {
   globalNoticeCapturer.call({
     message: 'this error will sent to sentry, check log',
   });

@@ -25,5 +25,22 @@ export default {
   'error.assert.lessEqual2': '{0} must be less than or equal to {1}',
   'error.assert.less2': '{0} must be less than {1}',
 
-  'error.system.message1': 'system error:{0}',
+  'error.system.message1': 'system error, {0}',
+
+  'error.fetcher.400': 'bad request, please check the input',
+  'error.fetcher.401': 'unauthorized, login and try again',
+  'error.fetcher.403': 'forbidden, access denied',
+  'error.fetcher.404': 'not found, please check the url',
+  'error.fetcher.405': 'method not allowed, please check the method',
+  'error.fetcher.406': 'not acceptable, please check the accept',
+  'error.fetcher.408': 'request timeout, please try again later',
+  'error.fetcher.409': 'conflict, please check the request',
+  'error.fetcher.413': 'payload too large, please check the payload',
+  'error.fetcher.415': 'unsupported media type, please check the media type',
+  'error.fetcher.422': 'unprocessable entity, please check the entity',
+  'error.fetcher.429': 'too many requests, please try again later',
+  'error.fetcher.500': 'internal server error, please try again later',
+  'error.fetcher.502': 'bad gateway, please try again later',
+  'error.fetcher.503': 'service unavailable, please try again later',
+  'error.fetcher.504': 'gateway timeout, please try again later',
 };

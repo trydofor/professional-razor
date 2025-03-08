@@ -25,5 +25,22 @@ export default {
   'error.assert.lessEqual2': '{0}必须小于等于{1}',
   'error.assert.less2': '{0}必须小于{1}',
 
-  'error.system.message1': '系统错误:{0}',
+  'error.system.message1': '系统错误，{0}',
+
+  'error.fetcher.400': '请求错误，请检查输入',
+  'error.fetcher.401': '未授权，请登录',
+  'error.fetcher.403': '禁止访问，权限不足',
+  'error.fetcher.404': '未找到，请检查网址',
+  'error.fetcher.405': '方法不允许，请检查方法',
+  'error.fetcher.406': '不接受，请检查接受',
+  'error.fetcher.408': '请求超时，请稍后再试',
+  'error.fetcher.409': '冲突，请检查请求',
+  'error.fetcher.413': '请求过大，请检查负载',
+  'error.fetcher.415': '不支持的媒体类型，请检查媒体类型',
+  'error.fetcher.422': '不可处理实体，请检查实体',
+  'error.fetcher.429': '请求太多，请稍后再试',
+  'error.fetcher.500': '内部服务器错误，请稍后再试',
+  'error.fetcher.502': '网关错误，请稍后再试',
+  'error.fetcher.503': '服务不可用，请稍后再试',
+  'error.fetcher.504': '网关超时，请稍后再试',
 };

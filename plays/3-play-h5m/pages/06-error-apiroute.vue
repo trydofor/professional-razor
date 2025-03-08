@@ -22,6 +22,9 @@
         <IonButton @click="onStatus401">
           Fetch Status 401, ignoreResponseError
         </IonButton>
+        <IonButton @click="onStatus403">
+          Fetch Status 403, Notice
+        </IonButton>
         <IonButton @click="onHeaderSession(true)">
           Fetch Session Success
         </IonButton>
@@ -154,6 +157,19 @@ async function onStatus401() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { status: 401, body }, { ignoreResponseError: true });
+  const apiResult = await ionicFetchResult(fetchError);
+
+  logger.error('should not be here, thrown before this', apiResult);
+  shouldNot.value = 'should not be here: Status401';
+}
+
+async function onStatus403() {
+  onClean();
+  const body = {
+    success: false,
+  } as DataResult;
+
+  const fetchError = apiRoute.post('/echo', { status: 403, body });
   const apiResult = await ionicFetchResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);

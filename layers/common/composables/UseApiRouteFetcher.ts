@@ -70,9 +70,9 @@ export function apiResponseSessionHook(sessionHeader = ['session'], eventKey = a
 
 /**
  * if response.status is not in okStatus, throw before onResponseError hook,
- * i.e. not handle by onResponseError hook, the throws if options.ignoreResponseError
+ * (not handle by onResponseError), the thrown if options.ignoreResponseError,
  * * true - throw Ignored
- * * false - emit ApiResponseEvent by apiResponseEventBus, then throw FetchError
+ * * false - throw FetchError
  * default okStatus,
  * * 200 - OK
  * * 201 - Created
@@ -82,15 +82,13 @@ export function apiResponseSessionHook(sessionHeader = ['session'], eventKey = a
  *
  * @param okStatus default [200, 201, 202, 204, 206]
  */
-export function apiResponseStatusHook(okStatus = [200, 201, 202, 204, 206], eventKey = apiResponseEventKey, id = 'responseStatus'): ApiResponseHook & { id: string } {
-  const eventBus = useEventBus(eventKey);
+export function apiResponseStatusHook(okStatus = [200, 201, 202, 204, 206], id = 'responseStatus'): ApiResponseHook & { id: string } {
   return attachId(id, (context) => {
     if (!okStatus.includes(context.response.status)) {
       if (context.options.ignoreResponseError === true) {
         throw Ignored;
       }
       else {
-        eventBus.emit({ status: context.response.status }, context);
         throw createFetchError(context);
       }
     }

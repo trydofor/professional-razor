@@ -87,12 +87,3 @@ export function mustPageResult<T>(result?: ApiResult<T> | null): PageResult<T> {
 export function isErrorResult(result?: ApiResult<SafeAny> | null): result is ErrorResult {
   return (result != null && 'errors' in result);
 }
-
-export function localizeMessage(i18n: I18nMessage, tc: (code: string, args: unknown[]) => Maybe<string>): string | undefined {
-  const code = i18n.i18nCode;
-  const deft = i18n.message;
-  if (code == null || code === '') return deft;
-
-  const msg = tc(code, i18n.i18nArgs ?? []);
-  return msg == null || (msg === code && deft != null) ? deft : msg;
-}

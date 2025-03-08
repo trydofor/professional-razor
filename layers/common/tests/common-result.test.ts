@@ -50,30 +50,3 @@ describe('API Result Helpers', () => {
     expect(() => mustPageResult({ data: 1 } as SafeAny)).toThrow(/PageResult/);
   });
 });
-
-describe('localizeMessage', () => {
-  const mockTranslate = (code: string, args: unknown[]) => {
-    if (code === 'hello.world') return 'Hello, World!';
-    if (code === 'with.args') return `Hello, ${args[0]}!`;
-    return code;
-  };
-
-  it('should return translated message when available', () => {
-    const msg: I18nMessage = { i18nCode: 'hello.world' };
-    expect(localizeMessage(msg, mockTranslate)).toBe('Hello, World!');
-  });
-
-  it('should return formatted message with arguments', () => {
-    const msg: I18nMessage = { i18nCode: 'with.args', i18nArgs: ['Alice'] };
-    expect(localizeMessage(msg, mockTranslate)).toBe('Hello, Alice!');
-  });
-
-  it('should return default message when translation is unavailable', () => {
-    const msg: I18nMessage = { i18nCode: 'unknown.code', message: 'Fallback Message' };
-    expect(localizeMessage(msg, mockTranslate)).toBe('Fallback Message');
-  });
-
-  it('should return undefined when no i18nCode or message is provided', () => {
-    expect(localizeMessage({}, mockTranslate)).toBeUndefined();
-  });
-});

@@ -19,6 +19,9 @@
         <IonButton @click="onFalseResult">
           Fetch False Result
         </IonButton>
+        <IonButton @click="onFalseLegacy">
+          Fetch False Result Legacy
+        </IonButton>
         <IonButton @click="onStatus401">
           Fetch Status 401, ignoreResponseError
         </IonButton>
@@ -118,6 +121,21 @@ async function onFalseResult() {
     message: 'email must not be empty',
     i18nCode: 'error.assert.notEmpty1',
     i18nArgs: ['email'],
+  } as DataResult;
+
+  const fetchError = apiRoute.post('/echo', { body });
+  const apiResult = await ionicFetchResult(fetchError);
+
+  logger.error('should not be here, thrown before this', apiResult);
+  shouldNot.value = 'should not be here: FalseResult';
+}
+
+async function onFalseLegacy() {
+  onClean();
+  const body = {
+    success: false,
+    message: 'email must not be empty',
+    code: 'error.assert.notEmpty',
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { body });

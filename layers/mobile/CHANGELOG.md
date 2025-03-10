@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.6.6
+
+### Patch Changes
+
+- cb64bee: ✨ get/pre of PriorityHook, capture legacy FalseResult #190
+
 ## 0.6.5
 
 ### Patch Changes

@@ -68,8 +68,10 @@ async function showNextAlert() {
   showNextAlert();
 }
 
-// handle global notices
-globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
+const appNoticeCapturer = useNoticeCapturer();
+
+// handle app notices
+appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const message = localize(ntc);
   if (message) {
   // no await
@@ -79,16 +81,17 @@ globalNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   }
 } });
 
-// handle global router changes
+const appThrownCapturer = useThrownCapturer();
+// handle app router changes
 const router = useIonRouter();
-globalThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
+appThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
   if (isNavigateThrown(err) && err.route) {
     router.push(err.route);
     return false;
   }
 } });
 
-globalThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
+appThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
   if (isDataThrown(err)) {
     if (err.type === 'Alert') {
       presentAlert(err.data as AlertOptions);
@@ -101,7 +104,7 @@ globalThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) =
   }
 } });
 
-globalThrownCapturer.put({ id: 'FetchStatusThrown', order: 9000, hook: (err) => {
+appThrownCapturer.put({ id: 'FetchStatusThrown', order: 9000, hook: (err) => {
   if (isFetchError(err)) {
     const status = err.response?.status;
     if (typeof status !== 'number') return;
@@ -127,11 +130,11 @@ globalThrownCapturer.put({ id: 'FetchStatusThrown', order: 9000, hook: (err) => 
 
 const slots = useSlots();
 if (slots.default) {
-  logger.info('register onErrorCaptured(globalThrownCapturer.hookError) by default slot');
-  onErrorCaptured(globalThrownCapturer.hookError);
+  logger.info('register onErrorCaptured(appThrownCapturer.hookError) by default slot');
+  onErrorCaptured(appThrownCapturer.hookError);
 }
 else {
-  logger.warn('should register onErrorCaptured(globalThrownCapturer.hookError) to top level component');
+  logger.warn('should register onErrorCaptured(appThrownCapturer.hookError) to top level component');
 }
 
 //

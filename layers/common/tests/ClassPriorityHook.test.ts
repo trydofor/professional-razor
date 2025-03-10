@@ -327,3 +327,67 @@ describe('PriorityHook - call and emit tests', () => {
     loggerSpy.mockRestore();
   });
 });
+
+describe('HookManager.pre', () => {
+  it('should return undefined and log warning if hook id not found', () => {
+    const loggerWarnSpy = vi.spyOn(logger, 'warn').mockImplementation(() => {});
+    const manager = new PriorityHook<() => void>();
+
+    const result = manager.pre('non-existent-id', -0.1, vi.fn());
+
+    expect(result).toBeUndefined();
+    expect(loggerWarnSpy).toHaveBeenCalledWith('mix hook id=%s not found', 'non-existent-id');
+
+    loggerWarnSpy.mockRestore();
+  });
+
+  it('should create a new hook with modified order', () => {
+    const manager = new PriorityHook<() => void>();
+    const originalHook = vi.fn();
+    const newHook = vi.fn();
+
+    manager.put({ id: 'test-hook', order: 10, hook: originalHook, force: true });
+
+    const newId = manager.pre('test-hook', -0.5, newHook);
+
+    expect(newId).toBe('test-hook-0.5');
+    const addedHook = manager.get(newId!);
+
+    expect(addedHook).toBeDefined();
+    expect(addedHook!.order).toBe(9.5); // 10 + (-0.5)
+  });
+
+  it('should call new hook first, then original hook if new hook returns undefined', () => {
+    const manager = new PriorityHook<() => void>();
+    const originalHook = vi.fn().mockReturnValue('original');
+    const newHook = vi.fn().mockReturnValue(undefined);
+
+    manager.put({ id: 'test-hook', order: 10, hook: originalHook, force: true });
+
+    const newId = manager.pre('test-hook', -0.5, newHook);
+    const addedHook = manager.get(newId!)!;
+
+    const result = addedHook.hook();
+
+    expect(newHook).toHaveBeenCalled();
+    expect(originalHook).toHaveBeenCalled();
+    expect(result).toBe('original');
+  });
+
+  it('should not call original hook if new hook returns a value', () => {
+    const manager = new PriorityHook<() => void>();
+    const originalHook = vi.fn();
+    const newHook = vi.fn().mockReturnValue('new');
+
+    manager.put({ id: 'test-hook', order: 10, hook: originalHook, force: true });
+
+    const newId = manager.pre('test-hook', -0.5, newHook);
+    const addedHook = manager.get(newId!)!;
+
+    const result = addedHook.hook();
+
+    expect(newHook).toHaveBeenCalled();
+    expect(originalHook).not.toHaveBeenCalled();
+    expect(result).toBe('new');
+  });
+});

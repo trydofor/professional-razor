@@ -17,7 +17,7 @@ export function thrownToNotices(err: unknown): I18nNotice[] | undefined {
       notices = [{
         type: TypeApiFalse,
         message: fr.message,
-        i18nCode: fr.i18nCode,
+        i18nCode: fr.i18nCode ?? fr.code,
         i18nArgs: fr.i18nArgs,
       }];
     }

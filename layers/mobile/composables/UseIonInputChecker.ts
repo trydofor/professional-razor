@@ -2,17 +2,26 @@
  * ```tsx
  * <template>
  *   <IonInput
- *     ref="pkgInputRef"
- *     v-model="pkgInput"
- *     type="number"
- *     error-text="need a positive number"
- *     @ion-input="onPkgInput"
- *     @ion-blur="onPkgInput"
+ *     ref="firstNameRefer"
+ *     v-model="firstNameModel"
+ *     :error-text="firstNameError"
+ *     @ion-input="firstNameCheck"
+ *     @ion-blur="firstNameCheck"
  *   />
  * </template>
  * <script setup lang="ts">
- *   const pkgInputRef = useTemplateRef('pkgInputRef')
- *   const onPkgInput = useIonInputChecker(pkgInputRef, /^[1-9][0-9]?$/, pkgInput);
+ * const firstNameModel = ref('');
+ * const firstNameRefer = useTemplateRef('firstNameRefer')
+ * const firstNameCheck = useIonInputChecker({
+ *        el: firstNameRefer,
+ *        check: /^[0-9]{6,}$/,
+ *        model: firstNameModel,
+ *        notify: {
+ *          handle: noticeCapturer,
+ *          output: firstNameError,
+ *          accept: 'firstName',
+ *        },
+ *      });
  * </script>
  * ```
  *

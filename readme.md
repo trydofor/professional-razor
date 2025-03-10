@@ -42,17 +42,26 @@ type safety, readability, and consistency, add the following conventions,
 
 First, `html` and `http` are case-insensitive, and `mac` and `win` OS are case-insensitive by default.
 
-* `camel` - `smallCamel` and `BigCamel`/`PascalCase`
+* `BigCamel` - `PascalCase`
+* `smallCamel` - `camelCase`
 * `kebab` - `kebab-case` all lowercase
+
 * `*.vue` and its file - MUST be `BigCamel`, consistent with Vue,
-  e.g. `components/`, `composables/`, `stores/`
-* dir and non-vue file - MUST be `kebab` consistent with `index.js`,
-  e.g. `assets/`, `pages/`, `types`, `plugins/`, `utils/`
-* source code - js MUST be `camel`, html attr and css MUST be `kebab`
+  * `components/` at least tow words
+  * `composables/` prefixed with `Use`
+  * `stores/` suffixed with `Store`
+* `class` files - Must be `BigCamel`, Should prefix with `Class`
+* dir and non-vue file - MUST be `kebab` consistent with `index.js`, e.g. `assets/`, `pages/`
+
+source code and context
+
+* ts code - class and type MUST be `BigCamel`, function and instance MUST be `smallCamel`
+* vue code - js MUST be `camel`, html attr and css MUST be `kebab`
 * component tag - SHOULD be `BigCamel`, to distinguish from original html
 * component prop - in js MUST be `smallCamel`, in html MUST be `kebab`
 * emit event - MUST be `kebab`, treated as string, no auto-conversion
 * i18n - SHOULD use js instead of json, key SHOULD be `camel`
+* http header - `Pascal-Case` or `kebab-case`
 
 ### Rule2 - single in js, double in html
 
@@ -102,6 +111,11 @@ According to the official Vue naming rules, most things are plural,
 * emits, using the ts specification, event name without `on` prefix
 * props, use `do` prefix for `handle` when passthrough Function
 * interface/type in SFC, can be in same-name `.d.ts`, but enum in `.ts`
+* Form component, the naming convention. e.g. for an email input box.
+  * emailModel = ref('');
+  * emailError = ref('bad zipcode');
+  * emailRefer = useTemplateRef('emailRefer');
+  * emailCheck = useXxxChecker();
 
 ## 3.DoIt Yourself
 

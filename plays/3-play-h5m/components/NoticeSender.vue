@@ -10,17 +10,17 @@
       {{ prop.title }} Alert 404
     </IonButton>
     <IonInput
-      ref="inputSendZipRef"
-      v-model="inputSendZip"
+      ref="sendZipRefer"
+      v-model="sendZipModel"
       class="w-full py-4 font-bold tracking-widest"
       label="Zipcode([0-9]{6,})"
       inputmode="numeric"
       label-placement="floating"
       fill="outline"
       clear-input
-      :error-text="errorSendZip"
-      @ion-input="checkSendZip"
-      @ion-blur="checkSendZip"
+      :error-text="sendZipError"
+      @ion-input="sendZipCheck"
+      @ion-blur="sendZipCheck"
     >
       <!-- eslint-disable-next-line vue/no-deprecated-slot-attribute -->
       <!-- <div slot="start" class="i-flag:us-4x3" /> -->
@@ -108,17 +108,16 @@ function onShowCapturers() {
   });
 }
 
-const inputSendZip = ref('');
-const errorSendZip = ref('bad zipcode');
-const inputSendZipRef = useTemplateRef('inputSendZipRef');
-
-const checkSendZip = useIonInputChecker({
-  el: inputSendZipRef,
+const sendZipModel = ref('');
+const sendZipError = ref('bad zipcode');
+const sendZipRefer = useTemplateRef('sendZipRefer');
+const sendZipCheck = useIonInputChecker({
+  el: sendZipRefer,
   check: /^[0-9]{6,}$/,
-  model: inputSendZip,
+  model: sendZipModel,
   notify: {
     handle: noticeCapturer,
-    output: errorSendZip,
+    output: sendZipError,
     accept: 'zip',
   },
 });
@@ -152,7 +151,7 @@ function onApiErrorSyncCatch() {
 }
 
 function onNotifyError() {
-  checkSendZip(zipcodeNotice);
+  sendZipCheck(zipcodeNotice);
 }
 
 function onBubbleUp() {

@@ -18,20 +18,20 @@
       </div>
       <div class="p-4">
         <IonInput
-          ref="inputFirstNameRef"
-          v-model="inputFirstName"
+          ref="firstNameRefer"
+          v-model="firstNameModel"
           label="First Name"
           label-placement="floating"
           fill="outline"
           clear-input
           placeholder="Enter text"
           error-text="invalid first name"
-          @ion-blur="checkFirstName"
-          @ion-input="checkFirstName"
+          @ion-blur="firstNameCheck"
+          @ion-input="firstNameCheck"
         />
       </div>
       <div class="p-4">
-        <IonButton class="text-white" @click="checkFirstNameManual">
+        <IonButton class="text-white" @click="onFirstNameCheck">
           Validate Manually
         </IonButton>
       </div>
@@ -44,8 +44,8 @@ definePageMeta({
   name: 'Ion Input validate',
 });
 
-const inputFirstName = ref('');
-const inputFirstNameRef = useTemplateRef('inputFirstNameRef');
-const checkFirstName = useIonInputChecker({ el: inputFirstNameRef, check: /^[\x20-\x7E]{3,}$/, model: inputFirstName });
-const checkFirstNameManual = useIonInputChecker({ el: inputFirstNameRef, check: /^[\x20-\x7E]{5,}$/, model: inputFirstName });
+const firstNameModel = ref('');
+const firstNameRefer = useTemplateRef('firstNameRefer');
+const firstNameCheck = useIonInputChecker({ el: firstNameRefer, check: /^[\x20-\x7E]{3,}$/, model: firstNameModel });
+const onFirstNameCheck = useIonInputChecker({ el: firstNameRefer, check: /^[\x20-\x7E]{5,}$/, model: firstNameModel });
 </script>

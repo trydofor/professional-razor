@@ -35,24 +35,35 @@
 
 ## 2.编码规范
 
-在 [Vue风格](https://vuejs.org/style-guide/)[和[Nuxt 规范](https://nuxt.com/docs/guide/concepts/code-style)的基础上，
+在 [Vue风格](https://vuejs.org/style-guide/) 和[Nuxt 规范](https://nuxt.com/docs/guide/concepts/code-style)的基础上，
 根据强类型，可读性，一致性的原则，增加以下约定，
 
 ### Rule1 - js中驼峰，html中烤串
 
 首先，`html`和`http`不区分大小写，`mac`和`win`系统默认不区分大小写。
 
-* 驼峰 - `smallCamel`/小驼峰 和 `PascalCase`/大驼峰
-* 烤串 - `kebab-case`，全小写
-* `*.vue`及相关 - 必须大驼峰，与Vue一致，
-  如 `components/`, `composables/`, `stores/`
-* 目录及非vue文件 - 必须烤串，与`index.js`一致，
-  如 `assets/`, `pages/`, `types`, `plugins/`, `utils/`
-* 代码中 - js必须驼峰，html属性和css必须烤串
+* 大驼峰 - `PascalCase`，除每个单词首字母大写外，字母全小写
+* 小驼峰 - `camelCase`，除第一个单词外的大驼峰
+* 烤串 - `kebab-case`，全小写，`-` 连接单词
+
+文件夹及文件命名
+
+* `*.vue`及相关 - 必须大驼峰，与Vue一致。
+  * `components/` 至少两个单词
+  * `composables/` 以`Use`为前缀
+  * `stores/` 以 `Store`为后缀
+* `class`文件 - 必须大驼峰，应该以`Class`为前缀
+* 目录及非vue文件 - 必须烤串，与`index.js`一致，如 `assets/`, `pages/`
+
+源码及内容，
+
+* ts代码 - 类及类型必须大驼峰，方法及实例必须小驼峰
+* vue中 - js必须驼峰，html属性和css必须烤串
 * 组件标签 - 应该大驼峰，以区别于原生html标签
 * 组件属性 - js必须小驼峰，html必须烤串
 * emit事件 - 必须烤串，因其仅做字符串，无自动转换
 * i18n - 应该以js取代json，key应该驼峰
+* http 协议头 - `Pascal-Case` 或 `kebab-case`
 
 ### Rule2 - js中单引号，html中双引号
 
@@ -102,6 +113,11 @@
 * emits，采用ts规范，事件名不必使用`on`前缀
 * props，传递Function时，使用`do`前缀，表示`handle`
 * SFC中的interface或type，可放到同名`.d.ts`，enum放在`.ts`
+* Form组件，采用以下命名组，如 email 输入框，
+  * emailModel = ref('');
+  * emailError = ref('bad zipcode');
+  * emailRefer = useTemplateRef('emailRefer');
+  * emailCheck = useXxxChecker();
 
 ## 3.自己动手
 

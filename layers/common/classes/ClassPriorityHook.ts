@@ -64,6 +64,30 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
   };
 
   /**
+   * get a hook by its id, returns the hook or undefined if not found.
+   */
+  get(id: string): PriorityHookType<H> | undefined {
+    return this._hooks.find(it => it.id === id);
+  }
+
+  /**
+   * mix a hook by its id, returns the new hook id or undefined if not found.
+   * the new hook runs before the old hook, and returns boolean to stop the old hook.
+   */
+  pre(id: string, pre: number = -0.1, hook: H): string | undefined {
+    const old = this.get(id);
+    if (old == null) {
+      logger.warn('mix hook id=%s not found', id);
+      return;
+    }
+
+    const newId = `${old.id}-${pre > 0 ? pre : -pre}`;
+    const newHook = (...args: SafeAny[]) => hook(...args) ?? old.hook(...args);
+    this.put({ id: newId, order: old.order + pre, hook: newHook as H, force: old.force });
+    return newId;
+  }
+
+  /**
    * delete a hook by its id, returns the deleted hook or undefined if not found.
    */
   del(id: string): PriorityHookType<H> | undefined {

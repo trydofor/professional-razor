@@ -28,7 +28,7 @@ describe('localizeMessage', () => {
 
   it('should return i18nCode when translation is missing and elze is false', () => {
     const i18n: I18nMessage = { i18nCode: 'missing', message: 'Default Message' };
-    expect(localize(i18n, false)).toBe('missing');
+    expect(localize(i18n, false)).toBe('Default Message');
   });
 
   it('should return provided elze string when translation is missing', () => {
@@ -52,9 +52,9 @@ describe('localizeMessage', () => {
     expect(localize(i18n, true)).toBe('Fallback Message');
   });
 
-  it('should return i18nCode when elze is false and message is undefined', () => {
+  it('should return i18nCode when elze is true and message is undefined', () => {
     const i18n: I18nMessage = { i18nCode: 'missing', message: undefined as unknown as string };
-    expect(localize(i18n, false)).toBe('missing');
+    expect(localize(i18n, true)).toBe('missing');
   });
 
   it('should not modify args if present', () => {

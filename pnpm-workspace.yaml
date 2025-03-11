@@ -1,4 +1,3 @@
-## https://pnpm.io/workspaces
 packages:
   - 'layers/*'
   - 'plays/*'
@@ -15,8 +14,8 @@ catalogs:
     "@nuxtjs/i18n": "9.2.1" # https://github.com/nuxt-modules/i18n/blob/main/package.json
     "@pinia/nuxt": "0.10.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/nuxt/package.json
     "@sentry/nuxt": "9.3.0" # https://github.com/getsentry/sentry-javascript/blob/develop/packages/nuxt/package.json
-    "@vueuse/core": "12.7.0" #https://github.com/vueuse/vueuse/blob/v12.7.0/pnpm-workspace.yaml
-    "@vueuse/nuxt": "12.7.0"
+    "@vueuse/core": "13.0.0" #https://github.com/vueuse/vueuse/blob/v12.7.0/pnpm-workspace.yaml
+    "@vueuse/nuxt": "13.0.0"
     "date-fns": "4.1.0"
     "js-md5": "0.8.3"
     "nuxt-swiper": "2.0.0"
@@ -56,4 +55,3 @@ catalogs:
     "@ionic/vue": "8.4.2"
     "@nuxtjs/ionic": "0.16.0" # https://github.com/nuxt-modules/ionic
     "ionicons": "7.4.0" # by @ionic/vue
-

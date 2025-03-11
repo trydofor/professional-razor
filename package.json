@@ -42,5 +42,5 @@
     "rimraf": "catalog:manage",
     "taze": "catalog:manage"
   },
-  "packageManager": "pnpm@9.15.9"
+  "packageManager": "pnpm@10.6.2"
 }

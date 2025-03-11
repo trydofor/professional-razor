@@ -2,9 +2,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
+    // https://github.com/nuxt/renovate-config-nuxt/blob/main/default.json
     "github>nuxt/renovate-config-nuxt"
   ],
   "lockFileMaintenance": {
     "enabled": false
-  }
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["pnpm"],
+      "versioning": "semver",
+      "matchUpdateTypes": ["minor", "patch"],
+    }
+  ]
 }

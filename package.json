@@ -18,7 +18,7 @@
     "del:dep": "rimraf -g **/node_modules/",
     "del:gen": "rimraf -g **/.nuxt/ **/.output/ **/dist/",
     "dep:ci": "pnpm i --frozen-lockfile",
-    "dep:up": "taze -r -l latest",
+    "dep:up": "taze -r -l major",
     "dev:dep": "pnpm -r -F './layers/**' i",
     "dev:gen": "pnpm -r -F './layers/**' exec nuxi prepare",
     "dev:init": "pnpm -w i && pnpm i",
@@ -42,5 +42,5 @@
     "rimraf": "catalog:manage",
     "taze": "catalog:manage"
   },
-  "packageManager": "pnpm@9.15.6"
+  "packageManager": "pnpm@9.15.9"
 }

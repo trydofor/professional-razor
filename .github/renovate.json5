@@ -1,3 +1,4 @@
+// npx --yes --package renovate -- renovate-config-validator
 // https://docs.renovatebot.com/getting-started/installing-onboarding/
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
@@ -11,7 +12,6 @@
   "packageRules": [
     {
       "matchPackageNames": ["pnpm"],
-      "versioning": "semver",
       "matchUpdateTypes": ["minor", "patch"],
     }
   ]

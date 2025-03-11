@@ -14,15 +14,15 @@ catalogs:
   common:
     "@nuxtjs/i18n": "9.2.1" # https://github.com/nuxt-modules/i18n/blob/main/package.json
     "@pinia/nuxt": "0.10.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/nuxt/package.json
-    "@sentry/nuxt": "9.3.0" # https://github.com/getsentry/sentry-javascript/blob/develop/packages/nuxt/package.json
-    "@vueuse/core": "12.7.0" #https://github.com/vueuse/vueuse/blob/v12.7.0/pnpm-workspace.yaml
-    "@vueuse/nuxt": "12.7.0"
+    "@sentry/nuxt": "9.5.0" # https://github.com/getsentry/sentry-javascript/blob/develop/packages/nuxt/package.json
+    "@vueuse/core": "12.8.2" #https://github.com/vueuse/vueuse/blob/v12.8.2/pnpm-workspace.yaml
+    "@vueuse/nuxt": "12.8.2"
     "date-fns": "4.1.0"
     "js-md5": "0.8.3"
     "nuxt-swiper": "2.0.0"
     "nuxt": "3.15.4"
     "pinia": "3.0.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/pinia/CHANGELOG.md
-    "swiper": "11.2.4" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
+    "swiper": "11.2.5" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
     "ulid": "2.3.0"
     "vue-router": "4.5.0" # https://github.com/nuxt/nuxt/blob/v3.15.4/packages/nuxt/package.json
     "vue": "3.5.13" # https://github.com/nuxt/nuxt/blob/v3.15.4/packages/nuxt/package.json

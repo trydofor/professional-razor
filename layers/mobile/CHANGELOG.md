@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.6.7
+
+### Patch Changes
+
+- f1da616: ✨ get/pre of PriorityHook, capture legacy FalseResult #190
+
 ## 0.6.5
 
 ### Patch Changes

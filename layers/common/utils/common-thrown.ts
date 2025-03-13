@@ -45,3 +45,42 @@ export const globalThrownCapturer = newThrownCapturer([
   },
 ],
 );
+
+/**
+ * throttle by key, default is 300ms, throw ThrottleThrown if throttled
+ */
+export type ThrottleThrownKey = string | { key: string; ms: number };
+/**
+ * default ignore thrown instance
+ */
+export const ThrottleThrown = newIgnoredThrown('Throttled');
+
+const _throttled = new Map<string, number>();
+
+export function throwIfThrottle(opt?: ThrottleThrownKey): void {
+  if (opt == null) return;
+
+  let key;
+  let ms;
+  if (typeof opt === 'string') {
+    key = opt;
+  }
+  else {
+    key = opt.key;
+    ms = opt.ms;
+  }
+
+  if (!key) return;
+  if (ms == null || ms < 0) ms = 300;
+
+  const now = Date.now();
+  const last = _throttled.get(key);
+  if (last != null && now < last) throw ThrottleThrown;
+
+  const next = now + ms;
+  _throttled.set(key, next);
+  // clean
+  setTimeout(() => {
+    if (_throttled.get(key) === next) _throttled.delete(key);
+  }, ms);
+}

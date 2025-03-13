@@ -1,4 +1,5 @@
-﻿import { describe, it, expect } from 'vitest';
+﻿import { md5 } from 'js-md5';
+import { describe, it, expect } from 'vitest';
 
 describe('safeConvert', () => {
   it('should return converted value when input is valid', () => {
@@ -606,5 +607,50 @@ describe('safeSetArr', () => {
   it('should return empty array if null or undefined', () => {
     expect(safeSetArr(null)).toEqual([]);
     expect(safeSetArr(undefined)).toEqual([]);
+  });
+});
+
+describe('safeMd5', () => {
+  it('should return correct md5 hash for a string', () => {
+    const input = 'hello';
+    const expected = md5(input);
+    expect(safeMd5(input)).toBe(expected);
+  });
+
+  it('should return correct md5 hash for numbers', () => {
+    const input = 12345;
+    const expected = md5(input.toString());
+    expect(safeMd5(input)).toBe(expected);
+  });
+
+  it('should return correct md5 hash for objects', () => {
+    const input = { name: 'Vue', version: 3 };
+    const expected = md5(JSON.stringify(input));
+    expect(safeMd5(input)).toBe(expected);
+  });
+
+  it('should return correct md5 hash for arrays', () => {
+    const input = [1, 2, 3];
+    const expected = md5(JSON.stringify(input));
+    expect(safeMd5(input)).toBe(expected);
+  });
+
+  it('should return correct md5 hash for boolean values', () => {
+    const input = true;
+    const expected = md5(input.toString());
+    expect(safeMd5(input)).toBe(expected);
+  });
+
+  it('should return correct md5 hash for null and undefined', () => {
+    const input1 = null;
+    const input2 = undefined;
+    expect(safeMd5(input1)).toBe(md5(''));
+    expect(safeMd5(input2)).toBe(md5(''));
+  });
+
+  it('should return different hashes for different inputs', () => {
+    const hash1 = safeMd5('hello');
+    const hash2 = safeMd5('world');
+    expect(hash1).not.toBe(hash2);
   });
 });

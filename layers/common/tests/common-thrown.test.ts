@@ -203,3 +203,43 @@ describe('globalThrownCapturer', () => {
     expect(result).toBeUndefined();
   });
 });
+
+describe('throwIfThrottle', () => {
+  const now = Date.now();
+  vi.spyOn(global.Date, 'now').mockImplementation(() => now);
+
+  it('should not throw if no key is provided', () => {
+    expect(() => throwIfThrottle()).not.toThrow();
+  });
+
+  it('should not throw on first call with a key', () => {
+    expect(() => throwIfThrottle('test-key')).not.toThrow();
+  });
+
+  it('should throw on repeated calls within default 300ms', () => {
+    throwIfThrottle('test-key1');
+    expect(() => throwIfThrottle('test-key1')).toThrow(ThrottleThrown.message);
+  });
+
+  it('should not throw after the throttle period (300ms default)', async () => {
+    throwIfThrottle('test-key2');
+    await new Promise(resolve => setTimeout(resolve, 301));
+    expect(() => throwIfThrottle('test-key2')).not.toThrow();
+  });
+
+  it('should respect custom throttle duration', async () => {
+    throwIfThrottle({ key: 'custom-key', ms: 500 });
+    expect(() => throwIfThrottle('custom-key')).toThrow(ThrottleThrown.message);
+    await new Promise(resolve => setTimeout(resolve, 501));
+    expect(() => throwIfThrottle('custom-key')).not.toThrow();
+  });
+
+  it('should not store invalid keys', () => {
+    expect(() => throwIfThrottle({ key: '', ms: 500 })).not.toThrow();
+  });
+
+  it('should handle negative ms values as default 300ms', () => {
+    throwIfThrottle({ key: 'negative-ms', ms: -100 });
+    expect(() => throwIfThrottle('negative-ms')).toThrow(ThrottleThrown.message);
+  });
+});

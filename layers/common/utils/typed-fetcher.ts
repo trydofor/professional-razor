@@ -22,7 +22,7 @@ export type TypedFetchOptions<T = ApiResult> = {
    * * return if return non-null
    */
   catches?: (err: SafeAny) => Maybe<T>;
-};
+} & { throttle?: ThrottleThrownKey };
 
 function _doLoading(status: LoadingStatus, loading?: TypedFetchOptions<SafeAny>['loading']): void {
   if (typeof loading === 'function') {
@@ -60,7 +60,6 @@ export async function fetchTypedPage<T>(
   const result = await fetchTypedResult(fetching, options);
   return mustPageResult(result);
 }
-
 /**
  * fetching any result with loading, result, error handling
  *
@@ -71,6 +70,7 @@ export async function fetchTypedResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
   options: TypedFetchOptions<T> = {},
 ): Promise<T> {
+  throwIfThrottle(options.throttle);
   _doLoading(LoadingStatus.Loading, options.loading);
 
   let sts: LoadingStatus = LoadingStatus.Done;

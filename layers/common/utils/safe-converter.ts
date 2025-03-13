@@ -1,4 +1,6 @@
-﻿/**
+﻿import { md5 } from 'js-md5';
+
+/**
  * stringify, bigint as string, Map as object, Set as array
  */
 export function safeJson(obj: unknown): string {
@@ -330,4 +332,12 @@ export function safeMapObj<T>(map?: Maybe<Map<string, T>>): Record<string, T> {
  */
 export function safeSetArr<T>(set?: Maybe<Set<T>>): T[] {
   return set == null ? [] : Array.from(set);
+}
+
+/**
+ * get md5 hash by js-md5
+ */
+export function safeMd5(arg: SafeAny): string {
+  const str = safeString(arg);
+  return md5(str);
 }

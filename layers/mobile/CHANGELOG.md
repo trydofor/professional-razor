@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.6.10
+
+### Patch Changes
+
+- 696a5f0: ✨ throttle request without ui #196
+
 ## 0.6.7
 
 ### Patch Changes

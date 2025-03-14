@@ -1,4 +1,4 @@
-﻿import { md5 } from 'js-md5';
+﻿import { Md5 } from 'ts-md5';
 
 /**
  * stringify, bigint as string, Map as object, Set as array
@@ -335,9 +335,9 @@ export function safeSetArr<T>(set?: Maybe<Set<T>>): T[] {
 }
 
 /**
- * get md5 hash by js-md5
+ * get md5 hash by ts-md5
  */
 export function safeMd5(arg: SafeAny): string {
   const str = safeString(arg);
-  return md5(str);
+  return Md5.hashStr(str);
 }

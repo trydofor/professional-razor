@@ -1,6 +1,6 @@
 {
   "name": "@fessional/razor-common",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "common layer for mobile and desktop",
   "type": "module",
   "main": "./nuxt.config.ts",
@@ -26,6 +26,7 @@
     "pinia": "catalog:common",
     "swiper": "catalog:common",
     "ulid": "catalog:common",
+    "validator": "catalog:common",
     "vue": "catalog:common",
     "vue-router": "catalog:common"
   },
@@ -34,6 +35,7 @@
     "@iconify-json/mdi": "catalog:commonDev",
     "@nuxt/eslint": "catalog:commonDev",
     "@nuxt/test-utils": "catalog:commonDev",
+    "@types/validator": "catalog:commonDev",
     "@unocss/core": "catalog:commonDev",
     "@unocss/eslint-config": "catalog:commonDev",
     "@unocss/nuxt": "catalog:commonDev",

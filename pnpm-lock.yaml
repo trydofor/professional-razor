@@ -42,6 +42,9 @@ catalogs:
     ulid:
       specifier: 2.3.0
       version: 2.3.0
+    validator:
+      specifier: 13.12.0
+      version: 13.12.0
     vue:
       specifier: 3.5.13
       version: 3.5.13
@@ -202,6 +205,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -329,6 +335,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -441,6 +450,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -553,6 +565,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -686,6 +701,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -804,6 +822,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -940,6 +961,9 @@ importers:
       ulid:
         specifier: catalog:common
         version: 2.3.0
+      validator:
+        specifier: catalog:common
+        version: 13.12.0
       vue:
         specifier: catalog:common
         version: 3.5.13(typescript@5.7.3)
@@ -6463,6 +6487,10 @@ packages:
 
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
+
+  validator@13.12.0:
+    resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
+    engines: {node: '>= 0.10'}
 
   vite-hot-client@0.2.4:
     resolution: {integrity: sha512-a1nzURqO7DDmnXqabFOliz908FRmIppkBKsJthS8rbe8hBEXwEwe4C3Pp33Z1JoFCYfVL4kTOMLKk0ZZxREIeA==}
@@ -13507,6 +13535,8 @@ snapshots:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
+
+  validator@13.12.0: {}
 
   vite-hot-client@0.2.4(vite@6.0.11(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0)):
     dependencies:

@@ -24,6 +24,7 @@ catalogs:
     "pinia": "3.0.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/pinia/CHANGELOG.md
     "swiper": "11.2.5" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
     "ulid": "2.3.0"
+    "validator": "13.12.0" # https://github.com/validatorjs/validator.js/releases
     "vue-router": "4.5.0" # https://github.com/nuxt/nuxt/blob/v3.15.4/packages/nuxt/package.json
     "vue": "3.5.13" # https://github.com/nuxt/nuxt/blob/v3.15.4/packages/nuxt/package.json
   commonDev:

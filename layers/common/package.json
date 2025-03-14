@@ -26,6 +26,7 @@
     "pinia": "catalog:common",
     "swiper": "catalog:common",
     "ulid": "catalog:common",
+    "validator": "catalog:common",
     "vue": "catalog:common",
     "vue-router": "catalog:common"
   },

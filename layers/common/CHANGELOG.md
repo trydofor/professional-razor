@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.6.8
+
+### Patch Changes
+
+- cf4e663: ✨ throttle request without ui #196
+
 ## 0.6.7
 
 ### Patch Changes

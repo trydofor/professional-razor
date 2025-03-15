@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "antfu.array-index-inlay",
+    "antfu.file-nesting",
     "antfu.iconify",
     "antfu.pnpm-catalog-lens",
     "antfu.smart-clicks",
@@ -22,9 +23,8 @@
     "qcz.text-power-tools",
     "seatonjiang.gitmoji-vscode",
     "streetsidesoftware.code-spell-checker",
+    "unional.vscode-sort-package-json",
     "vitest.explorer",
     "zt5.http-server",
-    "unional.vscode-sort-package-json",
-    "antfu.file-nesting",
   ]
 }

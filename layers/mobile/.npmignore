@@ -2,7 +2,8 @@
 .nuxt/
 .output/
 dist/
-test/
+tests/
 coverage/
 node_modules/
 .eslintcache
+CHANGELOG.md

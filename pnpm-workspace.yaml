@@ -1,4 +1,3 @@
-## https://pnpm.io/workspaces
 packages:
   - 'layers/*'
   - 'plays/*'
@@ -23,7 +22,7 @@ catalogs:
     "pinia": "3.0.1" # https://github.com/vuejs/pinia/blob/v3.0.0/packages/pinia/CHANGELOG.md
     "swiper": "11.2.6" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
     "ts-md5": "1.3.1"
-    "ulid": "2.4.0"
+    "ulid": "3.0.0"
     "validator": "13.15.0" # https://github.com/validatorjs/validator.js/releases
     "vue-router": "4.5.0" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
     "vue": "3.5.13" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
@@ -57,4 +56,3 @@ catalogs:
     "@ionic/vue": "8.5.3"
     "@nuxtjs/ionic": "0.16.0" # https://github.com/nuxt-modules/ionic
     "ionicons": "7.4.0" # by @ionic/vue
-

@@ -99,7 +99,7 @@ export function apiResponseStatusHook(okStatus = [200, 201, 202, 204, 206], id =
  * throw ApiResultError if not result.success
  * whether include the false result, default true
  */
-export function apiResponseResultHook(includeFalse = true, id = 'responseSuccessResult'): ApiResponseHook & { id: string } {
+export function apiResponseResultHook(includeFalse = true, id = 'responseResult'): ApiResponseHook & { id: string } {
   return attachId(id, (context) => {
     const result = context.response._data as ApiResult;
     if (result != null && result.success === false) {

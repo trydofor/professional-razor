@@ -1,17 +1,8 @@
-﻿/**
- * true if loading(1), false if done(0) or error(2)
- */
-export const enum LoadingStatus {
-  Done = 0,
-  Loading = 1,
-  Error = 2,
-};
-
-export type TypedFetchOptions<T = ApiResult> = {
+﻿export type TypedFetchOptions<T = ApiResult> = {
   /**
    * true if loading(1), false if done(0) or error(2)
    */
-  loading?: Ref<boolean> | ((status: LoadingStatus) => void);
+  loading?: Ref<boolean> | ((status: LoadingStatusType) => void);
   /**
    * handle the result to return
    */
@@ -24,7 +15,7 @@ export type TypedFetchOptions<T = ApiResult> = {
   catches?: (err: SafeAny) => Maybe<T>;
 } & { throttle?: ThrottleThrownKey };
 
-function _doLoading(status: LoadingStatus, loading?: TypedFetchOptions<SafeAny>['loading']): void {
+function _doLoading(status: LoadingStatusType, loading?: TypedFetchOptions<SafeAny>['loading']): void {
   if (typeof loading === 'function') {
     loading(status);
   }
@@ -73,7 +64,7 @@ export async function fetchTypedResult<T = ApiResult>(
   throwIfThrottle(options.throttle);
   _doLoading(LoadingStatus.Loading, options.loading);
 
-  let sts: LoadingStatus = LoadingStatus.Done;
+  let sts: LoadingStatusType = LoadingStatus.Done;
   try {
     let result: T = await (typeof fetching === 'function' ? fetching() : fetching);
     if (options.results != null) {

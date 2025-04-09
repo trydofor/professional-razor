@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.7.1
+
+### Patch Changes
+
+- a6eb2a8: ⬆️ nuxt 3.16.2, and oauth login
+
 ## 0.6.10
 
 ### Patch Changes

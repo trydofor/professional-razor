@@ -1,5 +1,11 @@
 # @fessional/razor-common
 
+## 0.7.0
+
+### Minor Changes
+
+- 71b2fe8: ⬆️ nuxt 3.16.2, and oauth login
+
 ## 0.6.10
 
 ### Patch Changes

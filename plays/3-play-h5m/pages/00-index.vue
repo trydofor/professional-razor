@@ -19,16 +19,16 @@
 </template>
 
 <script setup lang="ts">
-import storm1 from '&spa/assets/img/1x/storm.jpg';
-import storm2 from '&spa/assets/img/2x/storm.jpg';
-import storm3 from '&spa/assets/img/3x/storm.jpg';
-import storm4 from '&spa/assets/img/4x/storm.jpg';
+import storm1 from '#layers/spa/assets/img/1x/storm.jpg';
+import storm2 from '#layers/spa/assets/img/2x/storm.jpg';
+import storm3 from '#layers/spa/assets/img/3x/storm.jpg';
+import storm4 from '#layers/spa/assets/img/4x/storm.jpg';
 
 definePageMeta({
   alias: '/',
   name: 'Index',
 });
-const pageRoutes = useRouter().getRoutes().filter(it => it.path !== '/');
+const pageRoutes = useRouter().getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));
 
 function index(path: string) {
   return path.length > 3 ? path.substring(1, 3) : '00';

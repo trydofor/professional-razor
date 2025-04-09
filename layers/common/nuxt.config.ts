@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import { fileURLToPath } from 'url';
 import { nuxtPublicApiRoute, nuxtPublicDevProxy, nuxtCompatibilityDate } from './configures/nuxt-config-helper';
 
 export default defineNuxtConfig({
@@ -12,6 +11,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     'nuxt-swiper',
   ],
+  $meta: { name: 'razor-common' },
   runtimeConfig: { // https://nuxt.com/docs/guide/going-further/runtime-config
     public: {
       apiRoute: nuxtPublicApiRoute(),
@@ -19,9 +19,6 @@ export default defineNuxtConfig({
       rehookVueError: true,
       loggerLevel: '', // LogLevels
     },
-  },
-  alias: { // https://nuxt.com/docs/guide/going-further/layers#tips
-    '&razor-common': fileURLToPath(new URL('./', import.meta.url)),
   },
   compatibilityDate: nuxtCompatibilityDate,
   nitro: { // https://nitro.build/config#devproxy

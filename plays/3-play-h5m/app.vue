@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 const router = useRouter();
-const pageRoutes = router.getRoutes().filter(it => it.path !== '/'); ;
+const pageRoutes = router.getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));
 
 function index(path: string) {
   return path.length > 3 ? path.substring(1, 3) : '00';

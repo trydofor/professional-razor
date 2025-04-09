@@ -28,10 +28,10 @@
 </template>
 
 <script lang="ts" setup>
-import storm1 from '&spa/assets/img/1x/storm.jpg';
-import storm2 from '&spa/assets/img/2x/storm.jpg';
-import storm3 from '&spa/assets/img/3x/storm.jpg';
-import storm4 from '&spa/assets/img/4x/storm.jpg';
+import storm1 from '#layers/spa/assets/img/1x/storm.jpg';
+import storm2 from '#layers/spa/assets/img/2x/storm.jpg';
+import storm3 from '#layers/spa/assets/img/3x/storm.jpg';
+import storm4 from '#layers/spa/assets/img/4x/storm.jpg';
 
 definePageMeta({
   name: 'Diff between Img and DpiImg',

@@ -2,12 +2,15 @@
  * select element by its ref or id
  *
  * @param element the element Ref or id
- * @returns the element
+ * @returns the element, or throw DOMException if not found
  */
 export function selectElement<T = HTMLElement>(element: Ref<SafeAny> | string): T {
-  return typeof element === 'string'
+  const el = typeof element === 'string'
     ? document.getElementById(element)
     : element.value.$el;
+
+  if (el == null) throw new DOMException(`Element ${element} not found`, 'NotFoundError');
+  return el as T;
 }
 
 /**

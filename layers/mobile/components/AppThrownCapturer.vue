@@ -11,13 +11,12 @@ const props = defineProps<{
   toastOpts?: (message: string | ToastOptions) => ToastOptions;
   alertOpts?: (message: string | AlertOptions) => AlertOptions;
   toastStep?: number;
+  toastDuration?: number;
 }>();
 
 const localize = useLocalizeMessage();
-
 const defaultToastOpts = (message: string | ToastOptions): ToastOptions => typeof message === 'string'
   ? {
-      duration: 1500,
       icon: ioniconsAlertCircleOutline,
       position: 'bottom',
       message,
@@ -31,17 +30,32 @@ const defaultAlertOpts = (message: string | AlertOptions): AlertOptions => typeo
     }
   : message;
 
-let toastOffset = 0;
+const toastDuration = Math.abs(props.toastStep ?? 2000);
+const toastStep = Math.abs(props.toastStep ?? 55);
+const toastOffset = [[0], [0], [0]]; // top, middle, bottom
+
 async function presentToast(message: string | ToastOptions) {
   const opts = props.toastOpts?.(message) ?? defaultToastOpts(message);
-  const toast = await toastController.create(opts);
-  const step = props.toastStep ?? 50; // bottom is positive, top is negative
-  toastOffset -= step;
-  toast.style.setProperty('margin-top', `${toastOffset}px`);
+  if (opts.duration == null && opts.buttons?.length) {
+    opts.duration = toastDuration;
+  }
 
-  toast.onDidDismiss().then(() => {
-    toastOffset += step;
-  });
+  const idx = opts.position === 'top' ? 0 : opts.position === 'middle' ? 1 : 2;
+  const cell = toastOffset[idx];
+  let ptr = cell.findIndex(v => v === 0);
+  if (ptr === -1) {
+    ptr = cell.length;
+    cell.push(1);
+  }
+  else {
+    cell[ptr] = 1;
+  }
+
+  const off = (idx === 0 ? toastStep : -toastStep) * ptr;
+  const toast = await toastController.create(opts);
+  toast.style.setProperty('margin-top', `${off}px`);
+  toast.onDidDismiss().finally(() => cell[ptr] = 0);
+
   await toast.present();
 }
 

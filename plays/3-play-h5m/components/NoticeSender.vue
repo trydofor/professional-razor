@@ -1,5 +1,14 @@
 <template>
   <div class="mt-2 flex flex-col gap-2">
+    <IonButton @click="onToastEmit('bottom')">
+      Emit Toast Bottom
+    </IonButton>
+    <IonButton @click="onToastEmit('top')">
+      Emit Toast Top
+    </IonButton>
+    <IonButton @click="onToastEmit('middle')">
+      Emit Toast Middle
+    </IonButton>
     <IonButton @click="onToast">
       {{ prop.title }} Toast
     </IonButton>
@@ -67,7 +76,7 @@ const i18nAlert = {
 } as I18nMessage;
 
 const i18nToast = {
-  type: 'toast',
+  type: 'Toast',
   message: 'should not be shown',
   i18nCode: 'error.assert.notEmpty1',
   i18nArgs: ['name'],
@@ -80,6 +89,16 @@ const i18n404 = {
 
 function onToast() {
   sendMessage(i18nToast);
+}
+
+let toastCount = 0;
+function onToastEmit(pos: string) {
+  appToastEventBus.emit({
+    duration: 1500,
+    icon: ioniconsAlertCircleOutline,
+    position: pos as SafeAny,
+    message: `message-${++toastCount} emit from appToastEventBus`,
+  });
 }
 
 function onAlert() {

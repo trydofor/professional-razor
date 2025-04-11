@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.7.2
+
+### Patch Changes
+
+- 2e0c40a: ✨ appModalEventBus control global Modal
+
 ## 0.7.1
 
 ### Patch Changes

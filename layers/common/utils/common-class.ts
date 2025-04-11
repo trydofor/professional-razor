@@ -6,6 +6,7 @@ import { ApiResultError, SystemError } from '../classes/ClassError';
 import { NoticeCapturer, ThrownCapturer } from '../classes/ClassCapturer';
 
 export type { PriorityHookType } from '../classes/ClassPriorityHook';
+export type { OnErrorCapturedHook, OnNoticeCapturedHook } from '../classes/ClassCapturer';
 export { captureNoticelikeThrown, thrownToNotices } from '../classes/ClassCapturer';
 export { TypeApiFalse, TypeApiError } from '../classes/ClassError';
 
@@ -64,7 +65,7 @@ export function isSystemError(instance: unknown): instance is SystemError {
 // ClassCapturer
 
 export type ClassNoticeCapturer = typeof NoticeCapturer;
-export function newNoticeCapturer(inits: ConstructorParameters<typeof NoticeCapturer>[0] = []) {
+export function newNoticeCapturer(inits: ConstructorParameters<ClassNoticeCapturer>[0] = []) {
   return new NoticeCapturer(inits);
 }
 export function isNoticeCapturer(instance: unknown): instance is NoticeCapturer {
@@ -72,7 +73,7 @@ export function isNoticeCapturer(instance: unknown): instance is NoticeCapturer 
 }
 
 export type ClassThrownCapturer = typeof ThrownCapturer;
-export function newThrownCapturer(inits: ConstructorParameters<typeof ThrownCapturer>[0] = []) {
+export function newThrownCapturer(inits: ConstructorParameters<ClassThrownCapturer>[0] = []) {
   return new ThrownCapturer(inits);
 }
 export function isThrownCapturer(instance: unknown): instance is ThrownCapturer {

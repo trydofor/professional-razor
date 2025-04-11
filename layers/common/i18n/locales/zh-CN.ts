@@ -1,5 +1,18 @@
 export default {
   error: {
+    authn: {
+      unauthorized: '未经授权的请求',
+      onlyUserPass: '仅支持账号密码方式登录',
+      badCredentials: '密码错误',
+      locked: '账号已锁定',
+      disabled: '账号已禁用',
+      expired: '账号已过期',
+      credentialsExpired: '密码已过期',
+      failureWaiting1: '密码错误，请{0}秒后重试',
+    },
+    authz: {
+      accessDenied: '禁止访问',
+    },
     assert: {
       true: '必须是true',
       false: '必须是false',

@@ -174,6 +174,6 @@ function onNotifyError() {
 }
 
 function onBubbleUp() {
-  throw newSystemError('ui.label.error', 'bubble up');
+  throw newSystemError('notice and to sentry', 'bubble up');
 }
 </script>

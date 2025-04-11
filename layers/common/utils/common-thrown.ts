@@ -8,11 +8,11 @@ export const Ignored = newIgnoredThrown('ignored this thrown');
  */
 export const globalNoticeCapturer = newNoticeCapturer();
 
-export const captureIgnoredThrown: Parameters<typeof onErrorCaptured>[0] = (err: SafeAny) => {
+export const captureIgnoredThrown: OnErrorCapturedHook = (err: SafeAny) => {
   if (isIgnoredThrown(err) || err?.name === 'IgnoredThrown') return false;
 };
 
-export const captureSystemError: Parameters<typeof onErrorCaptured>[0] = (err: unknown) => {
+export const captureSystemError: OnErrorCapturedHook = (err: unknown) => {
   if (isSystemError(err)) {
     globalNoticeCapturer.call({
       message: err.message,

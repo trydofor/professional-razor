@@ -1,5 +1,18 @@
 export default {
   error: {
+    authn: {
+      unauthorized: 'unauthorized request',
+      onlyUserPass: 'support username password only',
+      badCredentials: 'bad credentials',
+      locked: 'user account is locked',
+      disabled: 'user account is disabled',
+      expired: 'user account has expired',
+      credentialsExpired: 'user credentials have expired',
+      failureWaiting1: 'bad credentials, retry after {0}s',
+    },
+    authz: {
+      accessDenied: 'Access is denied',
+    },
     assert: {
       true: 'must be true',
       false: 'must be false',

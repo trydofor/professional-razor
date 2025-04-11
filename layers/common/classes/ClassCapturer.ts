@@ -1,7 +1,7 @@
 import { PriorityHook, type PriorityHookType } from './ClassPriorityHook';
 
-type OnErrorCapturedHook = Parameters<typeof onErrorCaptured>[0];
-type OnNoticeCapturedHook = (notice: I18nNotice) => MayPromise<boolean | undefined>;
+export type OnErrorCapturedHook = Parameters<typeof onErrorCaptured>[0];
+export type OnNoticeCapturedHook = (notice: I18nNotice) => MayPromise<boolean | undefined>;
 
 /**
  * non-empty array or undefined

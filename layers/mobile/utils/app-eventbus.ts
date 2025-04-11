@@ -7,3 +7,10 @@ export const appToastEventBus = useEventBus<string | ToastOptions>(appToastEvent
 
 export const appAlertEventKey: EventBusKey<string | AlertOptions> = Symbol('appAlertEventKey');
 export const appAlertEventBus = useEventBus<string | AlertOptions>(appAlertEventKey);
+
+type AppModalEvent = { target: string; open: boolean };
+export const appModalEventKey: EventBusKey<AppModalEvent> = Symbol('appModalEventKey');
+/**
+ * should wrap typed modelEventController(target:'LockScreen' | 'Login', open: boolean) in user project.
+ */
+export const appModalEventBus = useEventBus<AppModalEvent>(appModalEventKey);

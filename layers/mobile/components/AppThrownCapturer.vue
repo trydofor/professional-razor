@@ -82,16 +82,24 @@ async function showNextAlert() {
   showNextAlert();
 }
 
+function presentNotify(data: SafeAny, type?: string) {
+  if (type === AppNotifyMode.Toast) {
+    presentToast(data);
+    return false;
+  }
+  else if (type != null) {
+    presentAlert(data);
+    return false;
+  }
+}
+
 const appNoticeCapturer = useNoticeCapturer();
 
 // handle app notices
 appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const message = localize(ntc, false);
   if (message) {
-  // no await
-    const fun = (ntc.type === 'Toast' ? presentToast : presentAlert);
-    fun(message);
-    return false;
+    return presentNotify(message, ntc.type);
   }
 } });
 
@@ -107,14 +115,7 @@ appThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
 
 appThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
   if (isDataThrown(err)) {
-    if (err.type === 'Alert') {
-      presentAlert(err.data as AlertOptions);
-      return false;
-    }
-    if (err.type === 'Toast') {
-      presentToast(err.data as ToastOptions);
-      return false;
-    }
+    return presentNotify(err.data, err.type);
   }
 } });
 

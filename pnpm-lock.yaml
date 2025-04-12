@@ -10,8 +10,8 @@ catalogs:
       specifier: 9.5.3
       version: 9.5.3
     '@pinia/nuxt':
-      specifier: 0.10.1
-      version: 0.10.1
+      specifier: 0.11.0
+      version: 0.11.0
     '@sentry/nuxt':
       specifier: 9.12.0
       version: 9.12.0
@@ -31,8 +31,8 @@ catalogs:
       specifier: 2.0.0
       version: 2.0.0
     pinia:
-      specifier: 3.0.1
-      version: 3.0.1
+      specifier: 3.0.2
+      version: 3.0.2
     swiper:
       specifier: 11.2.6
       version: 11.2.6
@@ -53,8 +53,8 @@ catalogs:
       version: 4.5.0
   commonDev:
     '@iconify-json/line-md':
-      specifier: 1.2.5
-      version: 1.2.5
+      specifier: 1.2.6
+      version: 1.2.6
     '@iconify-json/mdi':
       specifier: 1.2.3
       version: 1.2.3
@@ -133,17 +133,17 @@ catalogs:
       version: 19.0.4
   mobile:
     '@capacitor/preferences':
-      specifier: 6.0.3
-      version: 6.0.3
+      specifier: 7.0.1
+      version: 7.0.1
     '@ionic/core':
-      specifier: 8.5.3
-      version: 8.5.3
+      specifier: 8.5.4
+      version: 8.5.4
     '@ionic/vue':
-      specifier: 8.5.3
-      version: 8.5.3
+      specifier: 8.5.4
+      version: 8.5.4
     '@ionic/vue-router':
-      specifier: 8.5.3
-      version: 8.5.3
+      specifier: 8.5.4
+      version: 8.5.4
     '@nuxtjs/ionic':
       specifier: 0.18.0
       version: 0.18.0
@@ -177,10 +177,10 @@ importers:
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -198,7 +198,7 @@ importers:
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -220,7 +220,7 @@ importers:
     devDependencies:
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -289,16 +289,16 @@ importers:
     dependencies:
       '@capacitor/preferences':
         specifier: catalog:mobile
-        version: 6.0.3(@capacitor/core@7.0.1)
+        version: 7.0.1(@capacitor/core@7.0.1)
       '@ionic/core':
         specifier: catalog:mobile
-        version: 8.5.3
+        version: 8.5.4
       '@ionic/vue':
         specifier: catalog:mobile
-        version: 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@ionic/vue-router':
         specifier: catalog:mobile
-        version: 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@nuxtjs/i18n':
         specifier: catalog:common
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
@@ -307,16 +307,16 @@ importers:
         version: 0.18.0(@stencil/core@4.27.0)(magicast@0.3.5)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
       '@vueuse/nuxt':
         specifier: catalog:common
-        version: 12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)
+        version: 12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)
       date-fns:
         specifier: catalog:common
         version: 4.1.0
@@ -325,13 +325,13 @@ importers:
         version: 7.4.0
       nuxt:
         specifier: catalog:common
-        version: 3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
+        version: 3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
       nuxt-swiper:
         specifier: catalog:common
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -356,7 +356,7 @@ importers:
         version: link:../common
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -428,10 +428,10 @@ importers:
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -449,7 +449,7 @@ importers:
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -474,7 +474,7 @@ importers:
         version: link:../../layers/common
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -546,10 +546,10 @@ importers:
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -567,7 +567,7 @@ importers:
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -595,7 +595,7 @@ importers:
         version: link:../../layers/common
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -664,16 +664,16 @@ importers:
     dependencies:
       '@capacitor/preferences':
         specifier: catalog:mobile
-        version: 6.0.3(@capacitor/core@7.0.1)
+        version: 7.0.1(@capacitor/core@7.0.1)
       '@ionic/core':
         specifier: catalog:mobile
-        version: 8.5.3
+        version: 8.5.4
       '@ionic/vue':
         specifier: catalog:mobile
-        version: 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@ionic/vue-router':
         specifier: catalog:mobile
-        version: 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@nuxtjs/i18n':
         specifier: catalog:common
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
@@ -682,16 +682,16 @@ importers:
         version: 0.18.0(@stencil/core@4.27.0)(magicast@0.3.5)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
       '@vueuse/nuxt':
         specifier: catalog:common
-        version: 12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)
+        version: 12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)
       date-fns:
         specifier: catalog:common
         version: 4.1.0
@@ -700,13 +700,13 @@ importers:
         version: 7.4.0
       nuxt:
         specifier: catalog:common
-        version: 3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
+        version: 3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
       nuxt-swiper:
         specifier: catalog:common
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -737,7 +737,7 @@ importers:
         version: link:../../layers/mobile
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -809,10 +809,10 @@ importers:
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -830,7 +830,7 @@ importers:
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -861,7 +861,7 @@ importers:
         version: link:../../layers/common
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -930,16 +930,16 @@ importers:
     dependencies:
       '@capacitor/preferences':
         specifier: catalog:mobile
-        version: 6.0.3(@capacitor/core@7.0.1)
+        version: 7.0.1(@capacitor/core@7.0.1)
       '@ionic/core':
         specifier: catalog:mobile
-        version: 8.5.3
+        version: 8.5.4
       '@ionic/vue':
         specifier: catalog:mobile
-        version: 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@ionic/vue-router':
         specifier: catalog:mobile
-        version: 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+        version: 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@nuxtjs/i18n':
         specifier: catalog:common
         version: 9.5.3(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
@@ -948,16 +948,16 @@ importers:
         version: 0.18.0(@stencil/core@4.27.0)(magicast@0.3.5)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: catalog:common
-        version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
+        version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
       '@vueuse/nuxt':
         specifier: catalog:common
-        version: 12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)
+        version: 12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)
       date-fns:
         specifier: catalog:common
         version: 4.1.0
@@ -966,13 +966,13 @@ importers:
         version: 7.4.0
       nuxt:
         specifier: catalog:common
-        version: 3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
+        version: 3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
       nuxt-swiper:
         specifier: catalog:common
         version: 2.0.0(magicast@0.3.5)
       pinia:
         specifier: catalog:common
-        version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       swiper:
         specifier: catalog:common
         version: 11.2.6
@@ -1006,7 +1006,7 @@ importers:
         version: link:../../layers/mobile
       '@iconify-json/line-md':
         specifier: catalog:commonDev
-        version: 1.2.5
+        version: 1.2.6
       '@iconify-json/mdi':
         specifier: catalog:commonDev
         version: 1.2.3
@@ -1228,6 +1228,11 @@ packages:
     resolution: {integrity: sha512-3I1BbhhCBTMBziVvr0fU7RCRXqGvhUW/apHLRJSaJAWonASya5rp6AWsHv1lW1tkF0avUOMwp6e7iNA4UUGu8g==}
     peerDependencies:
       '@capacitor/core': ^6.0.0
+
+  '@capacitor/preferences@7.0.1':
+    resolution: {integrity: sha512-XF9jOHzvoIBZLwZr/EX6aVaUO1d8Mx7TwBLQS33pYHOliCW5knT5KUkFOXNNYxh9qqODYesee9xuQIKNJpQBag==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   '@changesets/apply-release-plan@7.0.10':
     resolution: {integrity: sha512-wNyeIJ3yDsVspYvHnEz1xQDq18D9ifed3lI+wxRQRK4pArUcuHgCTrHv0QRnnwjhVCQACxZ+CBih3wgOct6UXw==}
@@ -1534,8 +1539,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify-json/line-md@1.2.5':
-    resolution: {integrity: sha512-6zFKhs6g++kFJLLi+ye5nPoHgjYh44yVLjua0tmbxH1HdImMQZ6rkRsPnBgxADY4bQWiapXBzfoiz7+UBXgtWg==}
+  '@iconify-json/line-md@1.2.6':
+    resolution: {integrity: sha512-spUtPLiPDjyzQ2dgJ63lBDpZlixZVD+CoEhtXO1fi2QwRVrLXgH2WEZig627Sxq9gWLjCrJKeZb1Q+oFg6nBVg==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -1650,8 +1655,8 @@ packages:
     engines: {node: '>=16.0.0'}
     hasBin: true
 
-  '@ionic/core@8.5.3':
-    resolution: {integrity: sha512-AiBK1gpzi9Knd3xbGWkuFja/f8hQTt+FIubdHBcRThUSjzJLgqYsfiSGkcdEAMf/t5mtaqRUUN1UbCcf2Ue9Xg==}
+  '@ionic/core@8.5.4':
+    resolution: {integrity: sha512-SLtTdvH42owno3rBjrq88W37v2TANDZntg7X1iZlwC1atbkpCC60BcY1Twsl48LzSOIO9eNeo6JDBmwN3NKKNQ==}
 
   '@ionic/utils-array@2.1.6':
     resolution: {integrity: sha512-0JZ1Zkp3wURnv8oq6Qt7fMPo5MpjbLoUoa9Bu2Q4PJuSDWM8H8gwF3dQO7VTeUj3/0o1IB1wGkFWZZYgUXZMUg==}
@@ -1685,11 +1690,11 @@ packages:
     resolution: {integrity: sha512-3cKScz9Jx2/Pr9ijj1OzGlBDfcmx7OMVBt4+P1uRR0SSW4cm1/y3Mo4OY3lfkuaYifMNBW8Wz6lQHbs1bihr7A==}
     engines: {node: '>=16.0.0'}
 
-  '@ionic/vue-router@8.5.3':
-    resolution: {integrity: sha512-K+N6jAag82xP3BsRund2bhRmTkER/35XnNj+SwC5imLdGoLrl8Q58aQf1/6m5QUYnD2BZScKT5GAgOCXfl4MvQ==}
+  '@ionic/vue-router@8.5.4':
+    resolution: {integrity: sha512-esXlIbtanBdAJ4qzkQZQw60pGEyWvc7hn/c4QSULWWLfbS+HgqpCcEZH+Y/YbPq79QPsoQ9vEoB+Vo3Vft81vQ==}
 
-  '@ionic/vue@8.5.3':
-    resolution: {integrity: sha512-9PWdSmo0OhrmqGRRwzkFL1s6oCo5HsgZpiaNaJmUgMW0TtcOL75fDVo3Cyn9Jx7PWeMmKS7nFEx2RMDZqalgHw==}
+  '@ionic/vue@8.5.4':
+    resolution: {integrity: sha512-/IgwbU4E6p0PTxpFYMliL9Vapd3vnSO+MQ07iXPbt6tjIZ1AvSaE8e+IKaAx/Ov1MvTsP30NwXl5WkViydZtxA==}
 
   '@ioredis/commands@1.2.0':
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
@@ -2317,10 +2322,10 @@ packages:
     resolution: {integrity: sha512-dfUnCxiN9H4ap84DvD2ubjw+3vUNpstxa0TneY/Paat8a3R4uQZDLSvWjmznAY/DoahqTHl9V46HF/Zs3F29pg==}
     engines: {node: '>= 10.0.0'}
 
-  '@pinia/nuxt@0.10.1':
-    resolution: {integrity: sha512-xrpkKZHSmshPK6kQzboJ+TZiZ5zj73gBCI5SfiUaJkKKS9gx4B1hLEzJIjxZl0/HS5jRWrIvQ+u9ulvIRlNiow==}
+  '@pinia/nuxt@0.11.0':
+    resolution: {integrity: sha512-QGFlUAkeVAhPCTXacrtNP4ti24sGEleVzmxcTALY9IkS6U5OUox7vmNL1pkqBeW39oSNq/UC5m40ofDEPHB1fg==}
     peerDependencies:
-      pinia: ^3.0.1
+      pinia: ^3.0.2
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -5495,8 +5500,8 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
-  pinia@3.0.1:
-    resolution: {integrity: sha512-WXglsDzztOTH6IfcJ99ltYZin2mY8XZCXujkYWVIJlBjqsP6ST7zw+Aarh63E1cDVYeyUcPCxPHzJpEOmzB6Wg==}
+  pinia@3.0.2:
+    resolution: {integrity: sha512-sH2JK3wNY809JOeiiURUR0wehJ9/gd9qFN2Y828jCbxEzKEmEt0pzCXwqiSTfuRsK9vQsOflSdnbdBOGrhtn+g==}
     peerDependencies:
       typescript: '>=4.4.4'
       vue: ^2.7.0 || ^3.5.11
@@ -7177,6 +7182,11 @@ snapshots:
   '@capacitor/preferences@6.0.3(@capacitor/core@7.0.1)':
     dependencies:
       '@capacitor/core': 7.0.1
+    optional: true
+
+  '@capacitor/preferences@7.0.1(@capacitor/core@7.0.1)':
+    dependencies:
+      '@capacitor/core': 7.0.1
 
   '@changesets/apply-release-plan@7.0.10':
     dependencies:
@@ -7518,7 +7528,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@iconify-json/line-md@1.2.5':
+  '@iconify-json/line-md@1.2.6':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7702,7 +7712,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@ionic/core@8.5.3':
+  '@ionic/core@8.5.4':
     dependencies:
       '@stencil/core': 4.20.0
       ionicons: 7.4.0
@@ -7783,17 +7793,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@ionic/vue-router@8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
+  '@ionic/vue-router@8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
-      '@ionic/vue': 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@ionic/vue': 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
     transitivePeerDependencies:
       - '@stencil/core'
       - vue
       - vue-router
 
-  '@ionic/vue@8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
+  '@ionic/vue@8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
-      '@ionic/core': 8.5.3
+      '@ionic/core': 8.5.4
       '@stencil/vue-output-target': 0.10.7(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       ionicons: 7.4.0
     transitivePeerDependencies:
@@ -8303,8 +8313,8 @@ snapshots:
       '@capacitor/cli': 7.0.1
       '@capacitor/core': 7.0.1
       '@ionic/cli': 7.2.0
-      '@ionic/vue': 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
-      '@ionic/vue-router': 8.5.3(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@ionic/vue': 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@ionic/vue-router': 8.5.4(@stencil/core@4.27.0)(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
       '@unhead/vue': 2.0.5(vue@3.5.13(typescript@5.8.2))
       ionicons: 7.4.0
@@ -8711,10 +8721,10 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.5.1
       '@parcel/watcher-win32-x64': 2.5.1
 
-  '@pinia/nuxt@0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))':
+  '@pinia/nuxt@0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))':
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
-      pinia: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      pinia: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
     transitivePeerDependencies:
       - magicast
 
@@ -9004,7 +9014,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sentry/nuxt@9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
+  '@sentry/nuxt@9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
       '@sentry/browser': 9.12.0
@@ -9013,8 +9023,33 @@ snapshots:
       '@sentry/opentelemetry': 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
       '@sentry/rollup-plugin': 3.2.4(rollup@4.39.0)
       '@sentry/vite-plugin': 3.2.4
-      '@sentry/vue': 9.12.0(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@sentry/vue': 9.12.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       nuxt: 3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
+    transitivePeerDependencies:
+      - '@opentelemetry/api'
+      - '@opentelemetry/context-async-hooks'
+      - '@opentelemetry/core'
+      - '@opentelemetry/instrumentation'
+      - '@opentelemetry/sdk-trace-base'
+      - '@opentelemetry/semantic-conventions'
+      - encoding
+      - magicast
+      - pinia
+      - rollup
+      - supports-color
+      - vue
+
+  '@sentry/nuxt@9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
+    dependencies:
+      '@nuxt/kit': 3.16.2(magicast@0.3.5)
+      '@sentry/browser': 9.12.0
+      '@sentry/core': 9.12.0
+      '@sentry/node': 9.12.0
+      '@sentry/opentelemetry': 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
+      '@sentry/rollup-plugin': 3.2.4(rollup@4.39.0)
+      '@sentry/vite-plugin': 3.2.4
+      '@sentry/vue': 9.12.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      nuxt: 3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
       - '@opentelemetry/context-async-hooks'
@@ -9056,13 +9091,13 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/vue@9.12.0(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
+  '@sentry/vue@9.12.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@sentry/browser': 9.12.0
       '@sentry/core': 9.12.0
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
-      pinia: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+      pinia: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
 
   '@sindresorhus/is@7.0.1': {}
 
@@ -9805,6 +9840,18 @@ snapshots:
       '@vueuse/metadata': 12.8.2
       local-pkg: 1.1.1
       nuxt: 3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
+      vue: 3.5.13(typescript@5.8.2)
+    transitivePeerDependencies:
+      - magicast
+      - typescript
+
+  '@vueuse/nuxt@12.8.2(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(typescript@5.8.2)':
+    dependencies:
+      '@nuxt/kit': 3.16.2(magicast@0.3.5)
+      '@vueuse/core': 12.8.2(typescript@5.8.2)
+      '@vueuse/metadata': 12.8.2
+      local-pkg: 1.1.1
+      nuxt: 3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
       vue: 3.5.13(typescript@5.8.2)
     transitivePeerDependencies:
       - magicast
@@ -11971,6 +12018,108 @@ snapshots:
       - supports-color
       - uploadthing
 
+  nitropack@2.11.8(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(xml2js@0.6.2):
+    dependencies:
+      '@cloudflare/kv-asset-handler': 0.4.0
+      '@netlify/functions': 3.0.4
+      '@rollup/plugin-alias': 5.1.1(rollup@4.39.0)
+      '@rollup/plugin-commonjs': 28.0.3(rollup@4.39.0)
+      '@rollup/plugin-inject': 5.0.5(rollup@4.39.0)
+      '@rollup/plugin-json': 6.1.0(rollup@4.39.0)
+      '@rollup/plugin-node-resolve': 16.0.1(rollup@4.39.0)
+      '@rollup/plugin-replace': 6.0.2(rollup@4.39.0)
+      '@rollup/plugin-terser': 0.4.4(rollup@4.39.0)
+      '@vercel/nft': 0.29.2(rollup@4.39.0)
+      archiver: 7.0.1
+      c12: 3.0.3(magicast@0.3.5)
+      chokidar: 4.0.3
+      citty: 0.1.6
+      compatx: 0.1.8
+      confbox: 0.2.2
+      consola: 3.4.2
+      cookie-es: 2.0.0
+      croner: 9.0.0
+      crossws: 0.3.4
+      db0: 0.3.1
+      defu: 6.1.4
+      destr: 2.0.3
+      dot-prop: 9.0.0
+      esbuild: 0.25.2
+      escape-string-regexp: 5.0.0
+      etag: 1.8.1
+      exsolve: 1.0.4
+      globby: 14.1.0
+      gzip-size: 7.0.0
+      h3: 1.15.1
+      hookable: 5.5.3
+      httpxy: 0.1.7
+      ioredis: 5.6.0
+      jiti: 2.4.2
+      klona: 2.0.6
+      knitwork: 1.2.0
+      listhen: 1.9.0
+      magic-string: 0.30.17
+      magicast: 0.3.5
+      mime: 4.0.6
+      mlly: 1.7.4
+      node-fetch-native: 1.6.6
+      node-mock-http: 1.0.0
+      ofetch: 1.4.1
+      ohash: 2.0.11
+      pathe: 2.0.3
+      perfect-debounce: 1.0.0
+      pkg-types: 2.1.0
+      pretty-bytes: 6.1.1
+      radix3: 1.1.2
+      rollup: 4.39.0
+      rollup-plugin-visualizer: 5.14.0(rollup@4.39.0)
+      scule: 1.3.0
+      semver: 7.7.1
+      serve-placeholder: 2.0.2
+      serve-static: 1.16.2
+      source-map: 0.7.4
+      std-env: 3.9.0
+      ufo: 1.5.4
+      ultrahtml: 1.5.3
+      uncrypto: 0.1.3
+      unctx: 2.4.1
+      unenv: 2.0.0-rc.15
+      unimport: 4.2.0
+      unplugin-utils: 0.2.4
+      unstorage: 1.15.0(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(db0@0.3.1)(ioredis@5.6.0)
+      untyped: 2.0.0
+      unwasm: 0.3.9
+      youch: 4.1.0-beta.7
+      youch-core: 0.3.2
+    optionalDependencies:
+      xml2js: 0.6.2
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@electric-sql/pglite'
+      - '@libsql/client'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/kv'
+      - aws4fetch
+      - better-sqlite3
+      - drizzle-orm
+      - encoding
+      - idb-keyval
+      - mysql2
+      - rolldown
+      - sqlite3
+      - supports-color
+      - uploadthing
+
   node-addon-api@7.1.1: {}
 
   node-fetch-native@1.6.6: {}
@@ -12088,6 +12237,127 @@ snapshots:
       unplugin: 2.2.2
       unplugin-vue-router: 0.12.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       unstorage: 1.15.0(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(db0@0.3.1)(ioredis@5.6.0)
+      untyped: 2.0.0
+      vue: 3.5.13(typescript@5.8.2)
+      vue-bundle-renderer: 2.1.1
+      vue-devtools-stub: 0.1.0
+      vue-router: 4.5.0(vue@3.5.13(typescript@5.8.2))
+    optionalDependencies:
+      '@parcel/watcher': 2.5.1
+      '@types/node': 22.13.5
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@biomejs/biome'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@electric-sql/pglite'
+      - '@libsql/client'
+      - '@netlify/blobs'
+      - '@planetscale/database'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/kv'
+      - aws4fetch
+      - better-sqlite3
+      - bufferutil
+      - db0
+      - drizzle-orm
+      - encoding
+      - eslint
+      - idb-keyval
+      - ioredis
+      - less
+      - lightningcss
+      - magicast
+      - meow
+      - mysql2
+      - optionator
+      - rolldown
+      - rollup
+      - sass
+      - sass-embedded
+      - sqlite3
+      - stylelint
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - typescript
+      - uploadthing
+      - utf-8-validate
+      - vite
+      - vls
+      - vti
+      - vue-tsc
+      - xml2js
+      - yaml
+
+  nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0):
+    dependencies:
+      '@nuxt/cli': 3.24.1(magicast@0.3.5)
+      '@nuxt/devalue': 2.0.2
+      '@nuxt/devtools': 2.3.2(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))
+      '@nuxt/kit': 3.16.2(magicast@0.3.5)
+      '@nuxt/schema': 3.16.2
+      '@nuxt/telemetry': 2.6.6(magicast@0.3.5)
+      '@nuxt/vite-builder': 3.16.2(@types/node@22.13.5)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vue-tsc@2.2.8(typescript@5.8.2))(vue@3.5.13(typescript@5.8.2))(yaml@2.7.0)
+      '@oxc-parser/wasm': 0.60.0
+      '@unhead/vue': 2.0.5(vue@3.5.13(typescript@5.8.2))
+      '@vue/shared': 3.5.13
+      c12: 3.0.3(magicast@0.3.5)
+      chokidar: 4.0.3
+      compatx: 0.1.8
+      consola: 3.4.2
+      cookie-es: 2.0.0
+      defu: 6.1.4
+      destr: 2.0.3
+      devalue: 5.1.1
+      errx: 0.1.0
+      esbuild: 0.25.2
+      escape-string-regexp: 5.0.0
+      estree-walker: 3.0.3
+      exsolve: 1.0.4
+      globby: 14.1.0
+      h3: 1.15.1
+      hookable: 5.5.3
+      ignore: 7.0.3
+      impound: 0.2.2(rollup@4.39.0)
+      jiti: 2.4.2
+      klona: 2.0.6
+      knitwork: 1.2.0
+      magic-string: 0.30.17
+      mlly: 1.7.4
+      mocked-exports: 0.1.1
+      nanotar: 0.2.0
+      nitropack: 2.11.8(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(xml2js@0.6.2)
+      nypm: 0.6.0
+      ofetch: 1.4.1
+      ohash: 2.0.11
+      on-change: 5.0.1
+      oxc-parser: 0.56.5
+      pathe: 2.0.3
+      perfect-debounce: 1.0.0
+      pkg-types: 2.1.0
+      radix3: 1.1.2
+      scule: 1.3.0
+      semver: 7.7.1
+      std-env: 3.9.0
+      strip-literal: 3.0.0
+      tinyglobby: 0.2.12
+      ufo: 1.5.4
+      ultrahtml: 1.5.3
+      uncrypto: 0.1.3
+      unctx: 2.4.1
+      unimport: 4.2.0
+      unplugin: 2.2.2
+      unplugin-vue-router: 0.12.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      unstorage: 1.15.0(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(db0@0.3.1)(ioredis@5.6.0)
       untyped: 2.0.0
       vue: 3.5.13(typescript@5.8.2)
       vue-bundle-renderer: 2.1.1
@@ -12408,7 +12678,7 @@ snapshots:
 
   pify@4.0.1: {}
 
-  pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)):
+  pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       '@vue/devtools-api': 7.7.2
       vue: 3.5.13(typescript@5.8.2)
@@ -13556,6 +13826,21 @@ snapshots:
       ufo: 1.5.4
     optionalDependencies:
       '@capacitor/preferences': 6.0.3(@capacitor/core@7.0.1)
+      db0: 0.3.1
+      ioredis: 5.6.0
+
+  unstorage@1.15.0(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(db0@0.3.1)(ioredis@5.6.0):
+    dependencies:
+      anymatch: 3.1.3
+      chokidar: 4.0.3
+      destr: 2.0.3
+      h3: 1.15.1
+      lru-cache: 10.4.3
+      node-fetch-native: 1.6.6
+      ofetch: 1.4.1
+      ufo: 1.5.4
+    optionalDependencies:
+      '@capacitor/preferences': 7.0.1(@capacitor/core@7.0.1)
       db0: 0.3.1
       ioredis: 5.6.0
 

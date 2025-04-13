@@ -41,6 +41,11 @@ export function captureNoticelikeThrown(capturer: NoticeCapturer): OnErrorCaptur
   };
 }
 
+/**
+ * Capture Notices
+ * - converted by Thrown, e.g. ApiResultError, NoticeThrown
+ * - Notice instance
+ */
 export class NoticeCapturer extends PriorityHook<OnNoticeCapturedHook> {
   constructor(inits: PriorityHookType<OnNoticeCapturedHook>[] = []) {
     super(inits);
@@ -51,6 +56,9 @@ export class NoticeCapturer extends PriorityHook<OnNoticeCapturedHook> {
   hookCatch: ((err: unknown) => void) = this.hookError as SafeAny;
 }
 
+/**
+ * Capture Thrown/Error
+ */
 export class ThrownCapturer extends PriorityHook<OnErrorCapturedHook> {
   constructor(inits: PriorityHookType<OnErrorCapturedHook>[] = []) {
     super(inits);

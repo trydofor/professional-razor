@@ -32,62 +32,51 @@ const defaultAlertOpts = (message: string | AlertOptions): AlertOptions => typeo
 
 const toastDuration = Math.abs(props.toastStep ?? 2000);
 const toastStep = Math.abs(props.toastStep ?? 55);
-const toastOffset = [[0], [0], [0]]; // top, middle, bottom
 
-async function presentToast(message: string | ToastOptions) {
+const toastHandler = async (index: number, data: ToastOptions, close: () => void) => {
+  const pos = data.position === 'top' ? 1 : -1;
+  const off = pos * toastStep * (index + 1);
+  const toast = await toastController.create(data);
+  toast.style.setProperty('margin-top', `${off}px`);
+  toast.onDidDismiss().finally(() => close());
+  toast.present();
+};
+
+const toastNotify = [
+  createStackedNotify<ToastOptions>(toastHandler),
+  createStackedNotify<ToastOptions>(toastHandler),
+  createStackedNotify<ToastOptions>(toastHandler),
+];
+
+function presentToast(message: string | ToastOptions) {
   const opts = props.toastOpts?.(message) ?? defaultToastOpts(message);
-  if (opts.duration == null && opts.buttons?.length) {
+  if (opts.duration == null && !opts.buttons?.length) {
     opts.duration = toastDuration;
   }
 
   const idx = opts.position === 'top' ? 0 : opts.position === 'middle' ? 1 : 2;
-  const cell = toastOffset[idx];
-  let ptr = cell.findIndex(v => v === 0);
-  if (ptr === -1) {
-    ptr = cell.length;
-    cell.push(1);
-  }
-  else {
-    cell[ptr] = 1;
-  }
-
-  const off = (idx === 0 ? toastStep : -toastStep) * ptr;
-  const toast = await toastController.create(opts);
-  toast.style.setProperty('margin-top', `${off}px`);
-  toast.onDidDismiss().finally(() => cell[ptr] = 0);
-
-  await toast.present();
+  toastNotify[idx](opts);
 }
 
-const alertQueue: AlertOptions[] = [];
-let alertShown = false;
+const alertNotify = createSingledNotify<AlertOptions>(
+  async (data, close) => {
+    const alert = await alertController.create(data);
+    alert.onDidDismiss().finally(close);
+    alert.present();
+  },
+);
+
 async function presentAlert(message: string | AlertOptions) {
-  alertQueue.push(props.alertOpts?.(message) ?? defaultAlertOpts(message));
-  if (!alertShown) {
-    void showNextAlert(); // no Unhandled Promise
-  }
+  const data = props.alertOpts?.(message) ?? defaultAlertOpts(message);
+  alertNotify(data);
 };
 
-async function showNextAlert() {
-  if (alertQueue.length === 0) {
-    alertShown = false;
-    return;
-  }
-
-  alertShown = true;
-  const opts = alertQueue.shift()!;
-  const alert = await alertController.create(opts);
-  await alert.present();
-  await alert.onDidDismiss();
-  showNextAlert();
-}
-
-function presentNotify(data: SafeAny, type?: string) {
-  if (type === AppNotifyMode.Toast) {
+function tryNotify(data: SafeAny, type?: string) {
+  if (type === GlobalNotifyMode.Toast) {
     presentToast(data);
     return false;
   }
-  else if (type != null) {
+  else {
     presentAlert(data);
     return false;
   }
@@ -99,7 +88,7 @@ const appNoticeCapturer = useNoticeCapturer();
 appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const message = localize(ntc, false);
   if (message) {
-    return presentNotify(message, ntc.type);
+    return tryNotify(message, ntc.type);
   }
 } });
 
@@ -115,7 +104,7 @@ appThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
 
 appThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
   if (isDataThrown(err)) {
-    return presentNotify(err.data, err.type);
+    return tryNotify(err.data, err.type);
   }
 } });
 

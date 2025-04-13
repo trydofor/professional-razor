@@ -29,17 +29,17 @@ export const captureSystemError: OnErrorCapturedHook = (err: unknown) => {
  */
 export const globalThrownCapturer = newThrownCapturer([
   {
-    id: 'IgnoredThrownHook',
+    id: 'GlobalIgnoredThrownHook',
     order: 1000,
     hook: captureIgnoredThrown,
   },
   {
-    id: 'I18nNoticeHook',
+    id: 'GlobalThrownToNoticeHook',
     order: 2000,
-    hook: globalNoticeCapturer.hookError,
+    hook: globalNoticeCapturer.hookError, // default ApiResultError and NoticeThrown
   },
   {
-    id: 'noticeSystemError',
+    id: 'GlobalSystemErrorHook',
     order: 9000,
     hook: captureSystemError,
   },

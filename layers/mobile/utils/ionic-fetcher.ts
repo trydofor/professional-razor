@@ -11,7 +11,7 @@ export type IonicFetchOptions<T = ApiResult> = Omit<TypedFetchOptions<T>, 'loadi
  */
 export async function ionicFetchData<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: IonicFetchOptions<ApiResult<T>> = {},
+  options: IonicFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<DataResult<T>> {
   const result = await ionicFetchResult(fetching, options);
   return mustDataResult(result);
@@ -25,7 +25,7 @@ export async function ionicFetchData<T>(
  */
 export async function ionicFetchPage<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: IonicFetchOptions<ApiResult<T>> = {},
+  options: IonicFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<PageResult<T>> {
   const result = await ionicFetchResult(fetching, options);
   return mustPageResult(result);
@@ -39,13 +39,13 @@ export async function ionicFetchPage<T>(
  */
 export async function ionicFetchResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
-  options: IonicFetchOptions<T> = {},
+  options: IonicFetchOptions<T> | Ref<boolean> = globalLoadingStatus,
 ): Promise<T> {
-  if (isRef(options.loading) || typeof options.loading === 'function') {
+  if (isRef(options) || isRef(options.loading) || typeof options.loading === 'function') {
     return await fetchTypedResult<T>(fetching, options as TypedFetchOptions<T>);
   }
 
-  const opts = options.loading ?? {
+  const opts = options.loading ?? { // maybe LoadingOptions
     spinner: 'bubbles',
     message: 'Processing ...',
     duration: 5000,

@@ -34,8 +34,8 @@ export function useOauthLogin(options: OauthLoginOption) {
     if (typeof options.authing === 'function') {
       options.authing(status);
     }
-    else if (options.authing != null) {
-      options.authing.value = status === LoadingStatus.Loading;
+    else {
+      (options.authing ?? globalLoadingStatus).value = status === LoadingStatus.Loading;
     }
   }
 

@@ -15,6 +15,8 @@
   catches?: (err: SafeAny) => Maybe<T>;
 } & { throttle?: ThrottleThrownKey };
 
+export const globalLoadingStatus = ref(false);
+
 function _doLoading(status: LoadingStatusType, loading?: TypedFetchOptions<SafeAny>['loading']): void {
   if (typeof loading === 'function') {
     loading(status);
@@ -32,7 +34,7 @@ function _doLoading(status: LoadingStatusType, loading?: TypedFetchOptions<SafeA
  */
 export async function fetchTypedData<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: TypedFetchOptions<ApiResult<T>> = {},
+  options: TypedFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<DataResult<T>> {
   const result = await fetchTypedResult(fetching, options);
   return mustDataResult(result);
@@ -46,7 +48,7 @@ export async function fetchTypedData<T>(
  */
 export async function fetchTypedPage<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: TypedFetchOptions<ApiResult<T>> = {},
+  options: TypedFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<PageResult<T>> {
   const result = await fetchTypedResult(fetching, options);
   return mustPageResult(result);
@@ -59,8 +61,15 @@ export async function fetchTypedPage<T>(
  */
 export async function fetchTypedResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
-  options: TypedFetchOptions<T> = {},
+  options: TypedFetchOptions<T> | Ref<boolean> = globalLoadingStatus,
 ): Promise<T> {
+  if (isRef(options)) {
+    options = { loading: options };
+  }
+  else {
+    options.loading ??= globalLoadingStatus;
+  }
+
   throwIfThrottle(options.throttle);
   _doLoading(LoadingStatus.Loading, options.loading);
 

@@ -1,11 +1,20 @@
-export const GlobalNotifyMode = {
+export const GlobalNotifyStyle = {
   Toast: 'Toast',
   Alert: 'Alert',
   Modal: 'Modal',
 } as const;
 
-export type GlobalNotifyModeKey = keyof typeof GlobalNotifyMode;
-export type GlobalNotifyModeType = typeof GlobalNotifyMode[GlobalNotifyModeKey];
+export type GlobalNotifyStyleKey = keyof typeof GlobalNotifyStyle;
+export type GlobalNotifyStyleType = typeof GlobalNotifyStyle[GlobalNotifyStyleKey];
+
+export const GlobalNotifyLevel = {
+  Default: 'Default',
+  Success: 'Success',
+  Warning: 'Warning',
+} as const;
+
+export type GlobalNotifyLevelKey = keyof typeof GlobalNotifyLevel;
+export type GlobalNotifyLevelType = typeof GlobalNotifyLevel[GlobalNotifyLevelKey];
 
 /**
  * stacked by offset, reuse the absent stack

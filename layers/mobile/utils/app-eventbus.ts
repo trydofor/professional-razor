@@ -2,8 +2,10 @@ import type { EventBusKey } from '@vueuse/core';
 import { useEventBus } from '@vueuse/core';
 import type { AlertOptions, ToastOptions } from '@ionic/vue';
 
-export const appToastEventKey: EventBusKey<string | ToastOptions> = Symbol('appToastEventKey');
-export const appToastEventBus = useEventBus<string | ToastOptions>(appToastEventKey);
+export type AppToastEvent = string | ToastOptions & { level?: GlobalNotifyLevelType };
+export const appToastEventKey: EventBusKey<AppToastEvent> = Symbol('appToastEventKey');
+export const appToastEventBus = useEventBus<AppToastEvent>(appToastEventKey);
 
-export const appAlertEventKey: EventBusKey<string | AlertOptions> = Symbol('appAlertEventKey');
-export const appAlertEventBus = useEventBus<string | AlertOptions>(appAlertEventKey);
+export type AppAlertEvent = string | AlertOptions & { level?: GlobalNotifyLevelType };
+export const appAlertEventKey: EventBusKey<AppAlertEvent> = Symbol('appAlertEventKey');
+export const appAlertEventBus = useEventBus<AppAlertEvent>(appAlertEventKey);

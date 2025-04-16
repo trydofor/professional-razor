@@ -286,7 +286,7 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
    * @param op - Optional fetch options to customize the request.
    * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions) {
+  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: string | SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions) {
     return req<D, T>(uri, {
       ...op,
       method: 'post',

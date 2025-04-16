@@ -13,8 +13,8 @@ catalogs:
       specifier: 0.11.0
       version: 0.11.0
     '@sentry/nuxt':
-      specifier: 9.12.0
-      version: 9.12.0
+      specifier: 9.13.0
+      version: 9.13.0
     '@vueuse/core':
       specifier: 12.8.2
       version: 12.8.2
@@ -65,8 +65,8 @@ catalogs:
       specifier: 3.17.2
       version: 3.17.2
     '@types/validator':
-      specifier: 13.12.3
-      version: 13.12.3
+      specifier: 13.15.0
+      version: 13.15.0
     '@unocss/core':
       specifier: 65.5.0
       version: 65.5.0
@@ -120,8 +120,8 @@ catalogs:
       version: 2.2.8
   manage:
     '@changesets/cli':
-      specifier: 2.28.1
-      version: 2.28.1
+      specifier: 2.29.2
+      version: 2.29.2
     pnpm-hoist-layer:
       specifier: 1.2.0
       version: 1.2.0
@@ -159,7 +159,7 @@ importers:
     devDependencies:
       '@changesets/cli':
         specifier: catalog:manage
-        version: 2.28.1
+        version: 2.29.2
       pnpm-hoist-layer:
         specifier: catalog:manage
         version: 1.2.0
@@ -180,7 +180,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -232,7 +232,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -310,7 +310,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -368,7 +368,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -431,7 +431,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -486,7 +486,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -549,7 +549,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -607,7 +607,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -685,7 +685,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -749,7 +749,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -812,7 +812,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -873,7 +873,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -951,7 +951,7 @@ importers:
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@sentry/nuxt':
         specifier: catalog:common
-        version: 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
+        version: 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
         specifier: catalog:common
         version: 12.8.2(typescript@5.8.2)
@@ -1018,7 +1018,7 @@ importers:
         version: 3.17.2(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.4.4)(jiti@2.4.2)(magicast@0.3.5)(terser@5.39.0)(typescript@5.8.2)(vitest@3.1.1(@types/node@22.13.5)(happy-dom@17.4.4)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0)
       '@types/validator':
         specifier: catalog:commonDev
-        version: 13.12.3
+        version: 13.15.0
       '@unocss/core':
         specifier: catalog:commonDev
         version: 65.5.0
@@ -1234,8 +1234,8 @@ packages:
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
-  '@changesets/apply-release-plan@7.0.10':
-    resolution: {integrity: sha512-wNyeIJ3yDsVspYvHnEz1xQDq18D9ifed3lI+wxRQRK4pArUcuHgCTrHv0QRnnwjhVCQACxZ+CBih3wgOct6UXw==}
+  '@changesets/apply-release-plan@7.0.12':
+    resolution: {integrity: sha512-EaET7As5CeuhTzvXTQCRZeBUcisoYPDDcXvgTE/2jmmypKp0RC7LxKj/yzqeh/1qFTZI7oDGFcL1PHRuQuketQ==}
 
   '@changesets/assemble-release-plan@6.0.6':
     resolution: {integrity: sha512-Frkj8hWJ1FRZiY3kzVCKzS0N5mMwWKwmv9vpam7vt8rZjLL1JMthdh6pSDVSPumHPshTTkKZ0VtNbE0cJHZZUg==}
@@ -1243,8 +1243,8 @@ packages:
   '@changesets/changelog-git@0.2.1':
     resolution: {integrity: sha512-x/xEleCFLH28c3bQeQIyeZf8lFXyDFVn1SgcBiR2Tw/r4IAWlk1fzxCEZ6NxQAjF2Nwtczoen3OA2qR+UawQ8Q==}
 
-  '@changesets/cli@2.28.1':
-    resolution: {integrity: sha512-PiIyGRmSc6JddQJe/W1hRPjiN4VrMvb2VfQ6Uydy2punBioQrsxppyG5WafinKcW1mT0jOe/wU4k9Zy5ff21AA==}
+  '@changesets/cli@2.29.2':
+    resolution: {integrity: sha512-vwDemKjGYMOc0l6WUUTGqyAWH3AmueeyoJa1KmFRtCYiCoY5K3B68ErYpDB6H48T4lLI4czum4IEjh6ildxUeg==}
     hasBin: true
 
   '@changesets/config@3.1.1':
@@ -1256,14 +1256,14 @@ packages:
   '@changesets/get-dependents-graph@2.1.3':
     resolution: {integrity: sha512-gphr+v0mv2I3Oxt19VdWRRUxq3sseyUpX9DaHpTUmLj92Y10AGy+XOtV+kbM6L/fDcpx7/ISDFK6T8A/P3lOdQ==}
 
-  '@changesets/get-release-plan@4.0.8':
-    resolution: {integrity: sha512-MM4mq2+DQU1ZT7nqxnpveDMTkMBLnwNX44cX7NSxlXmr7f8hO6/S2MXNiXG54uf/0nYnefv0cfy4Czf/ZL/EKQ==}
+  '@changesets/get-release-plan@4.0.10':
+    resolution: {integrity: sha512-CCJ/f3edYaA3MqoEnWvGGuZm0uMEMzNJ97z9hdUR34AOvajSwySwsIzC/bBu3+kuGDsB+cny4FljG8UBWAa7jg==}
 
   '@changesets/get-version-range-type@0.4.0':
     resolution: {integrity: sha512-hwawtob9DryoGTpixy1D3ZXbGgJu1Rhr+ySH2PvTLHvkZuQ7sRT4oQwMh0hbqZH1weAooedEjRsbrWcGLCeyVQ==}
 
-  '@changesets/git@3.0.2':
-    resolution: {integrity: sha512-r1/Kju9Y8OxRRdvna+nxpQIsMsRQn9dhhAZt94FLDeu0Hij2hnOozW8iqnHBgvu+KdnJppCveQwK4odwfw/aWQ==}
+  '@changesets/git@3.0.4':
+    resolution: {integrity: sha512-BXANzRFkX+XcC1q/d27NKvlJ1yf7PSAgi8JG6dt8EfbHFHi4neau7mufcSca5zRhwOL8j9s6EqsxmT+s+/E6Sw==}
 
   '@changesets/logger@0.1.1':
     resolution: {integrity: sha512-OQtR36ZlnuTxKqoW4Sv6x5YIhOmClRd5pWsjZsddYxpWs517R0HkyiefQPIytCVh4ZcC5x9XaG8KTdd5iRQUfg==}
@@ -1274,8 +1274,8 @@ packages:
   '@changesets/pre@2.0.2':
     resolution: {integrity: sha512-HaL/gEyFVvkf9KFg6484wR9s0qjAXlZ8qWPDkTyKF6+zqjBe/I2mygg3MbpZ++hdi0ToqNUF8cjj7fBy0dg8Ug==}
 
-  '@changesets/read@0.6.3':
-    resolution: {integrity: sha512-9H4p/OuJ3jXEUTjaVGdQEhBdqoT2cO5Ts95JTFsQyawmKzpL8FnIeJSyhTDPW1MBRDnwZlHFEM9SpPwJDY5wIg==}
+  '@changesets/read@0.6.5':
+    resolution: {integrity: sha512-UPzNGhsSjHD3Veb0xO/MwvasGe8eMyNrR/sT9gR8Q3DhOQZirgKhhXv/8hVsI0QpPjR004Z9iFxoJU6in3uGMg==}
 
   '@changesets/should-skip-package@0.1.2':
     resolution: {integrity: sha512-qAK/WrqWLNCP22UDdBTMPH5f41elVDlsNyat180A33dWxuUDyNpg6fPi/FyTZwRriVjg0L8gnjJn2F9XAoF0qw==}
@@ -2543,28 +2543,28 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sentry-internal/browser-utils@9.12.0':
-    resolution: {integrity: sha512-GXuDEG2Ix8DmVtTkjsItWdusk2CvJ6EPWKYVqFKifxt+IAT3ZbhGZd99Rg3wdRmt9xhCNuS4QrDzDTPMPgfdCw==}
+  '@sentry-internal/browser-utils@9.13.0':
+    resolution: {integrity: sha512-uZcbwcGI49oPC/YDEConJ+3xi2mu0TsVsDiMQKb6JoSc33KH37wq2IwXJb9nakzKJXxyMNemb44r8irAswjItw==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/feedback@9.12.0':
-    resolution: {integrity: sha512-3+UxoT97QIXNSUQS4ATL1FFws0RkUb6PeaQN8CPndI6mFlqTW5tuVVLNg9Eo1seNg7R/dfk6WHCWrYN1NbFFKQ==}
+  '@sentry-internal/feedback@9.13.0':
+    resolution: {integrity: sha512-fOhMnhEbOR5QVPtn5Gc5+UKQHjvAN/LmtYE6Qya3w2FDh3ZlnIXNFJWqwOneuICV3kCWjN4lLckwmzzwychr7A==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/replay-canvas@9.12.0':
-    resolution: {integrity: sha512-p8LuKZgWT/CoQBbDOXkSGjWWnc8WsnAayWgna8M/ZFWNITCNEM2rCuqZOyWOElIlrni+M7qoEA3jS7MZe8Ejxw==}
+  '@sentry-internal/replay-canvas@9.13.0':
+    resolution: {integrity: sha512-5muW2BmEfWP1fpVWDNcIsph/WgqOqpHaXC1QMr4hk8/BWgt1/S2KPy85YiGVtM5lJJr0VhASKK8rBXG+9zm9IQ==}
     engines: {node: '>=18'}
 
-  '@sentry-internal/replay@9.12.0':
-    resolution: {integrity: sha512-njEQosFeO/UX+gG+DMRANkPUuz6OIJLb+A1GVylhq9adUgFQydQ9Ay3v7/x1gMhdfHVP6Jeb27qkti0BWYbzBQ==}
+  '@sentry-internal/replay@9.13.0':
+    resolution: {integrity: sha512-l+Atwab/bqI1N8+PSG1WWTCVmiOl7swL85Z9ntwS39QBnd66CTyzt/+j/n/UbAs8GienJK6FIfX1dvG1WmvUhA==}
     engines: {node: '>=18'}
 
   '@sentry/babel-plugin-component-annotate@3.2.4':
     resolution: {integrity: sha512-yBzRn3GEUSv1RPtE4xB4LnuH74ZxtdoRJ5cmQ9i6mzlmGDxlrnKuvem5++AolZTE9oJqAD3Tx2rd1PqmpWnLoA==}
     engines: {node: '>= 14'}
 
-  '@sentry/browser@9.12.0':
-    resolution: {integrity: sha512-4xQYoZqi+VVhNvlhWiwRd57+SMr3Og4sLjuayAA+zIp1Wx/bDcIld697cugLwml/BR+mVJI2eokkgh1CBl6zag==}
+  '@sentry/browser@9.13.0':
+    resolution: {integrity: sha512-KiC8s9/6HvdlfCRqA420YbiBiXMBif7GYESJ8VQqOKUmlPczn8V2CRrEZjMqxhlHdIGiR0PS6jb2VSgeJBchJQ==}
     engines: {node: '>=18'}
 
   '@sentry/bundler-plugin-core@3.2.4':
@@ -2617,22 +2617,22 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@sentry/core@9.12.0':
-    resolution: {integrity: sha512-jOqQK/90uzHmsBvkPTj/DAEFvA5poX4ZRyC7LE1zjg4F5jdOp3+M4W3qCy0CkSTu88Zu5VWBoppCU2Bs34XEqg==}
+  '@sentry/core@9.13.0':
+    resolution: {integrity: sha512-Zn1Qec5XNkNRE/M5QjL6YJLghETg6P188G/v2OzdHdHIRf0Y58/SnJilu3louF+ogos6kaSqqdMgzqKgZ8tCdg==}
     engines: {node: '>=18'}
 
-  '@sentry/node@9.12.0':
-    resolution: {integrity: sha512-NZHneJovlLOdde85vJAIs7vIki36EfJ234d6YXHUE+874sxKMknB/wrzAZi5XS5nqT3kqIXD5KgjgDTjrhAENQ==}
+  '@sentry/node@9.13.0':
+    resolution: {integrity: sha512-75UVkrED5b0BaazNQKCmF8NqeqjErxildPojDyC037JN+cVFMPr/kFFGGm7E+eCvA/j2pAPUzqifHp/PjykPcw==}
     engines: {node: '>=18'}
 
-  '@sentry/nuxt@9.12.0':
-    resolution: {integrity: sha512-ZWUqxTquI23ObKVyKarGXM4OTwoA+tAkqfxPZ+Ab5JVE7vY+67oqdyR8kNwFzLp7DLOfXmz+WUE1/yL+Y/D5WQ==}
+  '@sentry/nuxt@9.13.0':
+    resolution: {integrity: sha512-HoqfvX3KGM1XHXlWxFP3rEud7CQl5cNVQTQtwxAfnGn4f/cT8N2vq6nkdCFXRGkFIhozt8iaj216u4/+l2r2Og==}
     engines: {node: '>=18.19.1'}
     peerDependencies:
       nuxt: '>=3.7.0 || 4.x'
 
-  '@sentry/opentelemetry@9.12.0':
-    resolution: {integrity: sha512-jQfI/UmgDDbcWY439r1Jz0Y4mqNn3a2JwruWfCHWzIqQMOgBzkzcp9lbZMx9iU+x1iZTTp9s80Dy5F9nG4KKMQ==}
+  '@sentry/opentelemetry@9.13.0':
+    resolution: {integrity: sha512-TLSP0n+sXKVcVkAM2ttVmXcAT2K3e9D5gdPfr6aCnW+KIGJuD7wzla/TIcTWFaVwUejbvXAB6IFpZ/qA8HFwyA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@opentelemetry/api': ^1.9.0
@@ -2652,8 +2652,8 @@ packages:
     resolution: {integrity: sha512-ZRn5TLlq5xtwKOqaWP+XqS1PYVfbBCgsbMk7wW2Ly6EgF9wYePvtLqKgYnE3hwPg2LpBnRPR2ti1ohlUkR+wXA==}
     engines: {node: '>= 14'}
 
-  '@sentry/vue@9.12.0':
-    resolution: {integrity: sha512-9/k6Jo1/nCJzj5qUNhQzzMCfBGT613CTrI2AauECyf44kkSE1FllvbCwT/V4eUMd+IiEL9qzqMLGTVwYUynxHw==}
+  '@sentry/vue@9.13.0':
+    resolution: {integrity: sha512-M8QAoqgqN9PGgvv1CmQGG5htrpOS4cquCRd5xlIf1BNXa6gK2P0kZ9yHbnBuuqWzFrayLQZiF5oG9euc9DW7oQ==}
     engines: {node: '>=18'}
     peerDependencies:
       pinia: 2.x || 3.x
@@ -2768,8 +2768,8 @@ packages:
   '@types/tedious@4.0.14':
     resolution: {integrity: sha512-KHPsfX/FoVbUGbyYvk1q9MMQHLPeRZhRJZdO45Q4YjvFkv4hMNghCWTvy7rdKessBsmtz4euWCWAB6/tVpI1Iw==}
 
-  '@types/validator@13.12.3':
-    resolution: {integrity: sha512-2ipwZ2NydGQJImne+FhNdhgRM37e9lCev99KnqkbFHd94Xn/mErARWI1RSLem1QA19ch5kOhzIZd7e8CA2FI8g==}
+  '@types/validator@13.15.0':
+    resolution: {integrity: sha512-nh7nrWhLr6CBq9ldtw0wx+z9wKnnv/uTVLA9g/3/TcOYxbpOSZE+MhKPmWqU+K0NvThjhv12uD8MuqijB0WzEA==}
 
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
@@ -7188,11 +7188,11 @@ snapshots:
     dependencies:
       '@capacitor/core': 7.0.1
 
-  '@changesets/apply-release-plan@7.0.10':
+  '@changesets/apply-release-plan@7.0.12':
     dependencies:
       '@changesets/config': 3.1.1
       '@changesets/get-version-range-type': 0.4.0
-      '@changesets/git': 3.0.2
+      '@changesets/git': 3.0.4
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
@@ -7217,19 +7217,19 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.28.1':
+  '@changesets/cli@2.29.2':
     dependencies:
-      '@changesets/apply-release-plan': 7.0.10
+      '@changesets/apply-release-plan': 7.0.12
       '@changesets/assemble-release-plan': 6.0.6
       '@changesets/changelog-git': 0.2.1
       '@changesets/config': 3.1.1
       '@changesets/errors': 0.2.0
       '@changesets/get-dependents-graph': 2.1.3
-      '@changesets/get-release-plan': 4.0.8
-      '@changesets/git': 3.0.2
+      '@changesets/get-release-plan': 4.0.10
+      '@changesets/git': 3.0.4
       '@changesets/logger': 0.1.1
       '@changesets/pre': 2.0.2
-      '@changesets/read': 0.6.3
+      '@changesets/read': 0.6.5
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@changesets/write': 0.4.0
@@ -7269,18 +7269,18 @@ snapshots:
       picocolors: 1.1.1
       semver: 7.7.1
 
-  '@changesets/get-release-plan@4.0.8':
+  '@changesets/get-release-plan@4.0.10':
     dependencies:
       '@changesets/assemble-release-plan': 6.0.6
       '@changesets/config': 3.1.1
       '@changesets/pre': 2.0.2
-      '@changesets/read': 0.6.3
+      '@changesets/read': 0.6.5
       '@changesets/types': 6.1.0
       '@manypkg/get-packages': 1.1.3
 
   '@changesets/get-version-range-type@0.4.0': {}
 
-  '@changesets/git@3.0.2':
+  '@changesets/git@3.0.4':
     dependencies:
       '@changesets/errors': 0.2.0
       '@manypkg/get-packages': 1.1.3
@@ -7304,9 +7304,9 @@ snapshots:
       '@manypkg/get-packages': 1.1.3
       fs-extra: 7.0.1
 
-  '@changesets/read@0.6.3':
+  '@changesets/read@0.6.5':
     dependencies:
-      '@changesets/git': 3.0.2
+      '@changesets/git': 3.0.4
       '@changesets/logger': 0.1.1
       '@changesets/parse': 0.4.1
       '@changesets/types': 6.1.0
@@ -8891,33 +8891,33 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.39.0':
     optional: true
 
-  '@sentry-internal/browser-utils@9.12.0':
+  '@sentry-internal/browser-utils@9.13.0':
     dependencies:
-      '@sentry/core': 9.12.0
+      '@sentry/core': 9.13.0
 
-  '@sentry-internal/feedback@9.12.0':
+  '@sentry-internal/feedback@9.13.0':
     dependencies:
-      '@sentry/core': 9.12.0
+      '@sentry/core': 9.13.0
 
-  '@sentry-internal/replay-canvas@9.12.0':
+  '@sentry-internal/replay-canvas@9.13.0':
     dependencies:
-      '@sentry-internal/replay': 9.12.0
-      '@sentry/core': 9.12.0
+      '@sentry-internal/replay': 9.13.0
+      '@sentry/core': 9.13.0
 
-  '@sentry-internal/replay@9.12.0':
+  '@sentry-internal/replay@9.13.0':
     dependencies:
-      '@sentry-internal/browser-utils': 9.12.0
-      '@sentry/core': 9.12.0
+      '@sentry-internal/browser-utils': 9.13.0
+      '@sentry/core': 9.13.0
 
   '@sentry/babel-plugin-component-annotate@3.2.4': {}
 
-  '@sentry/browser@9.12.0':
+  '@sentry/browser@9.13.0':
     dependencies:
-      '@sentry-internal/browser-utils': 9.12.0
-      '@sentry-internal/feedback': 9.12.0
-      '@sentry-internal/replay': 9.12.0
-      '@sentry-internal/replay-canvas': 9.12.0
-      '@sentry/core': 9.12.0
+      '@sentry-internal/browser-utils': 9.13.0
+      '@sentry-internal/feedback': 9.13.0
+      '@sentry-internal/replay': 9.13.0
+      '@sentry-internal/replay-canvas': 9.13.0
+      '@sentry/core': 9.13.0
 
   '@sentry/bundler-plugin-core@3.2.4':
     dependencies:
@@ -8973,9 +8973,9 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/core@9.12.0': {}
+  '@sentry/core@9.13.0': {}
 
-  '@sentry/node@9.12.0':
+  '@sentry/node@9.13.0':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/context-async-hooks': 1.30.1(@opentelemetry/api@1.9.0)
@@ -9008,22 +9008,22 @@ snapshots:
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.30.0
       '@prisma/instrumentation': 6.5.0(@opentelemetry/api@1.9.0)
-      '@sentry/core': 9.12.0
-      '@sentry/opentelemetry': 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
+      '@sentry/core': 9.13.0
+      '@sentry/opentelemetry': 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
       import-in-the-middle: 1.13.0
     transitivePeerDependencies:
       - supports-color
 
-  '@sentry/nuxt@9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
+  '@sentry/nuxt@9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
-      '@sentry/browser': 9.12.0
-      '@sentry/core': 9.12.0
-      '@sentry/node': 9.12.0
-      '@sentry/opentelemetry': 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
+      '@sentry/browser': 9.13.0
+      '@sentry/core': 9.13.0
+      '@sentry/node': 9.13.0
+      '@sentry/opentelemetry': 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
       '@sentry/rollup-plugin': 3.2.4(rollup@4.39.0)
       '@sentry/vite-plugin': 3.2.4
-      '@sentry/vue': 9.12.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@sentry/vue': 9.13.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       nuxt: 3.16.2(@capacitor/preferences@6.0.3(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
@@ -9039,16 +9039,16 @@ snapshots:
       - supports-color
       - vue
 
-  '@sentry/nuxt@9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
+  '@sentry/nuxt@9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)(magicast@0.3.5)(nuxt@3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
-      '@sentry/browser': 9.12.0
-      '@sentry/core': 9.12.0
-      '@sentry/node': 9.12.0
-      '@sentry/opentelemetry': 9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
+      '@sentry/browser': 9.13.0
+      '@sentry/core': 9.13.0
+      '@sentry/node': 9.13.0
+      '@sentry/opentelemetry': 9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)
       '@sentry/rollup-plugin': 3.2.4(rollup@4.39.0)
       '@sentry/vite-plugin': 3.2.4
-      '@sentry/vue': 9.12.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
+      '@sentry/vue': 9.13.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       nuxt: 3.16.2(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(db0@0.3.1)(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.4(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.8(typescript@5.8.2))(xml2js@0.6.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@opentelemetry/api'
@@ -9064,7 +9064,7 @@ snapshots:
       - supports-color
       - vue
 
-  '@sentry/opentelemetry@9.12.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)':
+  '@sentry/opentelemetry@9.13.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.30.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/context-async-hooks': 1.30.1(@opentelemetry/api@1.9.0)
@@ -9072,7 +9072,7 @@ snapshots:
       '@opentelemetry/instrumentation': 0.57.2(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/semantic-conventions': 1.30.0
-      '@sentry/core': 9.12.0
+      '@sentry/core': 9.13.0
 
   '@sentry/rollup-plugin@3.2.4(rollup@4.39.0)':
     dependencies:
@@ -9091,10 +9091,10 @@ snapshots:
       - encoding
       - supports-color
 
-  '@sentry/vue@9.12.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
+  '@sentry/vue@9.13.0(pinia@3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
-      '@sentry/browser': 9.12.0
-      '@sentry/core': 9.12.0
+      '@sentry/browser': 9.13.0
+      '@sentry/core': 9.13.0
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
       pinia: 3.0.2(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
@@ -9197,7 +9197,7 @@ snapshots:
     dependencies:
       '@types/node': 22.13.5
 
-  '@types/validator@13.12.3': {}
+  '@types/validator@13.15.0': {}
 
   '@types/web-bluetooth@0.0.21': {}
 

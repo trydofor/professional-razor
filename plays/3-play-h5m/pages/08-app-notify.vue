@@ -13,17 +13,20 @@
     </IonHeader>
     <IonContent>
       <div class="mt-2 flex flex-col gap-2">
-        <IonButton @click="onToastEmit('bottom')">
-          Emit Toast Bottom
+        <IonButton @click="onToastEmit(GlobalNotifyLevel.Default)">
+          Emit 2 Toast Default
         </IonButton>
-        <IonButton @click="onToastEmit('top')">
-          Emit Toast Top
+        <IonButton @click="onToastEmit(GlobalNotifyLevel.Success)">
+          Emit Toast Success
         </IonButton>
-        <IonButton @click="onToastEmit('middle')">
-          Emit Toast Middle
+        <IonButton @click="onToastEmit(GlobalNotifyLevel.Warning)">
+          Emit Toast Warning
+        </IonButton>
+        <IonButton @click="onToastEmit()">
+          Emit 3 Toast Middle
         </IonButton>
         <IonButton @click="onAlertEmit()">
-          Emit 2 Notice
+          Emit 4 Notice
         </IonButton>
         <IonButton @click="onModalEmit()">
           Emit 2 Modal
@@ -73,19 +76,41 @@ definePageMeta({
 });
 
 let toastCount = 0;
-function onToastEmit(pos: string) {
-  appToastEventBus.emit({
-    duration: 1500,
-    icon: ioniconsAlertCircleOutline,
-    position: pos as SafeAny,
-    message: `message-${++toastCount} emit from appToastEventBus`,
-  });
+function onToastEmit(level?: GlobalNotifyLevelType) {
+  if (level == null) {
+    appToastEventBus.emit({
+      icon: ioniconsAlertCircleOutline,
+      position: 'middle',
+      message: `message-${++toastCount} emit from appToastEventBus`,
+    });
+    appToastEventBus.emit({
+      position: 'middle',
+      level: GlobalNotifyLevel.Success,
+      message: `message-${++toastCount} emit from appToastEventBus`,
+    });
+    appToastEventBus.emit({
+      position: 'middle',
+      level: GlobalNotifyLevel.Warning,
+      message: `message-${++toastCount} emit from appToastEventBus`,
+    });
+  }
+  else {
+    appToastEventBus.emit({
+      message: `message-${++toastCount} emit from appToastEventBus`,
+      level,
+    });
+    if (level === GlobalNotifyLevel.Default) {
+      appToastEventBus.emit(`message-${++toastCount} emit from appToastEventBus`);
+    }
+  }
 }
 
 let alertCount = 0;
 function onAlertEmit() {
   appAlertEventBus.emit(`message-${++alertCount} emit from appAlertEventBus`);
-  appAlertEventBus.emit(`message-${++alertCount} emit from appAlertEventBus`);
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, level: GlobalNotifyLevel.Default });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, level: GlobalNotifyLevel.Success });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, level: GlobalNotifyLevel.Warning });
 }
 
 const modal1 = ref(false);

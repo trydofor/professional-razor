@@ -67,7 +67,7 @@ const i18nAlert = {
 } as I18nMessage;
 
 const i18nToast = {
-  type: GlobalNotifyMode.Toast,
+  type: GlobalNotifyStyle.Toast,
   message: 'should not be shown',
   i18nCode: 'error.assert.notEmpty1',
   i18nArgs: ['name'],

@@ -8,27 +8,86 @@ import type { FetchError } from 'ofetch';
 
 const props = defineProps<{
   preStatus?: (status: number, err: FetchError) => boolean | undefined;
-  toastOpts?: (message: string | ToastOptions) => ToastOptions;
-  alertOpts?: (message: string | AlertOptions) => AlertOptions;
+  toastOpts?: (event: AppToastEvent) => ToastOptions;
+  alertOpts?: (event: AppAlertEvent) => AlertOptions;
   toastStep?: number;
   toastDuration?: number;
 }>();
 
 const localize = useLocalizeMessage();
-const defaultToastOpts = (message: string | ToastOptions): ToastOptions => typeof message === 'string'
-  ? {
-      icon: ioniconsAlertCircleOutline,
-      position: 'bottom',
-      message,
+const defaultToastOpts = (event: AppToastEvent): ToastOptions => {
+  if (typeof event === 'string') {
+    return {
+      icon: ioniconsChatbubbleEllipsesOutline,
+      position: 'bottom', // Default
+      message: event,
+    };
+  }
+  if (isGlobalNotifyEvent(event)) {
+    if (event.level === GlobalNotifyLevel.Success) {
+      return {
+        icon: ioniconsCheckmarkCircleOutline,
+        position: event.position ?? 'top',
+        color: 'success',
+        message: event.event,
+      };
     }
-  : message;
-const defaultAlertOpts = (message: string | AlertOptions): AlertOptions => typeof message === 'string'
-  ? {
+    else if (event.level === GlobalNotifyLevel.Warning) {
+      return {
+        icon: ioniconsAlertCircleOutline,
+        position: event.position ?? 'top',
+        color: 'warning',
+        message: event.event,
+      };
+    }
+    else {
+      return {
+        icon: ioniconsInformationCircleOutline,
+        position: event.position ?? 'bottom',
+        message: event.event,
+      };
+    }
+  }
+
+  return event;
+};
+const defaultAlertOpts = (event: AppAlertEvent): AlertOptions => {
+  if (typeof event === 'string') {
+    return {
       header: localize('ui.label.notice', 'Notice'),
       buttons: [localize('ui.button.ok', 'OK')],
-      message,
+      message: event,
+    };
+  }
+  if (isGlobalNotifyEvent(event)) {
+    if (event.level === GlobalNotifyLevel.Success) {
+      return {
+        header: localize('ui.label.success', 'Success'),
+        buttons: [localize('ui.button.ok', 'OK')],
+        cssClass: 'app-alert-success',
+        message: event.event,
+      };
     }
-  : message;
+    else if (event.level === GlobalNotifyLevel.Warning) {
+      return {
+        header: localize('ui.label.warning', 'Warning'),
+        buttons: [localize('ui.button.ok', 'OK')],
+        cssClass: 'app-alert-warning',
+        message: event.event,
+      };
+    }
+    else {
+      return {
+        header: localize('ui.label.notice', 'Notice'),
+        buttons: [localize('ui.button.ok', 'OK')],
+        cssClass: 'app-alert-default',
+        message: event.event,
+      };
+    }
+  }
+
+  return event;
+};
 
 const toastDuration = Math.abs(props.toastStep ?? 2000);
 const toastStep = Math.abs(props.toastStep ?? 55);
@@ -48,8 +107,8 @@ const toastNotify = [
   createStackedNotify<ToastOptions>(toastHandler),
 ];
 
-function presentToast(message: string | ToastOptions) {
-  const opts = props.toastOpts?.(message) ?? defaultToastOpts(message);
+function presentToast(event: AppToastEvent) {
+  const opts = props.toastOpts?.(event) ?? defaultToastOpts(event);
   if (opts.duration == null && !opts.buttons?.length) {
     opts.duration = toastDuration;
   }
@@ -66,18 +125,18 @@ const alertNotify = createSingledNotify<AlertOptions>(
   },
 );
 
-async function presentAlert(message: string | AlertOptions) {
-  const data = props.alertOpts?.(message) ?? defaultAlertOpts(message);
+async function presentAlert(event: AppAlertEvent) {
+  const data = props.alertOpts?.(event) ?? defaultAlertOpts(event);
   alertNotify(data);
 };
 
-function tryNotify(data: SafeAny, type?: string) {
-  if (type === GlobalNotifyMode.Toast) {
-    presentToast(data);
+function tryNotify(event: SafeAny, type?: string) {
+  if (type === GlobalNotifyStyle.Toast) {
+    presentToast(event);
     return false;
   }
   else {
-    presentAlert(data);
+    presentAlert(event);
     return false;
   }
 }
@@ -142,7 +201,38 @@ else {
 }
 
 //
-appToastEventBus.on(msg => presentToast(msg));
-appAlertEventBus.on(msg => presentAlert(msg));
+appToastEventBus.on(event => presentToast(event));
+appAlertEventBus.on(event => presentAlert(event));
 defineExpose({ presentToast, presentAlert });
 </script>
+
+<style>
+.app-alert-success .alert-title {
+  color: var(--ion-color-success);
+}
+
+.app-alert-warning .alert-title {
+  color: var(--ion-color-warning);
+}
+
+.app-alert-default .alert-title::before {
+  content: "ℹ️";
+  margin-right: 0.5em;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+.app-alert-success .alert-title::before {
+  content: "✅";
+  margin-right: 0.5em;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+.app-alert-warning .alert-title::before {
+  content: "⚠️";
+  margin-right: 0.5em;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+</style>

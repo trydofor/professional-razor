@@ -8,9 +8,9 @@ export type GlobalNotifyStyleKey = keyof typeof GlobalNotifyStyle;
 export type GlobalNotifyStyleType = typeof GlobalNotifyStyle[GlobalNotifyStyleKey];
 
 export const GlobalNotifyLevel = {
-  Default: 'Default',
-  Success: 'Success',
-  Warning: 'Warning',
+  Message: 'Message', // 💬
+  Success: 'Success', // ✅
+  Warning: 'Warning', // ⚠️
 } as const;
 
 export type GlobalNotifyLevelKey = keyof typeof GlobalNotifyLevel;

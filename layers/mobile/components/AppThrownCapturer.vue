@@ -18,30 +18,31 @@ const localize = useLocalizeMessage();
 const defaultToastOpts = (event: AppToastEvent): ToastOptions => {
   if (typeof event === 'string') {
     return {
-      icon: ioniconsChatbubbleEllipsesOutline,
-      position: 'bottom', // Default
+      icon: ioniconsChatboxOutline,
+      position: 'bottom',
       message: event,
     };
   }
 
   // level enhancement
-  if (event.level === GlobalNotifyLevel.Success) {
+  if (event.notifyLevel === GlobalNotifyLevel.Success) {
     event.icon ??= ioniconsCheckmarkCircleOutline;
     event.position ??= 'top';
     event.color ??= 'success';
   }
-  else if (event.level === GlobalNotifyLevel.Warning) {
+  else if (event.notifyLevel === GlobalNotifyLevel.Warning) {
     event.icon ??= ioniconsAlertCircleOutline;
     event.position ??= 'top';
     event.color ??= 'warning';
   }
-  else if (event.level === GlobalNotifyLevel.Default) {
-    event.icon ??= ioniconsInformationCircleOutline;
+  else if (event.notifyLevel === GlobalNotifyLevel.Message) {
+    event.icon ??= ioniconsChatbubbleEllipsesOutline;
     event.position ??= 'bottom';
   }
 
   return event;
 };
+
 const defaultAlertOpts = (event: AppAlertEvent): AlertOptions => {
   if (typeof event === 'string') {
     return {
@@ -52,20 +53,20 @@ const defaultAlertOpts = (event: AppAlertEvent): AlertOptions => {
   }
 
   // level enhancement
-  if (event.level === GlobalNotifyLevel.Success) {
+  if (event.notifyLevel === GlobalNotifyLevel.Success) {
     event.header ??= localize('ui.label.success', 'Success');
     event.buttons ??= [localize('ui.button.ok', 'OK')];
     event.cssClass ??= 'app-alert-success';
   }
-  else if (event.level === GlobalNotifyLevel.Warning) {
+  else if (event.notifyLevel === GlobalNotifyLevel.Warning) {
     event.header ??= localize('ui.label.warning', 'Warning');
     event.buttons ??= [localize('ui.button.ok', 'OK')];
     event.cssClass ??= 'app-alert-warning';
   }
-  else if (event.level === GlobalNotifyLevel.Default) {
+  else if (event.notifyLevel === GlobalNotifyLevel.Message) {
     event.header ??= localize('ui.label.notice', 'Notice');
     event.buttons ??= [localize('ui.button.ok', 'OK')];
-    event.cssClass ??= 'app-alert-default';
+    event.cssClass ??= 'app-alert-message';
   }
 
   return event;
@@ -112,12 +113,12 @@ async function presentAlert(event: AppAlertEvent) {
   alertNotify(data);
 };
 
-function tryNotify(event: SafeAny, type?: string) {
-  if (type === GlobalNotifyStyle.Toast) {
+function tryNotify(event: SafeAny, style: string) {
+  if (style === GlobalNotifyStyle.Toast) {
     presentToast(event);
     return false;
   }
-  else {
+  else if (style === GlobalNotifyStyle.Alert) {
     presentAlert(event);
     return false;
   }
@@ -129,7 +130,8 @@ const appNoticeCapturer = useNoticeCapturer();
 appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const message = localize(ntc, false);
   if (message) {
-    return tryNotify(message, ntc.type);
+    const style = ntc.type === GlobalNotifyStyle.Toast ? GlobalNotifyStyle.Toast : GlobalNotifyStyle.Alert;
+    return tryNotify(message, style);
   }
 } });
 
@@ -143,9 +145,11 @@ appThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
   }
 } });
 
-appThrownCapturer.put({ id: 'AlertToastDataThrow', order: 4000, hook: (err) => {
-  if (isDataThrown(err)) {
-    return tryNotify(err.data, err.type);
+appThrownCapturer.put({ id: 'AppNotifyThrown', order: 4000, hook: (err) => {
+  if (isNotifyThrown(err)) {
+    if (err.notify) {
+      return tryNotify(err.notify, err.notify.notifyStyle ?? GlobalNotifyStyle.Alert);
+    }
   }
 } });
 
@@ -197,8 +201,8 @@ defineExpose({ presentToast, presentAlert });
   color: var(--ion-color-warning);
 }
 
-.app-alert-default .alert-title::before {
-  content: "ℹ️";
+.app-alert-message .alert-title::before {
+  content: "💬";
   margin-right: 0.5em;
   font-size: 1.2em;
   vertical-align: middle;

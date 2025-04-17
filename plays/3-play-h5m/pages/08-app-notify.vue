@@ -5,7 +5,7 @@
         <IonButtons slot="start">
           <IonBackButton />
         </IonButtons>
-        <IonTitle>App Notify</IonTitle>
+        <IonTitle>App Notify Toast/Alert/Modal</IonTitle>
         <IonButtons slot="end">
           <IonMenuButton />
         </IonButtons>
@@ -13,8 +13,8 @@
     </IonHeader>
     <IonContent>
       <div class="mt-2 flex flex-col gap-2">
-        <IonButton @click="onToastEmit(GlobalNotifyLevel.Default)">
-          Emit 2 Toast Default
+        <IonButton @click="onToastEmit(GlobalNotifyLevel.Message)">
+          Emit 2 Toast Message
         </IonButton>
         <IonButton @click="onToastEmit(GlobalNotifyLevel.Success)">
           Emit Toast Success
@@ -27,6 +27,12 @@
         </IonButton>
         <IonButton @click="onAlertEmit()">
           Emit 4 Notice
+        </IonButton>
+        <IonButton @click="onToastThrow()">
+          Throw a Toast
+        </IonButton>
+        <IonButton @click="onAlertThrow()">
+          Throw 1 Notice
         </IonButton>
         <IonButton @click="onModalEmit()">
           Emit 2 Modal
@@ -72,7 +78,7 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  name: 'App Notify',
+  name: 'App Notify Toast/Alert/Modal',
 });
 
 let toastCount = 0;
@@ -85,21 +91,21 @@ function onToastEmit(level?: GlobalNotifyLevelType) {
     });
     appToastEventBus.emit({
       position: 'middle',
-      level: GlobalNotifyLevel.Success,
+      notifyLevel: GlobalNotifyLevel.Success,
       message: `message-${++toastCount} emit from appToastEventBus`,
     });
     appToastEventBus.emit({
       position: 'middle',
-      level: GlobalNotifyLevel.Warning,
+      notifyLevel: GlobalNotifyLevel.Warning,
       message: `message-${++toastCount} emit from appToastEventBus`,
     });
   }
   else {
     appToastEventBus.emit({
       message: `message-${++toastCount} emit from appToastEventBus`,
-      level,
+      notifyLevel: level,
     });
-    if (level === GlobalNotifyLevel.Default) {
+    if (level === GlobalNotifyLevel.Message) {
       appToastEventBus.emit(`message-${++toastCount} emit from appToastEventBus`);
     }
   }
@@ -108,9 +114,26 @@ function onToastEmit(level?: GlobalNotifyLevelType) {
 let alertCount = 0;
 function onAlertEmit() {
   appAlertEventBus.emit(`message-${++alertCount} emit from appAlertEventBus`);
-  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, level: GlobalNotifyLevel.Default });
-  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, level: GlobalNotifyLevel.Success });
-  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, level: GlobalNotifyLevel.Warning });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Message });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Success });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Warning });
+}
+
+function onToastThrow() {
+  if (toastCount % 2 === 0) {
+    throw newAppToastThrown(`message-${++toastCount} by NotifyThrow A`);
+  }
+  else {
+    throw newAppToastThrown({ message: `message-${++toastCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
+  }
+}
+function onAlertThrow() {
+  if (alertCount % 2 === 0) {
+    throw newAppAlertThrown(`message-${++alertCount} by NotifyThrow A`);
+  }
+  else {
+    throw newAppAlertThrown({ message: `message-${++alertCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
+  }
 }
 
 const modal1 = ref(false);

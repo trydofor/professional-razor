@@ -24,8 +24,21 @@ export class DataThrown {
   constructor(public type: string, public data: unknown) {}
 }
 
+interface NotifyThrownBase {
+  notifyStyle?: string;
+  notifyLevel?: string;
+}
+
 /**
- * should notice to user in UI
+ * notify user something in UI
+ */
+export class NotifyThrown<T extends NotifyThrownBase = NotifyThrownBase> {
+  public name = 'NotifyThrown';
+  constructor(public notify: T) {}
+}
+
+/**
+ * i18n notice to user in UI
  */
 export class NoticeThrown {
   public name = 'NoticeThrown';

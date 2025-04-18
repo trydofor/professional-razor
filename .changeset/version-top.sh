@@ -1,14 +1,15 @@
-#!/bin/bash
+#!/bin/bash -xe
 
-set -x -e
+## calculate version
 pnpm exec changeset status --output version-status.tmp
-newv=$(jq -r '.releases[1].newVersion' version-status.tmp)
+_ver=$(jq -r '.releases[] | select(.name == "@fessional/razor-common") | .newVersion' version-status.tmp)
 
-## replace version in package.json
+## replace version in top package.json, that changeset NOT do
+sed_opt=(-i)
 if [[ "$(uname)" == "Darwin" ]]; then
-  sed -i '' "s/\"version\": \".*\"/\"version\": \"$newv\"/" package.json
-else
-  sed -i "s/\"version\": \".*\"/\"version\": \"$newv\"/" package.json
+  sed_opt=(-i '')
 fi
+sed "${sed_opt[@]}" "s/\"version\": \".*\"/\"version\": \"$_ver\"/" package.json
 
+## change version in sub package.json
 pnpm exec changeset version

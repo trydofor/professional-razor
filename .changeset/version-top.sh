@@ -4,6 +4,11 @@
 pnpm exec changeset status --output version-status.tmp
 _ver=$(jq -r '.releases[] | select(.name == "@fessional/razor-common") | .newVersion' version-status.tmp)
 
+if [[ -z "$_ver" ]]; then
+  echo "❌ No version found"
+  exit
+fi
+
 ## replace version in top package.json, that changeset NOT do
 sed_opt=(-i)
 if [[ "$(uname)" == "Darwin" ]]; then

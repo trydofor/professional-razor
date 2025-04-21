@@ -1,14 +1,23 @@
-#!/bin/bash
+#!/bin/bash -xe
 
-set -x -e
-pnpm exec changeset status --output version-status.tmp
-newv=$(jq -r '.releases[1].newVersion' version-status.tmp)
+## change version in sub package.json
+pnpm exec changeset version
 
-## replace version in package.json
-if [[ "$(uname)" == "Darwin" ]]; then
-  sed -i '' "s/\"version\": \".*\"/\"version\": \"$newv\"/" package.json
-else
-  sed -i "s/\"version\": \".*\"/\"version\": \"$newv\"/" package.json
+## update version in top package.json
+_top=package.json
+_sub=layers/common/package.json
+_old=$(jq -r '.version' "$_top")
+_new=$(jq -r '.version' "$_sub")
+
+if [[ "$_old" == "$_new" ]]; then
+  echo "✅ version is the same: $_old"
+  exit 0
 fi
 
-pnpm exec changeset version
+echo "🔄 Updating top package version from $_old to $_new"
+sed_opt=(-i)
+if [[ "$(uname)" == "Darwin" ]]; then
+  sed_opt=(-i '')
+fi
+sed "${sed_opt[@]}" "s/\"version\": \"$_old\"/\"version\": \"$_new\"/" "$_top"
+#git diff "$_top"

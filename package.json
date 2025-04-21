@@ -32,8 +32,8 @@
     "play:h5m": "pnpm -C plays/3-play-h5m dev -p 3033 -o",
     "play:web": "pnpm -C plays/2-play-web dev -p 3032 -o",
     "ver:add": "changeset",
-    "ver:bump": "changeset version",
-    "ver:publish": "changeset publish",
+    "ver:dev": "changeset pre enter dev",
+    "ver:ved": "changeset pre exit dev",
     "ver:status": "changeset status --verbose"
   },
   "devDependencies": {

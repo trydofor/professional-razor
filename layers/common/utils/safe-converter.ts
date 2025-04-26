@@ -86,7 +86,7 @@ export function safeInt(valOrFun: NumberLike | (() => NumberLike), defaults: num
       case 'boolean':
         return value ? 1 : 0;
       default:{
-        const num = parseInt(String(value)); // Number('') === 0
+        const num = parseInt(String(value).trim()); // Number('') === 0
         return isVoidNumber(num) ? null : num;
       }
     }
@@ -108,11 +108,54 @@ export function safeNumber(valOrFun: NumberLike | (() => NumberLike), defaults: 
       case 'boolean':
         return value ? 1 : 0;
       default:{
-        const num = parseFloat(String(value)); // Number('') === 0
+        const num = parseFloat(String(value).trim()); // Number('') === 0
         return isVoidNumber(num) ? null : num;
       }
     }
   });
+}
+
+/**
+ * Converts the input to a string representation of a number,
+ * keeping the specified number of decimal places by flooring.
+ *
+ * - `scale > 0`: Keep decimal places (floor without rounding)
+ * - `scale = 0`: Keep only the integer part
+ * - `scale < 0`: Floor the integer part to the nearest 10^n
+ *
+ * @param valOrFun - The input value to convert (string, number, etc.)
+ * @param scale - Number of decimal places to keep. Positive for decimals, negative for integer rounding.
+ * @returns The formatted number as a string.
+ *
+ * @example
+ * safeNumStr(2.987, 2) // "2.98"
+ * safeNumStr("2.001", 2) // "2.00"
+ * safeNumStr("2", 2) // "2.00"
+ * safeNumStr("2.999", 0) // "2"
+ * safeNumStr(12345, -2) // "12300"
+ * safeNumStr(56789, -3) // "56000"
+ * safeNumStr(123, -5) // "0"
+ */
+export function safeNumStr(valOrFun: NumberLike | (() => NumberLike), scale: number = 0): string {
+  const num = safeNumber(valOrFun, 0);
+  const str = num.toString();
+  const [ip, dt = ''] = str.split('.');
+
+  if (scale === 0) {
+    return ip;
+  }
+
+  if (scale > 0) {
+    const flr = dt.padEnd(scale, '0').slice(0, scale);
+    return `${ip}.${flr}`;
+  }
+
+  const bs = -scale;
+  if (ip.length <= bs) {
+    return '0';
+  }
+  const ps = ip.slice(0, ip.length - bs);
+  return ps.padEnd(ip.length, '0');
 }
 
 /**
@@ -134,6 +177,7 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
         return isVoidNumber(num) ? null : BigInt(num);
       }
       case 'string':{
+        value = value.trim();
         const num = parseInt(value);
         if (Number.isSafeInteger(num)) {
           return BigInt(num);

@@ -103,6 +103,52 @@ describe('safeNumber', () => {
   });
 });
 
+describe('safeNumStr', () => {
+  // Test default behavior (scale = 0)
+  it('should convert number to string with default scale', () => {
+    expect(safeNumStr(123.456)).toBe('123');
+    expect(safeNumStr(-123.789)).toBe('-123');
+    expect(safeNumStr(0)).toBe('0');
+  });
+
+  // Test positive scale
+  it('should handle positive scale values', () => {
+    expect(safeNumStr(123.456, 2)).toBe('123.45');
+    expect(safeNumStr(123.456, 1)).toBe('123.4');
+    expect(safeNumStr(-123.789, 2)).toBe('-123.78');
+    expect(safeNumStr(0, 2)).toBe('0.00');
+  });
+
+  // Test negative scale
+  it('should handle negative scale values', () => {
+    expect(safeNumStr(123.456, -1)).toBe('120');
+    expect(safeNumStr(123.456, -2)).toBe('100');
+    expect(safeNumStr(-123.789, -1)).toBe('-120');
+    expect(safeNumStr(0, -2)).toBe('0');
+  });
+
+  // Test with function input
+  it('should handle function input', () => {
+    expect(safeNumStr(() => 123.456, 2)).toBe('123.45');
+    expect(safeNumStr(() => -123.789, -1)).toBe('-120');
+  });
+
+  // Test with invalid inputs
+  it('should handle invalid inputs', () => {
+    expect(safeNumStr(null, 2)).toBe('0.00');
+    expect(safeNumStr(undefined, 2)).toBe('0.00');
+    expect(safeNumStr('not a number', 2)).toBe('0.00');
+    expect(safeNumStr(NaN, 2)).toBe('0.00');
+  });
+
+  // Test with string numbers
+  it('should handle string number inputs', () => {
+    expect(safeNumStr('123.456', 2)).toBe('123.45');
+    expect(safeNumStr('-123.789', -1)).toBe('-120');
+    expect(safeNumStr('0', 2)).toBe('0.00');
+  });
+});
+
 describe('safeInt', () => {
   it('should return defaults if null, undefined, NaN, Infinity', () => {
     expect(safeInt(null)).toBe(0);

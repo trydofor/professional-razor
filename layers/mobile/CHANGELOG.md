@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.8.0-dev.1
+
+### Minor Changes
+
+- e0eb8f2: dev release style
+
 ## 0.7.10
 
 ### Patch Changes

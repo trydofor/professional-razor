@@ -4,7 +4,7 @@
       <div class="i-mdi:home-circle size-6 hover:text-indigo" @click="router.push('/')" />
       <div class="i-mdi:arrow-back-circle size-6 hover:text-indigo" @click="router.back()" />
       <div class="size-6 flex items-center justify-center rounded-full bg-black text-4 text-white">
-        {{ route.path == '/' ? '00' : route.path.substring(1, 3) }}
+        {{ route.path == '/' ? '00' : route.path.slice(1, 3) }}
       </div>
     </div>
     <div class="pl-8">

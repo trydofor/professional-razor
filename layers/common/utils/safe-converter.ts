@@ -86,7 +86,7 @@ export function safeInt(valOrFun: NumberLike | (() => NumberLike), defaults: num
       case 'boolean':
         return value ? 1 : 0;
       default:{
-        const num = parseInt(String(value)); // Number('') === 0
+        const num = parseInt(String(value).trim()); // Number('') === 0
         return isVoidNumber(num) ? null : num;
       }
     }
@@ -108,7 +108,7 @@ export function safeNumber(valOrFun: NumberLike | (() => NumberLike), defaults: 
       case 'boolean':
         return value ? 1 : 0;
       default:{
-        const num = parseFloat(String(value)); // Number('') === 0
+        const num = parseFloat(String(value).trim()); // Number('') === 0
         return isVoidNumber(num) ? null : num;
       }
     }
@@ -134,16 +134,17 @@ export function safeBigint(valOrFun: NumberLike | (() => NumberLike), defaults: 
         return isVoidNumber(num) ? null : BigInt(num);
       }
       case 'string':{
+        value = value.trim();
         const num = parseInt(value);
         if (Number.isSafeInteger(num)) {
           return BigInt(num);
         }
         else {
           const p1 = value.indexOf('.'); // ###.###
-          if (p1 > 0) return BigInt(value.substring(0, p1));
+          if (p1 >= 0) return BigInt(value.slice(0, p1));
 
-          const n1 = value.substring(value.length - 1); // ####n
-          if (n1 === 'n' || n1 === 'N') return BigInt(value.substring(0, value.length - 1));
+          const n1 = value.slice(value.length - 1); // ####n
+          if (n1 === 'n' || n1 === 'N') return BigInt(value.slice(0, value.length - 1));
 
           // #.##e+10, 0x###, 0b###, 0o###
           // invalid number

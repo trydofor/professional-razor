@@ -1,5 +1,12 @@
 # @fessional/razor-common
 
+## 0.8.0-dev.1
+
+### Minor Changes
+
+- e0eb8f2: ✨ alignNumStr to Fixed Scale NumStr #222
+  ✨ onIonViewWillEnter eat thrown #226
+
 ## 0.7.10
 
 ### Patch Changes

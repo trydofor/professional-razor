@@ -11,6 +11,7 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
   protected _hooks: PriorityHookType<H>[]; // copy-on-write array
   protected _reads: number = 0;
   protected _scope: ((del: () => void) => SafeAny) | undefined = undefined;
+  protected _parent: PriorityHook<H> | undefined = undefined;
   protected _sorter: SorterType<H> = (a, b) => {
     const rc = a.order - b.order;
     return rc === 0 ? a.id.localeCompare(b.id) : rc;
@@ -31,6 +32,28 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
         this._hooks = Array.from(new Map(inits.map(h => [h.id, h])).values());
         this._hooks.sort(this._sorter);
     }
+  }
+
+  /**
+   * Sets the parent hook chain. The parent's hooks will be called/emitted
+   * after all current hooks return void.
+   * ignores attempts to create a circular reference by setting
+   * this hook or any of its ancestors as the parent
+   * @note maybe invoke twice in vue onErrorCaptured if all current hooks return void
+   */
+  set parent(pa: PriorityHook<H> | undefined) {
+    let tmp = pa;
+    while (tmp != null) {
+      if (tmp === this) {
+        return;
+      }
+      tmp = tmp._parent;
+    }
+    this._parent = pa;
+  }
+
+  get parent(): PriorityHook<H> | undefined {
+    return this._parent;
   }
 
   /**
@@ -140,6 +163,9 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
           logger.error('failed to hook thrown hook=%s', hk.id, e);
         }
       }
+      if (this._parent != null) {
+        return this._parent.call(...args);
+      }
     }
     finally {
       this._reads--;
@@ -169,6 +195,9 @@ export class PriorityHook<H extends (...args: SafeAny[]) => MayPromise<SafeAny>>
         catch (e) {
           logger.error('failed to hook thrown hook=%s', hk.id, e);
         }
+      }
+      if (this._parent != null) {
+        return await this._parent.emit(...args);
       }
     }
     finally {

@@ -77,14 +77,16 @@ apiResponseEventBus.on((evt) => {
   eventText.value = `EVENT: session=${evt.session} status=${evt.status} @` + new Date().getMilliseconds();
 });
 
-const thrownCaptured = useThrownCapturer(false);
+const thrownCaptured = useThrownCapturer(false, true);
 thrownCaptured.put({ id: 'component-error-logger', order: 200, hook: (err) => {
   errorText.value = 'check sentry via network and console: ' + JSON.stringify(err) + ' @' + new Date().getMilliseconds();
   logger.info('200.component-error-logger', err);
 } });
 
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
-onErrorCaptured(thrownCaptured.hookError);
+// onErrorCaptured(thrownCaptured.hookError);
+// (1) useThrownCapturer(false, true); or
+// (2) onErrorCaptured(thrownCaptured.hookError);
 
 globalThrownCapturer.put({ id: 'before-sentry-error', order: 300, hook: (err) => {
   logger.info('300.before-sentry-error', err);

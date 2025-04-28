@@ -12,12 +12,16 @@ export const NoticeCapturerInjectKey: InjectionKey<InstanceType<ClassNoticeCaptu
  * @returns NoticeCapturer instance (injected when no args, new instance when creating)
  */
 export function useNoticeCapturer(provider?: boolean, capturer?: boolean) {
+  const _parent = inject(NoticeCapturerInjectKey, globalNoticeCapturer);
   if (provider == null && capturer == null) {
-    return inject(NoticeCapturerInjectKey, globalNoticeCapturer);
+    return _parent;
   }
 
   const noticeCapturer = newNoticeCapturer();
+  noticeCapturer.parent = _parent;
+
   if (provider) provide(NoticeCapturerInjectKey, noticeCapturer);
   if (capturer) onErrorCaptured(noticeCapturer.hookError);
+
   return noticeCapturer;
 }

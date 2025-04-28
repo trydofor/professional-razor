@@ -24,7 +24,7 @@ export class DataThrown {
   constructor(public type: string, public data: unknown) {}
 }
 
-interface NotifyThrownBase {
+export interface NotifyThrownBase {
   notifyStyle?: string;
   notifyLevel?: string;
 }
@@ -40,7 +40,7 @@ export class NotifyThrown<T extends NotifyThrownBase = NotifyThrownBase> {
 /**
  * i18n notice to user in UI
  */
-export class NoticeThrown {
+export class NoticeThrown<T extends I18nNotice = I18nNotice> {
   public name = 'NoticeThrown';
-  constructor(public notices: I18nNotice[]) {}
+  constructor(public notices: T[]) {}
 }

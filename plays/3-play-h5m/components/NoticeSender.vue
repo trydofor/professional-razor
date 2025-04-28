@@ -75,7 +75,7 @@ const i18nToast = {
 
 const i18n404 = {
   message: 'no code found',
-  i18nCode: 'error.404',
+  i18nCode: 'error.fetcher.404',
 } as I18nMessage;
 
 function onToast() {
@@ -90,9 +90,17 @@ function onAlert404() {
   sendMessage(i18n404);
 }
 
-function sendMessage(notice: I18nMessage) {
+function sendMessage(notice: I18nNotice) {
   if (toggleThrowAlert.value) {
-    throw newNoticeThrown(notice);
+    if (notice.i18nCode!.includes('404')) {
+      throw newNoticeThrown(notice);
+    }
+    else {
+      throw newNoticeThrown({
+        ...notice,
+        notifyLevel: GlobalNotifyLevel.Warning,
+      });
+    }
   }
   else {
     noticeCapturer.emit(notice);
@@ -100,12 +108,22 @@ function sendMessage(notice: I18nMessage) {
 }
 
 function onShowCapturers() {
-  noticeCapturer.each((hks) => {
-    capturers.value = JSON.stringify(hks, null, 2);
-  });
-  globalThrownCapturer.each((hks) => {
-    capturers.value += '\n==Thrown Capturer==\n' + JSON.stringify(hks, null, 2);
-  });
+  capturers.value = '';
+  let tmp1 = noticeCapturer;
+  while (tmp1 != null) {
+    tmp1.each((hks) => {
+      capturers.value += '\n==Notice Capturer==\n' + JSON.stringify(hks, null, 2);
+    });
+    tmp1 = tmp1.parent as SafeAny;
+  }
+
+  let tmp2 = globalThrownCapturer;
+  while (tmp2 != null) {
+    tmp2.each((hks) => {
+      capturers.value += '\n==Thrown Capturer==\n' + JSON.stringify(hks, null, 2);
+    });
+    tmp2 = tmp2.parent as SafeAny;
+  }
 }
 
 const sendZipModel = ref('');

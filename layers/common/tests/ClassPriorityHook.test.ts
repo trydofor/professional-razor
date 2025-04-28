@@ -391,3 +391,72 @@ describe('HookManager.pre', () => {
     expect(result).toBe('new');
   });
 });
+
+describe('PriorityHook parent chain', () => {
+  it('should call parent hooks after current hooks return void', () => {
+    const childHook = new PriorityHook<(a?: string) => string | null>([
+      { id: 'child1', order: 1, hook: () => null },
+      { id: 'child2', order: 2, hook: () => null },
+    ]);
+
+    const parentHook = new PriorityHook<() => string | null>([
+      { id: 'parent1', order: 1, hook: () => 'parent result' },
+    ]);
+
+    childHook.parent = parentHook;
+
+    // Since child hooks return null and undefined, parent hook should be called
+    // and its result should be returned
+    const result = childHook.call('test arg');
+    expect(result).toBe('parent result');
+  });
+
+  it('should not call parent hooks if child hook returns non-null value', () => {
+    const childHook = new PriorityHook<(a?: string) => string | null>([
+      { id: 'child1', order: 1, hook: () => 'child result' },
+    ]);
+
+    const parentHook = new PriorityHook<(a?: string) => string | null>([
+      { id: 'parent1', order: 1, hook: () => 'parent result' },
+    ]);
+
+    childHook.parent = parentHook;
+
+    // Since child hook returns non-null, parent hook should not be called
+    const result = childHook.call('test arg');
+    expect(result).toBe('child result');
+  });
+});
+
+describe('PriorityHook parent setter', () => {
+  it('should set parent hook correctly', () => {
+    const parentHook = new PriorityHook<() => void>([]);
+    const childHook = new PriorityHook<() => void>([]);
+
+    childHook.parent = parentHook;
+    expect((childHook as SafeAny)._parent).toBe(parentHook);
+  });
+
+  it('should ingore when attempting to create circular reference', () => {
+    const hook1 = new PriorityHook<() => void>([]);
+    const hook2 = new PriorityHook<() => void>([]);
+    const hook3 = new PriorityHook<() => void>([]);
+
+    // Create a chain: hook3 -> hook2 -> hook1
+    hook3.parent = hook2;
+    hook2.parent = hook1;
+
+    // Attempt to create circular reference
+    hook1.parent = hook3;
+    expect(hook1.parent).toBeUndefined();
+  });
+
+  it('should allow setting parent to undefined', () => {
+    const hook = new PriorityHook<() => void>([]);
+    const parentHook = new PriorityHook<() => void>([]);
+
+    hook.parent = parentHook;
+    hook.parent = undefined;
+    expect(hook.parent).toBeUndefined();
+  });
+});

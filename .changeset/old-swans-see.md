@@ -3,4 +3,5 @@
 "@fessional/razor-mobile": minor
 ---
 
-dev release style
+✨ alignNumStr to Fixed Scale NumStr #222
+✨ onIonViewWillEnter eat thrown #226

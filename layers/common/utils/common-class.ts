@@ -1,7 +1,7 @@
 // https://github.com/nuxt/nuxt/issues/26516
 
 import type { RouteLocationRaw } from 'vue-router';
-import { IgnoredThrown, NavigateThrown, DataThrown, NotifyThrown, NoticeThrown } from '../classes/ClassThrown';
+import { IgnoredThrown, NavigateThrown, DataThrown, NotifyThrown, NoticeThrown, type NotifyThrownBase } from '../classes/ClassThrown';
 import { ApiResultError, SystemError } from '../classes/ClassError';
 import { NoticeCapturer, ThrownCapturer } from '../classes/ClassCapturer';
 
@@ -37,7 +37,6 @@ export function isDataThrown(instance: unknown): instance is DataThrown {
 }
 
 export type ClassNotifyThrown = typeof NotifyThrown;
-type NotifyThrownBase = ConstructorParameters<ClassNotifyThrown>[0];
 export function newNotifyThrown<T extends NotifyThrownBase>(notify: T) {
   return new NotifyThrown(notify);
 }
@@ -46,7 +45,7 @@ export function isNotifyThrown(instance: unknown): instance is NotifyThrown {
 }
 
 export type ClassNoticeThrown = typeof NoticeThrown;
-export function newNoticeThrown(...notices: I18nNotice[]) {
+export function newNoticeThrown<T extends I18nNotice = I18nNotice>(...notices: T[]) {
   return new NoticeThrown(notices);
 }
 export function isNoticeThrown(instance: unknown): instance is NoticeThrown {

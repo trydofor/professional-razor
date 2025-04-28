@@ -1,16 +1,16 @@
 import { PriorityHook, type PriorityHookType } from './ClassPriorityHook';
 
 export type OnErrorCapturedHook = Parameters<typeof onErrorCaptured>[0];
-export type OnNoticeCapturedHook = (notice: I18nNotice) => MayPromise<boolean | undefined>;
+export type OnNoticeCapturedHook<T extends I18nNotice = I18nNotice> = (notice: T) => MayPromise<boolean | undefined>;
 
 /**
  * non-empty array or undefined
  */
-export function thrownToNotices(err: unknown): I18nNotice[] | undefined {
-  let notices: I18nNotice[] | undefined;
+export function thrownToNotices<T extends I18nNotice = I18nNotice>(err: unknown): T[] | undefined {
+  let notices: T[] | undefined;
   if (isApiResultError(err)) {
     if (err.errorResult) {
-      notices = err.errorResult.errors;
+      notices = err.errorResult.errors as T[];
     }
     else if (err.falseResult) {
       const fr = err.falseResult;
@@ -19,11 +19,11 @@ export function thrownToNotices(err: unknown): I18nNotice[] | undefined {
         message: fr.message,
         i18nCode: fr.i18nCode ?? fr.code,
         i18nArgs: fr.i18nArgs,
-      }];
+      }] as T[];
     }
   }
   else if (isNoticeThrown(err)) {
-    notices = err.notices;
+    notices = err.notices as T[];
   }
   return notices && notices.length > 0 ? notices : undefined;
 }

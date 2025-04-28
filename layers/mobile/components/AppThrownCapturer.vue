@@ -130,8 +130,15 @@ const appNoticeCapturer = useNoticeCapturer();
 appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
   const message = localize(ntc, false);
   if (message) {
-    const style = ntc.type === GlobalNotifyStyle.Toast ? GlobalNotifyStyle.Toast : GlobalNotifyStyle.Alert;
-    return tryNotify(message, style);
+    const notifyStyle = (ntc as SafeAny).notifyStyle;
+    const notifyLevel = (ntc as SafeAny).notifyLevel;
+    const _type = notifyStyle || ntc.type === GlobalNotifyStyle.Toast ? GlobalNotifyStyle.Toast : GlobalNotifyStyle.Alert;
+    if (notifyStyle != null || notifyLevel != null) {
+      return tryNotify({ message, notifyStyle, notifyLevel }, _type);
+    }
+    else {
+      return tryNotify(message, _type);
+    }
   }
 } });
 

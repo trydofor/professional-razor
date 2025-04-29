@@ -37,6 +37,9 @@ export default defineNuxtConfig({
     },
   },
   i18n: { // https://i18n.nuxtjs.org/docs/guide/layers
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
     defaultLocale: 'en',
     detectBrowserLanguage: {
       useCookie: true,

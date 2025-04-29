@@ -22,16 +22,10 @@ console.log('ignore Ionic Html Aliases: ', JSON.stringify(htmlAliases));
 // Merge all components to be ignored
 const allComponents = [...ionComponents, ...lazyIonComponents, ...htmlAliases];
 
-/**
- * @type {import('eslint').Linter.RulesRecord}
- */
 export const rules = {
   'vue/no-deprecated-slot-attribute': ['error', { ignore: allComponents }],
 };
 
-/**
- * @type {import('eslint').Linter.Config}
- */
 const config = { files: ['**/*.vue'], rules };
 
 export default config;

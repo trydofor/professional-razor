@@ -1,9 +1,10 @@
 # @fessional/razor-mobile
 
-## 0.8.0-dev.1
+## 0.8.0-dev.2
 
 ### Minor Changes
 
+- e0eb8f2: ♻️ Ionic slot vs vue/no-deprecated-slot-attribute #229
 - 40960b7: ✨ onIonViewWillEnter eat thrown #226
 - 4b17c53: ✨ alignNumStr to Fixed Scale NumStr #222
 

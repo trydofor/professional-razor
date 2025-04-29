@@ -72,12 +72,19 @@ jobs:
         with:
           working-directory: './layers/mobile'
 
+      - name: Calculate Version
+        id: version-may
+        run: |
+          git fetch origin main:main
+          git branch --show-current
+          echo "may_version=$(.changeset/version-may.sh)" >> $GITHUB_OUTPUT
+
       - name: Changeset Auto
         id: changesets
         uses: changesets/action@v1
         with:
-          commit: ":bookmark: bumping versions"
-          title: ":rocket: release versions"
+          commit: ":bookmark: bumping versions to ${{ steps.version-may.outputs.may_version }}"
+          title: ":rocket: release versions ${{ steps.version-may.outputs.may_version }}"
           version: .changeset/version-top.sh
           publish: .changeset/publish-all.sh
           createGithubReleases: false

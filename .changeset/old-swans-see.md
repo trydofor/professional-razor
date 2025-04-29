@@ -3,5 +3,4 @@
 "@fessional/razor-mobile": minor
 ---
 
-✨ alignNumStr to Fixed Scale NumStr #222
-✨ onIonViewWillEnter eat thrown #226
+♻️ Ionic slot vs vue/no-deprecated-slot-attribute #229

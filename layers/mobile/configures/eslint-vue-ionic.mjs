@@ -1,104 +1,32 @@
-﻿// https://github.com/nuxt-modules/ionic/blob/main/src/imports.ts
-/**
- * @type {string[]}
- */
-export const ignore = [
-  'IonAccordion',
-  'IonAccordionGroup',
-  'IonActionSheet',
-  'IonAlert',
-  'IonApp',
-  'IonAvatar',
-  'IonBackButton',
-  'IonBackdrop',
-  'IonBadge',
-  'IonBreadcrumb',
-  'IonBreadcrumbs',
-  'IonButton',
-  'IonButtons',
-  'IonCard',
-  'IonCardContent',
-  'IonCardHeader',
-  'IonCardSubtitle',
-  'IonCardTitle',
-  'IonCheckbox',
-  'IonChip',
-  'IonCol',
-  'IonContent',
-  'IonDatetime',
-  'IonDatetimeButton',
-  'IonFab',
-  'IonFabButton',
-  'IonFabList',
-  'IonFooter',
-  'IonGrid',
-  'IonHeader',
-  'IonIcon',
-  'IonImg',
-  'IonInfiniteScroll',
-  'IonInfiniteScrollContent',
-  'IonInput',
-  'IonInputPasswordToggle',
-  'IonItem',
-  'IonItemDivider',
-  'IonItemGroup',
-  'IonItemOption',
-  'IonItemOptions',
-  'IonItemSliding',
-  'IonLabel',
-  'IonList',
-  'IonListHeader',
-  'IonLoading',
-  'IonMenu',
-  'IonMenuButton',
-  'IonMenuToggle',
-  'IonModal',
-  'IonNav',
-  'IonNavLink',
-  'IonNote',
-  'IonPage',
-  'IonPicker',
-  'IonPickerColumn',
-  'IonPickerColumnOption',
-  'IonPickerLegacy',
-  'IonPopover',
-  'IonProgressBar',
-  'IonRadio',
-  'IonRadioGroup',
-  'IonRange',
-  'IonRefresher',
-  'IonRefresherContent',
-  'IonReorder',
-  'IonReorderGroup',
-  'IonRippleEffect',
-  'IonRouterOutlet',
-  'IonRow',
-  'IonSearchbar',
-  'IonSegment',
-  'IonSegmentButton',
-  'IonSelect',
-  'IonSelectOption',
-  'IonSkeletonText',
-  'IonSpinner',
-  'IonSplitPane',
-  'IonTabBar',
-  'IonTabButton',
-  'IonTabs',
-  'IonText',
-  'IonTextarea',
-  'IonThumbnail',
-  'IonTitle',
-  'IonToast',
-  'IonToggle',
-  'IonToolbar',
-];
+﻿import { readFileSync } from 'node:fs';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import IonicHtmlAliases from './ionic-html-aliases.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const componentsPath = resolve(__dirname, '../.nuxt/components.d.ts');
+
+// Read and parse component definition file
+const content = readFileSync(componentsPath, 'utf-8');
+const ionMatches = [...content.matchAll(/export\s+const\s+(Ion\w+):\s+typeof\s+import\("@ionic\/vue"\)\['\1'\]/g)];
+const ionComponents = ionMatches.map(match => match[1]);
+console.log('ignore Ionic components: ', JSON.stringify(ionComponents));
+
+// Generate component names with Lazy prefix
+const lazyIonComponents = ionComponents.map(name => `Lazy${name}`);
+
+// Basic HTML tag aliases in Ionic style
+const htmlAliases = Object.keys(IonicHtmlAliases);
+console.log('ignore Ionic Html Aliases: ', JSON.stringify(htmlAliases));
+
+// Merge all components to be ignored
+const allComponents = [...ionComponents, ...lazyIonComponents, ...htmlAliases];
 
 /**
  * @type {import('eslint').Linter.RulesRecord}
  */
 export const rules = {
-  // https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
-  'vue/no-deprecated-slot-attribute': ['error', { ignore }],
+  'vue/no-deprecated-slot-attribute': ['error', { ignore: allComponents }],
 };
 
 /**

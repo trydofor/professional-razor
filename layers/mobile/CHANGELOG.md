@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.8.0-dev.4
+
+### Minor Changes
+
+- e0eb8f2: ♻️ Ionic slot vs vue/no-deprecated-slot-attribute #229
+
 ## 0.8.0-dev.3
 
 ### Minor Changes

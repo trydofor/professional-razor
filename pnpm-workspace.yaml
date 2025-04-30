@@ -18,6 +18,7 @@ catalogs:
     "@vueuse/core": "12.8.2" #https://github.com/vueuse/vueuse/blob/v12.8.2/pnpm-workspace.yaml
     "@vueuse/nuxt": "12.8.2"
     "date-fns": "4.1.0"
+    "decimal.js": "10.5.0"
     "nuxt-swiper": "2.0.0"
     "nuxt": "3.16.2"
     "pinia": "3.0.2" # https://github.com/vuejs/pinia/blob/v3.0.2/packages/pinia/CHANGELOG.md

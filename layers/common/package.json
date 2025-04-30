@@ -1,6 +1,6 @@
 {
   "name": "@fessional/razor-common",
-  "version": "0.8.0-dev.2",
+  "version": "0.8.0-dev.3",
   "description": "common layer for mobile and desktop",
   "type": "module",
   "main": "./nuxt.config.ts",
@@ -20,6 +20,7 @@
     "@vueuse/core": "catalog:common",
     "@vueuse/nuxt": "catalog:common",
     "date-fns": "catalog:common",
+    "decimal.js": "catalog:common",
     "nuxt": "catalog:common",
     "nuxt-swiper": "catalog:common",
     "pinia": "catalog:common",

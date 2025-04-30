@@ -6,6 +6,8 @@
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
+    "build": "nuxi build",
+    "generate": "nuxi generate",
     "dev": "nuxi dev",
     "postinstall": "nuxi prepare"
   },

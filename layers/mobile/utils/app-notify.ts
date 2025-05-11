@@ -31,6 +31,6 @@ export function newAppToastThrown(event: AppToastEvent) {
   return newAppNotifyThrown(event, GlobalNotifyStyle.Toast);
 }
 
-export function newAppAlertThrown(event: AppToastEvent) {
+export function newAppAlertThrown(event: AppAlertEvent) {
   return newAppNotifyThrown(event, GlobalNotifyStyle.Alert);
 }

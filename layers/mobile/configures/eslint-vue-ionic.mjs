@@ -1,7 +1,6 @@
 ﻿import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import IonicHtmlAliases from './ionic-html-aliases.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const componentsPath = resolve(__dirname, '../.nuxt/components.d.ts');
@@ -15,12 +14,8 @@ console.log('ignore Ionic components: ', JSON.stringify(ionComponents));
 // Generate component names with Lazy prefix
 const lazyIonComponents = ionComponents.map(name => `Lazy${name}`);
 
-// Basic HTML tag aliases in Ionic style
-const htmlAliases = Object.keys(IonicHtmlAliases);
-console.log('ignore Ionic Html Aliases: ', JSON.stringify(htmlAliases));
-
 // Merge all components to be ignored
-const allComponents = [...ionComponents, ...lazyIonComponents, ...htmlAliases];
+const allComponents = [...ionComponents, ...lazyIonComponents];
 
 export const rules = {
   'vue/no-deprecated-slot-attribute': ['error', { ignore: allComponents }],

@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     '@unocss/nuxt',
+    'nuxt-svgo',
     'nuxt-swiper',
   ],
   $meta: { name: 'razor-common' },
@@ -64,6 +65,11 @@ export default defineNuxtConfig({
       },
     ],
     strategy: 'no_prefix',
+  },
+  svgo: {
+    componentPrefix: 'svg',
+    dts: true,
+    global: false,
   },
   unocss: { // https://unocss.dev/integrations/nuxt
     nuxtLayers: true,

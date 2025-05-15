@@ -22,6 +22,7 @@
     "date-fns": "catalog:common",
     "decimal.js": "catalog:common",
     "nuxt": "catalog:common",
+    "nuxt-svgo": "catalog:common",
     "nuxt-swiper": "catalog:common",
     "pinia": "catalog:common",
     "swiper": "catalog:common",
@@ -51,7 +52,6 @@
     "nuxi": "catalog:commonDev",
     "typescript": "catalog:commonDev",
     "unocss": "catalog:commonDev",
-    "vite": "catalog:commonDev",
     "vitest": "catalog:commonDev",
     "vue-tsc": "catalog:commonDev"
   }

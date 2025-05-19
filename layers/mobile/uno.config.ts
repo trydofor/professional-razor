@@ -1,8 +1,5 @@
 ﻿import { fileURLToPath } from 'url';
 import { mergeConfigs } from '@unocss/core';
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore // ERROR(vue-tsc) Could not find a declaration file for module './.nuxt/uno.config.mjs' #115
 import config from './.nuxt/uno.config.mjs';
 
 export default mergeConfigs([fileURLToPath(import.meta.url).startsWith(process.cwd()) ? config : {}, {

@@ -19,18 +19,25 @@ echo "⚠️  Will attempt to unpublish the following versions:"
 echo "$MATCHED"
 echo ""
 
+function _unpublish() {
+  local pkg=$1
+  npm unpublish "$pkg" > /dev/null 2>&1 && echo "  ✅ $pkg" || echo "  ❌ $pkg"
+}
+
 CONFIRM="no"
 for version in $MATCHED; do
   if [[ "$CONFIRM" != "all" ]]; then
-    read -p "🔆 Unpublish $PKG_NAME@$version ? (all/yes/no) " CONFIRM
-    if [[ "$CONFIRM" != "yes" && "$CONFIRM" != "all" ]]; then
+    read -p "🔆 Unpublish $version ? (all/y/n) " CONFIRM
+    if [[ "$CONFIRM" != "y" && "$CONFIRM" != "all" ]]; then
       continue
     fi
   fi
-  echo "🚮 Unpublish $PKG_NAME@$version"
-  npm unpublish "$PKG_NAME@$version"
-  npm unpublish "${PKG_NAME}-common@$version"
-  npm unpublish "${PKG_NAME}-mobile@$version"
+
+  echo "🚮 Unpublish $version"
+  _unpublish "$PKG_NAME@$version"
+  _unpublish "${PKG_NAME}-common@$version"
+  _unpublish "${PKG_NAME}-desktop@$version"
+  _unpublish "${PKG_NAME}-mobile@$version"
 done
 
-echo "✅ Done."
+echo "✅ Done All."

@@ -1,0 +1,24 @@
+{
+  "name": "@fessional/razor-desktop",
+  "version": "0.8.0-dev.6",
+  "description": "desktop layer with vuetify",
+  "type": "module",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "build": "nuxi generate",
+    "dev": "nuxi dev",
+    "postinstall": "nuxi prepare",
+    "preview": "nuxi preview",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "vuetify": "catalog:desktop",
+    "vuetify-nuxt-module": "catalog:desktop"
+  },
+  "devDependencies": {
+    "@fessional/razor-common": "workspace:*"
+  },
+  "hoistLayer": [
+    "@fessional/razor-common"
+  ]
+}

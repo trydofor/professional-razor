@@ -6,5 +6,15 @@ import transformerVariantGroup from '@unocss/transformer-variant-group';
 
 export default defineConfig({
   presets: [presetWind(), presetIcons()],
-  transformers: [transformerDirectives(), transformerVariantGroup()],
+  transformers: [
+    /**
+     * @apply --at-apply, @screen and theme()
+     */
+    transformerDirectives(),
+    /**
+     * hover:(bg-gray-400 font-medium)
+     * hover:bg-gray-400 hover:font-medium
+     */
+    transformerVariantGroup(),
+  ],
 });

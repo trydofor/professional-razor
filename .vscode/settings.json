@@ -45,6 +45,7 @@
     "vite",
     "vitejs",
     "vitest",
+    "vuetify",
     "vueuse"
   ],
   "eslint.format.enable": true,

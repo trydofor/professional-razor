@@ -10,9 +10,11 @@
     "postinstall": "nuxi prepare"
   },
   "devDependencies": {
-    "@fessional/play-spa": "workspace:*"
+    "@fessional/play-spa": "workspace:*",
+    "@fessional/razor-desktop": "workspace:*"
   },
   "hoistLayer": [
-    "@fessional/play-spa"
+    "@fessional/play-spa",
+    "@fessional/razor-desktop"
   ]
 }

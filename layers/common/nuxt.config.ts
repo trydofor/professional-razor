@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
-    defaultLocale: 'en',
+    defaultLocale: 'en-US',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'Wings-Locale',
@@ -50,15 +50,16 @@ export default defineNuxtConfig({
     experimental: {
       autoImportTranslationFunctions: true,
     },
+    lazy: true,
     locales: [
       {
-        code: 'en',
+        code: 'en-US',
         name: 'English',
         file: 'en-US.ts',
         language: 'en-US', // https://i18n.nuxtjs.org/docs/guide/seo
       },
       {
-        code: 'zh',
+        code: 'zh-CN',
         name: '简体中文',
         file: 'zh-CN.ts',
         language: 'zh-CN',

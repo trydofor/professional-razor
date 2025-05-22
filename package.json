@@ -20,7 +20,7 @@
     "dep:ci": "pnpm i --frozen-lockfile",
     "dep:up": "taze -r -l minor",
     "dev:dep": "pnpm -r -F './layers/**' i",
-    "dev:gen": "pnpm -r -F './layers/**' exec nuxi prepare",
+    "dev:gen": "pnpm -r -F './layers/**' run postinstall",
     "dev:init": "pnpm -w i && pnpm i",
     "dev:lint": "pnpm -r exec eslint .",
     "dev:test": "pnpm -r -F './layers/**' exec vitest --no-watch --coverage.enabled true",
@@ -28,13 +28,13 @@
     "play:del": "rimraf -g plays/**/node_modules/",
     "play:dep": "pnpm -r -F './plays/**' i",
     "play:exe": "pnpm -C plays/4-play-exe dev -p 3034 -o",
-    "play:gen": "pnpm -r -F './plays/**' exec nuxi prepare",
+    "play:gen": "pnpm -r -F './plays/**' run postinstall",
     "play:h5m": "pnpm -C plays/3-play-h5m dev -p 3033 -o",
     "play:web": "pnpm -C plays/2-play-web dev -p 3032 -o",
     "ver:add": "changeset",
     "ver:dev": "changeset pre enter dev",
     "ver:ved": "changeset pre exit dev",
-    "ver:status": "changeset status --verbose"
+    "ver:sts": "changeset status --verbose"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:manage",

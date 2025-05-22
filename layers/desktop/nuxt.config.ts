@@ -23,7 +23,11 @@ export default defineNuxtConfig({
       },
       // https://nuxt.vuetifyjs.com/guide/date.html
       date: {
-        adapter: 'date-fns',
+        /**
+         * ERROR: does not provide an export named 'en' for date-fns (export enUS)
+         * https://github.com/vuetifyjs/nuxt-module/issues/318
+         */
+        adapter: 'vuetify',
       },
     },
   },

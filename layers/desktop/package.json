@@ -6,6 +6,7 @@
   "main": "./nuxt.config.ts",
   "scripts": {
     "build": "nuxi generate",
+    "gen:uno": "tsx configures/vuetify-utility-classes-gen.ts",
     "dev": "nuxi dev",
     "postinstall": "nuxi prepare",
     "preview": "nuxi preview",

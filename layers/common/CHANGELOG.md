@@ -1,15 +1,19 @@
 # @fessional/razor-common
 
+## 0.8.0
+
+### Minor Changes
+
+- e0eb8f2: ♻️ Ionic slot vs vue/no-deprecated-slot-attribute #229
 
 - 11ba023 ♻️ 🚀 xxxNumStr util and decimal.js, launch example #222
 - e33595a 💚 add version to title, mts to mjs #229
-- d1bea4b ♻️  Ionic slot vs vue/no-deprecated-slot-attribute #229
+- d1bea4b ♻️ Ionic slot vs vue/no-deprecated-slot-attribute #229
 - 40960b7 ✨ onIonViewWillEnter eat thrown #226
 - 4b17c53 ✨ alignNumStr to Fixed Scale NumStr #222
 - e0eb8f2 💚 dev prerelease from 0.8.0 #217
 
 ## 0.7.10
-
 
 - a522e09 ✨ add NotifyThrown #206
 - 32e3441 ✨ ♻️ global and app NotifyStyle and Level #206
@@ -26,7 +30,6 @@
 
 ## 0.6.10
 
-
 - 696a5f0 ➕ validator, ts-md5 to common dep
 - e9b858a ✨ throttle request without ui #196
 - 821ce15 👷 renovate and minor deps
@@ -41,7 +44,6 @@
 - 929fbf6 ♻️ auto accept header for fetch/devProxy #178
 
 ## 0.5.11
-
 
 - 8bb5561 🐛 been declared, when export class #173
 - a373911 ✨ global toast,alert capturer #170
@@ -61,12 +63,11 @@
 - 41bcafe ✨ XxxThrown is not Error but throw #157
 - f827b5e ✨ global result and errors #157
 - e99aad8 💥 pre/post error handling in fetcher #147
-- 2b0b6ed ✨ 🌕 sentry collects errors in the end  #147
+- 2b0b6ed ✨ 🌕 sentry collects errors in the end #147
 - b682167 ♻️ array of onResponse hook to handle response #155
 - c973dee ♻️ remove sync fetch, global DataResult, rename xxxAsync to xxx
 
 ## 0.4.5
-
 
 - f65d091 💚 asdf + corepack + .nvmrc #145
 - fa7b4eb ✨ NumberLike support Infinity
@@ -76,9 +77,8 @@
 
 ## 0.3.14
 
-
 - 4ae4465 ✨ onClickOut or onEscKey to handle modal #137
-- 339e49d ✨  refactor ionfetch with biz error #135
+- 339e49d ✨ refactor ionfetch with biz error #135
 - d68aeb4 ✨ default options to handle 401,403 #132
 - 1d4ca29 ♻️ typesafe use of any and object #130
 - bc04d02 ♻️ ionicFetch with ref or fun
@@ -94,7 +94,6 @@
 - d237bc6 ✨ element scroll align and promise
 
 ## 0.2.7
-
 
 - bc407af ✨ add IonAlertDismiss type #108
 - d1d829e ➕ add @ionic/core, up deps

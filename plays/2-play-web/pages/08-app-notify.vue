@@ -37,40 +37,6 @@
         <IonButton @click="onModalEmit()">
           Emit 2 Modal
         </IonButton>
-        <pre>
-          reactive array:{{ JSON.stringify(reactiveArray, null, 2) }}
-          reactive object:{{ JSON.stringify(reactiveObject, null, 2) }}
-          === change ✅:1,2N; ❌:2N+1 ===
-        </pre>
-        <IonButton @click="onReactive()">
-          reactive: {{ reactiveCount }} should {{ reactiveCount == 1 || reactiveCount % 2 === 0 ? "✅" : "❌" }}
-        </IonButton>
-        <IonButton @click="onReactive(true)">
-          non-reactive for function
-        </IonButton>
-        <pre>
-          ref array:{{ JSON.stringify(refArray, null, 2) }}
-          ref object:{{ JSON.stringify(refObject, null, 2) }}
-          === change ✅:1,2N; ❌:2N+1 ===
-        </pre>
-        <IonButton @click="onRef()">
-          ref: {{ refCount }} should {{ refCount == 1 || refCount % 2 === 0 ? "✅" : "❌" }}
-        </IonButton>
-        <IonButton @click="onRef(true)">
-          non-ref for function
-        </IonButton>
-        <div v-for="ix in 2" :key="ix" :style="{ 'border-left': `${opens[ix-1].value}px solid red` }">
-          arr[{{ ix }}] = {{ opens[ix-1] }}
-        </div>
-        <div v-for="(it, ix) in opens" :key="ix" :style="{ 'border-left': `${it.value}px solid blue` }">
-          for-in = {{ it }}
-        </div>
-        <div :style="{ 'border-left': `${open0}px solid green` }">
-          const = {{ open0 }}
-        </div>
-        <IonButton @click="onTmplRef">
-          must write .value in expression
-        </IonButton>
         <IonModal :is-open="modal1">
           <IonHeader>
             <IonToolbar>
@@ -187,60 +153,5 @@ function onModalEmit() {
   modalCount2.value = ++modalCount2.value;
   toggleNotify.open('Modal1');
   toggleNotify.toggle('Modal2');
-}
-
-const reactiveArray = reactive<SafeAny>([]);
-const reactiveObject = reactive<SafeAny>({});
-const reactiveCount = ref(0);
-function onReactive(fun = false) {
-  if (reactiveArray.length === 0) {
-    reactiveArray.push({ xx: { yy: { zz: 1, fn: () => {} } } });
-    reactiveArray.push({ xx: shallowReactive({ yy: { zz: 1, fn: () => {} } }) });
-    reactiveObject[0] = { xx: { yy: { zz: 1, fn: () => {} } } };
-    reactiveObject[1] = { xx: shallowReactive({ yy: { zz: 1, fn: () => {} } }) };
-    return;
-  }
-
-  reactiveCount.value = reactiveCount.value + 1;
-  const i = reactiveCount.value % 2;
-  if (fun) {
-    reactiveArray[i].xx.yy.fn = () => console.log(reactiveCount.value);
-    reactiveObject[i].xx.yy.fn = () => console.log(reactiveCount.value);
-  }
-  else {
-    reactiveArray[i].xx.yy.zz++;
-    reactiveObject[i].xx.yy.zz++;
-  }
-}
-
-const refArray = ref<SafeAny>([]);
-const refObject = ref<SafeAny>({});
-const refCount = ref(0);
-function onRef(fun = false) {
-  if (refArray.value.length === 0) {
-    refArray.value.push({ xx: { yy: { zz: 1, fn: () => {} } } });
-    refArray.value.push({ xx: shallowRef({ yy: { zz: 1, fn: () => {} } }) });
-    refObject.value[0] = { xx: { yy: { zz: 1, fn: () => {} } } };
-    refObject.value[1] = { xx: shallowRef({ yy: { zz: 1, fn: () => {} } }) };
-    return;
-  }
-
-  refCount.value = refCount.value + 1;
-  const i = refCount.value % 2;
-  if (fun) {
-    refArray.value[i].xx.yy.fn = () => console.log(refCount.value);
-    refObject.value[i].xx.yy.fn = () => console.log(refCount.value);
-  }
-  else {
-    refArray.value[i].xx.yy.zz++;
-    refObject.value[i].xx.yy.zz++;
-  }
-}
-
-const open0 = ref(0);
-const opens = [open0, ref(0)];
-function onTmplRef() {
-  opens[0].value++;
-  opens[1].value++;
 }
 </script>

@@ -27,7 +27,7 @@
 * 💄 [UnoCss](https://unocss.dev) - 原子化 CSS [MIT]
 * 📱 [Ionic](https://ionicframework.com) - 移动端组件库 [MIT]
 * 📱 [Capacitor](https://capacitorjs.com) - 移动端原生库 [MIT]
-* 🖥️ [PrimeVue](https://primevue.org) 桌面端组件库 [MIT]
+* 🖥️ [Vuetify](https://vuetifyjs.com) 桌面端组件库 [MIT]
 * 🖥️ [Electron](https://capacitor-community.github.io/electron) - 桌面端原生库 [MIT]
 
 [MIT]: https://opensource.org/licenses/MIT

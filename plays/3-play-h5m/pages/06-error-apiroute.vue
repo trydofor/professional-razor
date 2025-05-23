@@ -49,13 +49,13 @@
       </div>
       <div class="p-4">
         <div>open devtools check console and network to see sentry error</div>
-        <div class="h-8 text-green">
+        <div class="text-green h-8">
           {{ eventText }}
         </div>
-        <div class="h-8 text-red">
+        <div class="text-red h-8">
           {{ errorText }}
         </div>
-        <div class="h-8 text-red">
+        <div class="text-red h-8">
           {{ shouldNot }}
         </div>
       </div>
@@ -114,7 +114,7 @@ async function onErrorResult() {
   } as ErrorResult;
 
   const fetchError = apiRoute.post('/echo', { body });
-  const apiResult = await ionicFetchResult(fetchError);
+  const apiResult = await appFetchResult(fetchError);
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: ErrorResult';
 }
@@ -129,7 +129,7 @@ async function onFalseResult() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { body });
-  const apiResult = await ionicFetchResult(fetchError);
+  const apiResult = await appFetchResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: FalseResult';
@@ -144,7 +144,7 @@ async function onFalseLegacy(cd = false) {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { body });
-  const apiResult = await ionicFetchResult(fetchError);
+  const apiResult = await appFetchResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: FalseResult';
@@ -168,7 +168,7 @@ async function onHeaderSession(success = true) {
   }
 
   const fetchError = apiRoute.post('/echo', { header, body });
-  const apiResult = await ionicFetchResult(fetchError);
+  const apiResult = await appFetchResult(fetchError);
   logger.info('api result', apiResult);
   shouldNot.value = success ? '' : 'should not show this';
 }
@@ -180,7 +180,7 @@ async function onStatus401() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { status: 401, body }, { ignoreResponseError: true });
-  const apiResult = await ionicFetchResult(fetchError);
+  const apiResult = await appFetchResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: Status401';
@@ -193,7 +193,7 @@ async function onStatus403() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { status: 403, body });
-  const apiResult = await ionicFetchResult(fetchError);
+  const apiResult = await appFetchResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: Status401';

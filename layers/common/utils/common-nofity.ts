@@ -17,23 +17,55 @@ export type GlobalNotifyLevelKey = keyof typeof GlobalNotifyLevel;
 export type GlobalNotifyLevelType = typeof GlobalNotifyLevel[GlobalNotifyLevelKey];
 
 /**
- * stacked by offset, reuse the absent stack
+ * stacked by offset, reuse the absent stack (unlimited is limit <= 0)
  */
-export function createStackedNotify<T>(handler: (index: number, data: T, close: () => void) => void) {
-  const toastOffset = [true, true, true, true, true]; // default 5 toasts
+export function createStackedNotify<T>(handler: (index: number, data: T, close: () => void) => void, limit = 0) {
+  const stackIndex = new Array<boolean>(Math.max(limit, 5)).fill(true);
 
-  return (data: T) => {
-    let idx = toastOffset.findIndex(v => v);
+  // unlimited
+  if (limit <= 0) return (data: T) => {
+    let idx = stackIndex.findIndex(v => v);
     if (idx === -1) {
-      idx = toastOffset.length;
-      toastOffset.push(false);
+      idx = stackIndex.length;
+      stackIndex.push(false);
     }
     else {
-      toastOffset[idx] = false;
+      stackIndex[idx] = false;
     }
 
     // no Unhandled Promise
-    void handler(idx, data, () => toastOffset[idx] = true);
+    void handler(idx, data, () => stackIndex[idx] = true);
+  };
+
+  // max limited
+  const notifyQueue: T[] = [];
+  const checkNotify = () => {
+    if (notifyQueue.length === 0) return;
+
+    const idx = stackIndex.findIndex(v => v);
+    if (idx === -1) return; // all slots are in use
+
+    const data = notifyQueue.shift()!;
+    stackIndex[idx] = false;
+
+    void handler(idx, data, () => {
+      stackIndex[idx] = true;
+      checkNotify(); // trigger next one in queue
+    });
+  };
+
+  return (data: T) => {
+    const idx = stackIndex.findIndex(v => v);
+    if (idx !== -1) {
+      stackIndex[idx] = false;
+      void handler(idx, data, () => {
+        stackIndex[idx] = true;
+        checkNotify();
+      });
+    }
+    else {
+      notifyQueue.push(data);
+    }
   };
 }
 
@@ -41,25 +73,25 @@ export function createStackedNotify<T>(handler: (index: number, data: T, close: 
  * single notify at a time, open the next one when the previous one closed
  */
 export function createSingledNotify<T>(handler: (data: T, close: () => void) => void) {
-  const alertQueue: T[] = [];
-  let notAlert = true;
+  const notifyQueue: T[] = [];
+  let notNotify = true;
 
-  const checkAlert = () => {
-    if (alertQueue.length > 0) {
-      notAlert = false;
-      const data = alertQueue.shift()!;
+  const checkNotify = () => {
+    if (notifyQueue.length > 0) {
+      notNotify = false;
+      const data = notifyQueue.shift()!;
       // no Unhandled Promise
-      void handler(data, () => checkAlert());
+      void handler(data, () => checkNotify());
     }
     else {
-      notAlert = true;
+      notNotify = true;
     }
   };
 
   return (data: T) => {
-    alertQueue.push(data);
-    if (notAlert) {
-      void checkAlert();
+    notifyQueue.push(data);
+    if (notNotify) {
+      void checkNotify();
     };
   };
 }

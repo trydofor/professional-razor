@@ -27,7 +27,7 @@ The goal is `Write App once, Apply almost anywhere`
 * 💄 [UnoCss](https://unocss.dev) - Atomic CSS [MIT]
 * 📱 [Ionic](https://ionicframework.com) - Mobile UI [MIT]
 * 📱 [Capacitor](https://capacitorjs.com) - Mobile native [MIT]
-* 🖥️ [PrimeVue](https://primevue.org) Desktop UI [MIT]
+* 🖥️ [Vuetify](https://vuetifyjs.com) Desktop UI [MIT]
 * 🖥️ [Electron](https://capacitor-community.github.io/electron) - Desktop native [MIT]
 
 [MIT]: https://opensource.org/licenses/MIT

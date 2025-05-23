@@ -1,6 +1,6 @@
 ﻿import type { LoadingOptions } from '@ionic/core';
 
-export type IonicFetchOptions<T = ApiResult> = Omit<TypedFetchOptions<T>, 'loading'> & {
+export type AppFetchOptions<T = ApiResult> = Omit<TypedFetchOptions<T>, 'loading'> & {
   loading?: TypedFetchOptions<T>['loading'] | LoadingOptions;
 };
 /**
@@ -9,11 +9,11 @@ export type IonicFetchOptions<T = ApiResult> = Omit<TypedFetchOptions<T>, 'loadi
  * @param fetching - function/Promise of DataResult
  * @param options - options to handle loading, result, error
  */
-export async function ionicFetchData<T>(
+export async function appFetchData<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: IonicFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
+  options: AppFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<DataResult<T>> {
-  const result = await ionicFetchResult(fetching, options);
+  const result = await appFetchResult(fetching, options);
   return mustDataResult(result);
 }
 
@@ -23,11 +23,11 @@ export async function ionicFetchData<T>(
  * @param fetching - function/Promise of PageResult
  * @param options - options to handle loading, result, error
  */
-export async function ionicFetchPage<T>(
+export async function appFetchPage<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: IonicFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
+  options: AppFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<PageResult<T>> {
-  const result = await ionicFetchResult(fetching, options);
+  const result = await appFetchResult(fetching, options);
   return mustPageResult(result);
 }
 
@@ -37,9 +37,9 @@ export async function ionicFetchPage<T>(
  * @param fetching - Promise of DataResult
  * @param options - alerter to show false and error
  */
-export async function ionicFetchResult<T = ApiResult>(
+export async function appFetchResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
-  options: IonicFetchOptions<T> | Ref<boolean> = globalLoadingStatus,
+  options: AppFetchOptions<T> | Ref<boolean> = globalLoadingStatus,
 ): Promise<T> {
   if (isRef(options) || isRef(options.loading) || typeof options.loading === 'function') {
     return await fetchTypedResult<T>(fetching, options as TypedFetchOptions<T>);

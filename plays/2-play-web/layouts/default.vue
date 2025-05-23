@@ -1,5 +1,5 @@
 ﻿<template>
-  <VResponsive class="border rounded">
+  <AppThrownCapturer>
     <VApp>
       <VNavigationDrawer :rail="rail" permanent>
         <VList :elevation="elevation" density="compact">
@@ -33,11 +33,21 @@
               class="text-primary"
               @click="router.back()"
             />
-            <VListItem class="dense-item" density="compact">
-              <VListItemTitle>
-                Other
-              </VListItemTitle>
-            </VListItem>
+          </VListGroup>
+          <VListGroup>
+            <template #activator="{ props }">
+              <VListItem
+                v-bind="props"
+                prepend-icon="i-mdi:routes"
+                title="Routes"
+              />
+            </template>
+            <VListItem
+              v-for="rt in pageRoutes"
+              :key="rt.path"
+              :title="`${index(rt.path)}-${String(rt.name)}`"
+              :click="rt.path"
+            />
           </VListGroup>
         </VList>
       </VNavigationDrawer>
@@ -52,7 +62,7 @@
         </VContainer>
       </VMain>
     </VApp>
-  </VResponsive>
+  </AppThrownCapturer>
 </template>
 
 <script setup lang="ts">
@@ -62,4 +72,9 @@ const router = useRouter();
 const route = useRoute();
 const rail = ref(true);
 const elevation = 2;
+
+const pageRoutes = router.getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));
+function index(path: string) {
+  return path.length > 3 ? path.slice(1, 3) : '00';
+}
 </script>

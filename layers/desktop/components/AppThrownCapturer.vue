@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { AlertOptions, ToastOptions } from '@ionic/vue';
 import type { FetchError } from 'ofetch';
 
 const props = defineProps<{

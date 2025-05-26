@@ -2,7 +2,7 @@
 import { expect, test } from 'vitest';
 
 test('defineStorage setter', () => {
-  const storage = defTypedStorage<string>({ key: 'test1' });
+  const storage = defTypedStorage<string>({ key: 'test0' });
   expect(storage.value).toEqual(Promise.resolve(null));
 
   storage.value = '1';

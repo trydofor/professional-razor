@@ -1,5 +1,15 @@
-﻿import { Preferences } from '@capacitor/preferences';
-import { type StorageLikeAsync, useStorageAsync } from '@vueuse/core';
+﻿import { type StorageLikeAsync, useStorageAsync } from '@vueuse/core';
+
+export const BrowserStorage = {
+  _id: 'BrowserStorage',
+  getItem: localStorage.getItem,
+  setItem: localStorage.setItem,
+  removeItem: localStorage.removeItem,
+} as StorageLikeAsync & { _id: string };
+
+export const StorageLikeAsyncInjectKey: InjectionKey<StorageLikeAsync> = Symbol('StorageLikeAsyncInjectKey');
+
+globalProvide(StorageLikeAsyncInjectKey, BrowserStorage);
 
 /**
  * set the value to storage
@@ -9,14 +19,12 @@ import { type StorageLikeAsync, useStorageAsync } from '@vueuse/core';
  */
 export async function setTypedStorage<T>(key: TypedKey<T>, value: Promise<T | null> | T | null) {
   const v = value instanceof Promise ? await value : value;
+  const storageLikeAsync = globalInject(StorageLikeAsyncInjectKey);
   if (v == null) {
-    await Preferences.remove({ key: key.key });
+    await storageLikeAsync.removeItem(key.key);
   }
   else {
-    await Preferences.set({
-      key: key.key,
-      value: encodeTyped(key, v),
-    });
+    await storageLikeAsync.setItem(key.key, encodeTyped(key, v));
   }
   return v;
 }
@@ -27,7 +35,8 @@ export async function setTypedStorage<T>(key: TypedKey<T>, value: Promise<T | nu
  * @returns current value
  */
 export async function getTypedStorage<T>(key: TypedKey<T>) {
-  const { value } = await Preferences.get({ key: key.key });
+  const storageLikeAsync = globalInject(StorageLikeAsyncInjectKey);
+  const value = await storageLikeAsync.getItem(key.key);
   let v: T | null = null;
   if (value != null) {
     v = decodeTyped(key, value);
@@ -72,12 +81,6 @@ export function defTypedStorage<T>(key: TypedKey<T> & { callback?: (v: T | null)
   };
 }
 
-export const storageLikeAsync: StorageLikeAsync = {
-  getItem: (key: string) => Preferences.get({ key }).then(it => it.value),
-  setItem: (key: string, value: string) => Preferences.set({ key, value }),
-  removeItem: (key: string) => Preferences.remove({ key }),
-};
-
 /**
  * ```ts
  * // cookiePrivacy example
@@ -98,6 +101,7 @@ export function useTypedStorage<T>(key: TypedKey<T> & { init?: T; mergeDefaults?
     },
   };
 
+  const storageLikeAsync = globalInject(StorageLikeAsyncInjectKey);
   if (key.init != null) {
     return useStorageAsync(key.key, key.init, storageLikeAsync, opts);
   }

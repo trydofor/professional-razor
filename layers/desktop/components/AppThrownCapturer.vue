@@ -1,13 +1,28 @@
 <template>
   <slot />
-  <IonAlert :is-open="alertOpen" v-bind="alertOptions" @did-dismiss="alertDismiss" />
-  <IonToast
+  <VDialog v-model="alertOpen" max-width="500">
+    <VCard
+      max-width="400"
+      v-bind="alertOptions"
+    >
+      <template #actions>
+        <VBtn
+          v-for="(it, ix) in alertOptions.buttons"
+          :key="ix"
+          class="ms-auto"
+          :text="it.text"
+          @click="() => alertBtnClick(it.handler)"
+        />
+      </template>
+    </VCard>
+  </VDialog>
+  <VSnackbar
     v-for="(it, ix) in toastPosition"
     :key="ix"
-    :style="{ 'margin-top': toastOffset(ix) + 'px' }"
-    :is-open="it.open"
+    v-model="it.open"
+    :style="toastOffset(ix)"
     v-bind="it.options"
-    @did-dismiss="it.dismiss"
+    @update:model-value="() => toastOnModel(it.open, it.dismiss)"
   />
 </template>
 
@@ -26,26 +41,26 @@ const localize = useLocalizeMessage();
 const defaultToastOpts = (event: AppToastEvent): ToastOptions => {
   if (typeof event === 'string') {
     return {
-      icon: ioniconsChatboxOutline,
-      position: 'bottom',
-      message: event,
+      class: 'app-alert-message',
+      location: 'bottom',
+      text: event,
     };
   }
 
   // level enhancement
   if (event.notifyLevel === GlobalNotifyLevel.Success) {
-    event.icon ??= ioniconsCheckmarkCircleOutline;
-    event.position ??= 'top';
+    event.location ??= 'top';
     event.color ??= 'success';
+    event.class ??= 'app-alert-success';
   }
   else if (event.notifyLevel === GlobalNotifyLevel.Warning) {
-    event.icon ??= ioniconsAlertCircleOutline;
-    event.position ??= 'top';
+    event.location ??= 'top';
     event.color ??= 'warning';
+    event.class ??= 'app-alert-warning';
   }
   else if (event.notifyLevel === GlobalNotifyLevel.Message) {
-    event.icon ??= ioniconsChatbubbleEllipsesOutline;
-    event.position ??= 'bottom';
+    event.location ??= 'bottom';
+    event.class ??= 'app-alert-message';
   }
 
   return event;
@@ -54,27 +69,27 @@ const defaultToastOpts = (event: AppToastEvent): ToastOptions => {
 const defaultAlertOpts = (event: AppAlertEvent): AlertOptions => {
   if (typeof event === 'string') {
     return {
-      header: localize('ui.label.notice', 'Notice'),
-      buttons: [localize('ui.button.ok', 'OK')],
-      message: event,
+      title: localize('ui.label.notice', 'Notice'),
+      buttons: [{ text: localize('ui.button.ok', 'OK') }],
+      text: event,
     };
   }
 
   // level enhancement
   if (event.notifyLevel === GlobalNotifyLevel.Success) {
-    event.header ??= localize('ui.label.success', 'Success');
-    event.buttons ??= [localize('ui.button.ok', 'OK')];
-    event.cssClass ??= 'app-alert-success';
+    event.title ??= localize('ui.label.success', 'Success');
+    event.buttons ??= [{ text: localize('ui.button.ok', 'OK') }];
+    event.class ??= 'app-alert-success';
   }
   else if (event.notifyLevel === GlobalNotifyLevel.Warning) {
-    event.header ??= localize('ui.label.warning', 'Warning');
-    event.buttons ??= [localize('ui.button.ok', 'OK')];
-    event.cssClass ??= 'app-alert-warning';
+    event.title ??= localize('ui.label.warning', 'Warning');
+    event.buttons ??= [{ text: localize('ui.button.ok', 'OK') }];
+    event.class ??= 'app-alert-warning';
   }
   else if (event.notifyLevel === GlobalNotifyLevel.Message) {
-    event.header ??= localize('ui.label.notice', 'Notice');
-    event.buttons ??= [localize('ui.button.ok', 'OK')];
-    event.cssClass ??= 'app-alert-message';
+    event.title ??= localize('ui.label.notice', 'Notice');
+    event.buttons ??= [{ text: localize('ui.button.ok', 'OK') }];
+    event.class ??= 'app-alert-message';
   }
 
   return event;
@@ -82,67 +97,67 @@ const defaultAlertOpts = (event: AppAlertEvent): AlertOptions => {
 
 const toastDuration = Math.abs(props.toastStep ?? 3000);
 const toastStep = Math.abs(props.toastStep ?? 55);
+const toastCount = 5;
 
-function toastOffset(pos: unknown, idx = 0) {
-  return (pos === 'top' || pos === 0 ? 1 : -1) * toastStep * (idx + 1);
+function toastOffset(idx = 0) {
+  let px = toastStep * (idx % toastCount);
+  if (idx >= toastCount && idx < toastCount * 2) px = px * 2; // center translate(-50%, -50%)
+  return idx < toastCount ? { top: `${px}px` } : { bottom: `${px}px` };
 }
+
 function toastIndex(pos: unknown) {
-  return pos === 'top' ? 0 : pos === 'middle' ? 1 : 2;
+  return pos === 'top' ? 0 : pos === 'center' ? 1 : 2;
 }
 
-const toastPosition = ref(Array.from({ length: 3 }, () => shallowReactive({
+function toastOnModel(open: boolean, dismiss?: () => void) {
+  if (open === false && dismiss) {
+    dismiss();
+  }
+}
+
+const toastHandler = async (index: number, data: ToastOptions, close: () => void) => {
+  const offset = toastIndex(data.location) * toastCount;
+  const itm = toastPosition.value[offset + index];
+  itm.options = data;
+  itm.open = true;
+  itm.dismiss = close;
+};
+
+const toastNotify = [
+  createStackedNotify<ToastOptions>(toastHandler, toastCount), // top
+  createStackedNotify<ToastOptions>(toastHandler, toastCount), // center
+  createStackedNotify<ToastOptions>(toastHandler, toastCount), // bottom
+];
+
+const toastPosition = ref(Array.from({ length: toastCount * toastNotify.length }, () => shallowReactive({
   open: false,
   options: {} as ToastOptions,
   dismiss: () => {},
 })));
 
-const toastHandler = async (index: number, data: ToastOptions, close: () => void) => {
-  if (index === 0) {
-    const itm = toastPosition.value[toastIndex(data.position)];
-    itm.options = data;
-    itm.open = true;
-    itm.dismiss = () => {
-      itm.open = false;
-      // must call at next tick, otherwise, the alert will not be shown
-      setTimeout(close, 0);
-    };
-  }
-  else {
-    const off = toastOffset(data.position, index);
-    const toast = await toastController.create(data);
-    toast.style.setProperty('margin-top', `${off}px`);
-    toast.onDidDismiss().finally(() => close());
-    toast.present();
-  }
-};
-
-const toastNotify = [
-  createStackedNotify<ToastOptions>(toastHandler, 5),
-  createStackedNotify<ToastOptions>(toastHandler, 5),
-  createStackedNotify<ToastOptions>(toastHandler, 5),
-];
-
 function presentToast(event: AppToastEvent) {
   const opts = props.toastOpts?.(event) ?? defaultToastOpts(event);
-  if (opts.duration == null && !opts.buttons?.length) {
-    opts.duration = toastDuration;
-  }
+  opts.timeout ??= toastDuration;
 
-  const idx = toastIndex(opts.position);
+  const idx = toastIndex(opts.location);
   toastNotify[idx](opts);
 }
 
 const alertOpen = ref(false);
-const alertOptions = shallowRef<AlertOptions>({});
+const alertOptions = shallowRef<AlertOptions>({ text: '' });
 const alertDismiss = shallowRef(() => {});
+
+function alertBtnClick(fun?: () => void) {
+  alertOpen.value = false;
+  fun?.();
+  // must call at next tick, otherwise, the alert will not be shown
+  alertDismiss.value();
+}
+
 const alertNotify = createSingledNotify<AlertOptions>((data, close) => {
   alertOptions.value = data;
   alertOpen.value = true;
-  alertDismiss.value = () => {
-    alertOpen.value = false;
-    // must call at next tick, otherwise, the alert will not be shown
-    setTimeout(close, 0);
-  };
+  alertDismiss.value = close;
 });
 
 async function presentAlert(event: AppAlertEvent) {
@@ -151,6 +166,9 @@ async function presentAlert(event: AppAlertEvent) {
 };
 
 function tryNotify(event: SafeAny, style: string) {
+  if (event != null && typeof event.message === 'string') {
+    event.text ??= event.message; //     // error.message to opt.text
+  }
   if (style === GlobalNotifyStyle.Toast) {
     presentToast(event);
     return false;
@@ -171,7 +189,7 @@ appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
     const notifyLevel = (ntc as SafeAny).notifyLevel;
     const _type = notifyStyle || ntc.type === GlobalNotifyStyle.Toast ? GlobalNotifyStyle.Toast : GlobalNotifyStyle.Alert;
     if (notifyStyle != null || notifyLevel != null) {
-      return tryNotify({ message, notifyStyle, notifyLevel }, _type);
+      return tryNotify({ text: message, notifyStyle, notifyLevel }, _type);
     }
     else {
       return tryNotify(message, _type);
@@ -181,7 +199,7 @@ appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
 
 const appThrownCapturer = useThrownCapturer();
 // handle app router changes
-const router = useIonRouter();
+const router = useRouter();
 appThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
   if (isNavigateThrown(err) && err.route) {
     router.push(err.route);
@@ -237,29 +255,31 @@ defineExpose({ presentToast, presentAlert });
 </script>
 
 <style>
-.app-alert-success .alert-title {
-  color: var(--ion-color-success);
+.app-alert-success .v-card-title {
+  color: rgb(var(--v-theme-success));
 }
 
-.app-alert-warning .alert-title {
-  color: var(--ion-color-warning);
+.app-alert-warning .v-card-title {
+  color: rgb(var(--v-theme-warning));
 }
 
-.app-alert-message .alert-title::before {
+.app-alert-message .v-card-title::before,
+.app-alert-message .v-snackbar__content::before {
   content: "💬";
   margin-right: 0.5em;
   font-size: 1.2em;
   vertical-align: middle;
 }
-
-.app-alert-success .alert-title::before {
+.app-alert-success .v-card-title::before,
+.app-alert-success .v-snackbar__content::before {
   content: "✅";
   margin-right: 0.5em;
   font-size: 1.2em;
   vertical-align: middle;
 }
 
-.app-alert-warning .alert-title::before {
+.app-alert-warning .v-card-title::before,
+.app-alert-warning .v-snackbar__content::before {
   content: "⚠️";
   margin-right: 0.5em;
   font-size: 1.2em;

@@ -1,15 +1,31 @@
 import type { EventBusKey } from '@vueuse/core';
 import { useEventBus } from '@vueuse/core';
-import type { makeVSnackbarProps } from 'vuetify/lib/components/VSnackbar/VSnackbar.d.ts';
-import type { makeVAlertProps } from 'vuetify/lib/components/VAlert/VAlert.d.ts';
+import type { Anchor } from 'vuetify';
 
-export type ToastOptions = ReturnType<typeof makeVSnackbarProps>;
-export type AlertOptions = ReturnType<typeof makeVAlertProps>;
+// https://github.com/vuetifyjs/vuetify/issues/21430
+// export type ToastOptions = Partial<ComponentProps<typeof VSnackbar>>;
 
+export type ToastOptions = {
+  text: string;
+  class?: string | string[];
+  color?: string;
+  closeDelay?: string | number;
+  location?: Anchor;
+  timeout?: string | number;
+  variant?: 'text' | 'flat' | 'elevated' | 'tonal' | 'outlined' | 'plain';
+};
 export type AppToastEvent = string | ToastOptions & { notifyLevel?: GlobalNotifyLevelType };
 export const appToastEventKey: EventBusKey<AppToastEvent> = Symbol('appToastEventKey');
 export const appToastEventBus = useEventBus<AppToastEvent>(appToastEventKey);
 
+export type AlertOptions = {
+  text: string;
+  title?: string;
+  class?: string | string[];
+  color?: string;
+  location?: Anchor;
+  buttons?: { text: string; handler?: () => void }[];
+};
 export type AppAlertEvent = string | AlertOptions & { notifyLevel?: GlobalNotifyLevelType };
 export const appAlertEventKey: EventBusKey<AppAlertEvent> = Symbol('appAlertEventKey');
 export const appAlertEventBus = useEventBus<AppAlertEvent>(appAlertEventKey);

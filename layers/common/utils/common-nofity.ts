@@ -16,6 +16,8 @@ export const GlobalNotifyLevel = {
 export type GlobalNotifyLevelKey = keyof typeof GlobalNotifyLevel;
 export type GlobalNotifyLevelType = typeof GlobalNotifyLevel[GlobalNotifyLevelKey];
 
+const closeTimeout = 100;
+
 /**
  * stacked by offset, reuse the absent stack (unlimited is limit <= 0)
  */
@@ -34,7 +36,7 @@ export function createStackedNotify<T>(handler: (index: number, data: T, close: 
     }
 
     // no Unhandled Promise
-    void handler(idx, data, () => stackIndex[idx] = true);
+    void handler(idx, data, wrapMacroTaskFunction(() => stackIndex[idx] = true, closeTimeout));
   };
 
   // max limited
@@ -48,20 +50,21 @@ export function createStackedNotify<T>(handler: (index: number, data: T, close: 
     const data = notifyQueue.shift()!;
     stackIndex[idx] = false;
 
-    void handler(idx, data, () => {
+    void handler(idx, data, wrapMacroTaskFunction(() => {
+      // must call after next tick, otherwise, the alert will not be shown
       stackIndex[idx] = true;
-      checkNotify(); // trigger next one in queue
-    });
+      checkNotify();
+    }, closeTimeout));
   };
 
   return (data: T) => {
     const idx = stackIndex.findIndex(v => v);
     if (idx !== -1) {
       stackIndex[idx] = false;
-      void handler(idx, data, () => {
+      void handler(idx, data, wrapMacroTaskFunction(() => {
         stackIndex[idx] = true;
         checkNotify();
-      });
+      }, closeTimeout));
     }
     else {
       notifyQueue.push(data);
@@ -80,8 +83,8 @@ export function createSingledNotify<T>(handler: (data: T, close: () => void) => 
     if (notifyQueue.length > 0) {
       notNotify = false;
       const data = notifyQueue.shift()!;
-      // no Unhandled Promise
-      void handler(data, () => checkNotify());
+      // no Unhandled Promise  must call after next tick, otherwise, the alert will not be shown
+      void handler(data, wrapMacroTaskFunction(checkNotify, closeTimeout));
     }
     else {
       notNotify = true;

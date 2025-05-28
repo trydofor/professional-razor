@@ -1,5 +1,4 @@
 import { it, expect } from 'vitest';
-import { CapacitorStorage } from '~/utils/app-inject';
 
 it('should override BrowserStorage with CapacitorStorage', async () => {
   console.log('Injected instance:', CapacitorStorage._id);

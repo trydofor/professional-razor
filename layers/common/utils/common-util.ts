@@ -37,3 +37,29 @@ export function flatItems<T extends NonNullable<unknown>>(items?: Array<undefine
   const arr = flatArray<T>(items);
   return arr.length === 0 ? undefined : arr.length === 1 ? arr[0] : arr;
 }
+
+/**
+ * Wraps a function to execute in the next macro task (using setTimeout), ignoring its return value.
+ */
+export function wrapMacroTaskFunction<T extends (...args: SafeAny[]) => SafeAny>(
+  fn: T,
+  timeout = 0,
+): (...args: Parameters<T>) => void {
+  return (...args: Parameters<T>) => {
+    setTimeout(() => fn(...args), timeout);
+  };
+}
+
+/**
+ * Wraps a function to execute in the next macro task (using setTimeout) and returns a Promise of its result.
+ */
+export function wrapMacroTaskPromise<T extends (...args: SafeAny[]) => SafeAny>(
+  fn: T,
+  timeout = 0,
+): (...args: Parameters<T>) => Promise<ReturnType<T>> {
+  return (...args: Parameters<T>) => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(fn(...args)), timeout);
+    });
+  };
+}

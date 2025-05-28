@@ -104,8 +104,7 @@ const toastHandler = async (index: number, data: ToastOptions, close: () => void
     itm.open = true;
     itm.dismiss = () => {
       itm.open = false;
-      // must call at next tick, otherwise, the alert will not be shown
-      setTimeout(close, 0);
+      close();
     };
   }
   else {
@@ -141,8 +140,7 @@ const alertNotify = createSingledNotify<AlertOptions>((data, close) => {
   alertOpen.value = true;
   alertDismiss.value = () => {
     alertOpen.value = false;
-    // must call at next tick, otherwise, the alert will not be shown
-    setTimeout(close, 0);
+    close();
   };
 });
 

@@ -1,9 +1,4 @@
-﻿import type { LoadingOptions } from '@ionic/core';
-
-export type AppFetchOptions<T = ApiResult> = Omit<TypedFetchOptions<T>, 'loading'> & {
-  loading?: TypedFetchOptions<T>['loading'] | LoadingOptions;
-};
-/**
+﻿/**
  * Show loading when fetching result, construct options via alerter
  *
  * @param fetching - function/Promise of DataResult
@@ -11,7 +6,7 @@ export type AppFetchOptions<T = ApiResult> = Omit<TypedFetchOptions<T>, 'loading
  */
 export async function appFetchData<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: AppFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
+  options: TypedFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<DataResult<T>> {
   const result = await appFetchResult(fetching, options);
   return mustDataResult(result);
@@ -25,7 +20,7 @@ export async function appFetchData<T>(
  */
 export async function appFetchPage<T>(
   fetching: Promise<ApiResult<T>> | (() => Promise<ApiResult<T>>),
-  options: AppFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
+  options: TypedFetchOptions<ApiResult<T>> | Ref<boolean> = globalLoadingStatus,
 ): Promise<PageResult<T>> {
   const result = await appFetchResult(fetching, options);
   return mustPageResult(result);
@@ -39,27 +34,20 @@ export async function appFetchPage<T>(
  */
 export async function appFetchResult<T = ApiResult>(
   fetching: Promise<T> | (() => Promise<T>),
-  options: AppFetchOptions<T> | Ref<boolean> = globalLoadingStatus,
+  options: TypedFetchOptions<T> | Ref<boolean> = globalLoadingStatus,
 ): Promise<T> {
-  if (isRef(options) || isRef(options.loading) || typeof options.loading === 'function') {
-    return await fetchTypedResult<T>(fetching, options as TypedFetchOptions<T>);
-  }
+  // if (isRef(options) || isRef(options.loading) || typeof options.loading === 'function') {
+  //   return await fetchTypedResult<T>(fetching, options as TypedFetchOptions<T>);
+  // }
 
-  const opts = options.loading ?? { // maybe LoadingOptions
-    spinner: 'bubbles',
-    message: 'Processing ...',
-    duration: 5000,
-  } as LoadingOptions;
-  const ui = await loadingController.create(opts);
-
-  options.loading = (sts) => {
-    if (sts == LoadingStatus.Loading) {
-      ui.present();
-    }
-    else {
-      ui.dismiss();
-    }
-  };
+  // options.loading = (sts) => {
+  //   if (sts == LoadingStatus.Loading) {
+  //     loadingController.present();
+  //   }
+  //   else {
+  //     loadingController.dismiss();
+  //   }
+  // };
 
   return await fetchTypedResult(fetching, options as TypedFetchOptions<T>);
 }

@@ -1,6 +1,11 @@
 import { registerEndpoint } from '@nuxt/test-utils/runtime';
 import { describe, expect, it, vi } from 'vitest';
 
+// Caused by: ReferenceError: splitCookiesString is not defined
+if (typeof splitCookiesString === 'undefined') {
+  (globalThis as SafeAny).splitCookiesString = (cookieString: string) => cookieString.split('; ').filter(Boolean);
+}
+
 const session = 'wings-session';
 const cookie = `session=${session}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
 

@@ -1,5 +1,7 @@
 ﻿import { fileURLToPath } from 'url';
 import { mergeConfigs } from '@unocss/core';
+// eslint-disable-next-line
+// @ts-ignore
 import config from './.nuxt/uno.config.mjs';
 
 export default mergeConfigs([fileURLToPath(import.meta.url).startsWith(process.cwd()) ? config : {}, {

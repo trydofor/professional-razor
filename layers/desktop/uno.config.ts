@@ -1,5 +1,7 @@
 ﻿import { fileURLToPath } from 'url';
 import { mergeConfigs } from '@unocss/core';
+// eslint-disable-next-line
+// @ts-ignore
 import config from './.nuxt/uno.config.mjs';
 import blocklist from './configures/vuetify-utility-classes.mjs';
 

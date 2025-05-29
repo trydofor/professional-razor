@@ -55,7 +55,15 @@
         :title="route.path == '/' ? '00' : route.path.slice(1, 3)"
         :elevation="elevation"
         density="compact"
-      />
+      >
+        <VProgressLinear
+          :active="globalLoadingStatus"
+          indeterminate
+          color="deep-purple-accent-4"
+          location="bottom"
+          absolute
+        />
+      </VAppBar>
       <VMain>
         <VContainer>
           <slot />

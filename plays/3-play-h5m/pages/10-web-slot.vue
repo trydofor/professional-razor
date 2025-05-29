@@ -1,42 +1,30 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle>Web Component slot</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton />
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="flex flex-col gap-4 p-4">
-        <div>open in editor to check the source code</div>
-        <pre class="text-sm">
+  <AppTab :title="metaName">
+    <div class="flex flex-col gap-4 p-4">
+      <div>open in editor to check the source code</div>
+      <pre class="text-sm">
 // ❌ Invalid
 &lt;IonButton&gt;
   &lt;div slot=&quot;end&quot; class=&quot;mdi:heart&quot; /&gt;
       ^`slot` attributes are deprecated.eslintvue/no-deprecated-slot-attribute
 &lt;/IonButton&gt;
         </pre>
-        <IonButton>
-          <IonIcon slot="end" :icon="ioniconsHeart" />
-        </IonButton>
-        <pre class="text-sm">
+      <IonButton>
+        <IonIcon slot="end" :icon="ioniconsHeart" />
+      </IonButton>
+      <pre class="text-sm">
 // ✅ ignored by config
 &lt;IonButton&gt;
   &lt;IonIcon slot=&quot;end&quot; :icon=&quot;ioniconsHeart&quot; /&gt;
 &lt;/IonButton&gt;
         </pre>
-        <IonButton>
-          <!-- eslint-disable-next-line vue/no-deprecated-slot-attribute -->
-          <div slot="start">
-            ❤️
-          </div>
-        </IonButton>
-        <pre class="text-sm">
+      <IonButton>
+        <!-- eslint-disable-next-line vue/no-deprecated-slot-attribute -->
+        <div slot="start">
+          ❤️
+        </div>
+      </IonButton>
+      <pre class="text-sm">
 // ✅ &lt;!-- eslint-disable-next-line --&gt;
 &lt;IonButton&gt;
   &lt;!-- eslint-disable-next-line --&gt;
@@ -45,7 +33,7 @@
   &lt;/div&gt;
 &lt;/IonButton&gt;
         </pre>
-        <pre class="text-sm">
+      <pre class="text-sm">
 // ✅ &lt;!-- eslint-disable-next-line vue/no-deprecated-slot-attribute --&gt;
 &lt;IonButton&gt;
   &lt;!-- eslint-disable-next-line vue/no-deprecated-slot-attribute --&gt;
@@ -54,13 +42,11 @@
   &lt;/div&gt;
 &lt;/IonButton&gt;
         </pre>
-      </div>
-    </IonContent>
-  </IonPage>
+    </div>
+  </AppTab>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  name: 'Web Component slot',
-});
+const metaName = 'Web Component slot';
+definePageMeta({ name: metaName });
 </script>

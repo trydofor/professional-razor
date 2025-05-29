@@ -1,3 +1,6 @@
+import type { EventBusKey } from '@vueuse/core';
+import { useEventBus } from '@vueuse/core';
+
 export const GlobalNotifyStyle = {
   Toast: 'Toast',
   Alert: 'Alert',
@@ -211,4 +214,35 @@ export function createToggledNotify<T extends Record<string, ToggleRef | ToggleF
     closeAll,
     flags,
   };
+}
+
+/**
+ * ```
+ * export const {
+ *   eventKey: appToastEventKey,
+ *   eventBus: appToastEventBus,
+ *   newThrown: newAppToastThrown,
+ * } = createAppNotify<AppToastEvent>('appToastEventKey', GlobalNotifyStyle.Toast); * ```
+ */
+export function createAppNotify<T>(keyName: string, notifyStyle: GlobalNotifyStyleType) {
+  const eventKey: EventBusKey<T> = Symbol(keyName);
+  const eventBus = useEventBus<T>(eventKey);
+  const newThrown = function (event: T) {
+    if (typeof event === 'string') {
+      return newNotifyThrown({
+        message: event,
+        notifyStyle,
+        notifyLevel: GlobalNotifyLevel.Warning,
+      });
+    }
+    else {
+      return newNotifyThrown({
+        notifyStyle,
+        notifyLevel: GlobalNotifyLevel.Warning,
+        ...event,
+      });
+    }
+  };
+
+  return { eventKey, eventBus, newThrown };
 }

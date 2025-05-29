@@ -1,38 +1,24 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle>Error Handling</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton />
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="flex flex-col gap-2">
-        <IonButton id="captureClientErrorBtn" @click="captureClientError">
-          Catch Client Error
-        </IonButton>
-        <IonButton id="throwClientBtn" @click="throwClientError">
-          Throw Client Error
-        </IonButton>
-        <IonButton id="spanServerBtn" @click="spanServerError">
-          Span Server Error
-        </IonButton>
-      </div>
-    </IonContent>
-  </IonPage>
+  <AppTab :title="metaName">
+    <div class="flex flex-col gap-2">
+      <IonButton id="captureClientErrorBtn" @click="captureClientError">
+        Catch Client Error
+      </IonButton>
+      <IonButton id="throwClientBtn" @click="throwClientError">
+        Throw Client Error
+      </IonButton>
+      <IonButton id="spanServerBtn" @click="spanServerError">
+        Span Server Error
+      </IonButton>
+    </div>
+  </AppTab>
 </template>
 
 <script lang="ts" setup>
 import { captureException, startSpan } from '@sentry/nuxt';
 
-definePageMeta({
-  name: 'Sentry Error Handling',
-});
+const metaName = 'Sentry Error Handling';
+definePageMeta({ name: metaName });
 
 function captureClientError() {
   try {

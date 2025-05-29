@@ -11,13 +11,14 @@ describe('createStackedNotify', () => {
     expect(handler).toHaveBeenCalledWith(0, 'test data', expect.any(Function));
   });
 
-  it('should reuse available indexes', () => {
+  it('should reuse available indexes', async () => {
     const handler = vi.fn();
     const notify = createStackedNotify(handler);
 
     notify('data1');
     const close = handler.mock.calls[0][2];
     close();
+    await new Promise(resolve => setTimeout(resolve, 1000));
     notify('data2');
 
     expect(handler).toHaveBeenCalledTimes(2);
@@ -39,13 +40,14 @@ describe('createStackedNotify', () => {
     expect(handler).toHaveBeenNthCalledWith(6, 5, 'data6', expect.any(Function));
   });
 
-  it('should set the index to true when the close function is called', () => {
+  it('should set the index to true when the close function is called', async () => {
     const handler = vi.fn();
     const notify = createStackedNotify(handler);
 
     notify('data1');
     const close = handler.mock.calls[0][2];
     close();
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     notify('data2');
     expect(handler).toHaveBeenNthCalledWith(2, 0, 'data2', expect.any(Function));
@@ -74,13 +76,14 @@ describe('createSingledNotify', () => {
     expect(handler).toHaveBeenCalledWith('data1', expect.any(Function));
   });
 
-  it('should call the close function to process the next notification', () => {
+  it('should call the close function to process the next notification', async () => {
     const handler = vi.fn();
     const notify = createSingledNotify(handler);
 
     notify('data1');
     const close = handler.mock.calls[0][1];
     close();
+    await new Promise(resolve => setTimeout(resolve, 1000));
     notify('data2');
 
     expect(handler).toHaveBeenCalledTimes(2);

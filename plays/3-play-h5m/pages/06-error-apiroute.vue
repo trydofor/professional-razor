@@ -1,72 +1,58 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle>Error Handling</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton />
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="flex flex-col gap-2">
-        <IonButton @click="onErrorResult">
-          Fetch Error Result
-        </IonButton>
-        <IonButton @click="onFalseResult">
-          Fetch False Result
-        </IonButton>
-        <IonButton @click="onFalseLegacy(true)">
-          Fetch False Result Legacy code
-        </IonButton>
-        <IonButton @click="onFalseLegacy(false)">
-          Fetch False Result Legacy message
-        </IonButton>
-        <IonButton @click="onStatus401">
-          Fetch Status 401, ignoreResponseError
-        </IonButton>
-        <IonButton @click="onStatus403">
-          Fetch Status 403, Notice
-        </IonButton>
-        <IonButton @click="onHeaderSession(true)">
-          Fetch Session Success
-        </IonButton>
-        <IonButton @click="onHeaderSession(false)">
-          Fetch Session Failure
-        </IonButton>
-        <IonButton @click="onIgnoredThrown">
-          Ignored Thrown
-        </IonButton>
-        <IonButton @click="onNavigateThrown">
-          Navigate Thrown to Home
-        </IonButton>
-        <IonButton color="success" @click="onClean">
-          Clean
-        </IonButton>
+  <AppTab :title="metaName">
+    <div class="flex flex-col gap-2">
+      <IonButton @click="onErrorResult">
+        Fetch Error Result
+      </IonButton>
+      <IonButton @click="onFalseResult">
+        Fetch False Result
+      </IonButton>
+      <IonButton @click="onFalseLegacy(true)">
+        Fetch False Result Legacy code
+      </IonButton>
+      <IonButton @click="onFalseLegacy(false)">
+        Fetch False Result Legacy message
+      </IonButton>
+      <IonButton @click="onStatus401">
+        Fetch Status 401, ignoreResponseError
+      </IonButton>
+      <IonButton @click="onStatus403">
+        Fetch Status 403, Notice
+      </IonButton>
+      <IonButton @click="onHeaderSession(true)">
+        Fetch Session Success
+      </IonButton>
+      <IonButton @click="onHeaderSession(false)">
+        Fetch Session Failure
+      </IonButton>
+      <IonButton @click="onIgnoredThrown">
+        Ignored Thrown
+      </IonButton>
+      <IonButton @click="onNavigateThrown">
+        Navigate Thrown to Home
+      </IonButton>
+      <IonButton color="success" @click="onClean">
+        Clean
+      </IonButton>
+    </div>
+    <div class="p-4">
+      <div>open devtools check console and network to see sentry error</div>
+      <div class="text-green h-8">
+        {{ eventText }}
       </div>
-      <div class="p-4">
-        <div>open devtools check console and network to see sentry error</div>
-        <div class="text-green h-8">
-          {{ eventText }}
-        </div>
-        <div class="text-red h-8">
-          {{ errorText }}
-        </div>
-        <div class="text-red h-8">
-          {{ shouldNot }}
-        </div>
+      <div class="text-red h-8">
+        {{ errorText }}
       </div>
-    </IonContent>
-  </IonPage>
+      <div class="text-red h-8">
+        {{ shouldNot }}
+      </div>
+    </div>
+  </AppTab>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  name: 'ApiRoute Error Handling',
-});
+const metaName = 'ApiRoute Error Handling';
+definePageMeta({ name: metaName });
 
 const errorText = ref('');
 const eventText = ref('');
@@ -114,7 +100,7 @@ async function onErrorResult() {
   } as ErrorResult;
 
   const fetchError = apiRoute.post('/echo', { body });
-  const apiResult = await appFetchResult(fetchError);
+  const apiResult = await fetchTypedResult(fetchError);
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: ErrorResult';
 }
@@ -129,7 +115,7 @@ async function onFalseResult() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { body });
-  const apiResult = await appFetchResult(fetchError);
+  const apiResult = await fetchTypedResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: FalseResult';
@@ -144,7 +130,7 @@ async function onFalseLegacy(cd = false) {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { body });
-  const apiResult = await appFetchResult(fetchError);
+  const apiResult = await fetchTypedResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: FalseResult';
@@ -168,7 +154,7 @@ async function onHeaderSession(success = true) {
   }
 
   const fetchError = apiRoute.post('/echo', { header, body });
-  const apiResult = await appFetchResult(fetchError);
+  const apiResult = await fetchTypedResult(fetchError);
   logger.info('api result', apiResult);
   shouldNot.value = success ? '' : 'should not show this';
 }
@@ -180,7 +166,7 @@ async function onStatus401() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { status: 401, body }, { ignoreResponseError: true });
-  const apiResult = await appFetchResult(fetchError);
+  const apiResult = await fetchTypedResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: Status401';
@@ -193,7 +179,7 @@ async function onStatus403() {
   } as DataResult;
 
   const fetchError = apiRoute.post('/echo', { status: 403, body });
-  const apiResult = await appFetchResult(fetchError);
+  const apiResult = await fetchTypedResult(fetchError);
 
   logger.error('should not be here, thrown before this', apiResult);
   shouldNot.value = 'should not be here: Status401';

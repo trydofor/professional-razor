@@ -1,21 +1,17 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <div class="flex flex-row items-center gap-2">
-          <DpiImg :srcset="[storm1, storm2, storm3, storm4]" alt="movingkite logo" class="p-2" />
-          <div>Index</div>
-        </div>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div v-for="rt in pageRoutes" :key="rt.path">
-        <IonButton fill="clear" :router-link="rt.path">
-          {{ index(rt.path) }} - {{ rt.name }}
-        </IonButton>
+  <AppTab>
+    <template #title>
+      <div class="flex-row flex items-center gap-2">
+        <DpiImg :srcset="[storm1, storm2, storm3, storm4]" alt="movingkite logo" class="p-2" />
+        <div>Index</div>
       </div>
-    </IonContent>
-  </IonPage>
+    </template>
+    <div v-for="rt in pageRoutes" :key="rt.path">
+      <IonButton fill="clear" :router-link="rt.path">
+        {{ index(rt.path) }} - {{ rt.name }}
+      </IonButton>
+    </div>
+  </AppTab>
 </template>
 
 <script setup lang="ts">

@@ -1,58 +1,44 @@
 ﻿<template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle>Autosize</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton />
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div>
-        <div class="bg-gray-200 p-2">
-          💎 with v-auto-size, the transition-height goes smoothly as 1x
-        </div>
-        <div class="py-1">
-          Debounce (ms):
-          <input v-model.number="debounce" placeholder="debounce" type="number">
-        </div>
-        <div class="border-1 border-indigo">
-          <div v-for="it in item1" :key="it.id">
-            <div class="flex flex-row items-center gap-1 p-4" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
-              <div>✅ auto-size {{ it.title }}</div>
-              <div
-                class="size-6"
-                :class="show1 === it.id ? 'i-mdi:arrow-up-circle-outline' :'i-mdi:arrow-down-circle-outline'"
-                @click="toggle1(it.id)"
-              />
-            </div>
-            <div v-autosize:height="{ debug: it.details, debounce: debounce }" class="overflow-hidden transition-height duration-500">
-              <div
-                v-show="show1 === it.id"
-                class="animate-slide-in-down animate-duration-500 bg-gray-200 p-4"
-                @click="toggle1(it.id)"
-              >
-                {{ it.details }}
-              </div>
+  <AppTab :title="metaName">
+    <div>
+      <div class="bg-gray-200 p-2">
+        💎 with v-auto-size, the transition-height goes smoothly as 1x
+      </div>
+      <div class="py-1">
+        Debounce (ms):
+        <input v-model.number="debounce" placeholder="debounce" type="number">
+      </div>
+      <div class="border-1 border-indigo">
+        <div v-for="it in item1" :key="it.id">
+          <div class="flex-row flex items-center gap-1 p-4" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
+            <div>✅ auto-size {{ it.title }}</div>
+            <div
+              class="size-6"
+              :class="show1 === it.id ? 'i-mdi:arrow-up-circle-outline' :'i-mdi:arrow-down-circle-outline'"
+              @click="toggle1(it.id)"
+            />
+          </div>
+          <div v-autosize:height="{ debug: it.details, debounce: debounce }" class="overflow-hidden transition-height duration-500">
+            <div
+              v-show="show1 === it.id"
+              class="animate-slide-in-down animate-duration-500 bg-gray-200 p-4"
+              @click="toggle1(it.id)"
+            >
+              {{ it.details }}
             </div>
           </div>
         </div>
-        <div class="bg-red-200 p-4">
-          Others
-        </div>
       </div>
-    </IonContent>
-  </IonPage>
+      <div class="bg-red-200 p-4">
+        Others
+      </div>
+    </div>
+  </AppTab>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  name: 'Showcase of v-autosize',
-});
+const metaName = 'Showcase of v-autosize';
+definePageMeta({ name: metaName });
 
 const debounce = ref(500);
 const show1 = ref(0);

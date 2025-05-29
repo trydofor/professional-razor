@@ -4,6 +4,7 @@
     <VCard
       max-width="400"
       v-bind="alertOptions"
+      :text="alertOptions.message"
     >
       <template #actions>
         <VBtn
@@ -22,6 +23,7 @@
     v-model="it.open"
     :style="toastOffset(ix)"
     v-bind="it.options"
+    :text="alertOptions.message"
     @update:model-value="() => toastOnModel(it.open, it.dismiss)"
   />
 </template>
@@ -43,7 +45,7 @@ const defaultToastOpts = (event: AppToastEvent): ToastOptions => {
     return {
       class: 'app-alert-message',
       location: 'bottom',
-      text: event,
+      message: event,
     };
   }
 
@@ -71,7 +73,7 @@ const defaultAlertOpts = (event: AppAlertEvent): AlertOptions => {
     return {
       title: localize('ui.label.notice', 'Notice'),
       buttons: [{ text: localize('ui.button.ok', 'OK') }],
-      text: event,
+      message: event,
     };
   }
 
@@ -144,7 +146,7 @@ function presentToast(event: AppToastEvent) {
 }
 
 const alertOpen = ref(false);
-const alertOptions = shallowRef<AlertOptions>({ text: '' });
+const alertOptions = shallowRef<AlertOptions>({ message: '' });
 const alertDismiss = shallowRef(() => {});
 
 function alertBtnClick(fun?: () => void) {
@@ -166,9 +168,6 @@ async function presentAlert(event: AppAlertEvent) {
 };
 
 function tryNotify(event: SafeAny, style: string) {
-  if (event != null && typeof event.message === 'string') {
-    event.text ??= event.message; //     // error.message to opt.text
-  }
   if (style === GlobalNotifyStyle.Toast) {
     presentToast(event);
     return false;
@@ -189,7 +188,7 @@ appNoticeCapturer.put({ id: 'AppNoticeThrown', order: 1000, hook: (ntc) => {
     const notifyLevel = (ntc as SafeAny).notifyLevel;
     const _type = notifyStyle || ntc.type === GlobalNotifyStyle.Toast ? GlobalNotifyStyle.Toast : GlobalNotifyStyle.Alert;
     if (notifyStyle != null || notifyLevel != null) {
-      return tryNotify({ text: message, notifyStyle, notifyLevel }, _type);
+      return tryNotify({ message, notifyStyle, notifyLevel }, _type);
     }
     else {
       return tryNotify(message, _type);

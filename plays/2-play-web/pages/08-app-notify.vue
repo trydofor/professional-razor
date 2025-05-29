@@ -21,6 +21,9 @@
     <VBtn @click="onAlertThrow()">
       Throw 1 Notice
     </VBtn>
+    <VBtn @click="onShowLoading()">
+      Loading Bar 5s
+    </VBtn>
   </div>
 </template>
 
@@ -34,22 +37,22 @@ function onToastEmit(level?: GlobalNotifyLevelType) {
   if (level == null) {
     appToastEventBus.emit({
       location: 'center',
-      text: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastEventBus`,
     });
     appToastEventBus.emit({
       location: 'center',
       notifyLevel: GlobalNotifyLevel.Success,
-      text: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastEventBus`,
     });
     appToastEventBus.emit({
       location: 'center',
       notifyLevel: GlobalNotifyLevel.Warning,
-      text: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastEventBus`,
     });
   }
   else {
     appToastEventBus.emit({
-      text: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastEventBus`,
       notifyLevel: level,
     });
     if (level === GlobalNotifyLevel.Message) {
@@ -61,9 +64,9 @@ function onToastEmit(level?: GlobalNotifyLevelType) {
 let alertCount = 0;
 function onAlertEmit() {
   appAlertEventBus.emit(`message-${++alertCount} emit from appAlertEventBus`);
-  appAlertEventBus.emit({ text: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Message });
-  appAlertEventBus.emit({ text: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Success });
-  appAlertEventBus.emit({ text: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Warning });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Message });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Success });
+  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Warning });
 }
 
 function onToastThrow() {
@@ -71,7 +74,7 @@ function onToastThrow() {
     throw newAppToastThrown(`message-${++toastCount} by NotifyThrow A`);
   }
   else {
-    throw newAppToastThrown({ text: `message-${++toastCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
+    throw newAppToastThrown({ message: `message-${++toastCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
   }
 }
 function onAlertThrow() {
@@ -79,7 +82,14 @@ function onAlertThrow() {
     throw newAppAlertThrown(`message-${++alertCount} by NotifyThrow A`);
   }
   else {
-    throw newAppAlertThrown({ text: `message-${++alertCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
+    throw newAppAlertThrown({ message: `message-${++alertCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
   }
+}
+
+function onShowLoading() {
+  globalLoadingStatus.value = true;
+  setTimeout(() => {
+    globalLoadingStatus.value = false;
+  }, 5000);
 }
 </script>

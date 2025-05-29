@@ -1,49 +1,35 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle>I18n Notice</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton />
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div>
-        <div v-if="toggleGlobal">
-          <NoticeSender title="Global" />
-        </div>
-        <div v-else>
-          <NoticeContainer>
-            <NoticeSender title="Inner" />
-          </NoticeContainer>
-        </div>
-        <div>
-          <IonButton
-            v-for="lcl in locales"
-            :key="lcl.code"
-            color="secondary"
-            :disabled="locale === lcl.code"
-            @click.prevent.stop="setLocale(lcl.code)"
-          >
-            {{ lcl.code }} - {{ lcl.name }}
-          </IonButton>
-          <IonToggle v-model="toggleGlobal">
-            {{ toggleGlobal ? 'Global':'Inner' }} Capturer
-          </IonToggle>
-        </div>
+  <AppTab :title="metaName">
+    <div>
+      <div v-if="toggleGlobal">
+        <NoticeSender title="Global" />
       </div>
-    </IonContent>
-  </IonPage>
+      <div v-else>
+        <NoticeContainer>
+          <NoticeSender title="Inner" />
+        </NoticeContainer>
+      </div>
+      <div>
+        <IonButton
+          v-for="lcl in locales"
+          :key="lcl.code"
+          color="secondary"
+          :disabled="locale === lcl.code"
+          @click.prevent.stop="setLocale(lcl.code)"
+        >
+          {{ lcl.code }} - {{ lcl.name }}
+        </IonButton>
+        <IonToggle v-model="toggleGlobal">
+          {{ toggleGlobal ? 'Global':'Inner' }} Capturer
+        </IonToggle>
+      </div>
+    </div>
+  </AppTab>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  name: 'I18n Notice and Thrown',
-});
+const metaName = 'I18n Notice and Thrown';
+definePageMeta({ name: metaName });
 
 const toggleGlobal = ref(false);
 const { locale, locales, setLocale } = useI18n();

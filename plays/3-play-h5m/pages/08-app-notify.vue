@@ -1,119 +1,108 @@
 <template>
-  <IonPage>
-    <IonHeader>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonBackButton />
-        </IonButtons>
-        <IonTitle>App Notify Toast/Alert/Modal</IonTitle>
-        <IonButtons slot="end">
-          <IonMenuButton />
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <div class="mt-2 flex flex-col gap-2">
-        <IonButton @click="onToastEmit(GlobalNotifyLevel.Message)">
-          Emit 2 Toast Message
-        </IonButton>
-        <IonButton @click="onToastEmit(GlobalNotifyLevel.Success)">
-          Emit Toast Success
-        </IonButton>
-        <IonButton @click="onToastEmit(GlobalNotifyLevel.Warning)">
-          Emit Toast Warning
-        </IonButton>
-        <IonButton @click="onToastEmit()">
-          Emit 3 Toast Middle
-        </IonButton>
-        <IonButton @click="onAlertEmit()">
-          Emit 4 Notice
-        </IonButton>
-        <IonButton @click="onToastThrow()">
-          Throw a Toast
-        </IonButton>
-        <IonButton @click="onAlertThrow()">
-          Throw 1 Notice
-        </IonButton>
-        <IonButton @click="onModalEmit()">
-          Emit 2 Modal
-        </IonButton>
-        <pre>
+  <AppTab :title="metaName">
+    <div class="mt-2 flex flex-col gap-2">
+      <IonButton @click="onToastEmit(GlobalNotifyLevel.Message)">
+        Emit 2 Toast Message
+      </IonButton>
+      <IonButton @click="onToastEmit(GlobalNotifyLevel.Success)">
+        Emit Toast Success
+      </IonButton>
+      <IonButton @click="onToastEmit(GlobalNotifyLevel.Warning)">
+        Emit Toast Warning
+      </IonButton>
+      <IonButton @click="onToastEmit()">
+        Emit 3 Toast Middle
+      </IonButton>
+      <IonButton @click="onAlertEmit()">
+        Emit 4 Notice
+      </IonButton>
+      <IonButton @click="onToastThrow()">
+        Throw a Toast
+      </IonButton>
+      <IonButton @click="onAlertThrow()">
+        Throw 1 Notice
+      </IonButton>
+      <IonButton @click="onShowLoading()">
+        Loading Bar 5s
+      </IonButton>
+      <IonButton @click="onModalEmit()">
+        Emit 2 Modal
+      </IonButton>
+      <pre>
           reactive array:{{ JSON.stringify(reactiveArray, null, 2) }}
           reactive object:{{ JSON.stringify(reactiveObject, null, 2) }}
           === change ✅:1,2N; ❌:2N+1 ===
         </pre>
-        <IonButton @click="onReactive()">
-          reactive: {{ reactiveCount }} should {{ reactiveCount == 1 || reactiveCount % 2 === 0 ? "✅" : "❌" }}
-        </IonButton>
-        <IonButton @click="onReactive(true)">
-          non-reactive for function
-        </IonButton>
-        <pre>
+      <IonButton @click="onReactive()">
+        reactive: {{ reactiveCount }} should {{ reactiveCount == 1 || reactiveCount % 2 === 0 ? "✅" : "❌" }}
+      </IonButton>
+      <IonButton @click="onReactive(true)">
+        non-reactive for function
+      </IonButton>
+      <pre>
           ref array:{{ JSON.stringify(refArray, null, 2) }}
           ref object:{{ JSON.stringify(refObject, null, 2) }}
           === change ✅:1,2N; ❌:2N+1 ===
         </pre>
-        <IonButton @click="onRef()">
-          ref: {{ refCount }} should {{ refCount == 1 || refCount % 2 === 0 ? "✅" : "❌" }}
-        </IonButton>
-        <IonButton @click="onRef(true)">
-          non-ref for function
-        </IonButton>
-        <div v-for="ix in 2" :key="ix" :style="{ 'border-left': `${opens[ix-1].value}px solid red` }">
-          arr[{{ ix }}] = {{ opens[ix-1] }}
-        </div>
-        <div v-for="(it, ix) in opens" :key="ix" :style="{ 'border-left': `${it.value}px solid blue` }">
-          for-in = {{ it }}
-        </div>
-        <div :style="{ 'border-left': `${open0}px solid green` }">
-          const = {{ open0 }}
-        </div>
-        <IonButton @click="onTmplRef">
-          must write .value in expression
-        </IonButton>
-        <IonModal :is-open="modal1">
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Modal A-{{ modalCount1 }}</IonTitle>
-              <IonButtons slot="start">
-                <IonButton @click="toggleNotify.close('Modal1')">
-                  <IonIcon slot="icon-only" :icon="ioniconsChevronBack" />
-                </IonButton>
-              </IonButtons>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent class="ion-padding">
-            <p>
-              Modal A-{{ modalCount1 }} content
-            </p>
-          </IonContent>
-        </IonModal>
-        <IonModal :is-open="modal2">
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Modal B-{{ modalCount2 }}</IonTitle>
-              <IonButtons slot="start">
-                <IonButton @click="toggleNotify.toggle('Modal2')">
-                  <IonIcon slot="icon-only" :icon="ioniconsChevronBack" />
-                </IonButton>
-              </IonButtons>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent class="ion-padding">
-            <p>
-              Modal B-{{ modalCount2 }} content
-            </p>
-          </IonContent>
-        </IonModal>
+      <IonButton @click="onRef()">
+        ref: {{ refCount }} should {{ refCount == 1 || refCount % 2 === 0 ? "✅" : "❌" }}
+      </IonButton>
+      <IonButton @click="onRef(true)">
+        non-ref for function
+      </IonButton>
+      <div v-for="ix in 2" :key="ix" :style="{ 'border-left': `${opens[ix-1].value}px solid red` }">
+        arr[{{ ix }}] = {{ opens[ix-1] }}
       </div>
-    </IonContent>
-  </IonPage>
+      <div v-for="(it, ix) in opens" :key="ix" :style="{ 'border-left': `${it.value}px solid blue` }">
+        for-in = {{ it }}
+      </div>
+      <div :style="{ 'border-left': `${open0}px solid green` }">
+        const = {{ open0 }}
+      </div>
+      <IonButton @click="onTmplRef">
+        must write .value in expression
+      </IonButton>
+      <IonModal :is-open="modal1">
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Modal A-{{ modalCount1 }}</IonTitle>
+            <IonButtons slot="start">
+              <IonButton @click="toggleNotify.close('Modal1')">
+                <IonIcon slot="icon-only" :icon="ioniconsChevronBack" />
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent class="ion-padding">
+          <p>
+            Modal A-{{ modalCount1 }} content
+          </p>
+        </IonContent>
+      </IonModal>
+      <IonModal :is-open="modal2">
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Modal B-{{ modalCount2 }}</IonTitle>
+            <IonButtons slot="start">
+              <IonButton @click="toggleNotify.toggle('Modal2')">
+                <IonIcon slot="icon-only" :icon="ioniconsChevronBack" />
+              </IonButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent class="ion-padding">
+          <p>
+            Modal B-{{ modalCount2 }} content
+          </p>
+        </IonContent>
+      </IonModal>
+    </div>
+  </AppTab>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  name: 'App Notify Toast/Alert/Modal',
-});
+const metaName = 'App Notify Toast/Alert/Modal';
+definePageMeta({ name: metaName });
 
 let toastCount = 0;
 function onToastEmit(level?: GlobalNotifyLevelType) {
@@ -242,5 +231,12 @@ const opens = [open0, ref(0)];
 function onTmplRef() {
   opens[0].value++;
   opens[1].value++;
+}
+
+function onShowLoading() {
+  globalLoadingStatus.value = true;
+  setTimeout(() => {
+    globalLoadingStatus.value = false;
+  }, 5000);
 }
 </script>

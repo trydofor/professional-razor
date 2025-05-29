@@ -1,4 +1,3 @@
-## https://pnpm.io/workspaces
 packages:
   - 'layers/*'
   - 'plays/*'
@@ -7,32 +6,32 @@ packages:
 ## https://github.com/nuxt/nuxt/blob/v3.13.2/package.json
 catalogs:
   manage:
-    "@changesets/cli": "2.29.2"
+    "@changesets/cli": "2.29.4"
     "pnpm-hoist-layer": "1.2.0"
     "rimraf": "6.0.1"
-    "taze": "19.0.4" # https://github.com/antfu-collective/taze/releases
+    "taze": "19.1.0" # https://github.com/antfu-collective/taze/releases
   common:
-    "@nuxtjs/i18n": "9.5.3" # https://github.com/nuxt-modules/i18n/blob/main/package.json
+    "@nuxtjs/i18n": "9.5.4" # https://github.com/nuxt-modules/i18n/blob/main/package.json
     "@pinia/nuxt": "0.11.0" # https://github.com/vuejs/pinia/blob/v3.0.2/packages/nuxt/package.json
-    "@sentry/nuxt": "9.13.0" # https://github.com/getsentry/sentry-javascript/blob/develop/packages/nuxt/package.json
+    "@sentry/nuxt": "9.23.0" # https://github.com/getsentry/sentry-javascript/blob/develop/packages/nuxt/package.json
     "@vueuse/core": "12.8.2" #https://github.com/vueuse/vueuse/blob/v12.8.2/pnpm-workspace.yaml
     "@vueuse/nuxt": "12.8.2"
     "date-fns": "4.1.0"
-    "nuxt-swiper": "2.0.0"
+    "nuxt-swiper": "2.0.1"
     "nuxt": "3.16.2"
     "pinia": "3.0.2" # https://github.com/vuejs/pinia/blob/v3.0.2/packages/pinia/CHANGELOG.md
-    "swiper": "11.2.6" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
+    "swiper": "11.2.8" # https://github.com/cpreston321/nuxt-swiper/blob/v2.0.0/package.json
     "ts-md5": "1.3.1"
     "ulid": "3.0.0"
-    "validator": "13.15.0" # https://github.com/validatorjs/validator.js/releases
-    "vue-router": "4.5.0" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
-    "vue": "3.5.13" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
+    "validator": "13.15.15" # https://github.com/validatorjs/validator.js/releases
+    "vue-router": "4.5.1" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
+    "vue": "3.5.16" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
   commonDev:
-    "@iconify-json/line-md": "1.2.6"
+    "@iconify-json/line-md": "1.2.8"
     "@iconify-json/mdi": "1.2.3"
-    "@nuxt/eslint": "1.3.0" # https://github.com/nuxt/eslint/blob/v1.3.0/pnpm-workspace.yaml check nuxt
-    "@nuxt/test-utils": "3.17.2" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
-    "@types/validator": "13.15.0"
+    "@nuxt/eslint": "1.4.1" # https://github.com/nuxt/eslint/blob/v1.3.0/pnpm-workspace.yaml check nuxt
+    "@nuxt/test-utils": "3.19.1" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
+    "@types/validator": "13.15.1"
     "@unocss/core": "65.5.0" # https://github.com/unocss/unocss/blob/v65.5.0/pnpm-workspace.yaml
     "@unocss/eslint-config": "65.5.0"
     "@unocss/nuxt": "65.5.0"
@@ -40,21 +39,20 @@ catalogs:
     "@unocss/preset-wind": "65.5.0"
     "@unocss/transformer-directives": "65.5.0"
     "@unocss/transformer-variant-group": "65.5.0"
-    "@vitest/coverage-v8": "3.1.1" # same as vitest https://github.com/vitest-dev/vitest/blob/v3.0.5/packages/coverage-v8/package.json
+    "@vitest/coverage-v8": "3.1.4" # same as vitest https://github.com/vitest-dev/vitest/blob/v3.0.5/packages/coverage-v8/package.json
     "@vue/test-utils": "2.4.6"
-    "eslint": "9.23.0" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
-    "happy-dom": "17.4.4"  # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
-    "nuxi": "3.24.0" # by nuxt # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json @nuxt/cli
-    "typescript": "5.8.2" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
+    "eslint": "9.27.0" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
+    "happy-dom": "17.5.6"  # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
+    "nuxi": "3.25.1" # by nuxt # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json @nuxt/cli
+    "typescript": "5.8.3" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
     "unocss": "65.5.0"
-    "vite": "6.2.4" # mute 'unmet peer' # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
-    "vitest": "3.1.1" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
-    "vue-tsc": "2.2.8" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
+    "vite": "6.3.5" # mute 'unmet peer' # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
+    "vitest": "3.1.4" # https://github.com/nuxt/nuxt/blob/v3.16.2/packages/nuxt/package.json
+    "vue-tsc": "2.2.10" # https://github.com/nuxt/nuxt/blob/v3.16.2/package.json
   mobile:
     "@capacitor/preferences": "7.0.1" # https://github.com/ionic-team/ionic-framework/blob/v8.5.4/core/package.json
-    "@ionic/core": "8.5.4" # by @ionic/vue, need types
-    "@ionic/vue-router": "8.5.4" # https://github.com/ionic-team/ionic-framework/releases
-    "@ionic/vue": "8.5.4"
+    "@ionic/core": "8.5.8" # by @ionic/vue, need types
+    "@ionic/vue-router": "8.5.8" # https://github.com/ionic-team/ionic-framework/releases
+    "@ionic/vue": "8.5.8"
     "@nuxtjs/ionic": "0.18.0" # https://github.com/nuxt-modules/ionic
     "ionicons": "7.4.0" # by @ionic/vue
-

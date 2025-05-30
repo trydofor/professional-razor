@@ -2,11 +2,11 @@
   <AppTab :title="metaName">
     <div>
       <div v-if="toggleGlobal">
-        <NoticeSender title="Global" />
+        <NoticeSender title="Global" :toast="true" />
       </div>
       <div v-else>
         <NoticeContainer>
-          <NoticeSender title="Inner" />
+          <NoticeSender title="Inner" :toast="false" />
         </NoticeContainer>
       </div>
       <div>

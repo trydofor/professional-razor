@@ -13,12 +13,7 @@ export type ToastOptions = {
   variant?: 'text' | 'flat' | 'elevated' | 'tonal' | 'outlined' | 'plain';
 };
 export type AppToastEvent = string | ToastOptions & { notifyLevel?: GlobalNotifyLevelType };
-
-export const {
-  eventKey: appToastEventKey,
-  eventBus: appToastEventBus,
-  newThrown: newAppToastThrown,
-} = createAppNotify<AppToastEvent>('appToastEventKey', GlobalNotifyStyle.Toast);
+export const appToastNotify = createAppNotify<AppToastEvent>('appToastEventKey', GlobalNotifyStyle.Toast);
 
 export type AlertOptions = {
   message: string;
@@ -29,9 +24,4 @@ export type AlertOptions = {
   buttons?: { text: string; handler?: () => void }[];
 };
 export type AppAlertEvent = string | AlertOptions & { notifyLevel?: GlobalNotifyLevelType };
-
-export const {
-  eventKey: appAlertEventKey,
-  eventBus: appAlertEventBus,
-  newThrown: newAppAlertThrown,
-} = createAppNotify<AppAlertEvent>('appAlertEventKey', GlobalNotifyStyle.Alert);
+export const appAlertNotify = createAppNotify<AppAlertEvent>('appAlertEventKey', GlobalNotifyStyle.Alert);

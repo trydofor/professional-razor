@@ -23,7 +23,7 @@
     v-model="it.open"
     :style="toastOffset(ix)"
     v-bind="it.options"
-    :text="alertOptions.message"
+    :text="it.options.message"
     @update:model-value="() => toastOnModel(it.open, it.dismiss)"
   />
 </template>
@@ -248,8 +248,8 @@ else {
 }
 
 //
-appToastEventBus.on(event => presentToast(event));
-appAlertEventBus.on(event => presentAlert(event));
+appToastNotify.eventBus.on(event => presentToast(event));
+appAlertNotify.eventBus.on(event => presentAlert(event));
 defineExpose({ presentToast, presentAlert });
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="mt-2 flex flex-col gap-2">
     <IonButton @click="onToast">
-      {{ prop.title }} Toast
+      {{ prop.title }} {{ toast ? 'Toast' :'Alert' }}
     </IonButton>
     <IonButton @click="onAlert">
       {{ prop.title }} Alert
@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-const prop = defineProps<{ title: string }>();
+const prop = defineProps<{ title: string; toast?: boolean }>();
 const noticeCapturer = useNoticeCapturer();
 
 const toggleThrowAlert = ref(true);

@@ -218,11 +218,8 @@ export function createToggledNotify<T extends Record<string, ToggleRef | ToggleF
 
 /**
  * ```
- * export const {
- *   eventKey: appToastEventKey,
- *   eventBus: appToastEventBus,
- *   newThrown: newAppToastThrown,
- * } = createAppNotify<AppToastEvent>('appToastEventKey', GlobalNotifyStyle.Toast); * ```
+ * export const appToastNotify = createAppNotify<AppToastEvent>('appToastEventKey', GlobalNotifyStyle.Toast);
+ * ```
  */
 export function createAppNotify<T>(keyName: string, notifyStyle: GlobalNotifyStyleType) {
   const eventKey: EventBusKey<T> = Symbol(keyName);

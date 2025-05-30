@@ -107,55 +107,55 @@ definePageMeta({ name: metaName });
 let toastCount = 0;
 function onToastEmit(level?: GlobalNotifyLevelType) {
   if (level == null) {
-    appToastEventBus.emit({
+    appToastNotify.eventBus.emit({
       icon: ioniconsAlertCircleOutline,
       position: 'middle',
-      message: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastNotify.eventBus`,
     });
-    appToastEventBus.emit({
+    appToastNotify.eventBus.emit({
       position: 'middle',
       notifyLevel: GlobalNotifyLevel.Success,
-      message: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastNotify.eventBus`,
     });
-    appToastEventBus.emit({
+    appToastNotify.eventBus.emit({
       position: 'middle',
       notifyLevel: GlobalNotifyLevel.Warning,
-      message: `message-${++toastCount} emit from appToastEventBus`,
+      message: `message-${++toastCount} emit from appToastNotify.eventBus`,
     });
   }
   else {
-    appToastEventBus.emit({
-      message: `message-${++toastCount} emit from appToastEventBus`,
+    appToastNotify.eventBus.emit({
+      message: `message-${++toastCount} emit from appToastNotify.eventBus`,
       notifyLevel: level,
     });
     if (level === GlobalNotifyLevel.Message) {
-      appToastEventBus.emit(`message-${++toastCount} emit from appToastEventBus`);
+      appToastNotify.eventBus.emit(`message-${++toastCount} emit from appToastNotify.eventBus`);
     }
   }
 }
 
 let alertCount = 0;
 function onAlertEmit() {
-  appAlertEventBus.emit(`message-${++alertCount} emit from appAlertEventBus`);
-  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Message });
-  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Success });
-  appAlertEventBus.emit({ message: `message-${++alertCount} emit from appAlertEventBus`, notifyLevel: GlobalNotifyLevel.Warning });
+  appAlertNotify.eventBus.emit(`message-${++alertCount} emit from appAlertNotify.eventBus`);
+  appAlertNotify.eventBus.emit({ message: `message-${++alertCount} emit from appAlertNotify.eventBus`, notifyLevel: GlobalNotifyLevel.Message });
+  appAlertNotify.eventBus.emit({ message: `message-${++alertCount} emit from appAlertNotify.eventBus`, notifyLevel: GlobalNotifyLevel.Success });
+  appAlertNotify.eventBus.emit({ message: `message-${++alertCount} emit from appAlertNotify.eventBus`, notifyLevel: GlobalNotifyLevel.Warning });
 }
 
 function onToastThrow() {
   if (toastCount % 2 === 0) {
-    throw newAppToastThrown(`message-${++toastCount} by NotifyThrow A`);
+    throw appToastNotify.newThrown(`message-${++toastCount} by NotifyThrow A`);
   }
   else {
-    throw newAppToastThrown({ message: `message-${++toastCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
+    throw appToastNotify.newThrown({ message: `message-${++toastCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
   }
 }
 function onAlertThrow() {
   if (alertCount % 2 === 0) {
-    throw newAppAlertThrown(`message-${++alertCount} by NotifyThrow A`);
+    throw appAlertNotify.newThrown(`message-${++alertCount} by NotifyThrow A`);
   }
   else {
-    throw newAppAlertThrown({ message: `message-${++alertCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
+    throw appAlertNotify.newThrown({ message: `message-${++alertCount} by NotifyThrow B`, notifyLevel: GlobalNotifyLevel.Message });
   }
 }
 

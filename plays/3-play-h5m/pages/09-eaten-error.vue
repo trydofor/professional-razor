@@ -31,7 +31,7 @@ onIonViewDidEnter(async () => {
 
 onIonViewWillLeave(async () => {
   vueErrorHandler.handleCatch(() => {
-    throw newAppAlertThrown('Manually handle to vue');
+    throw appAlertNotify.newThrown('Manually handle to vue');
   });
 });
 </script>

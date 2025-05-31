@@ -1,8 +1,8 @@
 {
-  "name": "@fessional/play-h5m",
+  "name": "@fessional/play-mob",
   "version": "0.0.1",
   "private": true,
-  "description": "test and play for mobile/h5m",
+  "description": "test and play for mobile/mob",
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {

@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  extends: ['@fessional/play-h5m'],
+  extends: ['@fessional/play-mob'],
 });

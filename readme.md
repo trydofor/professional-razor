@@ -8,7 +8,7 @@
 
 Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase,
 
-* Mobile (H5/App) - Web, Android, iOS
+* Mobile (MB/App) - Web, Android, iOS
 * Desktop (PC/Exe) - Web, MacOS, Linux, Window
 
 Suitable for teams and app scenarios such as,

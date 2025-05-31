@@ -10,9 +10,9 @@
     "postinstall": "nuxi prepare"
   },
   "devDependencies": {
-    "@fessional/play-h5m": "workspace:*"
+    "@fessional/play-mob": "workspace:*"
   },
   "hoistLayer": [
-    "@fessional/play-h5m"
+    "@fessional/play-mob"
   ]
 }

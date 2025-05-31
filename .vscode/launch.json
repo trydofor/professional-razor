@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "play-h5m:3000",
+      "name": "play-mob:3000",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/plays/3-play-h5m",
+      "webRoot": "${workspaceFolder}/plays/3-play-mob",
     },
     {
-      "name": "play-h5m:3033",
+      "name": "play-mob:3033",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3033",
-      "webRoot": "${workspaceFolder}/plays/3-play-h5m",
+      "webRoot": "${workspaceFolder}/plays/3-play-mob",
     },
     {
       "name": "server: nuxt",

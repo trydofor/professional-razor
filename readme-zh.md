@@ -8,7 +8,7 @@
 
 使用前端技术（Nuxt/Ts）实现一套代码的多端构建，
 
-* 移动端 (H5/App) - Web, Android, iOS
+* 移动端 (MB/App) - Web, Android, iOS
 * 桌面端 (PC/Exe) - Web, MacOS, Linux, Window
 
 适合以下特征的技术团队和应用场景，

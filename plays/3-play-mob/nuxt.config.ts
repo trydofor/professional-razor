@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   extends: ['@fessional/play-spa', '@fessional/razor-mobile'],
-  $meta: { name: 'h5m' },
+  $meta: { name: 'mob' },
   css: ['~/assets/css/ionic.css'],
   ionic: {
     config: {

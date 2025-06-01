@@ -182,14 +182,14 @@ const appThrownCapturer = useThrownCapturer();
 // handle app router changes
 const router = useIonRouter();
 appThrownCapturer.put({ id: 'AppNavigateThrown', order: 3000, hook: (err) => {
-  if (isNavigateThrown(err) && err.route) {
+  if (err instanceof NavigateThrown && err.route) {
     router.push(err.route);
     return false;
   }
 } });
 
 appThrownCapturer.put({ id: 'AppNotifyThrown', order: 4000, hook: (err) => {
-  if (isNotifyThrown(err)) {
+  if (err instanceof NotifyThrown) {
     if (err.notify) {
       return tryNotify(err.notify, err.notify.notifyStyle ?? GlobalNotifyStyle.Alert);
     }

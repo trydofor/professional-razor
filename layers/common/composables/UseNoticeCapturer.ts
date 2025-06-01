@@ -1,7 +1,7 @@
 /**
  * Injection key for the `NoticeCapturer` instance
  */
-export const NoticeCapturerInjectKey: InjectionKey<InstanceType<ClassNoticeCapturer>> = Symbol('NoticeCapturerInjectKey');
+export const NoticeCapturerInjectKey: InjectionKey<InstanceType<typeof NoticeCapturer>> = Symbol('NoticeCapturerInjectKey');
 
 /**
  * Composable function to manage NoticeCapturer instance injection and error capturing.
@@ -17,7 +17,7 @@ export function useNoticeCapturer(provider?: boolean, capturer?: boolean) {
     return _parent;
   }
 
-  const noticeCapturer = newNoticeCapturer();
+  const noticeCapturer = new NoticeCapturer();
   noticeCapturer.parent = _parent;
 
   if (provider) provide(NoticeCapturerInjectKey, noticeCapturer);

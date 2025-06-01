@@ -20,7 +20,7 @@ describe('useThrownCapturer', () => {
   });
 
   it('should use the injected ThrownCapturer instance when asProvider is false', () => {
-    const injectedInstance = newThrownCapturer();
+    const injectedInstance = new ThrownCapturer();
 
     const Parent = defineComponent({
       setup(_, { slots }) {

@@ -1,19 +1,19 @@
 /**
  * default ignore thrown instance
  */
-export const Ignored = newIgnoredThrown('ignored this thrown');
+export const Ignored = new IgnoredThrown('ignored this thrown');
 
 /**
  * global notice capturer used by globalThrownCapturer.
  */
-export const globalNoticeCapturer = newNoticeCapturer();
+export const globalNoticeCapturer = new NoticeCapturer();
 
 export const captureIgnoredThrown: OnErrorCapturedHook = (err: SafeAny) => {
-  if (isIgnoredThrown(err) || err?.name === 'IgnoredThrown') return false;
+  if (err instanceof IgnoredThrown || err?.name === 'IgnoredThrown') return false;
 };
 
 export const captureSystemError: OnErrorCapturedHook = (err: unknown) => {
-  if (isSystemError(err)) {
+  if (err instanceof SystemError) {
     globalNoticeCapturer.call({
       message: err.message,
       i18nCode: 'error.system.message1',
@@ -27,7 +27,7 @@ export const captureSystemError: OnErrorCapturedHook = (err: unknown) => {
  * should use on app top vue component, e.g. App.vue or Layout.vue.
  * `onErrorCaptured(globalThrownCapturer.call)` to handle thrown first.
  */
-export const globalThrownCapturer = newThrownCapturer([
+export const globalThrownCapturer = new ThrownCapturer([
   {
     id: 'GlobalIgnoredThrownHook',
     order: 1000,
@@ -53,7 +53,7 @@ export type ThrottleThrownKey = string | { key: string; ms: number };
 /**
  * default ignore thrown instance
  */
-export const ThrottleThrown = newIgnoredThrown('Throttled');
+export const ThrottleThrown = new IgnoredThrown('Throttled');
 
 const _throttled = new Map<string, number>();
 

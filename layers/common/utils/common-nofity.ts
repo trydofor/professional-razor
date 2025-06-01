@@ -226,14 +226,14 @@ export function createAppNotify<T>(keyName: string, notifyStyle: GlobalNotifySty
   const eventBus = useEventBus<T>(eventKey);
   const newThrown = function (event: T) {
     if (typeof event === 'string') {
-      return newNotifyThrown({
+      return new NotifyThrown({
         message: event,
         notifyStyle,
         notifyLevel: GlobalNotifyLevel.Warning,
       });
     }
     else {
-      return newNotifyThrown({
+      return new NotifyThrown({
         notifyStyle,
         notifyLevel: GlobalNotifyLevel.Warning,
         ...event,

@@ -42,5 +42,16 @@ export class NotifyThrown<T extends NotifyThrownBase = NotifyThrownBase> {
  */
 export class NoticeThrown<T extends I18nNotice = I18nNotice> {
   public name = 'NoticeThrown';
-  constructor(public notices: T[]) {}
+  public notices: T[];
+
+  constructor(notices: T[]);
+  constructor(...notices: T[]);
+  constructor(...args: SafeAny[]) {
+    if (args.length === 1 && Array.isArray(args[0])) {
+      this.notices = args[0];
+    }
+    else {
+      this.notices = args;
+    }
+  }
 }

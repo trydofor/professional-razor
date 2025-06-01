@@ -1,7 +1,7 @@
 /**
  * Injection key for the `ThrownCapturer` instance
  */
-export const ThrownCapturerInjectKey: InjectionKey<InstanceType<ClassThrownCapturer>> = Symbol('ThrownCapturerInjectKey');
+export const ThrownCapturerInjectKey: InjectionKey<InstanceType<typeof ThrownCapturer>> = Symbol('ThrownCapturerInjectKey');
 
 /**
  * Composable function to manage ThrownCapturer instance injection and error capturing.
@@ -16,7 +16,7 @@ export function useThrownCapturer(provider?: boolean, capturer?: boolean) {
     return inject(ThrownCapturerInjectKey, globalThrownCapturer);
   }
 
-  const thrownCapturer = newThrownCapturer();
+  const thrownCapturer = new ThrownCapturer();
   if (provider) provide(ThrownCapturerInjectKey, thrownCapturer);
   if (capturer) onErrorCaptured(thrownCapturer.hookError);
 

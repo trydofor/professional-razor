@@ -8,7 +8,7 @@ export type OnNoticeCapturedHook<T extends I18nNotice = I18nNotice> = (notice: T
  */
 export function thrownToNotices<T extends I18nNotice = I18nNotice>(err: unknown): T[] | undefined {
   let notices: T[] | undefined;
-  if (isApiResultError(err)) {
+  if (err instanceof ApiResultError) {
     if (err.errorResult) {
       notices = err.errorResult.errors as T[];
     }
@@ -22,7 +22,7 @@ export function thrownToNotices<T extends I18nNotice = I18nNotice>(err: unknown)
       }] as T[];
     }
   }
-  else if (isNoticeThrown(err)) {
+  else if (err instanceof NoticeThrown) {
     notices = err.notices as T[];
   }
   return notices && notices.length > 0 ? notices : undefined;

@@ -42,7 +42,7 @@ export function useIonInputChecker(opt: {
   check: RegExp | ((value: string, event?: IonInputEvent) => boolean);
   model?: Ref<string> | (() => string);
   notify?: {
-    handle: InstanceType<ClassNoticeCapturer>;
+    handle: InstanceType<typeof NoticeCapturer>;
     output: Ref<string> | ((err: string) => void);
     accept: string | ((ntc: I18nNotice) => boolean | undefined);
     id?: string;

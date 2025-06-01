@@ -20,7 +20,7 @@ describe('useNoticeCapturer', () => {
   });
 
   it('should use the injected NoticeCapturer instance when asProvider is false', () => {
-    const injectedInstance = newNoticeCapturer();
+    const injectedInstance = new NoticeCapturer();
 
     const Parent = defineComponent({
       setup(_, { slots }) {

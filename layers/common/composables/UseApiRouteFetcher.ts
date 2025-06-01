@@ -104,7 +104,7 @@ export function apiResponseResultHook(includeFalse = true, id = 'responseResult'
     const result = context.response._data as ApiResult;
     if (result != null && result.success === false) {
       if (includeFalse || 'errors' in result) {
-        throw newApiResultError(result);
+        throw new ApiResultError(result);
       }
     }
   });

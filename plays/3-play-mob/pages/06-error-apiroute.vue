@@ -186,10 +186,10 @@ async function onStatus403() {
 }
 
 async function onIgnoredThrown() {
-  throw newIgnoredThrown('Ignored Thrown');
+  throw new IgnoredThrown('Ignored Thrown');
 }
 
 async function onNavigateThrown() {
-  throw newNavigateThrown({ path: '/' });
+  throw new NavigateThrown({ path: '/' });
 }
 </script>

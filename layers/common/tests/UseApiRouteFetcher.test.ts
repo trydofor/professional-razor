@@ -130,11 +130,11 @@ describe('useApiRouteFetcher with real $fetch requests', () => {
     });
 
     await expect(post('/test-error.json')).rejects.toSatisfy((error: SafeAny) => {
-      return isApiResultError(error) && error.errorResult != null;
+      return error instanceof ApiResultError && error.errorResult != null;
     });
 
     await expect(post('/test-false.json')).rejects.toSatisfy((error: SafeAny) => {
-      return isApiResultError(error) && error.falseResult != null;
+      return error instanceof ApiResultError && error.falseResult != null;
     });
   });
 
@@ -148,7 +148,7 @@ describe('useApiRouteFetcher with real $fetch requests', () => {
     });
 
     await expect(post('/test-error.json')).rejects.toSatisfy((error: SafeAny) => {
-      return isApiResultError(error) && error.errorResult != null;
+      return error instanceof ApiResultError && error.errorResult != null;
     });
 
     await expect(post('/test-false.json')).resolves.toSatisfy((result: SafeAny) => {

@@ -93,10 +93,10 @@ function onAlert404() {
 function sendMessage(notice: I18nNotice) {
   if (toggleThrowAlert.value) {
     if (notice.i18nCode!.includes('404')) {
-      throw newNoticeThrown(notice);
+      throw new NoticeThrown(notice);
     }
     else {
-      throw newNoticeThrown({
+      throw new NoticeThrown({
         ...notice,
         notifyLevel: GlobalNotifyLevel.Warning,
       });
@@ -173,6 +173,6 @@ function onNotifyError() {
 }
 
 function onBubbleUp() {
-  throw newSystemError('notice and to sentry', 'bubble up');
+  throw new SystemError('notice and to sentry', 'bubble up');
 }
 </script>

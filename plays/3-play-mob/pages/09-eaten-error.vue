@@ -26,7 +26,7 @@ definePageMeta({ name: metaName });
 const vueErrorHandler = useVueErrorHandler();
 
 onIonViewDidEnter(async () => {
-  throw newIgnoredThrown('Should NOT be here');
+  throw new IgnoredThrown('Should NOT be here');
 });
 
 onIonViewWillLeave(async () => {

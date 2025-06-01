@@ -8,4 +8,4 @@ export const CapacitorStorage = {
   removeItem: (key: string) => Preferences.remove({ key }),
 } as StorageLikeAsync & { _id: string };
 
-globalProvide(StorageLikeAsyncInjectKey, CapacitorStorage, true);
+GlobalStorageLikeAsync.value = CapacitorStorage;

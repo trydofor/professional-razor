@@ -7,9 +7,7 @@ export const BrowserStorage = {
   removeItem: localStorage.removeItem,
 } as StorageLikeAsync & { _id: string };
 
-export const StorageLikeAsyncInjectKey: InjectionKey<StorageLikeAsync> = Symbol('StorageLikeAsyncInjectKey');
-
-globalProvide(StorageLikeAsyncInjectKey, BrowserStorage);
+export const GlobalStorageLikeAsync = lazyNonnull(BrowserStorage);
 
 /**
  * set the value to storage
@@ -19,7 +17,7 @@ globalProvide(StorageLikeAsyncInjectKey, BrowserStorage);
  */
 export async function setTypedStorage<T>(key: TypedKey<T>, value: Promise<T | null> | T | null) {
   const v = value instanceof Promise ? await value : value;
-  const storageLikeAsync = globalInject(StorageLikeAsyncInjectKey);
+  const storageLikeAsync = GlobalStorageLikeAsync.value;
   if (v == null) {
     await storageLikeAsync.removeItem(key.key);
   }
@@ -35,7 +33,7 @@ export async function setTypedStorage<T>(key: TypedKey<T>, value: Promise<T | nu
  * @returns current value
  */
 export async function getTypedStorage<T>(key: TypedKey<T>) {
-  const storageLikeAsync = globalInject(StorageLikeAsyncInjectKey);
+  const storageLikeAsync = GlobalStorageLikeAsync.value;
   const value = await storageLikeAsync.getItem(key.key);
   let v: T | null = null;
   if (value != null) {
@@ -101,7 +99,7 @@ export function useTypedStorage<T>(key: TypedKey<T> & { init?: T; mergeDefaults?
     },
   };
 
-  const storageLikeAsync = globalInject(StorageLikeAsyncInjectKey);
+  const storageLikeAsync = GlobalStorageLikeAsync.value;
   if (key.init != null) {
     return useStorageAsync(key.key, key.init, storageLikeAsync, opts);
   }

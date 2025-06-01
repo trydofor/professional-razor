@@ -2,7 +2,7 @@ import { it, expect } from 'vitest';
 
 it('should override BrowserStorage with CapacitorStorage', async () => {
   console.log('Injected instance:', CapacitorStorage._id);
-  const injected = globalInject(StorageLikeAsyncInjectKey);
+  const injected = GlobalStorageLikeAsync.value;
 
   expect(injected).not.toBe(BrowserStorage);
 

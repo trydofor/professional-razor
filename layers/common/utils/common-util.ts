@@ -63,3 +63,27 @@ export function wrapMacroTaskPromise<T extends (...args: SafeAny[]) => SafeAny>(
     });
   };
 }
+
+/**
+ * lazy init but non null value
+ */
+export function lazyNonnull<T>(_default?: T) {
+  const _def = _default;
+  let _cur = _default;
+
+  return {
+    get value(): T {
+      if (_cur == null) throw new Error('lazy value is not initialized');
+      return _cur;
+    },
+    set value(v: T) {
+      _cur = v;
+    },
+    get default(): T | undefined {
+      return _def;
+    },
+    get absent(): boolean {
+      return _cur == null;
+    },
+  };
+}

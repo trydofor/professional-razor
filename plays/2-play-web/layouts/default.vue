@@ -9,8 +9,9 @@
             @click="rail = !rail"
           >
             <template #prepend>
+              <!-- <DpiImg :srcset="[storm1, storm2]" size="24" /> -->
               <VAvatar tile size="24">
-                <VImg :src="storm1" />
+                <VImg v-bind="imageDpiSrcset([storm1, storm2])" />
               </VAvatar>
             </template>
           </VListItem>
@@ -74,7 +75,9 @@
 </template>
 
 <script setup lang="ts">
+import DpiImg from '#layers/razor-common/components/DpiImg.vue';
 import storm1 from '#layers/spa/assets/img/1x/storm.jpg';
+import storm2 from '#layers/spa/assets/img/2x/storm.jpg';
 
 const router = useRouter();
 const route = useRoute();

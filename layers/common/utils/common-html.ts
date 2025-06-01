@@ -44,3 +44,22 @@ export function scrollElement(element: Ref<SafeAny> | string, vertical: 'center'
     ele.scrollIntoView({ behavior: 'smooth', block: vertical });
   });
 }
+
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset
+ * ```ts
+ * const input = ['a.jpg', 'b.jpg', 'c.jpg'];
+ * const expected = {
+ *   src: 'a.jpg',
+ *   srcset: 'a.jpg, b.jpg 2x, c.jpg 3x',
+ * };
+ * ```
+ */
+export function imageDpiSrcset(srcset: string[]) {
+  return srcset.length === 0
+    ? {}
+    : {
+        src: srcset[0],
+        srcset: srcset.map((img, idx) => idx === 0 ? img : `${img} ${idx + 1}x`).join(', '),
+      };
+}

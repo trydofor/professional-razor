@@ -66,3 +66,32 @@ describe('scrollElement', () => {
     expect(mockElement.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'center' });
   });
 });
+
+describe('imageDpiSrcset', () => {
+  it('should handle multiple images correctly', () => {
+    const input = ['a.jpg', 'b.jpg', 'c.jpg'];
+    const expected = {
+      src: 'a.jpg',
+      srcset: 'a.jpg, b.jpg 2x, c.jpg 3x',
+    };
+    expect(imageDpiSrcset(input)).toEqual(expected);
+  });
+
+  it('should handle single image correctly', () => {
+    const input = ['a.jpg'];
+    const expected = {
+      src: 'a.jpg',
+      srcset: 'a.jpg',
+    };
+    expect(imageDpiSrcset(input)).toEqual(expected);
+  });
+
+  it('should handle empty array gracefully', () => {
+    const input: string[] = [];
+    const expected = {
+      src: undefined,
+      srcset: undefined,
+    };
+    expect(imageDpiSrcset(input)).toEqual(expected);
+  });
+});

@@ -18,7 +18,7 @@ describe('DpiImg', () => {
 
     expect(img.attributes('src')).toBe('image1.jpg');
 
-    const expectedSrcset = 'image1.jpg 1x, image2.jpg 2x, image3.jpg 3x';
+    const expectedSrcset = 'image1.jpg, image2.jpg 2x, image3.jpg 3x';
     expect(img.attributes('srcset')).toBe(expectedSrcset);
 
     expect(img.attributes('alt')).toBe(props.alt);

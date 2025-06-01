@@ -1,6 +1,6 @@
 {
   "name": "@fessional/razor",
-  "version": "0.8.1-dev.7",
+  "version": "0.8.1-dev.8",
   "description": "Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase, suitable for small team and app to write app once, apply almost anywhere.",
   "type": "module",
   "files": [

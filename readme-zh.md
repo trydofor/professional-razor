@@ -114,8 +114,8 @@
 * props，传递Function时，使用`do`前缀，表示`handle`
 * SFC中的interface或type，可放到同名`.d.ts`，enum放在`.ts`
 * Form组件，采用以下命名组，如 email 输入框，
-  * emailModel = ref('');
-  * emailError = ref('bad zipcode');
+  * emailModel = shallowRef('');
+  * emailError = shallowRef('bad zipcode');
   * emailRefer = useTemplateRef('emailRefer');
   * emailCheck = useXxxChecker();
 

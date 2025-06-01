@@ -112,8 +112,8 @@ According to the official Vue naming rules, most things are plural,
 * props, use `do` prefix for `handle` when passthrough Function
 * interface/type in SFC, can be in same-name `.d.ts`, but enum in `.ts`
 * Form component, the naming convention. e.g. for an email input box.
-  * emailModel = ref('');
-  * emailError = ref('bad zipcode');
+  * emailModel = shallowRef('');
+  * emailError = shallowRef('bad zipcode');
   * emailRefer = useTemplateRef('emailRefer');
   * emailCheck = useXxxChecker();
 

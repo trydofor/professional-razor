@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts" setup>
-const alertOpen = ref(false);
-const alertMessage = ref('');
+const alertOpen = shallowRef(false);
+const alertMessage = shallowRef('');
 
 const noticeCapturer = useNoticeCapturer(true, true);
 noticeCapturer.put({ id: 'InnerNoticeThrown', order: 200, hook: (ntc) => {

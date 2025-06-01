@@ -45,7 +45,7 @@ export async function getTypedStorage<T>(key: TypedKey<T>) {
 /**
  * ```ts
  * // cookiePrivacy example
- * const cookiePrivacy = ref(true);
+ * const cookiePrivacy = shallowRef(true);
  * const cookiePrivacyStorage = defTypedStorage<boolean>({
  *   key: "cookiePrivacy",
  *   callback: it => cookiePrivacy.value = it ?? false,

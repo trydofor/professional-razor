@@ -40,9 +40,9 @@
 const metaName = 'Showcase of v-autosize';
 definePageMeta({ name: metaName });
 
-const debounce = ref(500);
-const show1 = ref(0);
-const pick1 = ref(0);
+const debounce = shallowRef(500);
+const show1 = shallowRef(0);
+const pick1 = shallowRef(0);
 const item1 = [
   { id: 1, title: 'order1', details: 'detail 1' },
   { id: 2, title: 'order2', details: 'detail 2' },

@@ -10,7 +10,7 @@
  *   />
  * </template>
  * <script setup lang="ts">
- * const firstNameModel = ref('');
+ * const firstNameModel = shallowRef('');
  * const firstNameRefer = useTemplateRef('firstNameRefer')
  * const firstNameCheck = useIonInputChecker({
  *        el: firstNameRefer,

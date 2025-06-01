@@ -54,9 +54,9 @@
 const metaName = 'ApiRoute Error Handling';
 definePageMeta({ name: metaName });
 
-const errorText = ref('');
-const eventText = ref('');
-const shouldNot = ref('');
+const errorText = shallowRef('');
+const eventText = shallowRef('');
+const shouldNot = shallowRef('');
 const apiRoute = useApiRouteFetcher();
 
 apiResponseEventBus.on((evt) => {

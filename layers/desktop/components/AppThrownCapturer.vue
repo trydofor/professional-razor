@@ -145,7 +145,7 @@ function presentToast(event: AppToastEvent) {
   toastNotify[idx](opts);
 }
 
-const alertOpen = ref(false);
+const alertOpen = shallowRef(false);
 const alertOptions = shallowRef<AlertOptions>({ message: '' });
 const alertDismiss = shallowRef(() => {});
 

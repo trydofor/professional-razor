@@ -10,7 +10,7 @@
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item1" :key="it.id">
-        <div class="flex flex-row items-center gap-1 p-4" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
+        <div class="flex-row flex items-center gap-1 p-4" :class="pick1 != it.id ? 'bg-green-200':'bg-blue-200'" @click="select1(it.id)">
           <div>✅ auto-size {{ it.title }}</div>
           <div
             class="size-6"
@@ -31,7 +31,7 @@
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item2" :key="it.id">
-        <div class="flex flex-row gap-1 bg-green-100 p-4" @click="toggle2(it.id)">
+        <div class="flex-row flex gap-1 bg-green-100 p-4" @click="toggle2(it.id)">
           <div>no auto-size {{ it.title }}</div>
           <div
             class="size-6"
@@ -51,7 +51,7 @@
     </div>
     <div class="border-1 border-indigo">
       <div v-for="it in item3" :key="it.id">
-        <div class="flex flex-row gap-1 bg-green-200 p-4" @click="toggle3(it.id)">
+        <div class="flex-row flex gap-1 bg-green-200 p-4" @click="toggle3(it.id)">
           <div> Transition {{ it.title }}</div>
           <div
             class="size-6"
@@ -80,9 +80,9 @@ definePageMeta({
   name: 'Showcase of v-autosize',
 });
 
-const debounce = ref(500);
-const show1 = ref(0);
-const pick1 = ref(0);
+const debounce = shallowRef(500);
+const show1 = shallowRef(0);
+const pick1 = shallowRef(0);
 const item1 = [
   { id: 11, title: 'order11', details: 'detail 11' },
   { id: 12, title: 'order12', details: 'detail 12' },
@@ -95,7 +95,7 @@ function toggle1(id: number) {
   show1.value = show1.value === id ? 0 : id;
 }
 
-const show2 = ref(0);
+const show2 = shallowRef(0);
 const item2 = [
   { id: 21, title: 'order21', details: 'detail 21' },
   { id: 22, title: 'order22', details: 'detail 22' },
@@ -105,7 +105,7 @@ function toggle2(id: number) {
   show2.value = show2.value === id ? 0 : id;
 }
 
-const show3 = ref(0);
+const show3 = shallowRef(0);
 const item3 = [
   { id: 31, title: 'order31', details: 'detail 31' },
   { id: 32, title: 'order32', details: 'detail 32' },

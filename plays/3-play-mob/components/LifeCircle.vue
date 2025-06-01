@@ -16,7 +16,7 @@ const props = defineProps<{
   refNum: number;
 }>();
 
-const watchStr = ref('');
+const watchStr = shallowRef('');
 
 watch(() => props.refNum, (newVal) => {
   watchStr.value = `watch-${newVal}`;

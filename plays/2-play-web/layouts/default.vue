@@ -75,13 +75,13 @@
 </template>
 
 <script setup lang="ts">
-import DpiImg from '#layers/razor-common/components/DpiImg.vue';
+// import DpiImg from '#layers/razor-common/components/DpiImg.vue';
 import storm1 from '#layers/spa/assets/img/1x/storm.jpg';
 import storm2 from '#layers/spa/assets/img/2x/storm.jpg';
 
 const router = useRouter();
 const route = useRoute();
-const rail = ref(true);
+const rail = shallowRef(true);
 const elevation = 2;
 
 const pageRoutes = router.getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));

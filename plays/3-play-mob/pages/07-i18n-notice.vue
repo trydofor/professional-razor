@@ -31,6 +31,6 @@
 const metaName = 'I18n Notice and Thrown';
 definePageMeta({ name: metaName });
 
-const toggleGlobal = ref(false);
+const toggleGlobal = shallowRef(false);
 const { locale, locales, setLocale } = useI18n();
 </script>

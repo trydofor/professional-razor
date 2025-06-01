@@ -33,7 +33,7 @@ export function getTypedSession<T>(key: TypedKey<T>) {
 /**
  * ```ts
  * // cookiePrivacy example
- * const cookiePrivacy = ref(true);
+ * const cookiePrivacy = shallowRef(true);
  * const cookiePrivacySession = defTypedSession<boolean>({
  *   key: "cookiePrivacy",
  *   callback: it => cookiePrivacy.value = it ?? false,

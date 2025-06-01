@@ -15,7 +15,7 @@
   catches?: (err: SafeAny) => Maybe<T>;
 } & { throttle?: ThrottleThrownKey };
 
-export const globalLoadingStatus = ref(false);
+export const globalLoadingStatus = shallowRef(false);
 
 function _doLoading(status: LoadingStatusType, loading?: TypedFetchOptions<SafeAny>['loading']): void {
   if (typeof loading === 'function') {

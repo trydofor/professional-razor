@@ -57,8 +57,8 @@
 const prop = defineProps<{ title: string; toast?: boolean }>();
 const noticeCapturer = useNoticeCapturer();
 
-const toggleThrowAlert = ref(true);
-const capturers = ref('');
+const toggleThrowAlert = shallowRef(true);
+const capturers = shallowRef('');
 
 const i18nAlert = {
   message: 'should not be shown',
@@ -126,8 +126,8 @@ function onShowCapturers() {
   }
 }
 
-const sendZipModel = ref('');
-const sendZipError = ref('bad zipcode');
+const sendZipModel = shallowRef('');
+const sendZipError = shallowRef('bad zipcode');
 const sendZipRefer = useTemplateRef('sendZipRefer');
 const sendZipCheck = useIonInputChecker({
   el: sendZipRefer,

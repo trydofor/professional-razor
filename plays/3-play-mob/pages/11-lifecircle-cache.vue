@@ -28,8 +28,8 @@
 const metaName = 'Lifecircle and Cache';
 definePageMeta({ name: metaName });
 
-const logText = ref('');
-const refNum = ref(0);
+const logText = shallowRef('');
+const refNum = shallowRef(0);
 
 function clearLog() {
   logText.value = '';

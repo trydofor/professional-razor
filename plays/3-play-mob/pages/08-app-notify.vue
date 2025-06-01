@@ -159,10 +159,10 @@ function onAlertThrow() {
   }
 }
 
-const modal1 = ref(false);
-const modal2 = ref(false);
-const modalCount1 = ref(0);
-const modalCount2 = ref(0);
+const modal1 = shallowRef(false);
+const modal2 = shallowRef(false);
+const modalCount1 = shallowRef(0);
+const modalCount2 = shallowRef(0);
 
 const toggleNotify = createToggledNotify<{
   Modal1: Ref<boolean>;
@@ -180,7 +180,7 @@ function onModalEmit() {
 
 const reactiveArray = reactive<SafeAny>([]);
 const reactiveObject = reactive<SafeAny>({});
-const reactiveCount = ref(0);
+const reactiveCount = shallowRef(0);
 function onReactive(fun = false) {
   if (reactiveArray.length === 0) {
     reactiveArray.push({ xx: { yy: { zz: 1, fn: () => {} } } });
@@ -204,7 +204,7 @@ function onReactive(fun = false) {
 
 const refArray = ref<SafeAny>([]);
 const refObject = ref<SafeAny>({});
-const refCount = ref(0);
+const refCount = shallowRef(0);
 function onRef(fun = false) {
   if (refArray.value.length === 0) {
     refArray.value.push({ xx: { yy: { zz: 1, fn: () => {} } } });
@@ -226,8 +226,8 @@ function onRef(fun = false) {
   }
 }
 
-const open0 = ref(0);
-const opens = [open0, ref(0)];
+const open0 = shallowRef(0);
+const opens = [open0, shallowRef(0)];
 function onTmplRef() {
   opens[0].value++;
   opens[1].value++;

@@ -30,7 +30,7 @@
 const metaName = 'Ion Input validate';
 definePageMeta({ name: metaName });
 
-const firstNameModel = ref('');
+const firstNameModel = shallowRef('');
 const firstNameRefer = useTemplateRef('firstNameRefer');
 const firstNameCheck = useIonInputChecker({ el: firstNameRefer, check: /^[\x20-\x7E]{3,}$/, model: firstNameModel });
 const onFirstNameCheck = useIonInputChecker({ el: firstNameRefer, check: /^[\x20-\x7E]{5,}$/, model: firstNameModel });

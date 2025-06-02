@@ -7,7 +7,7 @@
             <IonToolbar>
               <IonButtons slot="end">
                 <IonButton>
-                  <div class="i-mdi-close text-primary text-3xl" />
+                  <div class="i-mdi-close text-3xl text-primary" />
                 </IonButton>
               </IonButtons>
               <IonTitle>Menu Title</IonTitle>

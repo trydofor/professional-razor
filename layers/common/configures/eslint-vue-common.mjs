@@ -4,8 +4,11 @@
   // https://eslint.vuejs.org/rules/component-name-in-template-casing.html
   // component must in PascalCase to distinguish from html tag
   'vue/component-name-in-template-casing': ['error', 'PascalCase', {
-    registeredComponentsOnly: false,
-    ignores: ['^[^-]+$'],
+    registeredComponentsOnly: false, // nuxt global register
+    ignores: [
+      '^[^-]+$', // html tag without `-`
+      'swiper-container', 'swiper-slide', // https://github.com/cpreston321/nuxt-swiper
+    ],
   }],
 };
 

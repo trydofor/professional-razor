@@ -37,13 +37,13 @@
     </div>
     <div class="p-4">
       <div>open devtools check console and network to see sentry error</div>
-      <div class="text-green h-8">
+      <div class="h-8 text-green">
         {{ eventText }}
       </div>
-      <div class="text-red h-8">
+      <div class="h-8 text-red">
         {{ errorText }}
       </div>
-      <div class="text-red h-8">
+      <div class="h-8 text-red">
         {{ shouldNot }}
       </div>
     </div>

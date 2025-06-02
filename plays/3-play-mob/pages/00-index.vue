@@ -1,7 +1,7 @@
 <template>
   <AppTab>
     <template #title>
-      <div class="flex-row flex items-center gap-2">
+      <div class="flex flex-row items-center gap-2">
         <DpiImg :srcset="[storm1, storm2, storm3, storm4]" alt="movingkite logo" class="p-2" />
         <div>Index</div>
       </div>

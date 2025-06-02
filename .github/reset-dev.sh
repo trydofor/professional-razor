@@ -1,22 +1,25 @@
 #!/bin/bash -e
+if [ -z "$1" ]; then
+  git pull
+  #git --no-pager tag | tac | head -n 5
+  git --no-pager tag | tail -n 5
+  echo -e "\033[37;42;1mWhich tag to show from?\033[0m"
+  read _tag
 
-git pull
-#git --no-pager tag | tac | head -n 5
-git --no-pager tag | tail -n 5
-echo -e "\033[37;42;1mWhich tag to show from?\033[0m"
-read _tag
-
-git --no-pager log --oneline --graph --all $_tag..HEAD
-echo -e "\033[37;42;1mWhich commit to reset to?\033[0m"
-read _hash
-if [ -z "$_hash" ]; then
-  _hash=$(git rev-parse --short HEAD^1)
-  echo "use HEAD^1 by default $_hash"
+  git --no-pager log --oneline --graph --all $_tag..HEAD
+  echo -e "\033[37;42;1mWhich commit to reset to?\033[0m"
+  read _hash
+  if [ -z "$_hash" ]; then
+    _hash=$(git rev-parse --short HEAD^1)
+    echo "use HEAD^1 by default $_hash"
+  fi
+else
+  _hash="$1"
+  git --no-pager show --name-only $_hash
 fi
 
+echo -e "\033[37;42;1mMixed reset to $_hash, exclude package.json\033[0m"
 read -p "Any key to continue, Ctrl+C to cancel"
-
-echo "Mixed reset to $_hash, exclude package.json"
 
 git stash
 git reset --mixed $_hash

@@ -6,6 +6,8 @@
     // https://github.com/nuxt/renovate-config-nuxt/blob/main/default.json
     "github>nuxt/renovate-config-nuxt"
   ],
+  "branchPrefix": "renovate/dev-",
+  "baseBranches": ["develop"],
   "lockFileMaintenance": {
     "enabled": false
   },

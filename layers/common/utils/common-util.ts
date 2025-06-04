@@ -87,3 +87,13 @@ export function lazyNonnull<T>(_default?: T) {
     },
   };
 }
+
+export const DummyFunction = () => {};
+
+export function refToFunction<T>(vr?: null | Ref<T> | ((v: T) => void)): (v: T) => void {
+  if (vr == null) return DummyFunction;
+  if (typeof vr === 'function') return vr;
+  return (v: T) => {
+    vr.value = v;
+  };
+}

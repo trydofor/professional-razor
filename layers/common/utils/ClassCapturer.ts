@@ -53,7 +53,7 @@ export class NoticeCapturer extends PriorityHook<OnNoticeCapturedHook> {
   }
 
   hookError = captureNoticelikeThrown(this);
-  hookCatch: ((err: unknown) => void) = this.hookError as SafeAny;
+  hookCatch = (err: unknown): void => void this.hookError(err, null, 'unhandled');
 }
 
 /**
@@ -69,5 +69,5 @@ export class ThrownCapturer extends PriorityHook<OnErrorCapturedHook> {
     return this.call(err, vm, info);
   };
 
-  hookCatch: ((err: unknown) => void) = this.hookError as SafeAny;
+  hookCatch = (err: unknown): void => void this.hookError(err, null, 'unhandled');
 }

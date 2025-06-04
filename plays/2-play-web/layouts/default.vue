@@ -47,7 +47,7 @@
               v-for="rt in pageRoutes"
               :key="rt.path"
               :title="`${index(rt.path)}-${String(rt.name)}`"
-              :click="rt.path"
+              :to="rt.path"
             />
           </VListGroup>
         </VList>

@@ -11,5 +11,7 @@
     "@fessional/play-exe": "0.0.1",
     "@fessional/play-app": "0.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "three-towns-try"
+  ]
 }

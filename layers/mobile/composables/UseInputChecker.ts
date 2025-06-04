@@ -12,13 +12,13 @@
  * <script setup lang="ts">
  * const firstNameModel = shallowRef('');
  * const firstNameRefer = useTemplateRef('firstNameRefer')
- * const firstNameCheck = useIonInputChecker({
+ * const firstNameCheck = useInputChecker({
  *        el: firstNameRefer,
  *        check: /^[0-9]{6,}$/,
  *        model: firstNameModel,
+ *        output: firstNameError,
  *        notify: {
  *          handle: noticeCapturer,
- *          output: firstNameError,
  *          accept: 'firstName',
  *        },
  *      });
@@ -26,8 +26,6 @@
  * ```
  *
  * generate a validator function for ionic input.
- * @param inputRef input ref
- * @param checkFun check function or regex
  */
 
 export type IonInputEvent = CustomEvent & { detail: { value?: string | null } };
@@ -37,20 +35,21 @@ function isIonInputEvent(event: SafeAny): event is IonInputEvent {
 }
 
 let counter = 0;
-export function useIonInputChecker(opt: {
+export function useInputChecker(opt: {
   el: Ref<SafeAny>;
-  check: RegExp | ((value: string, event?: IonInputEvent) => boolean);
+  check: MayArray<RegExp | ((value: string, event?: IonInputEvent) => boolean | string)>;
   model?: Ref<string> | (() => string);
+  output?: Ref<string> | ((err: string) => void);
   notify?: {
     handle: InstanceType<typeof NoticeCapturer>;
-    output: Ref<string> | ((err: string) => void);
     accept: string | ((ntc: I18nNotice) => boolean | undefined);
     id?: string;
     order?: number;
   };
 },
-): (ev?: IonInputEvent | I18nNotice | string | null | undefined) => boolean | undefined {
+): (ev?: Maybe<IonInputEvent | I18nNotice | Ref<string> | string>) => boolean | string {
   const target = typeof opt.notify?.accept === 'string' ? opt.notify.accept : undefined;
+  const output = refToFunction(opt.output);
 
   // regitster notice handler
   if (opt.notify != null) {
@@ -67,11 +66,11 @@ export function useIonInputChecker(opt: {
 
     if (id == null) {
       id = `input-checker-${counter++}`;
-      logger.warn('no id for notice handler, use counter %s', id);
+      logger.info('no id for notice handler, use counter %s', id);
     }
 
-    const out = opt.notify.output;
-    const localize = useLocalizeMessage();
+    const scope = getCurrentScope();
+    const localize = scope ? useLocalizeMessage() : (ntc: I18nNotice, _: boolean) => ntc.message ?? '';
 
     opt.notify.handle.put({
       id,
@@ -79,14 +78,7 @@ export function useIonInputChecker(opt: {
       hook: (ntc: I18nNotice) => {
         if (acc(ntc)) {
           const msg = localize(ntc, true);
-          if (msg) {
-            if (typeof out === 'function') {
-              out(msg);
-            }
-            else {
-              out.value = msg;
-            }
-          }
+          output(msg);
           const classList = opt.el.value.$el.classList;
           classList.remove('ion-valid');
           classList.add('ion-invalid');
@@ -94,7 +86,17 @@ export function useIonInputChecker(opt: {
         }
       },
     });
+    // remove on unmount
+    if (scope) {
+      onScopeDispose(() => {
+        opt.notify?.handle.del(id);
+      });
+    }
   }
+
+  const checks = (Array.isArray(opt.check) ? [...opt.check] : [opt.check]).map((it) => {
+    return typeof it === 'function' ? it : (value: string, _?: IonInputEvent) => it.test(value);
+  });
 
   return (ev) => {
     const classList = opt.el.value.$el.classList;
@@ -107,17 +109,20 @@ export function useIonInputChecker(opt: {
     else if (typeof ev === 'string') {
       value = ev;
     }
+    else if (isRef(ev)) {
+      value = ev.value;
+    }
     else if (isIonInputEvent(ev)) {
       if (/blur/i.test(ev.type)) {
         classList.add('ion-touched');
-        return;
+        return true;
       }
       // https://ionicframework.com/docs/api/input#interfaces
       // https://ionicframework.com/docs/api/textarea#interfaces
       event = ev;
-      value = ev?.detail?.value;
+      value = typeof ev?.detail?.value === 'string' ? ev.detail.value : undefined;
     }
-    // only notice
+    // must notice
     else {
       if (opt.notify?.handle == null) {
         logger.warn('no notice handler, ignored', ev);
@@ -128,27 +133,32 @@ export function useIonInputChecker(opt: {
         }
         opt.notify.handle.emit(ev);
       }
-      return;
+      return true;
     }
 
     if (value == null) {
-      if (opt.model == null) {
-        value = '';
-      }
-      else {
-        value = typeof opt.model === 'function' ? opt.model() : opt.model.value;
+      value = typeof opt.model === 'function' ? opt.model() : opt.model?.value;
+      value ??= '';
+    }
+
+    let valid: string | boolean = true;
+    for (const chk of checks) {
+      const r = chk(value, event);
+      if (r != null && r !== true) {
+        valid = r;
+        break;
       }
     }
 
-    const valid = typeof opt.check === 'function' ? opt.check(value, event) : opt.check.test(value);
-
-    if (valid) {
+    if (valid === true) {
       classList.add('ion-valid');
       classList.remove('ion-invalid');
+      output('');
     }
     else {
       classList.remove('ion-valid');
       classList.add('ion-invalid');
+      output(valid === false ? 'invalid' : valid as string);
     }
 
     return valid;

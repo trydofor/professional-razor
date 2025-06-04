@@ -1,54 +1,47 @@
 <template>
   <div class="mt-2 flex flex-col gap-2">
-    <IonButton @click="onToast">
+    <VBtn @click="onToast">
       {{ prop.title }} {{ toast ? 'Toast' :'Alert' }}
-    </IonButton>
-    <IonButton @click="onAlert">
+    </VBtn>
+    <VBtn @click="onAlert">
       {{ prop.title }} Alert
-    </IonButton>
-    <IonButton @click="onAlert404">
+    </VBtn>
+    <VBtn @click="onAlert404">
       {{ prop.title }} Alert 404
-    </IonButton>
-    <IonInput
-      ref="sendZipRefer"
+    </VBtn>
+    <VTextField
       v-model="sendZipModel"
       class="w-full py-4 font-bold tracking-widest"
       label="Zipcode([0-9]{6,})"
-      inputmode="numeric"
-      label-placement="floating"
-      fill="outline"
-      clear-input
-      :error-text="sendZipError"
-      @ion-input="sendZipCheck"
-      @ion-blur="sendZipCheck"
+      clearable
+      :rules="[sendZipCheck]"
+      :error-messages="sendZipError"
     >
       <!-- eslint-disable-next-line vue/no-deprecated-slot-attribute -->
       <!-- <div slot="start" class="i-flag:us-4x3" /> -->
       <!-- TODO https://github.com/ionic-team/ionic-framework/issues/28665  -->
-    </IonInput>
-    <IonButton @click="onApiError">
+    </VTextField>
+    <VBtn @click="onApiError">
       Zipcode Error by Api Async
-    </IonButton>
-    <IonButton @click="onApiErrorSyncReturn">
+    </VBtn>
+    <VBtn @click="onApiErrorSyncReturn">
       Zipcode Error by Api Sync return
-    </IonButton>
-    <IonButton @click="onApiErrorSyncCatch">
+    </VBtn>
+    <VBtn @click="onApiErrorSyncCatch">
       Zipcode Error by Api Sync catch
-    </IonButton>
-    <IonButton @click="onNotifyError">
+    </VBtn>
+    <VBtn @click="onNotifyError">
       Zipcode Error by Notice
-    </IonButton>
-    <IonButton @click="onBubbleUp">
+    </VBtn>
+    <VBtn @click="onBubbleUp">
       System Error Bubble Up
-    </IonButton>
-    <div class="h-8">
-      <IonToggle v-model="toggleThrowAlert">
-        {{ toggleThrowAlert ? 'Throw':'Emit' }} Alert
-      </IonToggle>
+    </VBtn>
+    <div class="h-12">
+      <VSwitch v-model="toggleThrowAlert" :label="toggleThrowAlert ? 'Throw Alert':'Emit Alert'" />
     </div>
-    <IonButton color="success" @click="onShowCapturers">
+    <VBtn color="success" @click="onShowCapturers">
       Show Notice Capturers
-    </IonButton>
+    </VBtn>
     <pre>{{ capturers }}</pre>
   </div>
 </template>
@@ -128,9 +121,7 @@ function onShowCapturers() {
 
 const sendZipModel = shallowRef('');
 const sendZipError = shallowRef('bad zipcode');
-const sendZipRefer = useTemplateRef('sendZipRefer');
 const sendZipCheck = useInputChecker({
-  el: sendZipRefer,
   check: /^[0-9]{6,}$/,
   model: sendZipModel,
   output: sendZipError,

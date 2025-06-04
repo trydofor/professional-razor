@@ -2,7 +2,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { ref } from 'vue';
 
-describe('useIonInputChecker', () => {
+describe('useInputChecker', () => {
   it('validates input correctly with a regex', () => {
     const mockClassList = {
       add: vi.fn(),
@@ -13,7 +13,7 @@ describe('useIonInputChecker', () => {
     const checkFun = /^[1-9][0-9]?$/;
     const modelRef = ref('');
 
-    const validator = useIonInputChecker({ el: inputRef, check: checkFun, model: modelRef });
+    const validator = useInputChecker({ el: inputRef, check: checkFun, model: modelRef });
 
     // Test valid input
     const event = {
@@ -49,11 +49,11 @@ describe('useIonInputChecker', () => {
     const inputRef = ref({ $el: { classList: mockClassList } });
     const checkFun = /^[1-9][0-9]?$/;
 
-    const validator = useIonInputChecker({ el: inputRef, check: checkFun });
+    const validator = useInputChecker({ el: inputRef, check: checkFun });
 
     const blurEvent = { type: 'blur', detail: { value: '25' } } as IonInputEvent;
 
-    expect(validator(blurEvent)).toBe(undefined);
+    expect(validator(blurEvent)).toBe(true);
     expect(mockClassList.add).toHaveBeenCalledWith('ion-touched');
   });
 
@@ -64,10 +64,10 @@ describe('useIonInputChecker', () => {
     };
 
     const inputRef = ref({ $el: { classList: mockClassList } });
-    const checkFun = (value: string) => value === 'valid';
+    const checkFun = (value: string | Ref<string>) => value === 'valid';
     const modelRef = ref('');
 
-    const validator = useIonInputChecker({ el: inputRef, check: checkFun, model: modelRef });
+    const validator = useInputChecker({ el: inputRef, check: checkFun, model: modelRef });
 
     // Test valid input
     expect(validator('valid')).toBe(true);
@@ -94,7 +94,7 @@ describe('useIonInputChecker', () => {
     const checkFun = /^[1-9][0-9]?$/;
     const modelRef = ref('42');
 
-    const validator = useIonInputChecker({ el: inputRef, check: checkFun, model: modelRef });
+    const validator = useInputChecker({ el: inputRef, check: checkFun, model: modelRef });
 
     expect(validator()).toBe(true);
     expect(validator(null)).toBe(true);

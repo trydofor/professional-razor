@@ -22,10 +22,16 @@
  * ```
  *
  * generate a validator function for vuetify input.
+ * @see https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/validation.ts
  */
 
 let counter = 0;
-export function useInputChecker(opt: {
+export function useInputChecker({
+  check,
+  model,
+  output,
+  notify,
+}: {
   check: MayArray<RegExp | ((value: string) => boolean | string)>;
   model?: Ref<string> | (() => string);
   output?: Ref<string> | ((err: string) => void);
@@ -35,16 +41,16 @@ export function useInputChecker(opt: {
     id?: string;
     order?: number;
   };
-},
-): (ev?: Maybe<I18nNotice | Ref<string> | string>) => boolean | string {
-  const target = typeof opt.notify?.accept === 'string' ? opt.notify.accept : undefined;
-  const output = refToFunction(opt.output);
+}): (ev?: Maybe<I18nNotice | Ref<string> | string>) => boolean | string {
+  const target = typeof notify?.accept === 'string' ? notify.accept : undefined;
+  const errors = refToFunction(output);
+  const scope = getCurrentScope();
 
   // regitster notice handler
-  if (opt.notify != null) {
-    const tg = opt.notify.accept;
+  if (notify) {
+    const tg = notify.accept;
     let acc;
-    let id = opt.notify.id;
+    let id = notify.id;
     if (typeof tg === 'string') {
       acc = (n: I18nNotice) => n.target === tg;
       id ??= tg;
@@ -58,35 +64,38 @@ export function useInputChecker(opt: {
       logger.info('no id for notice handler, use counter %s', id);
     }
 
-    const scope = getCurrentScope();
     const localize = scope ? useLocalizeMessage() : (ntc: I18nNotice, _: boolean) => ntc.message ?? '';
 
-    opt.notify.handle.put({
+    notify.handle.put({
       id,
-      order: opt.notify.order || 100,
+      order: notify.order || 100,
       hook: (ntc: I18nNotice) => {
         if (acc(ntc)) {
           const msg = localize(ntc, true);
-          output(msg);
+          errors(msg);
           return false;
         }
       },
     });
+
     // remove on unmount
     if (scope) {
-      onScopeDispose(() => {
-        opt.notify?.handle.del(id);
-      });
+      onScopeDispose(() => notify?.handle.del(id));
     }
   }
 
-  const checks = (Array.isArray(opt.check) ? [...opt.check] : [opt.check]).map((it) => {
+  const checks = (Array.isArray(check) ? [...check] : [check]).map((it) => {
     return typeof it === 'function' ? it : (v: string) => it.test(v);
   });
 
+  let mounted = true;
+  if (scope) {
+    mounted = false;
+    onMounted(() => mounted = true);
+  }
+
   return (ev) => {
     let value: string | undefined;
-
     if (ev == null) {
       value = undefined;
     }
@@ -101,22 +110,19 @@ export function useInputChecker(opt: {
     }
     // must notice
     else {
-      if (opt.notify?.handle == null) {
+      if (notify?.handle == null) {
         logger.warn('no notice handler, ignored', ev);
       }
       else {
         if (target != null && ev.target == null) {
           ev.target = target;
         }
-        opt.notify.handle.emit(ev);
+        notify.handle.emit(ev);
       }
       return true;
     }
 
-    if (value == null) {
-      value = typeof opt.model === 'function' ? opt.model() : opt.model?.value;
-      value ??= '';
-    }
+    value ??= (typeof model === 'function' ? model() : unref(model)) ?? '';
 
     let valid: string | boolean = true;
     for (const chk of checks) {
@@ -127,7 +133,9 @@ export function useInputChecker(opt: {
       }
     }
 
-    output(valid === true ? '' : valid === false ? 'invalid' : valid);
+    if (mounted) {
+      errors(valid === true ? '' : valid === false ? 'invalid' : valid);
+    }
     return valid;
   };
 }

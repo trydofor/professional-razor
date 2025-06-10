@@ -1,6 +1,6 @@
 {
   "name": "@fessional/razor-desktop",
-  "version": "0.8.1-dev.12",
+  "version": "0.8.1-dev.13",
   "description": "desktop layer with vuetify",
   "type": "module",
   "main": "./nuxt.config.ts",

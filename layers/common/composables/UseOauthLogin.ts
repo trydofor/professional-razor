@@ -40,16 +40,12 @@ export function useOauthLogin(options: OauthLoginOption) {
   }
 
   async function checking(authType: string, url: string) {
-    if (!popupWin.opening()) { // failed pop open or closed
-      authing(LoadingStatus.Done);
-      return;
-    }
-
+    const open = popupWin.opening();
     try {
       const next = await options.checkToken(authType, url);
-      if (typeof next === 'boolean') {
-        popupWin.close();
+      if (typeof next === 'boolean' || !open) {
         authing(LoadingStatus.Done);
+        if (open) popupWin.close();
       }
       else {
         setTimeout(() => checking(authType, url), next);
@@ -58,7 +54,7 @@ export function useOauthLogin(options: OauthLoginOption) {
     catch (err) {
       logger.error('check oauth token failed', err);
       authing(LoadingStatus.Error);
-      popupWin.close();
+      if (open) popupWin.close();
     }
   }
 

@@ -8,8 +8,8 @@ packages:
 catalogs:
   manage:
     "@changesets/cli": "2.29.4"
+    "del-cli": "6.0.0"
     "pnpm-hoist-layer": "1.2.0"
-    "rimraf": "6.0.1"
     "taze": "19.1.0" # https://github.com/antfu-collective/taze/releases
   common:
     "@nuxtjs/i18n": "9.5.4" # nuxt@^3.17.2 | https://github.com/nuxt-modules/i18n/blob/main/package.json

@@ -245,9 +245,11 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
    * @param op - Fetch options for the request.
    * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
-  function req<D = SafeAny, T = ApiResult<D>>(uri: string, op: FetchOptions & ApiHookMergeOptions) {
+  function req<D = SafeAny>(uri: string, op: FetchOptions & ApiHookMergeOptions): Promise<DataResult<D>>;
+  function req<T>(uri: string, op: FetchOptions & ApiHookMergeOptions): Promise<T>;
+  function req(uri: string, op: FetchOptions & ApiHookMergeOptions): Promise<unknown> {
     // for vue-tsc type check failure
-    return ($fetch as $Fetch)<T>(url(uri), opt(op) as SafeAny);
+    return ($fetch as $Fetch)(url(uri), opt(op) as SafeAny);
   }
 
   /**
@@ -257,9 +259,11 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
    * @param op - Fetch options for the request.
    * @returns A promise of response, default as `T<D> = ApiResult<any>`.
    */
-  function raw<D = SafeAny, T = ApiResult<D>>(uri: string, op: FetchOptions & ApiHookMergeOptions) {
+  function raw<D = SafeAny>(uri: string, op: FetchOptions & ApiHookMergeOptions): ReturnType<typeof $fetch.raw<DataResult<D>>>;
+  function raw<T>(uri: string, op: FetchOptions & ApiHookMergeOptions): ReturnType<typeof $fetch.raw<T>>;
+  function raw(uri: string, op: FetchOptions & ApiHookMergeOptions) {
     // for vue-tsc type check failure
-    return ($fetch as $Fetch).raw<T>(url(uri), opt(op) as SafeAny);
+    return ($fetch as $Fetch).raw(url(uri), opt(op) as SafeAny);
   }
 
   /**
@@ -270,8 +274,10 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
    * @param op - Optional fetch options to customize the request.
    * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function get<D = SafeAny, T = DataResult<D>>(uri: string, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions) {
-    return req<D, T>(uri, {
+  function get<D = SafeAny>(uri: string, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions): Promise<DataResult<D>>;
+  function get<T>(uri: string, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions): Promise<T>;
+  function get(uri: string, query?: SafeObj, op?: FetchOptions & ApiHookMergeOptions): Promise<unknown> {
+    return req(uri, {
       ...op,
       method: 'get',
       query,
@@ -286,8 +292,10 @@ export function useApiRouteFetcher(options: FetchOptions = defaultFetchOptions) 
    * @param op - Optional fetch options to customize the request.
    * @returns A promise of response, default as `T<D> = DataResult<any>`.
    */
-  function post<D = SafeAny, T = DataResult<D>>(uri: string, body?: string | SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions) {
-    return req<D, T>(uri, {
+  function post<D = SafeAny>(uri: string, body?: string | SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions): Promise<DataResult<D>>;
+  function post<T>(uri: string, body?: string | SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions): Promise<T>;
+  function post(uri: string, body?: string | SafeObj | URLSearchParams | FormData, op?: FetchOptions & ApiHookMergeOptions): Promise<unknown> {
+    return req(uri, {
       ...op,
       method: 'post',
       body,

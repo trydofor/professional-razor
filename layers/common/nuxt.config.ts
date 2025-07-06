@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import { nuxtPublicApiRoute, nuxtPublicDevProxy, nuxtCompatibilityDate } from './configures/nuxt-config-helper';
+import { nuxtPublicApiRoute, nuxtPublicDevProxy, nuxtCompatibilityDate, nuxtI18nLocales } from './configures/nuxt-config-helper';
 
 export default defineNuxtConfig({
   modules: [
@@ -51,20 +51,7 @@ export default defineNuxtConfig({
       autoImportTranslationFunctions: true,
     },
     lazy: true,
-    locales: [
-      {
-        code: 'en-US',
-        name: 'English',
-        file: 'en-US.ts',
-        language: 'en-US', // https://i18n.nuxtjs.org/docs/guide/seo
-      },
-      {
-        code: 'zh-CN',
-        name: '简体中文',
-        file: 'zh-CN.ts',
-        language: 'zh-CN',
-      },
-    ],
+    locales: nuxtI18nLocales,
     strategy: 'no_prefix',
   },
   svgo: {

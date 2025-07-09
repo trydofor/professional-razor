@@ -1,6 +1,6 @@
 ﻿<template>
   <AppThrownCapturer>
-    <VApp>
+    <VApp :theme="dark? 'dark' : 'light'">
       <VNavigationDrawer :rail="rail" permanent>
         <VList :elevation="elevation" density="compact">
           <VListItem
@@ -57,6 +57,11 @@
         :elevation="elevation"
         density="compact"
       >
+        <VBtn
+          :icon="dark ? 'i-mdi:weather-night' : 'i-mdi:weather-sunny'"
+          slim
+          @click="onTheme"
+        />
         <VProgressLinear
           :active="globalLoadingStatus"
           indeterminate
@@ -83,6 +88,14 @@ const router = useRouter();
 const route = useRoute();
 const rail = shallowRef(true);
 const elevation = 2;
+
+const dark = shallowRef(window.matchMedia('(prefers-color-scheme: dark)').matches);
+document.documentElement.classList.toggle('dark', dark.value);
+function onTheme() {
+  const nd = !dark.value;
+  document.documentElement.classList.toggle('dark', nd);
+  dark.value = nd;
+}
 
 const pageRoutes = router.getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));
 function index(path: string) {

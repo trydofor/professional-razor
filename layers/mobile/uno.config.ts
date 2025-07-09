@@ -4,6 +4,13 @@ import { mergeConfigs } from '@unocss/core';
 // @ts-ignore
 import config from './.nuxt/uno.config.mjs';
 
+const ionicColor = (name: string) => ({
+  DEFAULT: `var(--ion-color-${name})`,
+  contrast: `var(--ion-color-${name}-contrast)`,
+  darken: `var(--ion-color-${name}-shade)`,
+  lighten: `var(--ion-color-${name}-tint)`,
+});
+
 export default mergeConfigs([fileURLToPath(import.meta.url).startsWith(process.cwd()) ? config : {}, {
   rules: [
     ['ion-var-fit', {
@@ -13,7 +20,9 @@ export default mergeConfigs([fileURLToPath(import.meta.url).startsWith(process.c
     // https://ionicframework.com/docs/api/card
     ['ion-var-card', {
       '--border-radius': '4px',
-      '--box-shadow': 'rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px',
+    }],
+    ['color-initial', {
+      '--color': 'initial',
     }],
   ],
   shortcuts: [
@@ -21,4 +30,25 @@ export default mergeConfigs([fileURLToPath(import.meta.url).startsWith(process.c
       'ion-fit-card': 'ion-var-fit ion-var-card',
     },
   ],
+  theme: {
+    // https://ionicframework.com/docs/layout/css-utilities#ionic-breakpoints
+    breakpoints: {
+      sm: '576px',
+      md: '768px',
+      lg: '992px',
+      xl: '1200px',
+    },
+    // https://ionicframework.com/docs/theming/color-generator
+    colors: {
+      primary: ionicColor('primary'),
+      secondary: ionicColor('secondary'),
+      tertiary: ionicColor('tertiary'),
+      success: ionicColor('success'),
+      warning: ionicColor('warning'),
+      danger: ionicColor('danger'),
+      light: ionicColor('light'),
+      medium: ionicColor('medium'),
+      dark: ionicColor('dark'),
+    },
+  },
 }]);

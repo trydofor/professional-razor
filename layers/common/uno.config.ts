@@ -5,7 +5,7 @@ import transformerDirectives from '@unocss/transformer-directives';
 import transformerVariantGroup from '@unocss/transformer-variant-group';
 
 export default defineConfig({
-  presets: [presetWind(), presetIcons()],
+  presets: [presetWind({ prefix: ['_', ''] }), presetIcons()],
   transformers: [
     /**
      * @apply --at-apply, @screen and theme()

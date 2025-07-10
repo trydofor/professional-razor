@@ -95,5 +95,12 @@ export default {
       info: 'Info',
       success: 'Success',
     },
+    paging: {
+      option: 'Pagination Options',
+      page: 'Page',
+      data: 'Data',
+      jumpTo: 'Jump to',
+      pageSize: 'Page Size',
+    },
   },
 };

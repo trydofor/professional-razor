@@ -24,6 +24,17 @@
         </div>
       </IonModal>
     </div>
+    <div class="p-4">
+      <IonButton id="present-alert">
+        Popup by IonAlert
+      </IonButton>
+      <IonAlert
+        trigger="present-alert"
+        header="A Short Title Is Best"
+        sub-header="A Sub Header Is Optional"
+        message="A message should be a short, complete sentence."
+      />
+    </div>
   </AppTab>
 </template>
 

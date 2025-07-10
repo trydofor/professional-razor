@@ -9,6 +9,9 @@
                 <IonButton @click="onTheme">
                   <IonIcon :class="dark ? 'i-mdi:weather-night' : 'i-mdi:weather-sunny'" />
                 </IonButton>
+                <IonButton @click="onLocale">
+                  {{ i18n.locale.value.slice(0, 2) }}
+                </IonButton>
                 <IonButton>
                   <IonIcon class="i-mdi:close text-2xl" color="primary" />
                 </IonButton>
@@ -70,6 +73,12 @@ function onTheme() {
   document.documentElement.classList.toggle('dark', nd);
   document.documentElement.classList.toggle('ion-palette-dark', nd); // 💎
   dark.value = nd;
+}
+
+const i18n = useI18n();
+async function onLocale() {
+  const lc = i18n.locale.value === 'en-US' ? 'zh-CN' : 'en-US';
+  await i18n.setLocale(lc);
 }
 
 const router = useRouter();

@@ -95,5 +95,12 @@ export default {
       info: '信息',
       success: '成功',
     },
+    paging: {
+      option: '分页选项',
+      page: '页码',
+      data: '条数',
+      jumpTo: '跳至页码',
+      pageSize: '每页条数',
+    },
   },
 };

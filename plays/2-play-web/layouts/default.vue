@@ -62,6 +62,12 @@
           slim
           @click="onTheme"
         />
+        <VBtn
+          slim
+          @click="onLocale"
+        >
+          {{ i18n.locale.value.slice(0, 2) }}
+        </VBtn>
         <VProgressLinear
           :active="globalLoadingStatus"
           indeterminate
@@ -95,6 +101,12 @@ function onTheme() {
   const nd = !dark.value;
   document.documentElement.classList.toggle('dark', nd);
   dark.value = nd;
+}
+
+const i18n = useI18n();
+async function onLocale() {
+  const lc = i18n.locale.value === 'en-US' ? 'zh-CN' : 'en-US';
+  await i18n.setLocale(lc);
 }
 
 const pageRoutes = router.getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));

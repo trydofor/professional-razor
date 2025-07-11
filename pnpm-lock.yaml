@@ -104,8 +104,8 @@ catalogs:
       specifier: 9.30.0
       version: 9.30.0
     happy-dom:
-      specifier: 17.6.3
-      version: 17.6.3
+      specifier: 18.0.1
+      version: 18.0.1
     nuxi:
       specifier: 3.25.1
       version: 3.25.1
@@ -163,8 +163,6 @@ catalogs:
     ionicons:
       specifier: 7.4.0
       version: 7.4.0
-
-pnpmfileChecksum: nns62uwmosrd2z3ztq7wuqxrvq
 
 importers:
 
@@ -248,7 +246,7 @@ importers:
         version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
       '@nuxt/test-utils':
         specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
+        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@18.0.1)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
       '@types/validator':
         specifier: catalog:commonDev
         version: 13.15.2
@@ -275,7 +273,7 @@ importers:
         version: 66.3.3
       '@vitest/coverage-v8':
         specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
+        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
       '@vue/test-utils':
         specifier: catalog:commonDev
         version: 2.4.6
@@ -284,7 +282,7 @@ importers:
         version: 9.30.0(jiti@2.4.2)
       happy-dom:
         specifier: catalog:commonDev
-        version: 17.6.3
+        version: 18.0.1
       nuxi:
         specifier: catalog:commonDev
         version: 3.25.1
@@ -299,64 +297,13 @@ importers:
         version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.25.4)))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
       vitest:
         specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
+        version: 3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
       vue-tsc:
         specifier: catalog:commonDev
         version: 2.2.12(typescript@5.8.3)
 
   layers/desktop:
     dependencies:
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
       vuetify:
         specifier: catalog:desktop
         version: 3.9.0(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.17(typescript@5.8.3))
@@ -367,72 +314,6 @@ importers:
       '@fessional/razor-common':
         specifier: workspace:*
         version: link:../common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0(esbuild@0.23.1))
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.23.1)))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
   layers/mobile:
     dependencies:
@@ -448,831 +329,52 @@ importers:
       '@ionic/vue-router':
         specifier: catalog:mobile
         version: 8.6.4(@stencil/core@4.33.1)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
       '@nuxtjs/ionic':
         specifier: catalog:mobile
         version: 0.18.0(@stencil/core@4.33.1)(magicast@0.3.5)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
       ionicons:
         specifier: catalog:mobile
         version: 7.4.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@fessional/razor-common':
         specifier: workspace:*
         version: link:../common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
   plays/1-play-spa:
-    dependencies:
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@fessional/razor-common':
         specifier: workspace:*
         version: link:../../layers/common
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
   plays/2-play-web:
-    dependencies:
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
-      vuetify:
-        specifier: catalog:desktop
-        version: 3.9.0(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.17(typescript@5.8.3))
-      vuetify-nuxt-module:
-        specifier: catalog:desktop
-        version: 0.18.7(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@fessional/play-spa':
         specifier: workspace:*
         version: link:../1-play-spa
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
       '@fessional/razor-desktop':
         specifier: workspace:*
         version: link:../../layers/desktop
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
   plays/3-play-mob:
-    dependencies:
-      '@capacitor/preferences':
-        specifier: catalog:mobile
-        version: 7.0.1(@capacitor/core@7.0.1)
-      '@ionic/core':
-        specifier: catalog:mobile
-        version: 8.6.4
-      '@ionic/vue':
-        specifier: catalog:mobile
-        version: 8.6.4(@stencil/core@4.33.1)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@ionic/vue-router':
-        specifier: catalog:mobile
-        version: 8.6.4(@stencil/core@4.33.1)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@nuxtjs/ionic':
-        specifier: catalog:mobile
-        version: 0.18.0(@stencil/core@4.33.1)(magicast@0.3.5)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
-      ionicons:
-        specifier: catalog:mobile
-        version: 7.4.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@fessional/play-spa':
         specifier: workspace:*
         version: link:../1-play-spa
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
       '@fessional/razor-mobile':
         specifier: workspace:*
         version: link:../../layers/mobile
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
   plays/4-play-exe:
-    dependencies:
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
-      vuetify:
-        specifier: catalog:desktop
-        version: 3.9.0(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.17(typescript@5.8.3))
-      vuetify-nuxt-module:
-        specifier: catalog:desktop
-        version: 0.18.7(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
     devDependencies:
-      '@fessional/play-spa':
-        specifier: workspace:*
-        version: link:../1-play-spa
       '@fessional/play-web':
         specifier: workspace:*
         version: link:../2-play-web
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
-      '@fessional/razor-desktop':
-        specifier: workspace:*
-        version: link:../../layers/desktop
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
   plays/5-play-app:
-    dependencies:
-      '@capacitor/preferences':
-        specifier: catalog:mobile
-        version: 7.0.1(@capacitor/core@7.0.1)
-      '@ionic/core':
-        specifier: catalog:mobile
-        version: 8.6.4
-      '@ionic/vue':
-        specifier: catalog:mobile
-        version: 8.6.4(@stencil/core@4.33.1)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@ionic/vue-router':
-        specifier: catalog:mobile
-        version: 8.6.4(@stencil/core@4.33.1)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@nuxtjs/i18n':
-        specifier: catalog:common
-        version: 9.5.6(@vue/compiler-dom@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@nuxtjs/ionic':
-        specifier: catalog:mobile
-        version: 0.18.0(@stencil/core@4.33.1)(magicast@0.3.5)(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
-      '@pinia/nuxt':
-        specifier: catalog:common
-        version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
-      '@sentry/nuxt':
-        specifier: catalog:common
-        version: 9.37.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))(rollup@4.44.2)(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/core':
-        specifier: catalog:common
-        version: 13.5.0(vue@3.5.17(typescript@5.8.3))
-      '@vueuse/nuxt':
-        specifier: catalog:common
-        version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      date-fns:
-        specifier: catalog:common
-        version: 4.1.0
-      decimal.js:
-        specifier: catalog:common
-        version: 10.6.0
-      ionicons:
-        specifier: catalog:mobile
-        version: 7.4.0
-      nuxt:
-        specifier: catalog:common
-        version: 3.17.6(@capacitor/preferences@7.0.1(@capacitor/core@7.0.1))(@parcel/watcher@2.5.1)(@types/node@22.13.5)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(meow@13.2.0)(optionator@0.9.4)(rollup@4.44.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue-tsc@2.2.12(typescript@5.8.3))(xml2js@0.6.2)(yaml@2.8.0)
-      nuxt-svgo:
-        specifier: catalog:common
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
-      nuxt-swiper:
-        specifier: catalog:common
-        version: 2.0.1(magicast@0.3.5)
-      pinia:
-        specifier: catalog:common
-        version: 3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
-      swiper:
-        specifier: catalog:common
-        version: 11.2.10
-      ts-md5:
-        specifier: catalog:common
-        version: 1.3.1
-      ulid:
-        specifier: catalog:common
-        version: 3.0.1
-      validator:
-        specifier: catalog:common
-        version: 13.15.15
-      vue:
-        specifier: catalog:common
-        version: 3.5.17(typescript@5.8.3)
-      vue-router:
-        specifier: catalog:common
-        version: 4.5.1(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@fessional/play-mob':
         specifier: workspace:*
         version: link:../3-play-mob
-      '@fessional/play-spa':
-        specifier: workspace:*
-        version: link:../1-play-spa
-      '@fessional/razor-common':
-        specifier: workspace:*
-        version: link:../../layers/common
-      '@fessional/razor-mobile':
-        specifier: workspace:*
-        version: link:../../layers/mobile
-      '@iconify-json/line-md':
-        specifier: catalog:commonDev
-        version: 1.2.8
-      '@iconify-json/mdi':
-        specifier: catalog:commonDev
-        version: 1.2.3
-      '@nuxt/eslint':
-        specifier: catalog:commonDev
-        version: 1.4.1(@vue/compiler-sfc@3.5.17)(eslint@9.30.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@nuxt/test-utils':
-        specifier: catalog:commonDev
-        version: 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
-      '@types/validator':
-        specifier: catalog:commonDev
-        version: 13.15.2
-      '@unocss/core':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/eslint-config':
-        specifier: catalog:commonDev
-        version: 66.3.3(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/nuxt':
-        specifier: catalog:commonDev
-        version: 66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)
-      '@unocss/preset-icons':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/preset-wind4':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-directives':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@unocss/transformer-variant-group':
-        specifier: catalog:commonDev
-        version: 66.3.3
-      '@vitest/coverage-v8':
-        specifier: catalog:commonDev
-        version: 3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))
-      '@vue/test-utils':
-        specifier: catalog:commonDev
-        version: 2.4.6
-      eslint:
-        specifier: catalog:commonDev
-        version: 9.30.0(jiti@2.4.2)
-      happy-dom:
-        specifier: catalog:commonDev
-        version: 17.6.3
-      nuxi:
-        specifier: catalog:commonDev
-        version: 3.25.1
-      sass-embedded:
-        specifier: catalog:commonDev
-        version: 1.89.2
-      typescript:
-        specifier: catalog:commonDev
-        version: 5.8.3
-      unocss:
-        specifier: catalog:commonDev
-        version: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      vitest:
-        specifier: catalog:commonDev
-        version: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vue-tsc:
-        specifier: catalog:commonDev
-        version: 2.2.12(typescript@5.8.3)
 
 packages:
 
@@ -3532,6 +2634,9 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
+  '@types/node@20.19.7':
+    resolution: {integrity: sha512-1GM9z6BJOv86qkPvzh2i6VW5+VVrXxCLknfmTkWEqz+6DqosiY28XUWCTmBcJ0ACzKqx/iwdIREfo1fwExIlkA==}
+
   '@types/node@22.13.5':
     resolution: {integrity: sha512-+lTU0PxZXn0Dr1NBtC7Y8cR21AJr87dLLU953CWA6pMxxv/UDc7jYAY90upcrie1nRcD6XNG5HOYEDtgW5TxAg==}
 
@@ -3567,6 +2672,9 @@ packages:
 
   '@types/web-bluetooth@0.0.21':
     resolution: {integrity: sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==}
+
+  '@types/whatwg-mimetype@3.0.2':
+    resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
@@ -5557,8 +4665,8 @@ packages:
   h3@1.15.3:
     resolution: {integrity: sha512-z6GknHqyX0h9aQaTx22VZDf6QyZn+0Nh+Ym8O/u0SGSkyF5cuTJYKlc8MkzW3Nzf9LE1ivcpmYC3FUGpywhuUQ==}
 
-  happy-dom@17.6.3:
-    resolution: {integrity: sha512-UVIHeVhxmxedbWPCfgS55Jg2rDfwf2BCKeylcPSqazLz5w3Kri7Q4xdBJubsr/+VUzFLh0VjIvh13RaDA2/Xug==}
+  happy-dom@18.0.1:
+    resolution: {integrity: sha512-qn+rKOW7KWpVTtgIUi6RVmTBZJSe2k0Db0vh1f7CWrWclkkc7/Q+FrOfkZIb2eiErLyqu5AXEzE7XthO9JVxRA==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -7644,7 +6752,7 @@ packages:
   superagent@8.1.2:
     resolution: {integrity: sha512-6WTxW1EB6yCxV5VFOIPQruWGHqc3yI7hEmZK6h+pyk69Lk/Ut7rLUY6W/ONF2MjBuGjvmMiIpsrVJ2vjrHlslA==}
     engines: {node: '>=6.4.0 <13 || >=14'}
-    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+    deprecated: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
 
   superjson@2.2.2:
     resolution: {integrity: sha512-5JRxVqC8I8NuOUjzBbvVJAKNM8qoVuH0O77h4WInc/qC2q5IreqKxYwgkga3PfA22OayK2ikceb/B26dztPl+Q==}
@@ -7897,6 +7005,9 @@ packages:
 
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
   unenv@2.0.0-rc.18:
     resolution: {integrity: sha512-O0oVQVJ2X3Q8H4HITJr4e2cWxMYBeZ+p8S25yoKCxVCgDWtIJDcgwWNonYz12tI3ylVQCRyPV/Bdq0KJeXo7AA==}
@@ -8333,10 +7444,6 @@ packages:
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-
-  webidl-conversions@7.0.0:
-    resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
-    engines: {node: '>=12'}
 
   webpack-sources@3.3.3:
     resolution: {integrity: sha512-yd1RBzSGanHkitROoPFd6qsrxt+oFhg/129YzheDGqeustzX0vTZJZsSsQjVQC4yzBQ56K55XU8gaNCtIzOnTg==}
@@ -10056,7 +9163,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/test-utils@3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)':
+  '@nuxt/test-utils@3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@18.0.1)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)':
     dependencies:
       '@nuxt/kit': 3.17.4(magicast@0.3.5)
       '@nuxt/schema': 3.17.4
@@ -10082,12 +9189,12 @@ snapshots:
       ufo: 1.6.1
       unplugin: 2.3.4
       vite: 6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-      vitest-environment-nuxt: 1.0.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
+      vitest-environment-nuxt: 1.0.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@18.0.1)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
       '@vue/test-utils': 2.4.6
-      happy-dom: 17.6.3
-      vitest: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
+      happy-dom: 18.0.1
+      vitest: 3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -11171,6 +10278,10 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
+  '@types/node@20.19.7':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/node@22.13.5':
     dependencies:
       undici-types: 6.20.0
@@ -11204,6 +10315,8 @@ snapshots:
   '@types/validator@13.15.2': {}
 
   '@types/web-bluetooth@0.0.21': {}
+
+  '@types/whatwg-mimetype@3.0.2': {}
 
   '@types/yauzl@2.10.3':
     dependencies:
@@ -11420,30 +10533,6 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
-  '@unocss/nuxt@66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0(esbuild@0.23.1))':
-    dependencies:
-      '@nuxt/kit': 3.17.6(magicast@0.3.5)
-      '@unocss/config': 66.3.3
-      '@unocss/core': 66.3.3
-      '@unocss/preset-attributify': 66.3.3
-      '@unocss/preset-icons': 66.3.3
-      '@unocss/preset-tagify': 66.3.3
-      '@unocss/preset-typography': 66.3.3
-      '@unocss/preset-uno': 66.3.3
-      '@unocss/preset-web-fonts': 66.3.3
-      '@unocss/preset-wind': 66.3.3
-      '@unocss/reset': 66.3.3
-      '@unocss/vite': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      '@unocss/webpack': 66.3.3(webpack@5.98.0(esbuild@0.23.1))
-      unocss: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.23.1)))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-    transitivePeerDependencies:
-      - magicast
-      - postcss
-      - supports-color
-      - vite
-      - vue
-      - webpack
-
   '@unocss/nuxt@66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0(esbuild@0.25.4))':
     dependencies:
       '@nuxt/kit': 3.17.6(magicast@0.3.5)
@@ -11460,30 +10549,6 @@ snapshots:
       '@unocss/vite': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
       '@unocss/webpack': 66.3.3(webpack@5.98.0(esbuild@0.25.4))
       unocss: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.25.4)))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-    transitivePeerDependencies:
-      - magicast
-      - postcss
-      - supports-color
-      - vite
-      - vue
-      - webpack
-
-  '@unocss/nuxt@66.3.3(magicast@0.3.5)(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(webpack@5.98.0)':
-    dependencies:
-      '@nuxt/kit': 3.17.6(magicast@0.3.5)
-      '@unocss/config': 66.3.3
-      '@unocss/core': 66.3.3
-      '@unocss/preset-attributify': 66.3.3
-      '@unocss/preset-icons': 66.3.3
-      '@unocss/preset-tagify': 66.3.3
-      '@unocss/preset-typography': 66.3.3
-      '@unocss/preset-uno': 66.3.3
-      '@unocss/preset-web-fonts': 66.3.3
-      '@unocss/preset-wind': 66.3.3
-      '@unocss/reset': 66.3.3
-      '@unocss/vite': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      '@unocss/webpack': 66.3.3(webpack@5.98.0)
-      unocss: 66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - magicast
       - postcss
@@ -11596,20 +10661,6 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
-  '@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.23.1))':
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@unocss/config': 66.3.3
-      '@unocss/core': 66.3.3
-      chokidar: 3.6.0
-      magic-string: 0.30.17
-      pathe: 2.0.3
-      tinyglobby: 0.2.14
-      unplugin: 2.3.5
-      unplugin-utils: 0.2.4
-      webpack: 5.98.0(esbuild@0.23.1)
-      webpack-sources: 3.3.3
-
   '@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.25.4))':
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -11622,20 +10673,6 @@ snapshots:
       unplugin: 2.3.5
       unplugin-utils: 0.2.4
       webpack: 5.98.0(esbuild@0.25.4)
-      webpack-sources: 3.3.3
-
-  '@unocss/webpack@66.3.3(webpack@5.98.0)':
-    dependencies:
-      '@ampproject/remapping': 2.3.0
-      '@unocss/config': 66.3.3
-      '@unocss/core': 66.3.3
-      chokidar: 3.6.0
-      magic-string: 0.30.17
-      pathe: 2.0.3
-      tinyglobby: 0.2.14
-      unplugin: 2.3.5
-      unplugin-utils: 0.2.4
-      webpack: 5.98.0
       webpack-sources: 3.3.3
 
   '@unrs/resolver-binding-darwin-arm64@1.7.2':
@@ -11726,7 +10763,7 @@ snapshots:
       vite: 6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
 
-  '@vitest/coverage-v8@3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))':
+  '@vitest/coverage-v8@3.2.4(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 1.0.2
@@ -11741,7 +10778,7 @@ snapshots:
       std-env: 3.9.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
+      vitest: 3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -13680,9 +12717,10 @@ snapshots:
       ufo: 1.6.1
       uncrypto: 0.1.3
 
-  happy-dom@17.6.3:
+  happy-dom@18.0.1:
     dependencies:
-      webidl-conversions: 7.0.0
+      '@types/node': 20.19.7
+      '@types/whatwg-mimetype': 3.0.2
       whatwg-mimetype: 3.0.0
 
   has-flag@4.0.0: {}
@@ -16027,17 +15065,6 @@ snapshots:
 
   term-size@2.2.1: {}
 
-  terser-webpack-plugin@5.3.11(esbuild@0.23.1)(webpack@5.98.0(esbuild@0.23.1)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      jest-worker: 27.5.1
-      schema-utils: 4.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.39.0
-      webpack: 5.98.0(esbuild@0.23.1)
-    optionalDependencies:
-      esbuild: 0.23.1
-
   terser-webpack-plugin@5.3.11(esbuild@0.25.4)(webpack@5.98.0(esbuild@0.25.4)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -16048,15 +15075,6 @@ snapshots:
       webpack: 5.98.0(esbuild@0.25.4)
     optionalDependencies:
       esbuild: 0.25.4
-
-  terser-webpack-plugin@5.3.11(webpack@5.98.0):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      jest-worker: 27.5.1
-      schema-utils: 4.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.39.0
-      webpack: 5.98.0
 
   terser@5.39.0:
     dependencies:
@@ -16200,6 +15218,8 @@ snapshots:
 
   undici-types@6.20.0: {}
 
+  undici-types@6.21.0: {}
+
   unenv@2.0.0-rc.18:
     dependencies:
       defu: 6.1.4
@@ -16279,35 +15299,6 @@ snapshots:
     dependencies:
       normalize-path: 2.1.1
 
-  unocss@66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.23.1)))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3)):
-    dependencies:
-      '@unocss/astro': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      '@unocss/cli': 66.3.3
-      '@unocss/core': 66.3.3
-      '@unocss/postcss': 66.3.3(postcss@8.5.6)
-      '@unocss/preset-attributify': 66.3.3
-      '@unocss/preset-icons': 66.3.3
-      '@unocss/preset-mini': 66.3.3
-      '@unocss/preset-tagify': 66.3.3
-      '@unocss/preset-typography': 66.3.3
-      '@unocss/preset-uno': 66.3.3
-      '@unocss/preset-web-fonts': 66.3.3
-      '@unocss/preset-wind': 66.3.3
-      '@unocss/preset-wind3': 66.3.3
-      '@unocss/preset-wind4': 66.3.3
-      '@unocss/transformer-attributify-jsx': 66.3.3
-      '@unocss/transformer-compile-class': 66.3.3
-      '@unocss/transformer-directives': 66.3.3
-      '@unocss/transformer-variant-group': 66.3.3
-      '@unocss/vite': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-    optionalDependencies:
-      '@unocss/webpack': 66.3.3(webpack@5.98.0(esbuild@0.23.1))
-      vite: 6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-    transitivePeerDependencies:
-      - postcss
-      - supports-color
-      - vue
-
   unocss@66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0(esbuild@0.25.4)))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       '@unocss/astro': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
@@ -16331,35 +15322,6 @@ snapshots:
       '@unocss/vite': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
     optionalDependencies:
       '@unocss/webpack': 66.3.3(webpack@5.98.0(esbuild@0.25.4))
-      vite: 6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
-    transitivePeerDependencies:
-      - postcss
-      - supports-color
-      - vue
-
-  unocss@66.3.3(@unocss/webpack@66.3.3(webpack@5.98.0))(postcss@8.5.6)(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3)):
-    dependencies:
-      '@unocss/astro': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      '@unocss/cli': 66.3.3
-      '@unocss/core': 66.3.3
-      '@unocss/postcss': 66.3.3(postcss@8.5.6)
-      '@unocss/preset-attributify': 66.3.3
-      '@unocss/preset-icons': 66.3.3
-      '@unocss/preset-mini': 66.3.3
-      '@unocss/preset-tagify': 66.3.3
-      '@unocss/preset-typography': 66.3.3
-      '@unocss/preset-uno': 66.3.3
-      '@unocss/preset-web-fonts': 66.3.3
-      '@unocss/preset-wind': 66.3.3
-      '@unocss/preset-wind3': 66.3.3
-      '@unocss/preset-wind4': 66.3.3
-      '@unocss/transformer-attributify-jsx': 66.3.3
-      '@unocss/transformer-compile-class': 66.3.3
-      '@unocss/transformer-directives': 66.3.3
-      '@unocss/transformer-variant-group': 66.3.3
-      '@unocss/vite': 66.3.3(vite@6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-    optionalDependencies:
-      '@unocss/webpack': 66.3.3(webpack@5.98.0)
       vite: 6.3.5(@types/node@22.13.5)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0)
     transitivePeerDependencies:
       - postcss
@@ -16646,9 +15608,9 @@ snapshots:
       tsx: 4.19.4
       yaml: 2.8.0
 
-  vitest-environment-nuxt@1.0.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0):
+  vitest-environment-nuxt@1.0.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@18.0.1)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0):
     dependencies:
-      '@nuxt/test-utils': 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@17.6.3)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
+      '@nuxt/test-utils': 3.19.1(@types/node@22.13.5)(@vue/test-utils@2.4.6)(happy-dom@18.0.1)(jiti@2.4.2)(magicast@0.3.5)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(typescript@5.8.3)(vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0))(yaml@2.8.0)
     transitivePeerDependencies:
       - '@cucumber/cucumber'
       - '@jest/globals'
@@ -16674,7 +15636,7 @@ snapshots:
       - vitest
       - yaml
 
-  vitest@3.2.4(@types/node@22.13.5)(happy-dom@17.6.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0):
+  vitest@3.2.4(@types/node@22.13.5)(happy-dom@18.0.1)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.39.0)(tsx@4.19.4)(yaml@2.8.0):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -16701,7 +15663,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.13.5
-      happy-dom: 17.6.3
+      happy-dom: 18.0.1
     transitivePeerDependencies:
       - jiti
       - less
@@ -16808,73 +15770,11 @@ snapshots:
 
   webidl-conversions@3.0.1: {}
 
-  webidl-conversions@7.0.0: {}
-
   webpack-sources@3.3.3: {}
 
   webpack-virtual-modules@0.5.0: {}
 
   webpack-virtual-modules@0.6.2: {}
-
-  webpack@5.98.0:
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.8
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.15.0
-      browserslist: 4.24.5
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.1
-      es-module-lexer: 1.7.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 4.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.11(webpack@5.98.0)
-      watchpack: 2.4.2
-      webpack-sources: 3.3.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-
-  webpack@5.98.0(esbuild@0.23.1):
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.8
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.15.0
-      browserslist: 4.24.5
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.1
-      es-module-lexer: 1.7.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 4.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.11(esbuild@0.23.1)(webpack@5.98.0(esbuild@0.23.1))
-      watchpack: 2.4.2
-      webpack-sources: 3.3.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
 
   webpack@5.98.0(esbuild@0.25.4):
     dependencies:

@@ -36,7 +36,7 @@
         @change-page="onPageChange"
       />
       <div class="border border-solid my-4 border-primary p-4">
-        {{ t('ui.paging.page') + ': '+ page +', '+ t('ui.paging.pageSize') +': '+ size }}
+        {{ $t('ui.paging.page') + ': '+ page +', '+ $t('ui.paging.pageSize') +': '+ size }}
       </div>
       <div class="mt-4">
         <IonSelect v-model="visible" label="visible">
@@ -48,13 +48,13 @@
       <div class="border border-solid my-4 border-primary p-4">
         border border-solid border-primary
       </div>
-      <div class="border border-solid my-4 border-primary p-4 text-secondary">
+      <div class="border border-solid my-4 border-primary text-secondary p-4">
         border border-solid border-primary text-secondary
       </div>
-      <div class="border border-solid my-4 border-primary bg-primary-lighten p-4 text-primary-contrast hover:bg-secondary">
+      <div class="border border-solid my-4 border-primary hover:bg-secondary text-primary-contrast p-4 bg-primary-lighten">
         text-primary-contrast bg-primary hover:bg-secondary
       </div>
-      <div class="border border-solid my-4 flex flex-col border-primary">
+      <div class="border border-solid my-4 border-primary flex flex-col">
         <div class="bg-primary">
           bg-primary unocss
         </div>
@@ -93,8 +93,6 @@ const totalPage = computed(() => Math.floor((totalData - 1) / size.value) + 1);
 
 const visible = shallowRef<undefined>();
 const visibleItem = [3, 4, 5, 6, 7, 8, 9];
-
-const { t } = useI18n();
 
 function onPageChange(pg: number, sz: number) {
   console.log('onPageChange', pg, sz);

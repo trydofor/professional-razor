@@ -1,12 +1,12 @@
 <template>
   <AppTab>
     <template #title>
-      <div class="flex-row flex items-center gap-2">
+      <div class="flex-row flex gap-2 items-center">
         <DpiImg :srcset="[storm1, storm2, storm3, storm4]" alt="movingkite logo" class="p-2" />
         <div>Index</div>
       </div>
     </template>
-    <div class="text-left p-4">
+    <div class="p-4 flex flex-col items-start">
       <IonButton
         v-for="rt in pageRoutes"
         :key="rt.path"

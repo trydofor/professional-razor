@@ -6,9 +6,9 @@
       size="small"
       @click="dialog = true"
     >
-      <div class="flex-row justify-center flex items-center gap-1">
+      <div class="flex-row justify-center flex gap-1 items-center">
         <div class="i-mdi:cog size-4" />
-        <div class="text-right flex flex-col gap-1px text-2">
+        <div class="text-right text-2 flex flex-col gap-1px">
           <div :class="props.totalData ? undefined:'pr-1'">
             {{ dataStart }}
           </div>
@@ -23,7 +23,7 @@
     >
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{{ t('ui.paging.option') }}</IonTitle>
+          <IonTitle>{{ $t('ui.paging.option') }}</IonTitle>
           <IonButtons slot="end">
             <IonButton @click="onPageCancel">
               <IonIcon class="i-mdi:close" />
@@ -34,12 +34,12 @@
       <IonContent>
         <IonList inset>
           <IonItem lines="none">
-            {{ t('ui.paging.page') + ': ' + props.page + ' / ' + props.totalPage }}
+            {{ $t('ui.paging.page') + ': ' + props.page + ' / ' + props.totalPage }}
           </IonItem>
           <IonItem>
             <IonInput
               v-model.number="pageJump"
-              :label="t('ui.paging.jumpTo')"
+              :label="$t('ui.paging.jumpTo')"
               label-placement="floating"
               type="number"
               :min="1"
@@ -47,13 +47,13 @@
             />
           </IonItem>
           <IonItem lines="none">
-            {{ t('ui.paging.data') + ': ' + dataStart + ' / ' + dataTotal }}
+            {{ $t('ui.paging.data') + ': ' + dataStart + ' / ' + dataTotal }}
           </IonItem>
           <IonItem>
             <IonSelect
               v-model="pageSize"
               :disabled="!props.sizeItems?.length"
-              :label="t('ui.paging.pageSize')"
+              :label="$t('ui.paging.pageSize')"
               label-placement="floating"
             >
               <IonSelectOption v-for="size in props.sizeItems" :key="size" :value="size">
@@ -69,7 +69,7 @@
               size="default"
               @click="onPageCancel"
             >
-              {{ t('ui.button.close') }}
+              {{ $t('ui.button.close') }}
             </IonButton>
             <IonButton
               slot="end"
@@ -77,7 +77,7 @@
               size="default"
               @click="onPageSetting"
             >
-              {{ t('ui.button.ok') }}
+              {{ $t('ui.button.ok') }}
             </IonButton>
           </IonItem>
         </IonList>
@@ -105,7 +105,6 @@ const emits = defineEmits<{
 const dataStart = computed(() => Math.max((props.page - 1) * props.pageSize + 1, 1).toFixed(0));
 const dataTotal = computed(() => props.totalData ? props.totalData.toFixed(0) : ((props.totalPage - 1) * props.pageSize).toFixed(0) + '+');
 
-const { t } = useI18n();
 const dialog = shallowRef<boolean>(false);
 
 const pageJump = shallowRef<number>(props.page);

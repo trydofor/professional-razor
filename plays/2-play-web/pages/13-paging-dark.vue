@@ -37,7 +37,7 @@
       @change-page="onPageChange"
     />
     <div class="border-sm my-4 p-4">
-      {{ t('ui.paging.page') + ': '+ page +', '+ t('ui.paging.pageSize') +': '+ size }}
+      {{ $t('ui.paging.page') + ': '+ page +', '+ $t('ui.paging.pageSize') +': '+ size }}
     </div>
     <div>
       <VSelect
@@ -59,13 +59,13 @@
     <div class="border border-opacity-100 my-4 border-primary p-4">
       border border-primary border-opacity-100
     </div>
-    <div class="border border-opacity-100 my-4 border-primary bg-primary p-4 text-primary-contrast hover:_bg-secondary">
+    <div class="border border-opacity-100 my-4 border-primary bg-primary text-primary-contrast p-4 hover:_bg-secondary">
       text-primary-contrast bg-primary hover:_bg-secondary ❌ for !important
     </div>
-    <div class="border border-opacity-100 my-4 border-primary _bg-primary p-4 text-primary-contrast hover:_bg-secondary">
+    <div class="border border-opacity-100 my-4 border-primary text-primary-contrast p-4 _bg-primary hover:_bg-secondary">
       text-primary-contrast _bg-primary hover:_bg-secondary ✅
     </div>
-    <div class="border border-opacity-100 my-4 flex flex-col border-primary">
+    <div class="border border-opacity-100 my-4 border-primary flex flex-col">
       <div class="bg-primary">
         bg-primary vuetify with color
       </div>
@@ -101,6 +101,9 @@
 </template>
 
 <script lang="ts" setup>
+// import { useLocale } from 'vuetify';
+// https://github.com/vuetifyjs/nuxt-module/issues/324
+
 definePageMeta({
   name: 'Paging Bar and Dark Mode',
 });
@@ -114,7 +117,8 @@ const totalPage = computed(() => Math.floor((totalData - 1) / size.value) + 1);
 const density = shallowRef<undefined>();
 const visible = shallowRef<undefined>();
 
-const { t } = useI18n();
+// const locale = useLocale();
+// console.log('locale', locale);
 function onPageChange(pg: number, sz: number) {
   console.log('onPageChange', pg, sz);
   page.value = pg;

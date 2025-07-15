@@ -53,7 +53,7 @@ catalogs:
     "vitest": "3.2.4" # 3.2.4 | https://github.com/nuxt/nuxt/blob/v3.17.6/package.json
     "vue-tsc": "2.2.12" # 3.0.0 | https://github.com/nuxt/nuxt/blob/v3.17.6/package.json ⚠️ peer vite-plugin-checker 0.9.3
   desktop:
-    "vuetify": "3.9.0" # https://github.com/vuetifyjs/vuetify/blob/master/package.json
+    "vuetify": "3.9.0" # vuetify@^3.7.0 https://github.com/vuetifyjs/nuxt-module/blob/main/package.json
     "vuetify-nuxt-module": "0.18.7" # nuxt@^3.10.2 | https://github.com/vuetifyjs/nuxt-module/blob/main/package.json
   mobile:
     "@capacitor/preferences": "7.0.1" # @capacitor/core@^7.0.0 | https://github.com/ionic-team/ionic-framework/blob/v8.6.4/core/package.json

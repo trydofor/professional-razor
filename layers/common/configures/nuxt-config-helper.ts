@@ -39,18 +39,13 @@ export function nuxtPublicDevProxy() {
     : {};
 }
 
-export const nuxtI18nEnUs = {
-  code: 'en-US',
-  name: 'English',
-  file: 'en-US.ts',
-  language: 'en-US', // https://i18n.nuxtjs.org/docs/guide/seo
-};
-
-export const nuxtI18nZhCn = {
-  code: 'zh-CN',
-  name: '简体中文',
-  file: 'zh-CN.ts',
-  language: 'zh-CN',
+export function nuxtI18nLocale(code: string, name: string, ext = 'json') {
+  return {
+    code,
+    name,
+    file: `${code}.${ext}`,
+    language: code, // https://i18n.nuxtjs.org/docs/guide/seo
+  };
 };
 
 /**
@@ -69,7 +64,7 @@ export const nuxtI18nZhCn = {
  * export default () => ({
  *   $vuetify,
  * });
- * // or static message
+ * // or static message, but *.json is recommended
  * export default {
  *   error: {}
  * };
@@ -77,4 +72,12 @@ export const nuxtI18nZhCn = {
  *
  * @see https://i18n.nuxtjs.org/docs/guide/layers#merging-locales
  */
-export const nuxtI18nLocales = [nuxtI18nEnUs, nuxtI18nZhCn];
+export const nuxtI18nLocales = [
+  nuxtI18nLocale('en-US', 'English', 'json'),
+  nuxtI18nLocale('zh-CN', '简体中文', 'json'),
+];
+
+export const nuxtI18nLocalesTs = [
+  nuxtI18nLocale('en-US', 'English', 'ts'),
+  nuxtI18nLocale('zh-CN', '简体中文', 'ts'),
+];

@@ -18,6 +18,7 @@
     "del:dep": "del-cli -v **/node_modules/",
     "del:gen": "del-cli -v **/.nuxt/ **/.output/ **/dist/",
     "dep:ci": "pnpm i --frozen-lockfile",
+    "dep:chk": "node pnpm-workspace.mjs",
     "dep:up": "taze -r -l minor",
     "dev:dep": "pnpm -r -F './layers/**' i",
     "dev:gen": "pnpm -r -F './layers/**' run postinstall",
@@ -40,7 +41,8 @@
     "@changesets/cli": "catalog:manage",
     "del-cli": "catalog:manage",
     "pnpm-hoist-layer": "catalog:manage",
-    "taze": "catalog:manage"
+    "taze": "catalog:manage",
+    "semver": "catalog:manage"
   },
   "packageManager": "pnpm@9.15.9"
 }

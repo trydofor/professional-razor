@@ -10,7 +10,6 @@
     "dbaeumer.vscode-eslint",
     "eamodio.gitlens",
     "EditorConfig.EditorConfig",
-    "ionic.ionic",
     "ipatalas.vscode-postfix-ts",
     "johnpapa.vscode-peacock",
     "lokalise.i18n-ally",
@@ -26,5 +25,6 @@
     "unional.vscode-sort-package-json",
     "vitest.explorer",
     "zt5.http-server",
+    "webnative.webnative",
   ]
 }

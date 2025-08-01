@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "postinstall": "nuxi prepare",
+    "postinstall": "nuxt prepare",
     "test": "vitest"
   },
   "dependencies": {

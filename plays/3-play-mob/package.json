@@ -6,10 +6,11 @@
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "build": "nuxi build",
-    "generate": "nuxi generate",
-    "dev": "nuxi dev",
-    "postinstall": "nuxi prepare"
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "dev": "nuxt dev",
+    "distview": "vite preview",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@fessional/play-spa": "workspace:*",

@@ -6,8 +6,8 @@
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev",
-    "postinstall": "nuxi prepare"
+    "dev": "nuxt dev",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@fessional/play-web": "workspace:*"

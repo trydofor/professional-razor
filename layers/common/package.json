@@ -6,7 +6,7 @@
   "main": "./nuxt.config.ts",
   "types": "./index.d.ts",
   "scripts": {
-    "postinstall": "nuxi prepare",
+    "postinstall": "nuxt prepare",
     "test": "vitest"
   },
   "dependencies": {
@@ -45,7 +45,6 @@
     "@vue/test-utils": "catalog:commonDev",
     "eslint": "catalog:commonDev",
     "happy-dom": "catalog:commonDev",
-    "nuxi": "catalog:commonDev",
     "sass-embedded": "catalog:commonDev",
     "typescript": "catalog:commonDev",
     "unocss": "catalog:commonDev",

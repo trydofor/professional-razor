@@ -1,5 +1,11 @@
 # @fessional/razor-mobile
 
+## 0.8.2-dev.0
+
+### Patch Changes
+
+- 79d005d: readme of release
+
 ## 0.8.1
 
 ### Patch Changes

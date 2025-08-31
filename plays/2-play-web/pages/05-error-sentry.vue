@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col gap-2">
-    <button id="captureClientBtn" @click="captureClientError">
+    <VBtn id="captureClientBtn" @click="captureClientError">
       Catch Client Error
-    </button>
-    <button id="throwClientBtn" @click="throwClientError">
+    </VBtn>
+    <VBtn id="throwClientBtn" @click="throwClientError">
       Throw Client Error
-    </button>
-    <button id="spanServerBtn" @click="spanServerError">
+    </VBtn>
+    <VBtn id="spanServerBtn" @click="spanServerError">
       Span Server Error
-    </button>
+    </VBtn>
   </div>
 </template>
 

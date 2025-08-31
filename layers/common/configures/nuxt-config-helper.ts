@@ -38,3 +38,46 @@ export function nuxtPublicDevProxy() {
       }
     : {};
 }
+
+export function nuxtI18nLocale(code: string, name: string, ext = 'json') {
+  return {
+    code,
+    name,
+    file: `${code}.${ext}`,
+    language: code, // https://i18n.nuxtjs.org/docs/guide/seo
+  };
+};
+
+/**
+ * locales need to be set for every layer (project included) providing locale files.
+ *
+ * ```
+ * // any nuxt i18n config need i18n.locales
+ * export default defineNuxtConfig({
+ *  i18n: {
+ *    locales: nuxtI18nLocales,
+ *  },
+ * }
+ * // and need /i18n/locales/en-US.ts
+ * // dynamic import message
+ * import { en as $vuetify } from 'vuetify/locale';
+ * export default () => ({
+ *   $vuetify,
+ * });
+ * // or static message, but *.json is recommended
+ * export default {
+ *   error: {}
+ * };
+```
+ *
+ * @see https://i18n.nuxtjs.org/docs/guide/layers#merging-locales
+ */
+export const nuxtI18nLocales = [
+  nuxtI18nLocale('en-US', 'English', 'json'),
+  nuxtI18nLocale('zh-CN', '简体中文', 'json'),
+];
+
+export const nuxtI18nLocalesTs = [
+  nuxtI18nLocale('en-US', 'English', 'ts'),
+  nuxtI18nLocale('zh-CN', '简体中文', 'ts'),
+];

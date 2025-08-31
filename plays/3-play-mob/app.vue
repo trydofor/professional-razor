@@ -6,8 +6,14 @@
           <IonMenuToggle>
             <IonToolbar>
               <IonButtons slot="end">
+                <IonButton @click="onTheme">
+                  <IonIcon :class="dark ? 'i-mdi:weather-night' : 'i-mdi:weather-sunny'" />
+                </IonButton>
+                <IonButton @click="onLocale">
+                  {{ i18n.locale.value.slice(0, 2) }}
+                </IonButton>
                 <IonButton>
-                  <div class="i-mdi-close text-3xl text-primary" />
+                  <IonIcon class="i-mdi:close text-2xl" color="primary" />
                 </IonButton>
               </IonButtons>
               <IonTitle>Menu Title</IonTitle>
@@ -54,6 +60,27 @@
 </template>
 
 <script setup lang="ts">
+import '@ionic/vue/css/palettes/dark.class.css'; // 💎
+
+// https://ionicframework.com/docs/theming/dark-mode#adjusting-system-ui-components
+useHead({ meta: [{ name: 'color-scheme', content: 'light dark' }] });
+
+// https://ionicframework.com/docs/theming/dark-mode#css-class
+const dark = shallowRef(window.matchMedia('(prefers-color-scheme: dark)').matches);
+document.documentElement.classList.toggle('dark', dark.value);
+function onTheme() {
+  const nd = !dark.value;
+  document.documentElement.classList.toggle('dark', nd);
+  document.documentElement.classList.toggle('ion-palette-dark', nd); // 💎
+  dark.value = nd;
+}
+
+const i18n = useI18n();
+async function onLocale() {
+  const lc = i18n.locale.value === 'en-US' ? 'zh-CN' : 'en-US';
+  await i18n.setLocale(lc);
+}
+
 const router = useRouter();
 const pageRoutes = router.getRoutes().filter(it => it.path !== '/').sort((a, b) => a.path.localeCompare(b.path));
 

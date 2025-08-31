@@ -1,12 +1,12 @@
 {
   "name": "@fessional/razor-desktop",
-  "version": "0.8.1-dev.9",
+  "version": "0.8.1",
   "description": "desktop layer with vuetify",
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "gen:uno": "tsx configures/vuetify-utility-classes-gen.ts",
-    "postinstall": "nuxi prepare",
+    "postinstall": "nuxt prepare",
     "test": "vitest"
   },
   "dependencies": {

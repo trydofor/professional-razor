@@ -21,11 +21,19 @@ fi
 echo -e "\033[37;42;1mMixed reset to $_hash, exclude package.json\033[0m"
 read -p "Any key to continue, Ctrl+C to cancel"
 
-git stash
+_stash=false
+if ! git diff --quiet; then
+  git stash
+  _stash=true
+fi
+
 git reset --mixed $_hash
 git add 'package.json' '**package.json'
 git restore .
-git stash pop
+
+if $_stash; then
+  git stash pop
+fi
 
 echo -e "\n\n## $_tag\n\n"
 git --no-pager log --invert-grep --grep='bumping versions' --grep='Merge pull request' --pretty=format:"- %h %s" $_tag..HEAD

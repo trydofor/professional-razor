@@ -1,12 +1,12 @@
 {
   "name": "@fessional/razor-common",
-  "version": "0.8.1-dev.9",
+  "version": "0.8.1",
   "description": "common layer for mobile and desktop",
   "type": "module",
   "main": "./nuxt.config.ts",
   "types": "./index.d.ts",
   "scripts": {
-    "postinstall": "nuxi prepare",
+    "postinstall": "nuxt prepare",
     "test": "vitest"
   },
   "dependencies": {
@@ -38,14 +38,13 @@
     "@unocss/eslint-config": "catalog:commonDev",
     "@unocss/nuxt": "catalog:commonDev",
     "@unocss/preset-icons": "catalog:commonDev",
-    "@unocss/preset-wind": "catalog:commonDev",
+    "@unocss/preset-wind4": "catalog:commonDev",
     "@unocss/transformer-directives": "catalog:commonDev",
     "@unocss/transformer-variant-group": "catalog:commonDev",
     "@vitest/coverage-v8": "catalog:commonDev",
     "@vue/test-utils": "catalog:commonDev",
     "eslint": "catalog:commonDev",
     "happy-dom": "catalog:commonDev",
-    "nuxi": "catalog:commonDev",
     "sass-embedded": "catalog:commonDev",
     "typescript": "catalog:commonDev",
     "unocss": "catalog:commonDev",

@@ -14,7 +14,7 @@
       <div>
         Img will change size if DPR change
       </div>
-      <div class="flex flex-row gap-4">
+      <div class="flex-row flex gap-4">
         <div>
           <div>1x</div>
           <img alt="storm1" :src="storm1">
@@ -35,19 +35,19 @@
       <div>
         Svg, imported as component
       </div>
-      <div class="flex flex-row items-center gap-4">
+      <div class="flex-row flex items-center gap-4">
         <div>
           <div>color</div>
-          <SvgDota class="text-20 text-red" />
+          <SvgDota class="text-red text-20" />
         </div>
         <div class="bg-red">
           <div>bg</div>
-          <SvgDota class="text-20 text-white" />
+          <SvgDota class="text-white text-20" />
         </div>
         <div>
           <div>cut 4rem</div>
-          <div class="size-16 overflow-hidden bg-red">
-            <SvgDota class="text-20 text-white -ml-2 -mt-2" />
+          <div class="overflow-hidden size-16 bg-red">
+            <SvgDota class="text-white -ml-2 -mt-2 text-20" />
           </div>
         </div>
       </div>

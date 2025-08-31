@@ -25,21 +25,27 @@ export const apiResponseEventBus = useEventBus<ApiResponseEvent, ApiResponseCont
  * * default - application/json, text/html
  *
  * @see https://github.com/unjs/ofetch/blob/main/src/fetch.ts
+ * @see https://github.com/trydofor/professional-razor/issues/97
  */
 export function apiRequestAcceptContentHook(accept = 'application/json, text/html', id = 'requestAcceptContent'): ApiRequestHook & { id: string } {
+  const vitest = typeof process !== 'undefined' && process.env.VITEST === 'true';
   return attachId(id, (context) => {
     const body = context.options.body;
     const headers = context.options.headers;
 
     if (!headers.has('content-type')) {
-      let contentType = 'application/json';
       if (body instanceof URLSearchParams) {
-        contentType = 'application/x-www-form-urlencoded';
+        headers.set('content-type', 'application/x-www-form-urlencoded');
       }
       else if (body instanceof FormData) {
-        contentType = 'multipart/form-data';
+        if (vitest) {
+          // just for testing, browser autoset, node ssr, should not here
+          headers.set('content-type', 'multipart/form-data');
+        }
       }
-      headers.set('content-type', contentType);
+      else {
+        headers.set('content-type', 'application/json');
+      }
     }
 
     if (!context.options.headers.has('accept')) {

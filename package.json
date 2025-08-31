@@ -1,6 +1,6 @@
 {
   "name": "@fessional/razor",
-  "version": "0.8.1-dev.9",
+  "version": "0.8.1",
   "description": "Use front-end tech (Nuxt/Ts) to build multi-platform from one codebase, suitable for small team and app to write app once, apply almost anywhere.",
   "type": "module",
   "files": [
@@ -14,10 +14,11 @@
     "readme.md"
   ],
   "scripts": {
-    "del:all": "rimraf -g **/node_modules/ **/pnpm-lock.yaml",
-    "del:dep": "rimraf -g **/node_modules/",
-    "del:gen": "rimraf -g **/.nuxt/ **/.output/ **/dist/",
+    "del:all": "del-cli -v **/node_modules/ **/pnpm-lock.yaml",
+    "del:dep": "del-cli -v **/node_modules/",
+    "del:gen": "del-cli -v **/.nuxt/ **/.output/ **/dist/",
     "dep:ci": "pnpm i --frozen-lockfile",
+    "dep:chk": "node pnpm-workspace.mjs",
     "dep:up": "taze -r -l minor",
     "dev:dep": "pnpm -r -F './layers/**' i",
     "dev:gen": "pnpm -r -F './layers/**' run postinstall",
@@ -25,7 +26,7 @@
     "dev:lint": "pnpm -r exec eslint . --fix",
     "dev:test": "pnpm -r -F './layers/**' exec vitest --no-watch --coverage.enabled true",
     "play:app": "pnpm -C plays/5-play-spa dev -p 3035 -o",
-    "play:del": "rimraf -g plays/**/node_modules/",
+    "play:del": "del-cli -v plays/**/node_modules",
     "play:dep": "pnpm -r -F './plays/**' i",
     "play:exe": "pnpm -C plays/4-play-exe dev -p 3034 -o",
     "play:gen": "pnpm -r -F './plays/**' run postinstall",
@@ -38,9 +39,10 @@
   },
   "devDependencies": {
     "@changesets/cli": "catalog:manage",
+    "del-cli": "catalog:manage",
     "pnpm-hoist-layer": "catalog:manage",
-    "rimraf": "catalog:manage",
-    "taze": "catalog:manage"
+    "taze": "catalog:manage",
+    "semver": "catalog:manage"
   },
   "packageManager": "pnpm@9.15.9"
 }

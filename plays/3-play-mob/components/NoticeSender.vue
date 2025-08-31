@@ -129,13 +129,13 @@ function onShowCapturers() {
 const sendZipModel = shallowRef('');
 const sendZipError = shallowRef('bad zipcode');
 const sendZipRefer = useTemplateRef('sendZipRefer');
-const sendZipCheck = useIonInputChecker({
+const sendZipCheck = useInputChecker({
   el: sendZipRefer,
   check: /^[0-9]{6,}$/,
   model: sendZipModel,
+  output: sendZipError,
   notify: {
     handle: noticeCapturer,
-    output: sendZipError,
     accept: 'zip',
   },
 });
@@ -163,9 +163,8 @@ function onApiErrorSyncReturn() {
   return apiRoute.post('/echo', { body });
 }
 
-const thrownCapturer = useThrownCapturer();
 function onApiErrorSyncCatch() {
-  apiRoute.post('/echo', { body }).catch(thrownCapturer.hookCatch);
+  apiRoute.post('/echo', { body }).catch(noticeCapturer.hookCatch);
 }
 
 function onNotifyError() {

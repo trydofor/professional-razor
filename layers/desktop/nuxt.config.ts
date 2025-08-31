@@ -1,10 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import { nuxtI18nLocalesTs } from '@fessional/razor-common/configures/nuxt-config-helper';
+
 export default defineNuxtConfig({
   extends: ['@fessional/razor-common'],
   modules: ['vuetify-nuxt-module'],
   $meta: { name: 'razor-desktop' },
   ssr: false,
+  i18n: {
+    locales: nuxtI18nLocalesTs,
+  },
   vuetify: {
     moduleOptions: {
       // useLocale -> useVLocale

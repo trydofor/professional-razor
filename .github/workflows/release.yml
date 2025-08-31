@@ -74,6 +74,7 @@ jobs:
 
       - name: Calculate Version
         id: version-may
+        if: github.ref_name == 'develop'
         run: |
           git fetch origin main:main
           git branch --show-current
@@ -81,6 +82,7 @@ jobs:
 
       - name: Changeset Auto
         id: changesets
+        if: github.ref_name == 'develop'
         uses: changesets/action@v1
         with:
           commit: ":bookmark: bumping versions to ${{ steps.version-may.outputs.may_version }}"

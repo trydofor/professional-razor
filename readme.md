@@ -159,6 +159,18 @@ pnpm dev:test
 ## play web
 pnpm play:web
 
+## 🚀 release
+
+pnpm ver:dev # enter pre mode
+
+pnpm ver:add # 0.8.1-dev.# snapshot
+git push -f # force push dev
+git pull
+.github/reset-dev.sh # reset dev.#
+
+pnpm ver:ved # exit pre mode
+pnpm ver:add # release 0.8.1
+
 ## 💎 others
 ## reset by bash
 pnpm store prune

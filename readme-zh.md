@@ -161,6 +161,18 @@ pnpm dev:test
 ## 运行 web
 pnpm play:web
 
+## 🚀 发布
+
+pnpm ver:dev # 进入 pre 模式
+
+pnpm ver:add # 0.8.1-dev.# 快照版
+git push -f # 强制覆盖 dev
+git pull
+.github/reset-dev.sh # 重置 dev.#
+
+pnpm ver:ved # 退出 pre 模式
+pnpm ver:add # 发布 0.8.1
+
 ## 💎 其他
 ## 通过bash重置
 pnpm store prune

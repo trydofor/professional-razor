@@ -1,4 +1,3 @@
-## https://pnpm.io/workspaces
 packages:
   - 'layers/*'
   - 'plays/*'
@@ -22,7 +21,7 @@ catalogs:
     "decimal.js": "10.6.0"
     "nuxt-svgo": "4.2.4" # check:nuxt | https://github.com/cpsoinos/nuxt-svgo/blob/v4.2.4/package.json
     "nuxt-swiper": "2.0.1" # check:nuxt | https://github.com/cpreston321/nuxt-swiper/blob/v2.0.1/package.json
-    "nuxt": "3.17.7"
+    "nuxt": "3.19.1"
     "pinia": "3.0.3" # https://github.com/vuejs/pinia/blob/v3.0.3/packages/pinia/CHANGELOG.md
     "swiper": "11.2.10" # check:. | https://github.com/cpreston321/nuxt-swiper/blob/v2.0.1/package.json
     "ts-md5": "2.0.1"

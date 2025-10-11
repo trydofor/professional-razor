@@ -116,6 +116,40 @@ export function apiResponseResultHook(includeFalse = true, id = 'responseResult'
   });
 }
 
+export function apiResponseDownloadHook(id = 'responseDownload'): ApiResponseHook & { id: string } {
+  return attachId(id, async (context) => {
+    const responseType = typeof context.options.responseType === 'string'
+      ? context.options.responseType.toLowerCase()
+      : undefined;
+    if (responseType !== 'blob') return;
+
+    const disposition = context.response.headers.get('content-disposition');
+    const currentData = context.response._data;
+    if (isFileResult(currentData)) return;
+    if (!isBlobLike(currentData)) return;
+
+    if (disposition != null && /attachment/i.test(disposition)) {
+      const name = parseContentDispositionFilename(disposition) ?? 'download.bin';
+      context.response._data = {
+        name,
+        blob: currentData,
+      } satisfies FileResult;
+      return;
+    }
+
+    const text = await currentData.text();
+    if (text) {
+      const json = JSON.parse(text);
+      context.response._data = (json != null && typeof json === 'object')
+        ? json
+        : { success: false, message: text };
+    }
+    else {
+      context.response._data = { success: false };
+    }
+  });
+}
+
 export function isFetchError(err: unknown): err is FetchError {
   return err instanceof FetchError;
 }
@@ -124,6 +158,7 @@ export const defaultFetchHooks = {
   requestAcceptContent: apiRequestAcceptContentHook(),
   responseSession: apiResponseSessionHook(),
   responseStatus: apiResponseStatusHook(),
+  responseDownload: apiResponseDownloadHook(),
   responseResult: apiResponseResultHook(),
 };
 
@@ -154,6 +189,7 @@ export const defaultFetchOptions: FetchOptions = {
   onResponse: [
     defaultFetchHooks.responseSession,
     defaultFetchHooks.responseStatus,
+    defaultFetchHooks.responseDownload,
     defaultFetchHooks.responseResult,
   ],
 };

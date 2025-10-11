@@ -1,4 +1,5 @@
 import { Readable } from 'stream';
+import { getQuery } from 'h3';
 
 // https://nuxt.com/docs/guide/directory-structure/server
 
@@ -17,15 +18,39 @@ import { Readable } from 'stream';
  * ```
  */
 export default defineEventHandler(async (event) => {
+  const query = getQuery(event);
+  const queryValue = query.f ?? query.filename;
+  const rawFilename = Array.isArray(queryValue) ? queryValue[0] : queryValue;
+  const filename = rawFilename?.toString().trim();
+
+  if (!filename) {
+    return {
+      success: false,
+      errors: [{ message: 'Filename is required' }],
+    };
+  }
+
+  const content = typeof query.content === 'string' && query.content !== ''
+    ? query.content
+    : `download:${filename}`;
+
   const stream = new Readable({
     read() {
-      this.push('download.txt');
+      this.push(content);
       this.push(null);
     },
   });
 
-  event.node.res.setHeader('Content-Disposition', 'attachment; filename="download.txt"');
-  event.node.res.setHeader('Content-Type', 'text/plain');
+  const hasNonAscii = /[^\x20-\x7E]/.test(filename);
+  const safeName = filename.replace(/"/g, '%22');
+  const fallbackName = hasNonAscii ? 'download.bin' : safeName;
+  const disposition: string[] = ['attachment', `filename="${fallbackName}"`];
+  if (hasNonAscii) {
+    disposition.push(`filename*=UTF-8''${encodeURIComponent(filename)}`);
+  }
+
+  event.node.res.setHeader('Content-Disposition', disposition.join('; '));
+  event.node.res.setHeader('Content-Type', 'application/octet-stream');
 
   return sendStream(event, stream);
 });

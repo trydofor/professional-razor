@@ -3,6 +3,7 @@
 const mockDataResult: DataResult<string> = { success: true, data: 'test data' };
 const mockPageResult: PageResult<string> = { success: true, data: ['test data'], page: 1, size: 10, totalPage: 1, totalData: 1 };
 const mockErrorResult: ErrorResult = { success: false, errors: [{ type: 'Validation', target: 'field', message: 'Invalid input' }] };
+const mockFileResult: FileResult = { name: 'file.txt', blob: new Blob(['file']) };
 
 describe('typed-fetcher', () => {
   it('should update loading state correctly', async () => {
@@ -64,6 +65,13 @@ describe('typed-fetcher', () => {
     const transformFn = vi.fn(() => ({ success: true, data: 'transformed' }));
     const result = await fetchTypedResult(Promise.resolve(mockDataResult), { results: transformFn });
     expect(result).toEqual({ success: true, data: 'transformed' });
+  });
+
+  it('fetchFileResult should return FileResult', async () => {
+    const fetching = vi.fn().mockResolvedValue(mockFileResult);
+    const result = await fetchFileResult(fetching);
+    expect(fetching).toHaveBeenCalled();
+    expect(result).toEqual(mockFileResult);
   });
 
   it('getDataResult should return DataResult if valid', () => {

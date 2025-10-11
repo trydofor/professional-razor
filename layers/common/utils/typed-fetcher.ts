@@ -53,6 +53,18 @@ export async function fetchTypedPage<T>(
   const result = await fetchTypedResult(fetching, options);
   return mustPageResult(result);
 }
+
+/**
+ * downloading file with loading, result, error handling
+ */
+export async function fetchFileResult(
+  fetching: Promise<SafeAny> | (() => Promise<SafeAny>),
+  options: TypedFetchOptions<SafeAny> | Ref<boolean> = globalLoadingStatus,
+): Promise<FileResult> {
+  const result = await fetchTypedResult(fetching, options);
+  return mustFileResult(result);
+}
+
 /**
  * fetching any result with loading, result, error handling
  *

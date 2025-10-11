@@ -58,6 +58,15 @@ export interface PageResult<T = unknown> extends DataResult<T[]> {
 
 export type ApiResult<T = unknown> = DataResult<T> | PageResult<T> | ErrorResult;
 
+/**
+ * * name: file name
+ * * blob: file content
+ */
+export interface FileResult {
+  name: string;
+  blob: Blob;
+};
+
 export function isDataResult<T>(result?: ApiResult<T> | null): result is DataResult<T> {
   return result != null && !('errors' in result);
 }
@@ -86,4 +95,17 @@ export function mustPageResult<T>(result?: ApiResult<T> | null): PageResult<T> {
 
 export function isErrorResult(result?: ApiResult<SafeAny> | null): result is ErrorResult {
   return (result != null && 'errors' in result);
+}
+
+export function isFileResult(result?: SafeAny | null): result is FileResult {
+  return (result != null && 'name' in result && 'blob' in result);
+}
+
+export function mustFileResult(result?: SafeAny | null): FileResult {
+  if (isFileResult(result)) {
+    return result;
+  }
+  else {
+    throw new SystemError('require FileResult', result);
+  }
 }

@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer';
 import { registerEndpoint } from '@nuxt/test-utils/runtime';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -15,6 +16,39 @@ registerEndpoint('/api/v1/test-get.json', (event) => {
 });
 
 registerEndpoint('/api/v1/test-post.json', (event) => {
+  const contentType = event.node.req.headers['content-type'];
+  return { success: true, data: contentType ?? null };
+});
+
+registerEndpoint('/api/v1/test-download.json', (event) => {
+  const url = event.node.req.url != null ? new URL(event.node.req.url, 'http://localhost') : null;
+  const filename = url?.searchParams.get('f')?.trim();
+  const useStar = url?.searchParams.get('star') === '1';
+  const fallback = url?.searchParams.get('fb') ?? filename ?? '';
+
+  if (!filename) {
+    return {
+      success: false,
+      errors: [{ message: 'filename required' }],
+    };
+  }
+
+  const disposition: string[] = ['attachment'];
+  if (useStar) {
+    disposition.push(`filename="${fallback || 'download.bin'}"`);
+    disposition.push(`filename*=UTF-8''${encodeURIComponent(filename)}`);
+  }
+  else {
+    disposition.push(`filename="${filename}"`);
+  }
+
+  event.node.res.setHeader('Content-Disposition', disposition.join('; '));
+  event.node.res.setHeader('Content-Type', 'application/octet-stream');
+
+  return Buffer.from(`download:${filename}`, 'utf-8');
+});
+
+registerEndpoint('/api/v1/test-put.json', (event) => {
   const contentType = event.node.req.headers['content-type'];
   return { success: true, data: contentType ?? null };
 });
@@ -49,6 +83,12 @@ registerEndpoint('/api/v1/test-false.json', () => {
 });
 
 describe('useApiRouteFetcher with real $fetch requests', () => {
+  it('should include download hook by default', () => {
+    const { opt } = useApiRouteFetcher();
+    const hooks = (opt().onResponse as SafeAny[] | undefined)?.map((fn: SafeAny) => fn.id ?? 'unknown');
+    expect(hooks).toContain('responseDownload');
+  });
+
   it('should send GET request with correct Content-Type (no body)', async () => {
     const { get, raw } = useApiRouteFetcher();
     const rs1 = await get('/test-get.json');
@@ -68,6 +108,60 @@ describe('useApiRouteFetcher with real $fetch requests', () => {
     const rs2 = await raw('/test-post.json', { method: 'post', body: jsonBody });
     logger.debug('post JSON', JSON.stringify(rs2));
     expect(rs2._data).toEqual({ success: true, data: 'application/json' });
+  });
+
+  it('should send PUT request with JSON Content-Type via req', async () => {
+    const { req } = useApiRouteFetcher();
+    const rs = await req<unknown, SafeAny>('/test-put.json', { method: 'put', body: { key: 'value' } });
+    logger.debug('put JSON', JSON.stringify(rs));
+    expect(rs.data).toBe('application/json');
+  });
+
+  it('should download file when query filename provided', async () => {
+  const { raw, req } = useApiRouteFetcher();
+  const rs = await raw<unknown, SafeAny>('/test-download.json', {
+    method: 'get',
+    query: { f: 'report.txt' },
+    responseType: 'blob',
+  });
+    const headers = Object.fromEntries(rs.headers.entries());
+    const file = rs._data as FileResult;
+    expect(headers['content-disposition']).toBe('attachment; filename="report.txt"');
+    expect(headers['content-type']).toBe('application/octet-stream');
+    expect(file.name).toBe('report.txt');
+    expect(Object.prototype.toString.call(file.blob)).toBe('[object Blob]');
+    await expect(file.blob.text()).resolves.toBe('download:report.txt');
+
+  const direct = await req<unknown, SafeAny>('/test-download.json', {
+    method: 'get',
+    query: { f: 'report.txt' },
+    responseType: 'blob',
+  });
+    expect((direct as FileResult).name).toBe('report.txt');
+  });
+
+  it('should prefer filename* when provided', async () => {
+    const { raw } = useApiRouteFetcher();
+  const rs = await raw<unknown, SafeAny>('/test-download.json', {
+    method: 'get',
+    query: { f: '报告.txt', star: '1', fb: 'fallback.txt' },
+    responseType: 'blob',
+  });
+    const file = rs._data as FileResult;
+    expect(file.name).toBe('报告.txt');
+    expect(Object.prototype.toString.call(file.blob)).toBe('[object Blob]');
+    await expect(file.blob.text()).resolves.toBe('download:报告.txt');
+  });
+
+  it('should fail download when filename query missing', async () => {
+    const { req } = useApiRouteFetcher();
+  await expect(req('/test-download.json', {
+    responseType: 'blob',
+  })).rejects.toSatisfy((error: SafeAny) => {
+      return error instanceof ApiResultError
+        && error.errorResult != null
+        && error.errorResult.errors?.[0]?.message === 'filename required';
+    });
   });
 
   it('should send POST request with FormData Content-Type', async () => {

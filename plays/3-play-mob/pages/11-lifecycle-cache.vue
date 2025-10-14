@@ -1,6 +1,6 @@
 <template>
   <AppTab :title="metaName">
-    <div class="flex flex-col gap-4 p-4">
+    <div class="p-4 flex flex-col gap-4">
       <div>
         These lifecycles are only called on components directly mapped by a router.
         This means if /pageOne maps to PageOneComponent, then Ionic lifecycles will
@@ -13,7 +13,7 @@
       <pre>
 {{ logText }}
         </pre>
-      <LifeCircle :log-fun="logFun" :ref-num="refNum" />
+      <LifeCycle :log-fun="logFun" :ref-num="refNum" />
       <IonButton @click="clearLog">
         Clear Log
       </IonButton>
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-const metaName = 'Lifecircle and Cache';
+const metaName = 'Lifecycle and Cache';
 definePageMeta({ name: metaName });
 
 const logText = shallowRef('');

@@ -1,73 +1,71 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 
-describe('flatArray', () => {
-  it('should flatten mixed values and arrays', () => {
-    const result = flatArray([1, [2, 3], 4]);
-    expect(result).toEqual([1, 2, 3, 4]);
+describe('common-util helpers', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
   });
 
-  it('should handle empty arrays and null values', () => {
-    const result = flatArray([[], [1, 2], [undefined], 3]);
-    expect(result).toEqual([1, 2, 3]);
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
-  it('should handle only scalar values', () => {
-    const result = flatArray([1, 2, 3]);
-    expect(result).toEqual([1, 2, 3]);
+  it('jsonReplacer normalizes bigint, Map and Set', () => {
+    expect(jsonReplacer('key', BigInt(10))).toBe('10');
+    expect(jsonReplacer('key', new Map([['a', 1]]))).toEqual({ a: 1 });
+    expect(jsonReplacer('key', new Set([1, 2]))).toEqual([1, 2]);
+    expect(jsonReplacer('key', 'value')).toBe('value');
   });
 
-  it('should handle deeply nested arrays (no deep flattening)', () => {
-    const result = flatArray([[1, [2, 3]]]);
-    expect(result).toEqual([1, [2, 3]]);
+  it('attachId adds id while preserving reference', () => {
+    const obj = { foo: 'bar' };
+    const attached = attachId('token', obj);
+    expect(attached).toBe(obj);
+    expect(attached.id).toBe('token');
   });
 
-  it('should return an empty array if no values are provided', () => {
-    const result = flatArray();
-    expect(result).toEqual([]);
-  });
-});
-
-describe('attachId', () => {
-  it('should attach id to object', () => {
-    const result = attachId('123', { name: 'test' });
-    expect(result).toHaveProperty('id', '123');
-    expect(result).toEqual({ name: 'test', id: '123' });
+  it('flattens arrays and items correctly', () => {
+    expect(flatArray([1, [2, null], undefined, 3])).toEqual([1, 2, 3]);
+    expect(flatItems([1, [2, 3]])).toEqual([1, 2, 3]);
+    expect(flatItems([undefined, 5])).toBe(5);
+    expect(flatItems(undefined)).toBeUndefined();
   });
 
-  it('should handle empty object', () => {
-    const result = attachId('123', {});
-    expect(result).toHaveProperty('id', '123');
+  it('wrapMacroTaskFunction runs in next tick', () => {
+    const spy = vi.fn();
+    const wrapped = wrapMacroTaskFunction(spy, 50);
+    wrapped('a');
+    expect(spy).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(50);
+    expect(spy).toHaveBeenCalledWith('a');
   });
 
-  it('should handle function', () => {
-    const result = attachId('123', () => {});
-    expect(result).toHaveProperty('id', '123');
-  });
-});
-
-describe('refToFunction', () => {
-  it('should return DummyFunction when vr is undefined', () => {
-    const result = refToFunction<number>(undefined);
-    expect(result).toBe(DummyFunction);
+  it('wrapMacroTaskPromise resolves with function result', async () => {
+    const spy = vi.fn(() => 'done');
+    const wrapped = wrapMacroTaskPromise(spy, 25);
+    const promise = wrapped();
+    vi.advanceTimersByTime(25);
+    await expect(promise).resolves.toBe('done');
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should return DummyFunction when vr is null', () => {
-    const result = refToFunction<string>(null);
-    expect(result).toBe(DummyFunction);
+  it('lazyNonnull enforces initialization semantics', () => {
+    const lazy = lazyNonnull<number>();
+    expect(() => lazy.value).toThrow('lazy value is not initialized');
+    lazy.value = 42;
+    expect(lazy.value).toBe(42);
+    expect(lazy.default).toBeUndefined();
+    expect(lazy.absent).toBe(false);
   });
 
-  it('should return the provided function when vr is a function', () => {
-    const mockFn = vi.fn();
-    const result = refToFunction<number>(mockFn);
-    expect(result).toBe(mockFn);
-  });
+  it('refToFunction handles refs and functions', () => {
+    expect(refToFunction()).toBe(DummyFunction);
 
-  it('should return a function that sets value on a Ref object', () => {
-    const r1 = ref(1);
-    const result = refToFunction(r1);
+    const fn = vi.fn();
+    expect(refToFunction(fn)).toBe(fn);
 
-    const testValue = 42;
-    result(testValue);
-    expect(r1.value).toBe(testValue);
+    const target = ref<number | undefined>();
+    const setter = refToFunction(target);
+    setter(123);
+    expect(target.value).toBe(123);
   });
 });

@@ -168,6 +168,7 @@ pnpm ver:dev # 进入 pre 模式
 pnpm ver:add # 0.8.1-dev.# 快照版
 git push -f # 强制覆盖 dev
 git pull
+## 等待 github action 的 PR，若合并则发布 npmjs
 .github/reset-dev.sh # 重置 dev.#
 
 pnpm ver:ved # 退出 pre 模式

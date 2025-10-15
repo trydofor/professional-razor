@@ -1,17 +1,15 @@
 #!/bin/bash -e
 if [ -z "$1" ]; then
   git pull
-  #git --no-pager tag | tac | head -n 5
-  git --no-pager tag | tail -n 5
-  echo -e "\033[37;42;1mWhich tag to show from?\033[0m"
-  read _tag
+  _df=$(git rev-parse --short HEAD^1)
+  HL=$'\e[37;42;1m'
+  git --no-pager log --oneline --graph  --decorate --color=always -n 10 \
+  | sed "/${_df}/ s/.*/${HL}& <====/"
 
-  git --no-pager log --oneline --graph --all $_tag..HEAD
-  echo -e "\033[37;42;1mWhich commit to reset to?\033[0m"
+  echo -e "\033[37;42;1mWhich commit to reset to? ($_df)\033[0m"
   read _hash
   if [ -z "$_hash" ]; then
-    _hash=$(git rev-parse --short HEAD^1)
-    echo "use HEAD^1 by default $_hash"
+    _hash="$_df"
   fi
 else
   _hash="$1"

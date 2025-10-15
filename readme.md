@@ -166,6 +166,7 @@ pnpm ver:dev # enter pre mode
 pnpm ver:add # 0.8.1-dev.# snapshot
 git push -f # force push dev
 git pull
+## waiting PR from github action, publish to npmjs if merged
 .github/reset-dev.sh # reset dev.#
 
 pnpm ver:ved # exit pre mode
